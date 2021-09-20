@@ -1,47 +1,81 @@
-//Go to top
-$(function () {
-
-			var scroll_timer;
-			var displayed = false;
-			var $message = $('#message');
-			var $window = $(window);
-			var top = $(document.body).children(0).position().top;
-
-			$window.scroll(function () {
-				window.clearTimeout(scroll_timer);
-				scroll_timer = window.setTimeout(function () {
-					if($window.scrollTop() <= top) 
-					{
-						displayed = false;
-						$message.fadeOut(500);
-					}
-					else if(displayed == false) 
-					{
-						displayed = true;
-						$message.stop(true, true).fadeIn(500).click(function () { $message.fadeOut(500); });
-					}
-				}, 100);
-			});
-			$('#top-link').click(function(e) { 
-				e.preventDefault();
-				$.scrollTo(0,300); 
-			   });
-		});
-		
-		
-		
-//Tipsy
-		
-$(function() {
-
-    $('.north').tipsy({gravity: 'n'});
-    
-});
 
 
-//Contact Form Box
+  /*-------------------------------------------------------------------------------
+    PRE LOADER
+  -------------------------------------------------------------------------------*/
+
+  $(window).load(function(){
+    $('.preloader').fadeOut(1000); // set duration in brackets    
+  });
+
+
+
+  /* HTML document is loaded. DOM is ready. 
+  -------------------------------------------*/
+
+  $(document).ready(function() {
+
+
+  /*-------------------------------------------------------------------------------
+    Navigation - Hide mobile menu after clicking on a link
+  -------------------------------------------------------------------------------*/
+
+    $('.navbar-collapse a').click(function(){
+        $(".navbar-collapse").collapse('hide');
+    });
+
+
+    $(window).scroll(function() {
+    if ($(".navbar").offset().top > 50) {
+        $(".navbar-fixed-top").addClass("top-nav-collapse");
+    } else {
+        $(".navbar-fixed-top").removeClass("top-nav-collapse");
+    }
+  });
+
+
+
+  /*-------------------------------------------------------------------------------
+    jQuery Parallax
+  -------------------------------------------------------------------------------*/
+
+    function initParallax() {
+    $('#home').parallax("100%", 0.1);
+    $('#about').parallax("100%", 0.3);
+    $('#service').parallax("100%", 0.2);
+    $('#experience').parallax("100%", 0.3);
+    $('#education').parallax("100%", 0.1);
+    $('#quotes').parallax("100%", 0.3);
+    $('#contact').parallax("100%", 0.1);
+    $('footer').parallax("100%", 0.2);
+
+  }
+  initParallax();
+
+
+
+  /*-------------------------------------------------------------------------------
+    smoothScroll js
+  -------------------------------------------------------------------------------*/
   
-  $(document).ready(function(){
-  				$("a[rel='gallery']").colorbox();
-				$("#contact").colorbox({width:"500", height:"580", iframe:true});
-			});
+    $(function() {
+        $('.custom-navbar a, #home a').bind('click', function(event) {
+            var $anchor = $(this);
+            $('html, body').stop().animate({
+                scrollTop: $($anchor.attr('href')).offset().top - 49
+            }, 1000);
+            event.preventDefault();
+        });
+    });
+  
+
+
+  /*-------------------------------------------------------------------------------
+    wow js - Animation js
+  -------------------------------------------------------------------------------*/
+
+  new WOW({ mobile: false }).init();
+
+
+  });
+
