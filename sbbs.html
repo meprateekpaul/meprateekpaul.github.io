@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SBBS - Society for Bioinformatics and Biological Sciences</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: #3b82f6;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+            border-radius: 10px;
+        }
+        
+        .timeline-container {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+        
+        .timeline-container::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -17px;
+            background-color: white;
+            border: 4px solid #3b82f6;
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .left {
+            left: 0;
+        }
+        
+        .right {
+            left: 50%;
+        }
+        
+        .left::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            right: 30px;
+            border: medium solid #e5e7eb;
+            border-width: 10px 0 10px 10px;
+            border-color: transparent transparent transparent #e5e7eb;
+        }
+        
+        .right::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            left: 30px;
+            border: medium solid #e5e7eb;
+            border-width: 10px 10px 10px 0;
+            border-color: transparent #e5e7eb transparent transparent;
+        }
+        
+        .right::after {
+            left: -16px;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-container {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-container::before {
+                left: 60px;
+                border: medium solid #e5e7eb;
+                border-width: 10px 10px 10px 0;
+                border-color: transparent #e5e7eb transparent transparent;
+            }
+            
+            .left::after, .right::after {
+                left: 15px;
+            }
+            
+            .right {
+                left: 0%;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-green-800 text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-dna text-2xl"></i>
+                    <a href="#" class="text-xl font-bold">SBBS</a>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="hover:text-green-300 transition">Home</a>
+                    <a href="#about" class="hover:text-green-300 transition">About</a>
+                    <a href="#objectives" class="hover:text-green-300 transition">Objectives</a>
+                    <a href="#team" class="hover:text-green-300 transition">Team</a>
+                    <a href="#events" class="hover:text-green-300 transition">Events</a>
+                    <a href="#contact" class="hover:text-green-300 transition">Contact</a>
+                </div>
+                <button class="md:hidden focus:outline-none" id="menu-toggle">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+            <!-- Mobile Menu -->
+            <div class="md:hidden hidden py-4" id="mobile-menu">
+                <div class="flex flex-col space-y-3">
+                    <a href="#home" class="hover:text-green-300 transition">Home</a>
+                    <a href="#about" class="hover:text-green-300 transition">About</a>
+                    <a href="#objectives" class="hover:text-green-300 transition">Objectives</a>
+                    <a href="#team" class="hover:text-green-300 transition">Team</a>
+                    <a href="#events" class="hover:text-green-300 transition">Events</a>
+                    <a href="#contact" class="hover:text-green-300 transition">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section text-white py-20 md:py-32">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">Society for Bioinformatics and Biological Sciences</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-4xl mx-auto">Advancing interdisciplinary research in bioinformatics and biological sciences for the benefit of humankind</p>
+            <div class="flex flex-col md:flex-row justify-center gap-4">
+                <a href="#about" class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-medium transition">Learn More</a>
+                <a href="#contact" class="bg-white hover:bg-gray-100 text-green-800 px-6 py-3 rounded-lg font-medium transition">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-green-800 mb-4">About SBBS</h2>
+                <div class="w-20 h-1 bg-green-600 mx-auto"></div>
+            </div>
+            <div class="flex flex-col md:flex-row items-center gap-8">
+                <div class="md:w-1/2">
+                    <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Bioinformatics" class="rounded-lg shadow-xl w-full h-auto">
+                </div>
+                <div class="md:w-1/2">
+                    <p class="text-gray-700 mb-6 text-lg">
+                        Society for Bioinformatics and Biological Sciences (SBBS) is established in 2012 with aims and objective to strengthen area of Bioinformatics and Biological Sciences. SBBS is a registered society (R.No. 631 / 2014-2015, Prayagraj, Uttar Pradesh) under Indian Societies Registration Act 21, 1860.
+                    </p>
+                    <p class="text-gray-700 mb-6 text-lg">
+                        It is an interdisciplinary society dealing with Bioinformatics, Biotechnology, Biological sciences, Computational Biology, Genomics, Proteomics, Agri-Informatics, Animal-Veterinary Sciences, Chemoinformatics, Pharmacology, Pharmaceutical Science and Nanotechnology.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <span class="bg-green-100 text-green-800 px-4 py-2 rounded-full">Bioinformatics</span>
+                        <span class="bg-green-100 text-green-800 px-4 py-2 rounded-full">Biotechnology</span>
+                        <span class="bg-green-100 text-green-800 px-4 py-2 rounded-full">Genomics</span>
+                        <span class="bg-green-100 text-green-800 px-4 py-2 rounded-full">Proteomics</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Objectives Section -->
+    <section id="objectives" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-green-800 mb-4">Our Aims & Objectives</h2>
+                <div class="w-20 h-1 bg-green-600 mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition card-hover">
+                    <div class="text-green-600 mb-4">
+                        <i class="fas fa-book-open text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Knowledge Dissemination</h3>
+                    <p class="text-gray-600">To diffuse scientific knowledge and information about technologies in different disciplines of applied sciences.</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition card-hover">
+                    <div class="text-green-600 mb-4">
+                        <i class="fas fa-users text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Educational Programs</h3>
+                    <p class="text-gray-600">To arrange and conduct meetings, fellowships, classes, seminars, workshops, conference, campaigns and lectures.</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition card-hover">
+                    <div class="text-green-600 mb-4">
+                        <i class="fas fa-graduation-cap text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Training & Scholarships</h3>
+                    <p class="text-gray-600">To conduct educational training programs and offer prizes, award scholarships to deserving students.</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition card-hover">
+                    <div class="text-green-600 mb-4">
+                        <i class="fas fa-network-wired text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Networking</h3>
+                    <p class="text-gray-600">To provide formal links with National R&D Labs, Universities, Medical Institutions and Research Organizations.</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition card-hover">
+                    <div class="text-green-600 mb-4">
+                        <i class="fas fa-brain text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Indigenous Knowledge</h3>
+                    <p class="text-gray-600">To promote and utilize Indigenous Technical Knowledge (ITK) for research in Bioinformatics and Biological Sciences.</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition card-hover">
+                    <div class="text-green-600 mb-4">
+                        <i class="fas fa-balance-scale text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">IPR Awareness</h3>
+                    <p class="text-gray-600">To create awareness about Intellectual Property Rights among Scientists and scholars.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-green-800 mb-4">Our Office Bearers</h2>
+                <div class="w-20 h-1 bg-green-600 mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md text-center">
+                    <div class="w-32 h-32 mx-auto mb-4 rounded-full bg-gray-300 overflow-hidden">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Prof. Pramod W. Ramteke" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-semibold">Prof. Pramod W. Ramteke</h3>
+                    <p class="text-green-600 font-medium">President</p>
+                    <div class="flex justify-center space-x-3 mt-3">
+                        <a href="#" class="text-blue-500 hover:text-blue-700"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-gray-600 hover:text-gray-800"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md text-center">
+                    <div class="w-32 h-32 mx-auto mb-4 rounded-full bg-gray-300 overflow-hidden">
+                        <img src="https://randomuser.me/api/portraits/men/44.jpg" alt="Dr. Satendra Singh" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-semibold">Dr. Satendra Singh</h3>
+                    <p class="text-green-600 font-medium">Secretary</p>
+                    <div class="flex justify-center space-x-3 mt-3">
+                        <a href="#" class="text-blue-500 hover:text-blue-700"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-gray-600 hover:text-gray-800"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md text-center">
+                    <div class="w-32 h-32 mx-auto mb-4 rounded-full bg-gray-300 overflow-hidden">
+                        <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Dr. Gurudayal Ram Guru" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-semibold">Dr. Gurudayal Ram Guru</h3>
+                    <p class="text-green-600 font-medium">Treasurer</p>
+                    <div class="flex justify-center space-x-3 mt-3">
+                        <a href="#" class="text-blue-500 hover:text-blue-700"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-gray-600 hover:text-gray-800"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md text-center">
+                    <div class="w-32 h-32 mx-auto mb-4 rounded-full bg-gray-300 overflow-hidden">
+                        <img src="https://randomuser.me/api/portraits/men/12.jpg" alt="Dr. Pramod Kumar Yadav" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-semibold">Dr. Pramod Kumar Yadav</h3>
+                    <p class="text-green-600 font-medium">Executive Member</p>
+                    <div class="flex justify-center space-x-3 mt-3">
+                        <a href="#" class="text-blue-500 hover:text-blue-700"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-gray-600 hover:text-gray-800"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md text-center">
+                    <div class="w-32 h-32 mx-auto mb-4 rounded-full bg-gray-300 overflow-hidden">
+                        <img src="https://randomuser.me/api/portraits/men/65.jpg" alt="Dr. Dhirendra Kumar" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-semibold">Dr. Dhirendra Kumar</h3>
+                    <p class="text-green-600 font-medium">Executive Member</p>
+                    <div class="flex justify-center space-x-3 mt-3">
+                        <a href="#" class="text-blue-500 hover:text-blue-700"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-gray-600 hover:text-gray-800"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md text-center">
+                    <div class="w-32 h-32 mx-auto mb-4 rounded-full bg-gray-300 overflow-hidden">
+                        <img src="https://randomuser.me/api/portraits/men/78.jpg" alt="Dr. Budhayash Gautam" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-semibold">Dr. Budhayash Gautam</h3>
+                    <p class="text-green-600 font-medium">Joint-Secretary</p>
+                    <div class="flex justify-center space-x-3 mt-3">
+                        <a href="#" class="text-blue-500 hover:text-blue-700"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-gray-600 hover:text-gray-800"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section id="events" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-green-800 mb-4">Upcoming Events</h2>
+                <div class="w-20 h-1 bg-green-600 mx-auto"></div>
+            </div>
+            
+            <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-md overflow-hidden">
+                <div class="md:flex">
+                    <div class="md:w-1/3 bg-green-700 text-white p-6 flex flex-col justify-center items-center">
+                        <div class="text-5xl font-bold">08-09</div>
+                        <div class="text-2xl font-semibold">March 2025</div>
+                        <div class="mt-4 text-center">
+                            <span class="bg-green-800 text-white px-3 py-1 rounded-full text-sm">Virtual Event</span>
+                        </div>
+                    </div>
+                    <div class="p-8 md:w-2/3">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">National E-Conference on "Frontiers in Agricultural, Veterinary and Biological Sciences FAVBS-2025"</h3>
+                        <p class="text-gray-600 mb-4">Join us for an exciting virtual conference bringing together experts from various disciplines of biological sciences to discuss the latest advancements and future directions.</p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Agriculture</span>
+                            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Veterinary</span>
+                            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Biological Sciences</span>
+                        </div>
+                        <div class="flex items-center text-gray-500 mb-2">
+                            <i class="fas fa-clock mr-2"></i>
+                            <span>Open till 11:59pm, 20th January 2025</span>
+                        </div>
+                        <a href="#" class="inline-block bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg font-medium transition">Register Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12">
+                <h3 class="text-2xl font-semibold text-center mb-8">Past Events</h3>
+                
+                <div class="timeline">
+                    <div class="timeline-container left">
+                        <div class="bg-white p-6 rounded-lg shadow-md">
+                            <h4 class="font-bold text-lg mb-2">International Conference on Bioinformatics</h4>
+                            <small class="text-gray-500">March 2023</small>
+                            <p class="mt-2 text-gray-700">Successfully organized with 200+ participants from 15 countries.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-container right">
+                        <div class="bg-white p-6 rounded-lg shadow-md">
+                            <h4 class="font-bold text-lg mb-2">Workshop on Computational Biology</h4>
+                            <small class="text-gray-500">October 2022</small>
+                            <p class="mt-2 text-gray-700">Hands-on training session for 50 researchers and students.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-container left">
+                        <div class="bg-white p-6 rounded-lg shadow-md">
+                            <h4 class="font-bold text-lg mb-2">Seminar on Agricultural Bioinformatics</h4>
+                            <small class="text-gray-500">July 2021</small>
+                            <p class="mt-2 text-gray-700">Focused on applications of bioinformatics in agriculture.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-green-800 mb-4">Contact Us</h2>
+                <div class="w-20 h-1 bg-green-600 mx-auto"></div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row gap-8">
+                <div class="md:w-1/2">
+                    <div class="bg-gray-50 p-8 rounded-lg shadow-md h-full">
+                        <h3 class="text-xl font-semibold mb-6">Get in Touch</h3>
+                        
+                        <div class="flex items-start mb-6">
+                            <div class="text-green-600 mr-4 mt-1">
+                                <i class="fas fa-map-marker-alt text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-800">Address</h4>
+                                <p class="text-gray-600">Agriculture Post Office, Gangotri Nagar, Naini, Prayagraj (211007), Uttar Pradesh, India</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start mb-6">
+                            <div class="text-green-600 mr-4 mt-1">
+                                <i class="fas fa-phone-alt text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-800">Phone</h4>
+                                <p class="text-gray-600">09565448367</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start mb-6">
+                            <div class="text-green-600 mr-4 mt-1">
+                                <i class="fas fa-envelope text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-800">Email</h4>
+                                <p class="text-gray-600">bioinformatic.biology@gmail.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8">
+                            <h4 class="font-medium text-gray-800 mb-4">Follow Us</h4>
+                            <div class="flex space-x-4">
+                                <a href="#" class="bg-blue-600 text-white p-3 rounded-full hover:bg-blue-700 transition">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="bg-blue-400 text-white p-3 rounded-full hover:bg-blue-500 transition">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="bg-red-600 text-white p-3 rounded-full hover:bg-red-700 transition">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+                                <a href="#" class="bg-blue-700 text-white p-3 rounded-full hover:bg-blue-800 transition">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2">
+                    <div class="bg-gray-50 p-8 rounded-lg shadow-md h-full">
+                        <h3 class="text-xl font-semibold mb-6">Send Us a Message</h3>
+                        <form>
+                            <div class="mb-4">
+                                <label for="name" class="block text-gray-700 mb-2">Your Name</label>
+                                <input type="text" id="name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600">
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="email" class="block text-gray-700 mb-2">Email Address</label>
+                                <input type="email" id="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600">
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="subject" class="block text-gray-700 mb-2">Subject</label>
+                                <input type="text" id="subject" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600">
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="message" class="block text-gray-700 mb-2">Message</label>
+                                <textarea id="message" rows="4" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600"></textarea>
+                            </div>
+                            
+                            <button type="submit" class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg font-medium transition w-full">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <div class="bg-gray-100 py-8">
+        <div class="container mx-auto px-4">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3602.025721096102!2d81.86397231501412!3d25.46748398376815!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399acb9c8ad8a941%3A0x77a1e1c4f1a5e4a5!2sNaini%2C%20Prayagraj%2C%20Uttar%20Pradesh%20211007!5e0!3m2!1sen!2sin!4v1689761112406!5m2!1sen!2sin" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="rounded-lg shadow-md"></iframe>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-green-900 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i class="fas fa-dna text-2xl"></i>
+                        <span class="text-xl font-bold">SBBS</span>
+                    </div>
+                    <p class="text-green-200">Society for Bioinformatics and Biological Sciences</p>
+                    <p class="text-green-200">R.No. 631 / 2014-2015, Prayagraj, Uttar Pradesh, India</p>
+                </div>
+                
+                <div class="flex flex-col items-center md:items-end">
+                    <div class="mb-4">
+                        <p class="text-green-200">Developed By</p>
+                        <p class="font-medium">@Aniket Yadav @Sharad Kumar Jaiswal</p>
+                    </div>
+                    <div>
+                        <p class="text-green-200">&copy; 2023 SBBS. All rights reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-green-600 text-white p-3 rounded-full shadow-lg hidden">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Back to top button
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('hidden');
+            } else {
+                backToTopButton.classList.add('hidden');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
