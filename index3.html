@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Prateek Paul - Computational Biologist & Data Scientist Portfolio">
+    <title>Prateek Paul | Bio-Digital Interface</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600&family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- 1. CORE VARIABLES --- */
+        :root {
+            --bg-deep: #050b14; /* Deep Void Blue */
+            --bg-panel: rgba(10, 25, 47, 0.85); /* Glass Panel */
+            
+            /* Accents */
+            --cyan-tech: #00f3ff;    /* Computation */
+            --green-bio: #00ff9d;    /* Biology */
+            --text-main: #e6f1ff;    /* High Contrast Text */
+            --text-muted: #8892b0;   /* Secondary Text */
+            
+            /* Fonts */
+            --font-head: 'Rajdhani', sans-serif; /* Clean Tech Headers */
+            --font-body: 'Exo 2', sans-serif;    /* Highly Readable Body */
+            --font-meta: 'Share Tech Mono', monospace; /* Only for dates/tags */
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            font-size: 18px; /* Larger base size for readability */
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* --- 2. GLOBAL FX --- */
+        /* Subtle Scanlines */
+        .scanlines {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.1));
+            background-size: 100% 4px;
+            z-index: 999; pointer-events: none; opacity: 0.1;
+        }
+
+        /* Particles Canvas */
+        #bio-canvas {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+        }
+
+        /* --- 3. TYPOGRAPHY & BUTTONS --- */
+        h1, h2, h3, h4 {
+            font-family: var(--font-head);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #fff;
+        }
+        
+        h1 { font-size: 4rem; line-height: 1.1; }
+        h2 { font-size: 2.5rem; margin-bottom: 2rem; border-left: 4px solid var(--cyan-tech); padding-left: 15px; }
+        h3 { font-size: 1.5rem; color: var(--text-main); }
+
+        p { margin-bottom: 1.5rem; color: var(--text-muted); font-weight: 400; }
+        strong { color: var(--cyan-tech); font-weight: 600; }
+
+        .tag-meta {
+            font-family: var(--font-meta);
+            color: var(--green-bio);
+            font-size: 0.9rem;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border: 1px solid var(--cyan-tech);
+            color: var(--cyan-tech);
+            font-family: var(--font-head);
+            font-weight: 700;
+            text-transform: uppercase;
+            text-decoration: none;
+            letter-spacing: 2px;
+            transition: 0.3s;
+            background: rgba(0, 243, 255, 0.05);
+            margin-top: 10px;
+        }
+        .btn:hover {
+            background: rgba(0, 243, 255, 0.2);
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.4);
+            transform: translateY(-2px);
+            color: #fff;
+        }
+
+        /* --- 4. SCANNER FRAMES (For Images) --- */
+        .scanner-frame {
+            position: relative;
+            height: 100%;
+            min-height: 450px;
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            overflow: hidden;
+            background: #000;
+        }
+        .scanner-frame .bg-img {
+            width: 100%; height: 100%;
+            background-size: cover; background-position: center;
+            filter: brightness(0.7) contrast(1.1) hue-rotate(10deg);
+            transition: 0.5s;
+        }
+        .scanner-frame:hover .bg-img {
+            filter: brightness(1) contrast(1);
+        }
+        .scan-line {
+            position: absolute; top: 0; left: 0; width: 100%; height: 2px;
+            background: var(--green-bio);
+            box-shadow: 0 0 15px var(--green-bio);
+            animation: scan 4s linear infinite; z-index: 2; opacity: 0.7;
+        }
+        @keyframes scan {
+            0% { top: 0%; opacity: 0; }
+            15% { opacity: 1; }
+            85% { opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+        /* HUD Corners */
+        .hud-corner {
+            position: absolute; width: 30px; height: 30px;
+            border: 2px solid var(--cyan-tech); z-index: 3;
+        }
+        .tl { top: 20px; left: 20px; border-right: 0; border-bottom: 0; }
+        .tr { top: 20px; right: 20px; border-left: 0; border-bottom: 0; }
+        .bl { bottom: 20px; left: 20px; border-right: 0; border-top: 0; }
+        .br { bottom: 20px; right: 20px; border-left: 0; border-top: 0; }
+
+        /* --- 5. LAYOUT --- */
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        section { padding: 100px 0; }
+
+        /* NAV */
+        nav {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            background: rgba(5, 11, 20, 0.95);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+        }
+        .nav-flex { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: var(--font-head); font-size: 1.8rem; font-weight: 700; color: #fff; text-decoration: none; }
+        .logo span { color: var(--cyan-tech); }
+        .nav-items a {
+            color: var(--text-muted); text-decoration: none; margin-left: 30px;
+            font-size: 0.95rem; font-weight: 600; text-transform: uppercase; transition: 0.3s;
+        }
+        .nav-items a:hover { color: var(--green-bio); }
+        .nav-items a.highlight { color: var(--cyan-tech); border: 1px solid var(--cyan-tech); padding: 5px 15px; }
+        .nav-items a.highlight:hover { background: rgba(0, 243, 255, 0.1); color: #fff; }
+
+        /* HERO */
+        #home {
+            min-height: 100vh; display: flex; align-items: center; padding-top: 80px;
+            background: linear-gradient(90deg, #050b14 20%, rgba(5, 11, 20, 0.6) 100%), url('images/home-img.jpg');
+            background-size: cover; background-position: center; background-attachment: fixed;
+        }
+        .hero-content { position: relative; z-index: 2; max-width: 800px; }
+        
+        /* ABOUT GRID */
+        .grid-split { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px; align-items: stretch; }
+        .about-text { background: var(--bg-panel); padding: 40px; border: 1px solid rgba(255,255,255,0.05); }
+        .about-bg { background-image: url('images/about-img.jpg'); }
+
+        /* SKILLS (Clean Bars) */
+        .skills-wrap { margin-top: 30px; }
+        .skill-item { margin-bottom: 15px; }
+        .skill-meta { display: flex; justify-content: space-between; font-family: var(--font-meta); font-size: 0.9rem; margin-bottom: 5px; color: var(--green-bio); }
+        .bar-track { width: 100%; height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; }
+        .bar-val { height: 100%; background: var(--cyan-tech); border-radius: 3px; box-shadow: 0 0 10px var(--cyan-tech); }
+
+        /* SERVICES */
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+        .service-card {
+            background: var(--bg-panel); padding: 30px; border: 1px solid rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .service-card:hover { border-color: var(--green-bio); transform: translateY(-5px); }
+        .service-card i { font-size: 2rem; color: var(--green-bio); margin-bottom: 20px; }
+
+        /* EXPERIENCE & EDUCATION (Alternating Layouts) */
+        .timeline-section { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; margin-bottom: 80px; }
+        .exp-bg { background-image: url('images/experience-img.jpg'); }
+        .edu-bg { background-image: url('images/education-img.jpg'); }
+        
+        .timeline-list { list-style: none; }
+        .timeline-list li {
+            padding: 20px;
+            border-left: 2px solid rgba(255,255,255,0.1);
+            margin-bottom: 20px;
+            transition: 0.3s;
+        }
+        .timeline-list li:hover { border-left-color: var(--cyan-tech); background: rgba(255,255,255,0.02); }
+        .timeline-list h3 { font-size: 1.3rem; margin-bottom: 5px; }
+        .timeline-list p { margin-bottom: 5px; font-size: 1rem; }
+
+        /* QUOTES */
+        #quotes {
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('images/quotes-bg.jpg');
+            background-size: cover; background-attachment: fixed; text-align: center;
+        }
+        #quotes i { font-size: 2.5rem; color: var(--green-bio); margin-bottom: 20px; }
+        #quotes h2 { font-family: var(--font-body); font-weight: 300; font-style: italic; border: none; font-size: 2rem; }
+
+        /* CONTACT */
+        #contact { display: grid; grid-template-columns: 1fr 1fr; min-height: 80vh; padding: 0; }
+        .contact-form-wrap { padding: 80px; background: #08101b; display: flex; flex-direction: column; justify-content: center; }
+        .contact-bg { background-image: url('images/contact-img.jpg'); }
+
+        .form-input {
+            width: 100%; background: rgba(255,255,255,0.05); border: 1px solid #333;
+            padding: 15px; color: #fff; font-family: var(--font-body); font-size: 1rem; margin-bottom: 20px; outline: none;
+        }
+        .form-input:focus { border-color: var(--cyan-tech); }
+
+        /* FOOTER */
+        footer { padding: 40px 0; text-align: center; border-top: 1px solid #1a202c; color: var(--text-muted); font-size: 0.9rem; }
+        .socials a { color: var(--text-main); margin: 0 10px; font-size: 1.2rem; transition: 0.3s; }
+        .socials a:hover { color: var(--cyan-tech); }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .grid-split, .timeline-section, #contact { grid-template-columns: 1fr; }
+            .scanner-frame { height: 300px; min-height: auto; order: -1; } /* Image on top */
+            .contact-form-wrap { padding: 40px 20px; }
+            .nav-items { display: none; } /* Simplified for mobile */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="scanlines"></div>
+    <canvas id="bio-canvas"></canvas>
+
+    <nav>
+        <div class="container nav-flex">
+            <a href="#" class="logo">PRATEEK<span>PAUL</span></a>
+            <div class="nav-items">
+                <a href="#home">Home</a>
+                <a href="#about">Bio-Data</a>
+                <a href="#experience">Experience</a>
+                <a href="#education">Education</a>
+                <a href="#contact">Contact</a>
+                <!-- <a href="resume.html" class="highlight" target="_blank">RESUME</a> -->
+            </div>
+        </div>
+    </nav>
+
+    <section id="home">
+        <div class="container">
+            <div class="hero-content">
+                <span class="tag-meta">> SYSTEM STATUS: ONLINE</span>
+                <h1>Hello, I am <span style="color:var(--cyan-tech)">Prateek Paul</span>.</h1>
+                <h3>Bioinformatics Student & Data Scientist</h3>
+                <br>
+                <p style="font-size: 1.2rem; max-width: 600px;">
+                    Unraveling the mysteries of the Human Genome. 
+                    Merging biological data with algorithmic precision to serve mankind. 
+                    Bioinformatics is the future of discovery.
+                </p>
+                <a href="#about" class="btn">Initialize Sequence</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <div class="grid-split">
+                <div class="about-text">
+                    <h2>Bioinformatics <span style="color:var(--text-muted); font-size: 1.2rem; border:none; padding:0; text-transform:none;">(A.K.A. Computational Biology)</span></h2>
+                    
+                    <p>I am working at the crossroads of biology, statistics, and computer science. While pursuing my graduation, I am involved in in-house database and research projects run by departmental faculties.</p>
+                    <p>Bioinformatics is exciting because it allows me to design algorithms to tackle large and complex biological datasets. It is fun because we find out new things about the world every time we run our code.</p>
+
+                    <div class="skills-wrap">
+                        <div class="skill-item">
+                            <div class="skill-meta"><span>Bioinformatics</span><span>90%</span></div>
+                            <div class="bar-track"><div class="bar-val" style="width: 90%"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-meta"><span>Automation / Python</span><span>70%</span></div>
+                            <div class="bar-track"><div class="bar-val" style="width: 70%"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-meta"><span>CADD (Drug Discovery)</span><span>80%</span></div>
+                            <div class="bar-track"><div class="bar-val" style="width: 80%"></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="scanner-frame">
+                    <div class="bg-img about-bg"></div>
+                    <div class="scan-line"></div>
+                    <div class="hud-corner tl"></div><div class="hud-corner tr"></div>
+                    <div class="hud-corner bl"></div><div class="hud-corner br"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="container">
+            <h2>Active Modules</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-desktop"></i>
+                    <h4>Tools</h4>
+                    <p>BLAST, FASTA, IEDB, IMGT, ProtParam, ClustalW, PHYLIP, SWISS-MODEL.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-microscope"></i>
+                    <h4>Software</h4>
+                    <p>Modeller, AutoDock Vina, LigPlot, HEX, Discovery Studio, GROMACS, CytoScape.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-code"></i>
+                    <h4>Coding</h4>
+                    <p>Python, R, Java, MySQL, Perl, BASH, BioPython, HTML/CSS.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-brain"></i>
+                    <h4>Extra Curricular</h4>
+                    <p>Photography, Video Editing, Ethical Hacking, Chess, Technical Writing.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <div class="container">
+            <div class="timeline-section">
+                <div class="scanner-frame">
+                    <div class="bg-img exp-bg"></div>
+                    <div class="scan-line"></div>
+                    <div class="hud-corner tl"></div><div class="hud-corner br"></div>
+                </div>
+                <div class="about-text">
+                    <h2>Experience Logs</h2>
+                    <ul class="timeline-list">
+                        <li>
+                            <span class="tag-meta">NOV 2025 - DEC 2025</span>
+                            <h3>Trainee | Radiation Effects Research Foundation</h3>
+                            <p><strong>Hiroshima, Japan.</strong> Analysis of radiation exposure effects using a large-scale multimodality database with RAG (Retrieval Augmented Generation).</p>
+                        </li>
+                        <li>
+                            <span class="tag-meta">JAN 2022 - JUL 2022</span>
+                            <h3>Student Intern | INMAS, DRDO</h3>
+                            <p>Developing Animal Model DB for Regeneration Processes.</p>
+                        </li>
+                        <li>
+                            <span class="tag-meta">JUL 2021 - JUL 2022</span>
+                            <h3>Student Intern | IIT, Bombay</h3>
+                            <p>Integrated OMICS-based analysis of oral cancer datasets & identification of potential target via in-silico drug repurposing.</p>
+                        </li>
+                        <li>
+                            <span class="tag-meta">JUN 2021 - JUL 2021</span>
+                            <h3>Student Trainee | Rawal Genomics Lab</h3>
+                            <p>AI Based Research for Drug Repurposing in COVID 19.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education">
+        <div class="container">
+            <div class="timeline-section">
+                <div class="about-text">
+                    <h2>Education History</h2>
+                    <ul class="timeline-list">
+                        <li>
+                            <span class="tag-meta">2022 - PRESENT</span>
+                            <h3>Ph.D. in Computational Biology</h3>
+                            <p>Indraprastha Institute of Information Technology Delhi (IIIT-D), New Delhi, India.</p>
+                        </li>
+                        <li>
+                            <span class="tag-meta">2025</span>
+                            <h3>M.Tech. in Computational Biology</h3>
+                            <p>Indraprastha Institute of Information Technology Delhi (IIIT-D), New Delhi, India.</p>
+                        </li>
+                        <li>
+                            <span class="tag-meta">2022</span>
+                            <h3>B.Tech. in Bioinformatics</h3>
+                            <p>Sam Higginbottom University of Agriculture Technology and Sciences (SHUATS), Prayagraj, UP, India.</p>
+                        </li>
+                        <li>
+                            <span class="tag-meta">2018</span>
+                            <h3>AISSCE (Class XII) | Science (Bio)</h3>
+                            <p>Delhi Public School, Patna, India.</p>
+                        </li>
+                        <li>
+                            <span class="tag-meta">2016</span>
+                            <h3>AISSE (Class X)</h3>
+                            <p>Delhi Public School, Patna, India.</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="scanner-frame">
+                    <div class="bg-img edu-bg"></div>
+                    <div class="scan-line"></div>
+                    <div class="hud-corner tr"></div><div class="hud-corner bl"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="quotes">
+        <div class="container">
+            <div style="max-width: 800px; margin: 0 auto;">
+                <i class="fas fa-star"></i>
+                <h2>"This is the Era of Computer Science & Biotechnology, and we are living in the cross roads of these fields, known as Computational Biology."</h2>
+                <p style="margin-top: 20px; color: var(--cyan-tech);">-- WITH LIMITLESS POSSIBILITIES</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="contact-form-wrap">
+            <h2>Transmit Data</h2>
+            <p>I am open for queries and research collaboration.</p>
+            
+            <form action="#">
+                <input type="text" class="form-input" placeholder="Your Name">
+                <input type="email" class="form-input" placeholder="Your Email">
+                <textarea rows="5" class="form-input" placeholder="Message Payload..."></textarea>
+                <button class="btn">Send Message</button>
+                <!-- <a href="resume.html" target="_blank" class="btn" style="margin-left: 10px; border-color: var(--green-bio); color: var(--green-bio);">Download Resume</a> -->
+            </form>
+
+            <div style="margin-top: 40px; border-top: 1px solid #333; padding-top: 20px;">
+                <p><i class="fas fa-phone-alt" style="color:var(--green-bio); margin-right: 10px;"></i> +91 93049 73049</p>
+                <p><i class="fas fa-envelope" style="color:var(--green-bio); margin-right: 10px;"></i> meprateekpaul@gmail.com</p>
+            </div>
+        </div>
+        
+        <div class="scanner-frame" style="border:none; border-left: 1px solid var(--cyan-tech);">
+            <div class="bg-img contact-bg"></div>
+            <div class="scan-line" style="background: var(--cyan-tech); box-shadow: 0 0 10px var(--cyan-tech);"></div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="socials" style="margin-bottom: 20px;">
+                <a href="https://linkedin.com/in/prateekpaulpro/"><i class="fab fa-linkedin"></i></a>
+                <a href="https://twitter.com/prateekpaulpro"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.facebook.com/prateek.paul.754/"><i class="fab fa-facebook"></i></a>
+            </div>
+            <p>Copyright © 2025 Paul Enterprises</p>
+        </div>
+    </footer>
+
+    <script>
+        const canvas = document.getElementById('bio-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let particles = [];
+        
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            init();
+        });
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = (Math.random() * 1 - 0.5);
+                this.speedY = (Math.random() * 1 - 0.5);
+                this.color = Math.random() > 0.5 ? 'rgba(0, 243, 255, ' : 'rgba(0, 255, 157, ';
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x > canvas.width || this.x < 0) this.speedX = -this.speedX;
+                if (this.y > canvas.height || this.y < 0) this.speedY = -this.speedY;
+            }
+            draw() {
+                ctx.fillStyle = this.color + '0.5)';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function init() {
+            particles = [];
+            let numberOfParticles = (canvas.height * canvas.width) / 12000;
+            for (let i = 0; i < numberOfParticles; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+                // Connect particles close to each other
+                for (let j = i; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < 100) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = particles[i].color + '0.1)';
+                        ctx.lineWidth = 0.5;
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animate);
+        }
+
+        init();
+        animate();
+    </script>
+</body>
+</html>
