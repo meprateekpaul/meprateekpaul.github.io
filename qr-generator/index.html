@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QR Genius — Free QR Code Generator</title>
+  <meta name="description" content="Generate beautiful, customizable QR codes instantly for URLs, text, email, WiFi, vCard and more. Free, no sign-up, works offline." />
+  <meta name="keywords" content="QR code generator, free QR code, QR code maker, WiFi QR code, vCard QR, URL QR code" />
+  <meta name="author" content="PrateekPaul and AGY" />
+  <meta property="og:title" content="QR Genius — Free QR Code Generator" />
+  <meta property="og:description" content="Create stunning QR codes in seconds. Customize colors, size, error correction and download as PNG or SVG." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔳</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg-base:       #080b14;
+      --bg-card:       rgba(15, 18, 32, 0.85);
+      --bg-card2:      rgba(20, 24, 42, 0.9);
+      --border:        rgba(124, 58, 237, 0.18);
+      --border-hover:  rgba(168, 85, 247, 0.4);
+      --accent:        #7c3aed;
+      --accent-mid:    #9333ea;
+      --accent-light:  #a855f7;
+      --accent-glow:   rgba(124, 58, 237, 0.35);
+      --text-primary:  #f1f0ff;
+      --text-muted:    #8b8fa8;
+      --text-dim:      #5a5e7a;
+      --input-bg:      rgba(10, 13, 25, 0.7);
+      --success:       #10b981;
+      --tab-active-bg: linear-gradient(135deg, #7c3aed, #a855f7);
+      --radius:        14px;
+      --radius-sm:     8px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-base);
+      color: var(--text-primary);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 20% 10%, rgba(124,58,237,.18) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 80% 90%, rgba(168,85,247,.12) 0%, transparent 55%),
+        radial-gradient(ellipse 50% 40% at 50% 50%, rgba(99,102,241,.08) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: .25;
+      pointer-events: none;
+      z-index: 0;
+      animation: drift 18s ease-in-out infinite alternate;
+    }
+    .orb-1 { width: 400px; height: 400px; background: #7c3aed; top: -80px; left: -80px; animation-delay: 0s; }
+    .orb-2 { width: 300px; height: 300px; background: #a855f7; bottom: -60px; right: -60px; animation-delay: -8s; }
+    .orb-3 { width: 250px; height: 250px; background: #6366f1; top: 50%; left: 60%; animation-delay: -14s; }
+
+    @keyframes drift {
+      0%   { transform: translate(0, 0) scale(1); }
+      50%  { transform: translate(30px, -20px) scale(1.1); }
+      100% { transform: translate(-20px, 30px) scale(.95); }
+    }
+
+    header {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 2.5rem;
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(20px);
+      background: rgba(8, 11, 20, 0.6);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -.03em;
+      background: linear-gradient(135deg, #c4b5fd, #a855f7, #7c3aed);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .logo-icon {
+      width: 38px;
+      height: 38px;
+      background: linear-gradient(135deg, #7c3aed, #a855f7);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      box-shadow: 0 0 20px var(--accent-glow);
+    }
+
+    .badge {
+      font-size: .65rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #7c3aed, #a855f7);
+      padding: .25rem .6rem;
+      border-radius: 100px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: white;
+      -webkit-text-fill-color: white;
+    }
+
+    main {
+      position: relative;
+      z-index: 5;
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 4rem;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      letter-spacing: -.04em;
+      line-height: 1.1;
+      margin-bottom: .8rem;
+      background: linear-gradient(135deg, #ffffff 0%, #c4b5fd 50%, #a855f7 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.65;
+    }
+
+    .app-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    @media (max-width: 820px) {
+      .app-grid { grid-template-columns: 1fr; }
+      header { padding: 1rem 1.25rem; }
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      backdrop-filter: blur(24px);
+      transition: border-color .3s;
+    }
+
+    .card:hover { border-color: var(--border-hover); }
+
+    .card-title {
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--accent-light);
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+
+    .card-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--border-hover), transparent);
+    }
+
+    .tabs {
+      display: flex;
+      gap: .35rem;
+      background: rgba(10, 13, 25, 0.6);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: .3rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      flex: 1;
+      min-width: 54px;
+      padding: .55rem .7rem;
+      border: none;
+      border-radius: 6px;
+      background: transparent;
+      color: var(--text-muted);
+      font-family: 'Inter', sans-serif;
+      font-size: .78rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .25s;
+      white-space: nowrap;
+    }
+
+    .tab-btn:hover { color: var(--text-primary); background: rgba(124,58,237,.15); }
+
+    .tab-btn.active {
+      background: var(--tab-active-bg);
+      color: #fff;
+      box-shadow: 0 2px 12px rgba(124,58,237,.45);
+    }
+
+    .field { margin-bottom: 1.1rem; }
+
+    .field label {
+      display: block;
+      font-size: .78rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: .45rem;
+      letter-spacing: .02em;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      background: var(--input-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      font-size: .9rem;
+      padding: .7rem 1rem;
+      outline: none;
+      transition: border-color .25s, box-shadow .25s;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: var(--accent-light);
+      box-shadow: 0 0 0 3px rgba(168,85,247,.15);
+    }
+
+    .field input::placeholder,
+    .field textarea::placeholder { color: var(--text-dim); }
+
+    .field select option { background: #12152a; color: var(--text-primary); }
+    .field textarea { resize: vertical; min-height: 80px; }
+
+    .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: .85rem; }
+
+    .color-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .85rem;
+      margin-bottom: 1.1rem;
+    }
+
+    .color-field label {
+      display: block;
+      font-size: .78rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: .45rem;
+    }
+
+    .color-input-wrap {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      background: var(--input-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: .45rem .75rem;
+      transition: border-color .25s;
+    }
+
+    .color-input-wrap:focus-within { border-color: var(--accent-light); }
+
+    .color-input-wrap input[type="color"] {
+      width: 28px;
+      height: 28px;
+      border: none;
+      border-radius: 6px;
+      background: none;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .color-input-wrap input[type="text"] {
+      flex: 1;
+      background: none;
+      border: none;
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      font-size: .88rem;
+      outline: none;
+      padding: 0;
+    }
+
+    .slider-wrap { margin-bottom: 1.1rem; }
+
+    .slider-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: .5rem;
+    }
+
+    .slider-label {
+      font-size: .78rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .slider-value {
+      font-size: .78rem;
+      font-weight: 700;
+      color: var(--accent-light);
+      background: rgba(168,85,247,.12);
+      padding: .2rem .55rem;
+      border-radius: 100px;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      appearance: none;
+      height: 5px;
+      border-radius: 100px;
+      background: linear-gradient(90deg, var(--accent) var(--pct, 50%), rgba(255,255,255,.1) var(--pct, 50%));
+      outline: none;
+      cursor: pointer;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #a855f7, #7c3aed);
+      box-shadow: 0 0 10px rgba(168,85,247,.5);
+      border: 2px solid #fff;
+      cursor: pointer;
+      transition: transform .2s;
+    }
+
+    input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.2); }
+
+    .ec-row {
+      display: flex;
+      gap: .4rem;
+      margin-bottom: 1.1rem;
+    }
+
+    .ec-btn {
+      flex: 1;
+      padding: .55rem .5rem;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      background: var(--input-bg);
+      color: var(--text-muted);
+      font-family: 'Inter', sans-serif;
+      font-size: .78rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+      transition: all .2s;
+    }
+
+    .ec-btn:hover { border-color: var(--accent-light); color: var(--text-primary); }
+
+    .ec-btn.active {
+      background: linear-gradient(135deg, #7c3aed, #a855f7);
+      border-color: transparent;
+      color: #fff;
+      box-shadow: 0 2px 10px rgba(124,58,237,.4);
+    }
+
+    .ec-info {
+      font-size: .72rem;
+      color: var(--text-dim);
+      margin-bottom: 1.1rem;
+      line-height: 1.5;
+    }
+
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin: 1.4rem 0;
+    }
+
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.1rem;
+    }
+
+    .toggle-label {
+      font-size: .82rem;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    .toggle {
+      position: relative;
+      width: 42px;
+      height: 24px;
+    }
+
+    .toggle input { opacity: 0; width: 0; height: 0; }
+
+    .toggle-slider {
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,.1);
+      border-radius: 100px;
+      cursor: pointer;
+      transition: background .25s;
+    }
+
+    .toggle-slider::after {
+      content: '';
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      background: #fff;
+      border-radius: 50%;
+      top: 3px;
+      left: 3px;
+      transition: transform .25s;
+      box-shadow: 0 1px 4px rgba(0,0,0,.4);
+    }
+
+    .toggle input:checked + .toggle-slider { background: linear-gradient(135deg, #7c3aed, #a855f7); }
+    .toggle input:checked + .toggle-slider::after { transform: translateX(18px); }
+
+    .generate-btn {
+      width: 100%;
+      padding: .9rem;
+      border: none;
+      border-radius: var(--radius-sm);
+      background: linear-gradient(135deg, #7c3aed, #a855f7);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      letter-spacing: .01em;
+      position: relative;
+      overflow: hidden;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 4px 20px rgba(124,58,237,.4);
+    }
+
+    .generate-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,.15));
+      opacity: 0;
+      transition: opacity .25s;
+    }
+
+    .generate-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(124,58,237,.55); }
+    .generate-btn:hover::before { opacity: 1; }
+    .generate-btn:active { transform: translateY(0); }
+
+    .generate-btn svg { vertical-align: -3px; margin-right: .4rem; }
+
+    .qr-card {
+      position: sticky;
+      top: 1.5rem;
+    }
+
+    .qr-preview-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      background: radial-gradient(circle at center, rgba(124,58,237,.12) 0%, transparent 70%);
+      border-radius: var(--radius-sm);
+      margin-bottom: 1.4rem;
+      min-height: 280px;
+      position: relative;
+    }
+
+    .qr-preview-wrap::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: var(--radius-sm);
+      background: radial-gradient(circle 160px at center, rgba(168,85,247,.08) 0%, transparent 70%);
+      animation: pulse-glow 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { opacity: .6; }
+      50% { opacity: 1; }
+    }
+
+    #qr-output {
+      position: relative;
+      z-index: 1;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 0 40px rgba(124,58,237,.3), 0 20px 40px rgba(0,0,0,.4);
+      transition: transform .3s, box-shadow .3s;
+    }
+
+    #qr-output:not(:empty):hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 60px rgba(124,58,237,.5), 0 25px 50px rgba(0,0,0,.5);
+    }
+
+    .qr-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      color: var(--text-dim);
+    }
+
+    .qr-placeholder-icon {
+      width: 100px;
+      height: 100px;
+      border: 2px dashed rgba(124,58,237,.3);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      animation: spin-slow 8s linear infinite;
+    }
+
+    @keyframes spin-slow {
+      0% { box-shadow: 0 0 0 0 rgba(124,58,237,.3); }
+      50% { box-shadow: 0 0 20px 4px rgba(168,85,247,.2); }
+      100% { box-shadow: 0 0 0 0 rgba(124,58,237,.3); }
+    }
+
+    .qr-placeholder p { font-size: .85rem; }
+
+    .action-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .65rem;
+      margin-bottom: .65rem;
+    }
+
+    .action-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .45rem;
+      padding: .7rem .9rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--input-bg);
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      font-size: .82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .22s;
+      white-space: nowrap;
+    }
+
+    .action-btn:hover {
+      border-color: var(--accent-light);
+      background: rgba(124,58,237,.15);
+      transform: translateY(-1px);
+    }
+
+    .action-btn:disabled {
+      opacity: .4;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .action-btn.primary {
+      background: linear-gradient(135deg, #7c3aed, #a855f7);
+      border-color: transparent;
+      grid-column: 1 / -1;
+      box-shadow: 0 3px 15px rgba(124,58,237,.4);
+    }
+
+    .action-btn.primary:hover {
+      background: linear-gradient(135deg, #6d28d9, #9333ea);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(124,58,237,.5);
+    }
+
+    .action-btn.success {
+      border-color: var(--success);
+      color: var(--success);
+      background: rgba(16,185,129,.1);
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: linear-gradient(135deg, #7c3aed, #a855f7);
+      color: #fff;
+      padding: .75rem 1.5rem;
+      border-radius: 100px;
+      font-size: .85rem;
+      font-weight: 600;
+      box-shadow: 0 8px 30px rgba(124,58,237,.5);
+      z-index: 1000;
+      transition: transform .3s cubic-bezier(.34,1.56,.64,1), opacity .3s;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    .history-section {
+      margin-top: 2rem;
+    }
+
+    .history-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: .75rem;
+    }
+
+    .history-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: .75rem;
+      cursor: pointer;
+      transition: all .22s;
+      text-align: center;
+    }
+
+    .history-item:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0,0,0,.3);
+    }
+
+    .history-item canvas,
+    .history-item img {
+      width: 100%;
+      border-radius: 6px;
+      display: block;
+    }
+
+    .history-item p {
+      font-size: .7rem;
+      color: var(--text-dim);
+      margin-top: .5rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .history-empty {
+      color: var(--text-dim);
+      font-size: .85rem;
+      text-align: center;
+      padding: 1.5rem;
+      border: 1px dashed var(--border);
+      border-radius: var(--radius-sm);
+    }
+
+    .info-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .45rem;
+      justify-content: center;
+      margin-top: 1.5rem;
+    }
+
+    .info-pill {
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+      font-size: .75rem;
+      color: var(--text-muted);
+      background: rgba(124,58,237,.08);
+      border: 1px solid rgba(124,58,237,.15);
+      padding: .35rem .75rem;
+      border-radius: 100px;
+    }
+
+    footer {
+      position: relative;
+      z-index: 5;
+      text-align: center;
+      padding: 2rem 1rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-dim);
+      font-size: .78rem;
+    }
+
+    footer a { color: var(--accent-light); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 500px) {
+      .action-grid { grid-template-columns: 1fr; }
+      .row-2 { grid-template-columns: 1fr; }
+      .color-row { grid-template-columns: 1fr; }
+    }
+
+    .content-panel { display: none; }
+    .content-panel.active { display: block; }
+
+    @keyframes qr-pop {
+      from { opacity: 0; transform: scale(.85); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    .qr-pop { animation: qr-pop .35s cubic-bezier(.34,1.56,.64,1); }
+  </style>
+</head>
+<body>
+
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+
+<header>
+  <div class="logo">
+    <div class="logo-icon">🔳</div>
+    QR Genius
+  </div>
+  <span class="badge">Free &amp; Open</span>
+</header>
+
+<main>
+  <div class="hero">
+    <h1>Generate QR Codes Instantly</h1>
+    <p>Customize colors, size, and error correction. Download as PNG or SVG — completely free, no sign-up needed.</p>
+    <div class="info-pills">
+      <span class="info-pill">⚡ Instant generation</span>
+      <span class="info-pill">🎨 Custom colors</span>
+      <span class="info-pill">📥 PNG &amp; SVG export</span>
+      <span class="info-pill">🔒 100% client-side</span>
+      <span class="info-pill">📋 Copy to clipboard</span>
+      <span class="info-pill">🕑 History</span>
+    </div>
+  </div>
+
+  <div class="app-grid">
+    <!-- LEFT: Input Card -->
+    <div class="card">
+      <div class="card-title">📝 Content</div>
+
+      <div class="tabs" id="type-tabs" role="tablist">
+        <button class="tab-btn active" data-type="url"   role="tab" aria-selected="true"  id="tab-url">URL</button>
+        <button class="tab-btn"        data-type="text"  role="tab" aria-selected="false" id="tab-text">Text</button>
+        <button class="tab-btn"        data-type="email" role="tab" aria-selected="false" id="tab-email">Email</button>
+        <button class="tab-btn"        data-type="phone" role="tab" aria-selected="false" id="tab-phone">Phone</button>
+        <button class="tab-btn"        data-type="wifi"  role="tab" aria-selected="false" id="tab-wifi">WiFi</button>
+        <button class="tab-btn"        data-type="vcard" role="tab" aria-selected="false" id="tab-vcard">vCard</button>
+      </div>
+
+      <!-- URL -->
+      <div class="content-panel active" id="panel-url">
+        <div class="field">
+          <label for="input-url">Website URL</label>
+          <input type="url" id="input-url" placeholder="https://example.com" autocomplete="off" />
+        </div>
+      </div>
+
+      <!-- Text -->
+      <div class="content-panel" id="panel-text">
+        <div class="field">
+          <label for="input-text">Plain Text</label>
+          <textarea id="input-text" placeholder="Enter any text, message, or data…"></textarea>
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div class="content-panel" id="panel-email">
+        <div class="field">
+          <label for="input-email-to">To Address</label>
+          <input type="email" id="input-email-to" placeholder="someone@example.com" />
+        </div>
+        <div class="field">
+          <label for="input-email-subject">Subject</label>
+          <input type="text" id="input-email-subject" placeholder="Hello!" />
+        </div>
+        <div class="field">
+          <label for="input-email-body">Body (optional)</label>
+          <textarea id="input-email-body" placeholder="Your message…"></textarea>
+        </div>
+      </div>
+
+      <!-- Phone -->
+      <div class="content-panel" id="panel-phone">
+        <div class="field">
+          <label for="input-phone">Phone Number</label>
+          <input type="tel" id="input-phone" placeholder="+1 234 567 8900" />
+        </div>
+        <div class="field">
+          <label for="input-sms">SMS Message (optional)</label>
+          <textarea id="input-sms" placeholder="Send as SMS instead of just a tel: link…"></textarea>
+        </div>
+      </div>
+
+      <!-- WiFi -->
+      <div class="content-panel" id="panel-wifi">
+        <div class="field">
+          <label for="input-ssid">Network Name (SSID)</label>
+          <input type="text" id="input-ssid" placeholder="MyHomeWiFi" />
+        </div>
+        <div class="field">
+          <label for="input-wifi-pass">Password</label>
+          <input type="password" id="input-wifi-pass" placeholder="••••••••" />
+        </div>
+        <div class="field">
+          <label for="input-wifi-enc">Encryption</label>
+          <select id="input-wifi-enc">
+            <option value="WPA">WPA / WPA2</option>
+            <option value="WEP">WEP</option>
+            <option value="">No Password (Open)</option>
+          </select>
+        </div>
+        <div class="toggle-row">
+          <span class="toggle-label">Hidden network</span>
+          <label class="toggle">
+            <input type="checkbox" id="input-wifi-hidden" />
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- vCard -->
+      <div class="content-panel" id="panel-vcard">
+        <div class="row-2">
+          <div class="field">
+            <label for="vc-fname">First Name</label>
+            <input type="text" id="vc-fname" placeholder="Jane" />
+          </div>
+          <div class="field">
+            <label for="vc-lname">Last Name</label>
+            <input type="text" id="vc-lname" placeholder="Doe" />
+          </div>
+        </div>
+        <div class="field">
+          <label for="vc-org">Organization</label>
+          <input type="text" id="vc-org" placeholder="Acme Inc." />
+        </div>
+        <div class="field">
+          <label for="vc-phone">Phone</label>
+          <input type="tel" id="vc-phone" placeholder="+1 234 567 8900" />
+        </div>
+        <div class="field">
+          <label for="vc-email">Email</label>
+          <input type="email" id="vc-email" placeholder="jane@example.com" />
+        </div>
+        <div class="field">
+          <label for="vc-url">Website</label>
+          <input type="url" id="vc-url" placeholder="https://janedoe.com" />
+        </div>
+        <div class="field">
+          <label for="vc-address">Address (optional)</label>
+          <input type="text" id="vc-address" placeholder="123 Main St, City, Country" />
+        </div>
+      </div>
+
+      <div class="divider"></div>
+      <div class="card-title">🎨 Design</div>
+
+      <div class="color-row">
+        <div class="color-field">
+          <label>Foreground</label>
+          <div class="color-input-wrap">
+            <input type="color" id="fg-color-picker" value="#000000" aria-label="Foreground color picker" />
+            <input type="text"  id="fg-color-hex"    value="#000000" maxlength="7" aria-label="Foreground color hex" />
+          </div>
+        </div>
+        <div class="color-field">
+          <label>Background</label>
+          <div class="color-input-wrap">
+            <input type="color" id="bg-color-picker" value="#ffffff" aria-label="Background color picker" />
+            <input type="text"  id="bg-color-hex"    value="#ffffff" maxlength="7" aria-label="Background color hex" />
+          </div>
+        </div>
+      </div>
+
+      <div class="field" style="margin-bottom:.9rem">
+        <label>Color Presets</label>
+        <div style="display:flex;gap:.4rem;flex-wrap:wrap;" id="presets">
+          <button class="action-btn" style="flex:unset;padding:.3rem .6rem;font-size:.72rem" data-fg="#000000" data-bg="#ffffff">Classic</button>
+          <button class="action-btn" style="flex:unset;padding:.3rem .6rem;font-size:.72rem" data-fg="#7c3aed" data-bg="#f3e8ff">Violet</button>
+          <button class="action-btn" style="flex:unset;padding:.3rem .6rem;font-size:.72rem" data-fg="#0f172a" data-bg="#38bdf8">Sky</button>
+          <button class="action-btn" style="flex:unset;padding:.3rem .6rem;font-size:.72rem" data-fg="#ffffff" data-bg="#0f172a">Dark</button>
+          <button class="action-btn" style="flex:unset;padding:.3rem .6rem;font-size:.72rem" data-fg="#15803d" data-bg="#f0fdf4">Forest</button>
+          <button class="action-btn" style="flex:unset;padding:.3rem .6rem;font-size:.72rem" data-fg="#be123c" data-bg="#fff1f2">Rose</button>
+          <button class="action-btn" style="flex:unset;padding:.3rem .6rem;font-size:.72rem" data-fg="#92400e" data-bg="#fffbeb">Amber</button>
+          <button class="action-btn" style="flex:unset;padding:.3rem .6rem;font-size:.72rem" data-fg="#1d4ed8" data-bg="#eff6ff">Ocean</button>
+        </div>
+      </div>
+
+      <div class="slider-wrap">
+        <div class="slider-header">
+          <span class="slider-label">Size</span>
+          <span class="slider-value" id="size-display">300 px</span>
+        </div>
+        <input type="range" id="size-slider" min="100" max="600" value="300" step="10" aria-label="QR code size" />
+      </div>
+
+      <div class="toggle-row">
+        <span class="toggle-label">Include quiet zone (margin)</span>
+        <label class="toggle">
+          <input type="checkbox" id="margin-toggle" checked />
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+
+      <div class="divider"></div>
+      <div class="card-title">🛡️ Error Correction</div>
+      <div class="ec-row" id="ec-row">
+        <button class="ec-btn active" data-ec="L">L</button>
+        <button class="ec-btn"        data-ec="M">M</button>
+        <button class="ec-btn"        data-ec="Q">Q</button>
+        <button class="ec-btn"        data-ec="H">H</button>
+      </div>
+      <p class="ec-info" id="ec-info">
+        <strong>L</strong> — Low (7% recovery). Best for clean environments with maximum data density.
+      </p>
+
+      <button class="generate-btn" id="generate-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        Generate QR Code
+      </button>
+    </div>
+
+    <!-- RIGHT: Preview Card -->
+    <div class="card qr-card">
+      <div class="card-title">👁️ Preview</div>
+
+      <div class="qr-preview-wrap" id="qr-preview-wrap">
+        <div class="qr-placeholder" id="qr-placeholder">
+          <div class="qr-placeholder-icon">🔳</div>
+          <p>Your QR code will appear here</p>
+        </div>
+        <div id="qr-output"></div>
+      </div>
+
+      <div class="action-grid">
+        <button class="action-btn primary" id="btn-dl-png" disabled>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download PNG
+        </button>
+        <button class="action-btn" id="btn-dl-svg" disabled>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download SVG
+        </button>
+        <button class="action-btn" id="btn-copy" disabled>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy Image
+        </button>
+        <button class="action-btn" id="btn-share" disabled>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          Share
+        </button>
+      </div>
+
+      <div class="divider"></div>
+
+      <div id="qr-meta" style="display:none">
+        <div class="card-title">📊 Info</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;font-size:.78rem;color:var(--text-muted)">
+          <div>Type: <strong id="meta-type" style="color:var(--text-primary)">—</strong></div>
+          <div>Size: <strong id="meta-size" style="color:var(--text-primary)">—</strong></div>
+          <div>Error: <strong id="meta-ec" style="color:var(--text-primary)">—</strong></div>
+          <div>Chars: <strong id="meta-chars" style="color:var(--text-primary)">—</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- History -->
+  <div class="history-section card" style="margin-top:1.5rem">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem">
+      <div class="card-title" style="margin:0">🕑 Recent QR Codes</div>
+      <button class="action-btn" id="btn-clear-history" style="flex:unset;padding:.35rem .8rem;font-size:.75rem">Clear</button>
+    </div>
+    <div id="history-container">
+      <div class="history-empty" id="history-empty">No QR codes generated yet. Create one above!</div>
+      <div class="history-grid" id="history-grid" style="display:none"></div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>Made with ❤️ by PrateekPaul and AGY using <a href="https://davidshimjs.github.io/qrcodejs/" target="_blank" rel="noopener">qrcode.js</a> &nbsp;·&nbsp; 100% free &amp; open-source &nbsp;·&nbsp; No data stored or sent anywhere</p>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+  let currentQR = null;
+  let currentType = 'url';
+  let currentEC = 'L';
+  let qrHistory = JSON.parse(localStorage.getItem('qr-genius-history') || '[]');
+
+  const $ = id => document.getElementById(id);
+
+  // ── Tab switching ────────────────────────────────────────────────────
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
+      document.querySelectorAll('.content-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      currentType = btn.dataset.type;
+      document.getElementById('panel-' + currentType).classList.add('active');
+    });
+  });
+
+  // ── Error correction ─────────────────────────────────────────────────
+  const ecDescriptions = {
+    L: '<strong>L</strong> — Low (7% recovery). Best for clean environments with maximum data density.',
+    M: '<strong>M</strong> — Medium (15% recovery). Good balance for everyday use.',
+    Q: '<strong>Q</strong> — Quartile (25% recovery). Recommended when a logo overlays the code.',
+    H: '<strong>H</strong> — High (30% recovery). Best for harsh environments or overlaid logos.'
+  };
+
+  document.querySelectorAll('.ec-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.ec-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentEC = btn.dataset.ec;
+      $('ec-info').innerHTML = ecDescriptions[currentEC];
+    });
+  });
+
+  // ── Size slider ──────────────────────────────────────────────────────
+  const sizeSlider = $('size-slider');
+
+  function updateSliderFill() {
+    const min = +sizeSlider.min, max = +sizeSlider.max, val = +sizeSlider.value;
+    const pct = ((val - min) / (max - min) * 100).toFixed(1);
+    sizeSlider.style.setProperty('--pct', pct + '%');
+    $('size-display').textContent = val + ' px';
+  }
+
+  sizeSlider.addEventListener('input', updateSliderFill);
+  updateSliderFill();
+
+  // ── Color pickers ────────────────────────────────────────────────────
+  function syncColorPair(pickerId, hexId) {
+    const picker = $(pickerId), hex = $(hexId);
+    picker.addEventListener('input', () => { hex.value = picker.value; });
+    hex.addEventListener('input', () => {
+      if (/^#[0-9a-fA-F]{6}$/.test(hex.value)) picker.value = hex.value;
+    });
+  }
+  syncColorPair('fg-color-picker', 'fg-color-hex');
+  syncColorPair('bg-color-picker', 'bg-color-hex');
+
+  // ── Color presets ────────────────────────────────────────────────────
+  $('presets').addEventListener('click', e => {
+    const btn = e.target.closest('[data-fg]');
+    if (!btn) return;
+    const fg = btn.dataset.fg, bg = btn.dataset.bg;
+    $('fg-color-picker').value = fg; $('fg-color-hex').value = fg;
+    $('bg-color-picker').value = bg; $('bg-color-hex').value = bg;
+  });
+
+  // ── Build QR data ────────────────────────────────────────────────────
+  function buildQRData() {
+    switch (currentType) {
+      case 'url':
+        return $('input-url').value.trim() || null;
+      case 'text':
+        return $('input-text').value.trim() || null;
+      case 'email': {
+        const to = $('input-email-to').value.trim();
+        if (!to) return null;
+        const params = [];
+        const subj = $('input-email-subject').value.trim();
+        const body = $('input-email-body').value.trim();
+        if (subj) params.push('subject=' + encodeURIComponent(subj));
+        if (body) params.push('body=' + encodeURIComponent(body));
+        return 'mailto:' + to + (params.length ? '?' + params.join('&') : '');
+      }
+      case 'phone': {
+        const num = $('input-phone').value.trim();
+        if (!num) return null;
+        const sms = $('input-sms').value.trim();
+        return sms ? 'SMSTO:' + num + ':' + sms : 'tel:' + num;
+      }
+      case 'wifi': {
+        const ssid = $('input-ssid').value.trim();
+        if (!ssid) return null;
+        const pass = $('input-wifi-pass').value;
+        const enc  = $('input-wifi-enc').value;
+        const hid  = $('input-wifi-hidden').checked ? 'true' : 'false';
+        return 'WIFI:T:' + enc + ';S:' + ssid + ';P:' + pass + ';H:' + hid + ';;';
+      }
+      case 'vcard': {
+        const fn = ($('vc-fname').value.trim() + ' ' + $('vc-lname').value.trim()).trim();
+        const tel = $('vc-phone').value.trim();
+        const em  = $('vc-email').value.trim();
+        if (!fn && !tel && !em) return null;
+        let v = 'BEGIN:VCARD\nVERSION:3.0\n';
+        v += 'N:' + $('vc-lname').value.trim() + ';' + $('vc-fname').value.trim() + ';;;\n';
+        v += 'FN:' + fn + '\n';
+        const org = $('vc-org').value.trim();
+        if (org) v += 'ORG:' + org + '\n';
+        if (tel) v += 'TEL;TYPE=WORK,VOICE:' + tel + '\n';
+        if (em)  v += 'EMAIL;TYPE=PREF,INTERNET:' + em + '\n';
+        const url = $('vc-url').value.trim();
+        if (url) v += 'URL:' + url + '\n';
+        const adr = $('vc-address').value.trim();
+        if (adr) v += 'ADR;TYPE=WORK:;;' + adr + ';;;;\n';
+        v += 'END:VCARD';
+        return v;
+      }
+      default: return null;
+    }
+  }
+
+  // ── Generate QR ──────────────────────────────────────────────────────
+  function generateQR() {
+    const data = buildQRData();
+    if (!data) { showToast('⚠️ Please fill in the required fields'); return; }
+
+    const size   = +sizeSlider.value;
+    const fg     = $('fg-color-hex').value || '#000000';
+    const bg     = $('bg-color-hex').value || '#ffffff';
+    const ecMap  = { L: QRCode.CorrectLevel.L, M: QRCode.CorrectLevel.M, Q: QRCode.CorrectLevel.Q, H: QRCode.CorrectLevel.H };
+
+    const out = $('qr-output');
+    out.innerHTML = '';
+    $('qr-placeholder').style.display = 'none';
+
+    currentQR = new QRCode(out, {
+      text: data,
+      width: size,
+      height: size,
+      colorDark: fg,
+      colorLight: bg,
+      correctLevel: ecMap[currentEC]
+    });
+
+    out.classList.remove('qr-pop');
+    void out.offsetWidth;
+    out.classList.add('qr-pop');
+
+    [$('btn-dl-png'), $('btn-dl-svg'), $('btn-copy'), $('btn-share')].forEach(b => b.disabled = false);
+
+    $('meta-type').textContent  = currentType.toUpperCase();
+    $('meta-size').textContent  = size + ' x ' + size;
+    $('meta-ec').textContent    = currentEC;
+    $('meta-chars').textContent = data.length;
+    $('qr-meta').style.display  = '';
+
+    // Wait a tick for canvas to render, then save
+    setTimeout(() => saveToHistory(data, size, fg, bg), 100);
+    showToast('QR code generated!');
+  }
+
+  $('generate-btn').addEventListener('click', generateQR);
+
+  document.querySelectorAll('input[type="url"], input[type="text"], input[type="email"], input[type="tel"]').forEach(inp => {
+    inp.addEventListener('keydown', e => { if (e.key === 'Enter') generateQR(); });
+  });
+
+  // ── Get canvas ───────────────────────────────────────────────────────
+  function getCanvas() { return $('qr-output').querySelector('canvas'); }
+
+  // ── Download PNG ─────────────────────────────────────────────────────
+  $('btn-dl-png').addEventListener('click', () => {
+    const canvas = getCanvas();
+    if (!canvas) return;
+    const a = document.createElement('a');
+    a.href = canvas.toDataURL('image/png');
+    a.download = 'qr-genius-' + Date.now() + '.png';
+    a.click();
+    showToast('PNG downloaded!');
+  });
+
+  // ── Download SVG ─────────────────────────────────────────────────────
+  $('btn-dl-svg').addEventListener('click', () => {
+    const canvas = getCanvas();
+    if (!canvas) return;
+    const sz  = canvas.width;
+    const img = canvas.toDataURL('image/png');
+    const svg = '<?xml version="1.0" encoding="UTF-8"?>\n<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="' + sz + '" height="' + sz + '" viewBox="0 0 ' + sz + ' ' + sz + '">\n  <image href="' + img + '" x="0" y="0" width="' + sz + '" height="' + sz + '"/>\n</svg>';
+    const blob = new Blob([svg], { type: 'image/svg+xml' });
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement('a');
+    a.href = url; a.download = 'qr-genius-' + Date.now() + '.svg'; a.click();
+    URL.revokeObjectURL(url);
+    showToast('SVG downloaded!');
+  });
+
+  // ── Copy to clipboard ────────────────────────────────────────────────
+  $('btn-copy').addEventListener('click', () => {
+    const canvas = getCanvas();
+    if (!canvas) return;
+    canvas.toBlob(async blob => {
+      try {
+        await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
+        const btn = $('btn-copy');
+        btn.classList.add('success');
+        btn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Copied!';
+        setTimeout(() => {
+          btn.classList.remove('success');
+          btn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy Image';
+        }, 2200);
+        showToast('Copied to clipboard!');
+      } catch(err) {
+        showToast('Copy failed — try downloading instead');
+      }
+    });
+  });
+
+  // ── Share ────────────────────────────────────────────────────────────
+  $('btn-share').addEventListener('click', () => {
+    const canvas = getCanvas();
+    if (!canvas) return;
+    canvas.toBlob(async blob => {
+      const file = new File([blob], 'qr-genius.png', { type: 'image/png' });
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        try {
+          await navigator.share({ files: [file], title: 'QR Code', text: 'Scan this QR code!' });
+          showToast('Shared!');
+        } catch(e) {}
+      } else {
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url; a.download = 'qr-genius.png'; a.click();
+        URL.revokeObjectURL(url);
+        showToast('Share not supported — downloaded instead');
+      }
+    });
+  });
+
+  // ── History ──────────────────────────────────────────────────────────
+  function saveToHistory(data, size, fg, bg) {
+    const canvas = getCanvas();
+    if (!canvas) return;
+    const dataURL = canvas.toDataURL('image/png');
+    const entry   = { data, size, fg, bg, dataURL, ts: Date.now(), type: currentType };
+    qrHistory = [entry, ...qrHistory.filter(h => h.data !== data)].slice(0, 12);
+    localStorage.setItem('qr-genius-history', JSON.stringify(qrHistory));
+    renderHistory();
+  }
+
+  function renderHistory() {
+    const grid  = $('history-grid');
+    const empty = $('history-empty');
+    if (!qrHistory.length) {
+      grid.style.display  = 'none';
+      empty.style.display = '';
+      return;
+    }
+    grid.style.display  = '';
+    empty.style.display = 'none';
+    grid.innerHTML = '';
+    qrHistory.forEach((entry, i) => {
+      const div = document.createElement('div');
+      div.className = 'history-item';
+      div.title = entry.data;
+      div.innerHTML = '<img src="' + entry.dataURL + '" alt="QR code ' + (i+1) + '" loading="lazy" /><p>' + entry.type.toUpperCase() + ' · ' + entry.size + 'px</p>';
+      div.addEventListener('click', () => restoreFromHistory(entry));
+      grid.appendChild(div);
+    });
+  }
+
+  function restoreFromHistory(entry) {
+    document.querySelectorAll('.tab-btn').forEach(b => {
+      const active = b.dataset.type === entry.type;
+      b.classList.toggle('active', active);
+      b.setAttribute('aria-selected', String(active));
+    });
+    document.querySelectorAll('.content-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('panel-' + entry.type).classList.add('active');
+    currentType = entry.type;
+
+    $('fg-color-picker').value = entry.fg; $('fg-color-hex').value = entry.fg;
+    $('bg-color-picker').value = entry.bg; $('bg-color-hex').value = entry.bg;
+    sizeSlider.value = entry.size; updateSliderFill();
+
+    const out = $('qr-output');
+    out.innerHTML = '<img src="' + entry.dataURL + '" width="' + entry.size + '" height="' + entry.size + '" style="border-radius:6px" alt="Restored QR" />';
+    $('qr-placeholder').style.display = 'none';
+    [$('btn-dl-png'), $('btn-dl-svg'), $('btn-copy'), $('btn-share')].forEach(b => b.disabled = false);
+    showToast('Restored from history!');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  $('btn-clear-history').addEventListener('click', () => {
+    qrHistory = [];
+    localStorage.removeItem('qr-genius-history');
+    renderHistory();
+    showToast('History cleared');
+  });
+
+  // ── Toast ────────────────────────────────────────────────────────────
+  let toastTimer;
+  function showToast(msg) {
+    const t = $('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => t.classList.remove('show'), 2600);
+  }
+
+  // ── Init ─────────────────────────────────────────────────────────────
+  renderHistory();
+  updateSliderFill();
+</script>
+</body>
+</html>
