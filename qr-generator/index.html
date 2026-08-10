@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>QR Genius — Free QR Code Generator</title>
+  <title>QR Canopy — Free QR Code Generator</title>
   <meta name="description" content="Generate beautiful, customizable QR codes instantly for URLs, text, email, WiFi, vCard and more. Free, no sign-up, works offline." />
   <meta name="keywords" content="QR code generator, free QR code, QR code maker, WiFi QR code, vCard QR, URL QR code" />
   <meta name="author" content="PrateekPaul and AGY" />
-  <meta property="og:title" content="QR Genius — Free QR Code Generator" />
+  <meta property="og:title" content="QR Canopy — Free QR Code Generator" />
   <meta property="og:description" content="Create stunning QR codes in seconds. Customize colors, size, error correction and download as PNG or SVG." />
   <meta property="og:type" content="website" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔳</text></svg>" />
@@ -24,16 +24,16 @@
       --bg-card:       rgba(255, 255, 255, 0.95);
       --border:        #e2e8f0;
       --border-hover:  rgba(130, 183, 75, 0.4);
-      --accent:        #82b74b;
+      --accent:        #405d27;
       --accent-mid:    #c1946a;
-      --accent-light:  #405d27;
+      --accent-light:  #82b74b;
       --accent-glow:   rgba(130, 183, 75, 0.15);
       --text-primary:  #3e4444;
       --text-muted:    #5a6363;
       --text-dim:      #8a9595;
       --input-bg:      #ffffff;
       --input-border:  #cbd5e1;
-      --success:       #10b981;
+      --success:       #82b74b;
       --tab-active-bg: linear-gradient(135deg, #82b74b, #405d27);
       --radius:        14px;
       --radius-sm:     8px;
@@ -626,7 +626,7 @@
     .action-btn.success {
       border-color: var(--success);
       color: var(--success);
-      background: rgba(16,185,129,.05);
+      background: rgba(130,183,75,.05);
     }
 
     .toast {
@@ -712,7 +712,7 @@
 <header>
   <div class="logo">
     <div class="logo-icon">🔳</div>
-    QR Genius
+    QR Canopy
   </div>
   <span class="badge">Free &amp; Open</span>
 </header>
@@ -1148,7 +1148,7 @@
     if (!canvas) return;
     const a = document.createElement('a');
     a.href = canvas.toDataURL('image/png');
-    a.download = 'qr-genius-' + Date.now() + '.png';
+    a.download = 'qr-canopy-' + Date.now() + '.png';
     a.click();
     showToast('PNG downloaded!');
   });
@@ -1163,7 +1163,7 @@
     const blob = new Blob([svg], { type: 'image/svg+xml' });
     const url  = URL.createObjectURL(blob);
     const a    = document.createElement('a');
-    a.href = url; a.download = 'qr-genius-' + Date.now() + '.svg'; a.click();
+    a.href = url; a.download = 'qr-canopy-' + Date.now() + '.svg'; a.click();
     URL.revokeObjectURL(url);
     showToast('SVG downloaded!');
   });
@@ -1194,7 +1194,7 @@
     const canvas = getCanvas();
     if (!canvas) return;
     canvas.toBlob(async blob => {
-      const file = new File([blob], 'qr-genius.png', { type: 'image/png' });
+      const file = new File([blob], 'qr-canopy.png', { type: 'image/png' });
       if (navigator.canShare && navigator.canShare({ files: [file] })) {
         try {
           await navigator.share({ files: [file], title: 'QR Code', text: 'Scan this QR code!' });
@@ -1203,7 +1203,7 @@
       } else {
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
-        a.href = url; a.download = 'qr-genius.png'; a.click();
+        a.href = url; a.download = 'qr-canopy.png'; a.click();
         URL.revokeObjectURL(url);
         showToast('Share not supported — downloaded instead');
       }
