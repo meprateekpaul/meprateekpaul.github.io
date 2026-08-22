@@ -1,292 +1,383 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Resume</title>
-<link type="text/css" rel="stylesheet" href="css/red.css" />
-<link type="text/css" rel="stylesheet" href="css/print.css" media="print"/>
-<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
-<script type="text/javascript" src="js/jquery.tipsy.js"></script>
-<script type="text/javascript" src="js/cufon.yui.js"></script>
-<script type="text/javascript" src="js/scrollTo.js"></script>
-<script type="text/javascript" src="js/myriad.js"></script>
-<script type="text/javascript" src="js/jquery.colorbox.js"></script>
-<script type="text/javascript" src="js/custom.js"></script>
-<script type="text/javascript">
-		Cufon.replace('h1,h2');
-</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prateek Paul - Resume</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts matching the Stimulus theme -->
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#E9724C',   // Coral
+                        secondary: '#E3AE57', // Gold
+                        dark: '#232B2B',      // Dark Charcoal
+                    },
+                    fontFamily: {
+                        sans: ['Source Sans Pro', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #f4f4f4; }
+        .resume-container { 
+            max-width: 1000px; 
+            margin: 40px auto; 
+            background: white; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1); 
+            border-radius: 12px; 
+            overflow: hidden; 
+        }
+        .section-title { 
+            color: #E9724C; 
+            border-bottom: 2px solid #E3AE57; 
+            padding-bottom: 8px; 
+            margin-bottom: 24px; 
+            font-weight: 700; 
+            text-transform: uppercase; 
+            font-size: 1.25rem; 
+            letter-spacing: 1.5px; 
+        }
+        @media print {
+            body { background: white; }
+            .resume-container { box-shadow: none; margin: 0; max-width: 100%; border-radius: 0; }
+            .print-btn { display: none; }
+        }
+    </style>
 </head>
-<body>
-<!-- Begin Wrapper -->
-<div id="wrapper">
-  <div class="wrapper-top"></div>
-  <div class="wrapper-mid">
-    <!-- Begin Paper -->
-    <div id="paper">
-      <div class="paper-top"></div>
-      <div id="paper-mid">
-        <div class="entry">
-          <!-- Begin Image -->
-          <img class="portrait" src="images/image.jpg" alt="Prateek Paul" />
-          <!-- End Image -->
-          <!-- Begin Personal Information -->
-          <div class="self">
-            <h1 class="name">Prateek Paul<br></h1>
-            <h1><span>Computational Biologist</span></h1>
-            <ul>
-              <li class="ad">IIIT, New Delhi.</li>
-              <li class="mail">meprateekpaul@gmail.com</li>
-              <li class="web"><a class="web2" href="https://meprateekpaul.github.io/index.html">Portfolio.html</a></li>
-              <li class="web"><a class="web2" href="https://youtu.be/MXozhzePjHo">Intro_Video</a></li>
+<body class="font-sans antialiased text-gray-800">
+
+<div class="resume-container flex flex-col md:flex-row">
+
+    <!-- Left Sidebar -->
+    <div class="md:w-1/3 bg-dark text-white p-8 md:p-10 flex flex-col">
+        <div class="text-center mb-10">
+            <img src="images/image.jpg" alt="Prateek Paul" class="w-48 h-48 rounded-full mx-auto border-4 border-secondary object-cover shadow-xl mb-5">
+            <h1 class="text-3xl font-bold text-primary mb-1">Prateek Paul</h1>
+            <h2 class="text-lg font-light text-gray-300">Ph.D. Research Student<br>Computational Biology</h2>
+        </div>
+
+        <div class="mb-10">
+            <h3 class="text-secondary font-bold uppercase tracking-wider mb-4 border-b border-gray-600 pb-2">Contact</h3>
+            <ul class="space-y-4 text-sm text-gray-300">
+                <li class="flex items-center"><i class="fas fa-map-marker-alt w-7 text-primary text-center"></i> IIIT, New Delhi, India</li>
+                <li class="flex items-center"><i class="fas fa-envelope w-7 text-primary text-center"></i> meprateekpaul@gmail.com</li>
+                <li class="flex items-center"><i class="fas fa-globe w-7 text-primary text-center"></i> <a href="index.html" class="hover:text-secondary transition">meprateekpaul.github.io</a></li>
+                <li class="flex items-center"><i class="fab fa-youtube w-7 text-primary text-center"></i> <a href="https://youtu.be/MXozhzePjHo" class="hover:text-secondary transition">Intro Video</a></li>
             </ul>
-          </div>
-          <!-- End Personal Information -->
-          <!-- Begin Social -->
-          <div class="social">
-            <ul>
-              <li><a class='north' href="https://twitter.com/prateekpaulpro" title="Follow me on Twitter"><img src="images/icn-twitter.jpg" alt="" /></a></li>
-              <li><a class='north' href="https://linkedin.com/in/prateekpaulpro/" title="LinkedIn"><img src="images/icn-linkedin.jpg" alt="" /></a></li>
-              <li><a class='north' id="github" href="https://github.com/meprateekpaul" title="Github"><img src="images/GitHub.jpg" alt="" /></a></li>
-              <li><a class='north' href="https://www.facebook.com/prateek.paul.754/" title="My Facebook Profile"><img src="images/icn-facebook.jpg" alt="" /></a></li>
-              <li><a class='north' href="javascript:window.print()" title="Print"><img src="images/icn-print.jpg" alt="" /></a></li>
-            </ul>
-          </div>
-          <!-- End Social -->
         </div>
-        <!-- Begin 1st Row -->
-        <div class="entry">
-          <h2>OBJECTIVE</h2>
-          <p>To unravel the mystries of Human Genome and imply it to the service of mankind. Bioinformatics is an interdisciplinary field that leverages computational method to analyse set of biological data. I, Prateek Paul, student of B. Tech. Bioinformatics with life sciences and computers both being my field of interest. While pursuing my graduation, I am trying my best to get skilled to work at the 
-crossroads of biology, statistics and computer science. I am involved in in-house database and research projects run by departmental faculties.</p>
-	  <p><br>Bioinformatics is exciting because it allows me to design algorithms to tackle some of these very large and complex biological datasets. It is fun because we find out new things about the world every time we run our code.</p>
+
+        <div class="mb-10 flex-grow">
+            <h3 class="text-secondary font-bold uppercase tracking-wider mb-4 border-b border-gray-600 pb-2">Skills</h3>
+            <div class="mb-5">
+                
+                
+                
+                <h4 class="text-primary font-semibold mb-3">Techniques</h4>
+                <div class="flex flex-wrap gap-2">
+                    <span class="bg-gray-800 px-3 py-1 rounded text-xs border border-gray-700">Virtual Screening</span>
+                    <span class="bg-gray-800 px-3 py-1 rounded text-xs border border-gray-700">Data Mining</span>
+                    <span class="bg-gray-800 px-3 py-1 rounded text-xs border border-gray-700">Data Analysis</span>
+                    <span class="bg-gray-800 px-3 py-1 rounded text-xs border border-gray-700">MDS</span>
+                    <span class="bg-gray-800 px-3 py-1 rounded text-xs border border-gray-700">GenAI</span>
+                    <span class="bg-gray-800 px-3 py-1 rounded text-xs border border-gray-700">Automation</span>
+                </div>
+            </div>
+            <div class="mb-5">
+                <h4 class="text-primary font-semibold mb-3">Tools & Software</h4>
+                <div class="flex flex-wrap gap-2">
+                    <span class="bg-gray-800 px-3 py-1 rounded text-xs border border-gray-700">BLAST</span>
+                    <span class="bg-gray-800 px-3 py-1 rounded text-xs border border-gray-700">FASTA</span>
+                    <span class="bg-gray-800 px-3 py-1 rounded text-xs border border-gray-700">IEDB</span>
+                    <span class="bg-gray-800 px-3 py-1 rounded text-xs border border-gray-700">IMGT</span>
+                    <span class="bg-gray-800 px-3 py-1 rounded text-xs border border-gray-700">ProtParam</span>
+                    <span class="bg-gray-800 px-3 py-1 rounded text-xs border border-gray-700">PRABI</span>
+                    <span class="bg-gray-800 px-3 py-1 rounded text-xs border border-gray-700">ClustalW</span>
+                    <span class="bg-gray-800 px-3 py-1 rounded text-xs border border-gray-700">PHYLIP</span>
+                    <span class="bg-gray-800 px-3 py-1 rounded text-xs border border-gray-700">AutoDock Vina</span>
+                    <span class="bg-gray-800 px-3 py-1 rounded text-xs border border-gray-700">Weka</span>
+                    <span class="bg-gray-800 px-3 py-1 rounded text-xs border border-gray-700">Swiss-model</span>
+                    <span class="bg-gray-800 px-3 py-1 rounded text-xs border border-gray-700">HEX</span>
+                    <span class="bg-gray-800 px-3 py-1 rounded text-xs border border-gray-700">Modeller</span>
+                    <span class="bg-gray-800 px-3 py-1 rounded text-xs border border-gray-700">LigPlot</span>
+                    <span class="bg-gray-800 px-3 py-1 rounded text-xs border border-gray-700">Gromacs</span>
+                    <span class="bg-gray-800 px-3 py-1 rounded text-xs border border-gray-700">Cytoscape</span>
+                    <span class="bg-gray-800 px-3 py-1 rounded text-xs border border-gray-700">P2Rank</span>
+                    <span class="bg-gray-800 px-3 py-1 rounded text-xs border border-gray-700">Discovery Studio</span>
+                    <span class="bg-gray-800 px-3 py-1 rounded text-xs border border-gray-700">MetaBoAnalyst</span>
+                </div>
+            </div>
+            <div class="mb-5">
+                <h4 class="text-primary font-semibold mb-3">Languages</h4>
+                <div class="flex flex-wrap gap-2">
+                    <span class="bg-gray-800 px-3 py-1 rounded text-xs border border-gray-700">Python</span>
+                    <span class="bg-gray-800 px-3 py-1 rounded text-xs border border-gray-700">Java</span>
+                    <span class="bg-gray-800 px-3 py-1 rounded text-xs border border-gray-700">MySQL</span>
+                    <span class="bg-gray-800 px-3 py-1 rounded text-xs border border-gray-700">Perl</span>
+                    <span class="bg-gray-800 px-3 py-1 rounded text-xs border border-gray-700">VBA</span>
+                    <span class="bg-gray-800 px-3 py-1 rounded text-xs border border-gray-700">HTML/CSS</span>
+                    <span class="bg-gray-800 px-3 py-1 rounded text-xs border border-gray-700">R</span>
+                    <span class="bg-gray-800 px-3 py-1 rounded text-xs border border-gray-700">C/C++</span>
+                    <span class="bg-gray-800 px-3 py-1 rounded text-xs border border-gray-700">BASH</span>
+                </div>
+            </div>
+            <div>
+                <h4 class="text-primary font-semibold mb-3">Extra-curricular</h4>
+                <div class="flex flex-wrap gap-2">
+                    <a href="https://www.instagram.com/paulscinematic/" target="_blank" class="bg-gray-800 px-3 py-1 rounded text-xs border border-gray-700 hover:text-primary hover:border-primary transition cursor-pointer flex items-center gap-1">Photography <i class="fas fa-camera text-[10px]"></i></a>
+                    <span class="bg-gray-800 px-3 py-1 rounded text-xs border border-gray-700">Video Editing</span>
+                    <span class="bg-gray-800 px-3 py-1 rounded text-xs border border-gray-700">Desktop Publishing</span>
+                    <span class="bg-gray-800 px-3 py-1 rounded text-xs border border-gray-700">Synthesizer</span>
+                    <span class="bg-gray-800 px-3 py-1 rounded text-xs border border-gray-700">Origami</span>
+                    <span class="bg-gray-800 px-3 py-1 rounded text-xs border border-gray-700">Yoga</span>
+                    <span class="bg-gray-800 px-3 py-1 rounded text-xs border border-gray-700">Ethical Hacking</span>
+                </div>
+
+
+
+            </div>
         </div>
-        <!-- End 1st Row -->
-       <!-- Begin 2nd Row -->
-        <div class="entry">
-          <h2>EDUCATION</h2>
 
-          <div class="content">
-            <h3>2018 - 2022</h3>
-            <p>Sam Higginbottom University of Agriculture Technology And Sciences, Prayagraj, (IN).<br />
-              <em> 8.50 CGPA | Bachelor of Technology in Bioinformatics.</em></p>
-          </div>
-
-          <div class="content">
-            <h3>2018</h3>
-            <p>Delhi Public School, Patna, (IN).<br />
-              <em>84% | AISSCE (XII) | CBSE Delhi.</em></p>
-          </div>
-          
-          <div class="content">
-            <h3>2016</h3>
-            <p>Delhi Public School, Patna, (IN).<br />
-              <em>9.0 CGPA | AISSE (X) | CBSE Delhi.</em></p>
-          </div>
+        <div>
+            <h3 class="text-secondary font-bold uppercase tracking-wider mb-4 border-b border-gray-600 pb-2">Social</h3>
+            <div class="flex gap-5 text-2xl">
+                <a href="https://linkedin.com/in/prateekpaulpro/" class="text-gray-400 hover:text-primary transition"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/meprateekpaul" class="text-gray-400 hover:text-primary transition"><i class="fab fa-github"></i></a>
+                <a href="https://twitter.com/prateekpaulpro" class="text-gray-400 hover:text-primary transition"><i class="fab fa-twitter"></i></a>
+            </div>
         </div>
-        
-        <!-- Begin 4th Row -->
-        <div class="entry">
-          <h2>SKILLS</h2>
-
-          <div class="content">
-            <h3>Tools</h3>
-            <ul class="skills">
-              <li>BLAST</li>
-              <li>FASTA</li>
-              <li>IEDB</li>
-              <li>IMGT</li>
-              <li>ProtParam</li>
-              <li>PRABI</li>
-              <li>ClustalW</li>
-              <li>PHYLIP</li>
-              <li>AutoDock</li>
-              <li>Vina</li>
-              <li>Weka</li>
-              <li>Swiss-model</li>
-              <li>HEX</li>
-              <li>Modeller</li>
-              <li>LigPlot</li>
-              <li>Gromacs</li>
-              <li>Cytoscape</li>
-              <li>P2Rank</li>
-              <li>Discovery Studio</li>
-              <li>MetaBoAnalyst</li>
-            </ul>
-          </div>
-
-          <div class="content">
-            <h3>Languages</h3>
-            <ul class="skills">
-              <li>Python</li>
-              <li>Java</li>
-              <li>MySQL</li>
-              <li>Perl</li>
-              <li>VBA</li>
-              <li>HTML/CSS</li>
-              <li>R</li>
-              <li>C/C++</li>
-              <li>BASH</li>
-              <li></li>
-            </ul>
-          </div>
-
-          <div class="content">
-            <h3>Extra curricular</h3>
-            <ul class="skills">
-              <li>Photography</li>
-              <li>Video Editing</li>
-              <li>Desktop Publishing</li>
-              <li>Synthesizer</li>
-              <li>Oragami</li>
-            </ul>
-          </div>
-        </div>
-        
-	      
-	<!-- Begin 4.1nd Row -->
-        <div class="entry">
-          <h2>PUBLICATIONS</h2>
-
-          <div class="content">
-            <h3>September 2021</h3>
-            <p>Anti-inflammatory drugs with therapeutic effects and drug regulators.<br />
-              <em>Prateek Paul, Manvi | DOI: 10.22270/hjhs.v6i3.106 | ISSN: 2582 – 0737 | Himalayan Journal of Health Sciences</em></p>
-          </div>
-		
-          <div class="content">
-            <h3>August 2021</h3>
-            <p>Analysis of Genomic Island and inhibiting the pathogenesis of Dermatophilus congolensis through predicting RNAi Sequence.<br />
-              <em>Prateek Paul | Environment and Biodiversity Conservation | Mind Share Yuva</em></p>
-          </div>
-
-          <div class="content">
-            <h3>July 2021</h3>
-            <p>Global Environmental Justice: Institutions, Policies, and Implementations, Chapter 6: Pesticides in the Environment:- Friend or Foe.<br />
-              <em>Aman Prakash, Jigyasu Gaurav, Prateek Paul, Rohit Kumar| Environment:- Friend or Foe | ISBN: 978-93-90818-44-0 | Bharti Publication</em></p>
-          </div>
-
-          <div class="content">
-            <h3>June 2021</h3>
-            <p>An approach towards unraveling the mysteries of rare diseases with the help of Bioinformatics.<br />
-              <em>Prateek Paul | It's Science Invent yourself | ISBN: 978-93-91302-67-2 | Flairs and Glairs Publication</em></p>
-          </div>
-
-          <div class="content">
-            <h3>April 2021</h3>
-            <p>Recent trends in propagation of horticulture crops and application of Genomics tools in plant Breeding.<br />
-              <em>Prateek Paul, Aman Prakash | ISBN : 978-81-947336-4-5 | Taran Publication</em></p>
-          </div>
-        </div>
-  
-	      
-        <!-- Begin 4.1nd Row -->
-        <div class="entry">
-          <h2>EXPERIENCE</h2>
-		
-          <div class="content">
-            <h3>3 January - 4 July 2022</h3>
-            <p>Developing Animal Model Database for Regeneration Processes.<br />
-              <em> Institute of Nuclear Medicine & Allied Sciences, DRDO, New Delhi | 6 Months | Internship</em></p>
-          </div>		
-		
-          <div class="content">
-            <h3>1 July 2021 - 1 July 2022</h3>
-            <p>Integrated OMICS-based analysis of oral cancer datasets available in repositories and identification of potential target by using in-silico drug repurposing approach.<br />
-              <em>India Institute of Technology, Bombay | 1 Year | Internship</em></p>
-          </div>
-
- 	  <div class="content">
-            <h3>10 Aug - 13 Sept 2021</h3>
-            <p>Principles of Disease Modelling, Target Identification, and Drug Discovery.<br />
-              <em>India Institute of Technology, Indore | 1 Month | Internship</em></p>
-          </div>
-
-          <div class="content">
-            <h3>1 June - 30 July 2021</h3>
-            <p>	AI Based Research for Drug Repurposing in COVID 19.<br />
-              <em>Rawal Genomics Lab | 2 Months | Internship</em></p>
-          </div>
-		
-          <div class="content">
-            <h3>20 May. - 5 July 2021</h3>
-            <p>Machine Learning and Data Science With Python.<br />
-              <em>GoEduHub Technologies | 1.5 Months | Training</em></p>
-          </div>
-
-          <div class="content">
-            <h3>24 May. - 12 June 2021</h3>
-            <p>Biology and Bioengineering Summer Camp 2021 (Season-2).<br />
-              <em>Indian Institute of Technology Bombay | 3 Weeks | Camp</em></p>
-          </div>
-
-          <div class="content">
-            <h3>1 May. - 30 June 2021</h3>
-            <p>Bioinformatics, Genomics, Machine learning, and Big Data Analysis.<br />
-              <em>NextGenHelper | 2 Months | Internship</em></p>
-          </div>
-
-          <div class="content">
-            <h3>1 Feb. - 18 Mar 2021</h3>
-            <p>R Programming.<br />
-              <em>Internshala | 1.5 Months | Training</em></p>
-          </div>
-
-          <div class="content">
-            <h3>18 Dec.2020-20 Jan. 2021</h3>
-            <p>Machine Learning with Python.<br />
-              <em>GoEduHub Technologies | 1 Month | Training</em></p>
-          </div>
-
-          <div class="content">
-            <h3>18 Dec.2020-20 Jan. 2021</h3>
-            <p>Data Structure & Algorithms(DSA) With Python.<br />
-              <em>GoEduHub Technologies | 1 Month | Training</em></p>
-          </div>
-
-          <div class="content">
-            <h3>18th Nov.-18 Dec., 2020</h3>
-            <p>Industrial Training in Bioinformatics.<br />
-              <em>RASA Life Science Informatics | 1 Month | Training</em></p>
-          </div>
-
-          <div class="content">
-            <h3>14th Sept.-10 Oct., 2020</h3>
-            <p>Terrorism Analysis using Python<br />
-              <em>Forsk Coding School | 1 Month | Internship</em></p>
-          </div>
-
-          <div class="content">
-            <h3></h3>
-            <p>• <a href="certifications.html"><u>More Certifications</u></a><br/></p>
-              
-          </div>
-
-        </div>
-         <!-- Begin 5th Row -->
-        <div class="entry">
-        <h2>WORKS</h2>
-        	<ul class="works">
-            <li><a href="images/yuva.jpg" rel="gallery" title="National Research Writing Competition: Best Paper Award"><img src="images/yuva.jpg" alt="" /></a></li>
-            <li><a href="images/Genesis.jpg" rel="gallery" title="Won 1st Prize  GENESIS-2021 Poster Making/Graphical Abstract Competition."><img src="images/Genesis.jpg" alt="" /></a></li>
-            <li><a href="images/genomicis.jpg" rel="gallery" title="Poster Presentation Award at: Agricultural & Biological Sciences I-E-CABS 2020"><img src="images/genomicis.jpg" alt="" /></a></li>
-            <li><a href="images/Russ.jpg" rel="gallery" title="Nominated by Dept of Youth Affairs, Govt of India"><img src="images/Russ.jpg" alt="" /></a></li>
-        		<li><a href="images/1.jpg" rel="gallery" title="Presentation at College Fest"><img src="images/1.jpg" alt="" /></a></li>
-            <li><a href="images/2.jpg" rel="gallery" title="Presentation at College Fest"><img src="images/2.jpg" alt="" /></a></li>
-          	<li><a href="images/5.jpg" rel="gallery" title="Won 2nd Prize in Workshop at IIITA"><img src="images/5.jpg" alt="" /></a></li>
-        		<li><a href="images/4.jpg" rel="gallery" title="Representing DPS, at CBSE National Science Exhibition"><img src="images/4.jpg" alt="" /></a></li>
-        	</ul>
-        </div>
-        <!-- Begin 5th Row -->
-      </div>
-      <div class="clear"></div>
-      <div class="paper-bottom"></div>
     </div>
-    <!-- End Paper -->
-  </div>
-  <div class="wrapper-bottom"></div>
+
+    <!-- Right Main Content -->
+    <div class="md:w-2/3 p-8 md:p-12 bg-white">
+        
+        <div class="mb-10">
+            <h2 class="section-title">Objective</h2>
+            <p class="text-gray-700 leading-relaxed text-sm">To unravel the mysteries of the Human Genome and apply computational methods to the service of mankind. I am Prateek Paul, a Ph.D. Research Student in Computational Biology at IIIT-Delhi. I am deeply involved in AI-based genomic and health databases, working at the crossroads of biology, statistics, and computer science.</p>
+            <p class="text-gray-700 leading-relaxed text-sm mt-3">Bioinformatics and Computational Biology excite me because they allow me to design algorithms to tackle large, complex biological datasets. My passion is discovering new insights about the biological world through computational methods.</p>
+        </div>
+
+        <div class="mb-10">
+            <h2 class="section-title">Education</h2>
+            
+            <div class="mb-6">
+                <div class="flex flex-col md:flex-row md:justify-between md:items-baseline mb-1">
+                    <h3 class="font-bold text-xl text-dark">Ph.D. in Computational Biology</h3>
+                    <span class="text-secondary font-semibold text-sm md:text-right mt-1 md:mt-0">2022 - Present</span>
+                </div>
+                <p class="text-primary text-sm font-semibold mb-1">Indraprastha Institute of Information Technology Delhi (IIIT-D)</p>
+            </div>
+
+            <div class="mb-6">
+                <div class="flex flex-col md:flex-row md:justify-between md:items-baseline mb-1">
+                    <h3 class="font-bold text-xl text-dark">M.Tech. in Computational Biology</h3>
+                    <span class="text-secondary font-semibold text-sm md:text-right mt-1 md:mt-0">2025</span>
+                </div>
+                <p class="text-primary text-sm font-semibold mb-1">Indraprastha Institute of Information Technology Delhi (IIIT-D)</p>
+            </div>
+
+            <div class="mb-3">
+                <div class="flex flex-col md:flex-row md:justify-between md:items-baseline mb-1">
+                    <h3 class="font-bold text-xl text-dark">B.Tech. in Bioinformatics</h3>
+                    <span class="text-secondary font-semibold text-sm md:text-right mt-1 md:mt-0">2018 - 2022</span>
+                </div>
+                <p class="text-primary text-sm font-semibold mb-1">Sam Higginbottom University of Agriculture Technology And Sciences</p>
+                <p class="text-gray-500 text-sm">8.50 CGPA</p>
+            </div>
+
+            <div class="mb-3">
+                <div class="flex flex-col md:flex-row md:justify-between md:items-baseline mb-1">
+                    <h3 class="font-bold text-xl text-dark">AISSCE (XII) | CBSE Delhi</h3>
+                    <span class="text-secondary font-semibold text-sm md:text-right mt-1 md:mt-0">2018</span>
+                </div>
+                <p class="text-primary text-sm font-semibold mb-1">Delhi Public School, Patna</p>
+                <p class="text-gray-500 text-sm">84%</p>
+            </div>
+
+            <div class="mb-3">
+                <div class="flex flex-col md:flex-row md:justify-between md:items-baseline mb-1">
+                    <h3 class="font-bold text-xl text-dark">AISSE (X) | CBSE Delhi</h3>
+                    <span class="text-secondary font-semibold text-sm md:text-right mt-1 md:mt-0">2016</span>
+                </div>
+                <p class="text-primary text-sm font-semibold mb-1">Delhi Public School, Patna</p>
+                <p class="text-gray-500 text-sm">9.0 CGPA</p>
+            </div>
+        </div>
+
+
+        <div class="mb-10">
+            <h2 class="section-title">Experience</h2>
+            
+            <div class="mb-6 relative pl-4 border-l-2 border-gray-200">
+                <div class="absolute w-3 h-3 bg-secondary rounded-full -left-[7px] top-1.5 border border-white"></div>
+                <div class="flex flex-col md:flex-row md:justify-between md:items-baseline mb-1">
+                    <h3 class="font-bold text-lg text-dark">Trainee Researcher</h3>
+                    <span class="text-secondary font-semibold text-sm md:text-right">Nov 2025 - Dec 2025</span>
+                </div>
+                <p class="text-primary text-sm font-semibold mb-2">Radiation Effects Research Foundation, Hiroshima</p>
+                <p class="text-gray-700 text-sm leading-relaxed">Analysis of radiation exposure effects using a large-scale multimodality database with RAG.</p>
+            </div>
+
+            <div class="mb-6 relative pl-4 border-l-2 border-gray-200">
+                <div class="absolute w-3 h-3 bg-gray-300 rounded-full -left-[7px] top-1.5 border border-white"></div>
+                <div class="flex flex-col md:flex-row md:justify-between md:items-baseline mb-1">
+                    <h3 class="font-bold text-lg text-dark">Intern Researcher</h3>
+                    <span class="text-gray-500 font-semibold text-sm md:text-right">Jan 2022 - Jul 2022</span>
+                </div>
+                <p class="text-primary text-sm font-semibold mb-2">INMAS, DRDO, New Delhi</p>
+                <p class="text-gray-700 text-sm leading-relaxed">Developing Animal Model Database for Regeneration Processes.</p>
+            </div>
+
+            <div class="mb-3 relative pl-4 border-l-2 border-gray-200">
+                <div class="absolute w-3 h-3 bg-gray-300 rounded-full -left-[7px] top-1.5 border border-white"></div>
+                <div class="flex flex-col md:flex-row md:justify-between md:items-baseline mb-1">
+                    <h3 class="font-bold text-lg text-dark">Intern Researcher</h3>
+                    <span class="text-gray-500 font-semibold text-sm md:text-right">Jul 2021 - Jul 2022</span>
+                </div>
+                <p class="text-primary text-sm font-semibold mb-2">Indian Institute of Technology, Bombay</p>
+                <p class="text-gray-700 text-sm leading-relaxed">Integrated OMICS-based analysis of oral cancer datasets and identification of potential target by using in-silico drug repurposing approach.</p>
+            </div>
+
+            <div class="mb-3 relative pl-4 border-l-2 border-gray-200">
+                <div class="absolute w-3 h-3 bg-gray-300 rounded-full -left-[7px] top-1.5 border border-white"></div>
+                <div class="flex flex-col md:flex-row md:justify-between md:items-baseline mb-1">
+                    <h3 class="font-bold text-lg text-dark">Intern Researcher</h3>
+                    <span class="text-gray-500 font-semibold text-sm md:text-right">Aug 2021 - Sep 2021</span>
+                </div>
+                <p class="text-primary text-sm font-semibold mb-2">Indian Institute of Technology, Indore</p>
+                <p class="text-gray-700 text-sm leading-relaxed">Principles of Disease Modelling, Target Identification, and Drug Discovery.</p>
+            </div>
+
+            <div class="mb-3 relative pl-4 border-l-2 border-gray-200">
+                <div class="absolute w-3 h-3 bg-gray-300 rounded-full -left-[7px] top-1.5 border border-white"></div>
+                <div class="flex flex-col md:flex-row md:justify-between md:items-baseline mb-1">
+                    <h3 class="font-bold text-lg text-dark">Intern Researcher</h3>
+                    <span class="text-gray-500 font-semibold text-sm md:text-right">Jun 2021 - Jul 2021</span>
+                </div>
+                <p class="text-primary text-sm font-semibold mb-2">Rawal Genomics Lab</p>
+                <p class="text-gray-700 text-sm leading-relaxed">AI Based Research for Drug Repurposing in COVID 19.</p>
+            </div>
+
+            <div class="mb-3 relative pl-4 border-l-2 border-gray-200">
+                <div class="absolute w-3 h-3 bg-gray-300 rounded-full -left-[7px] top-1.5 border border-white"></div>
+                <div class="flex flex-col md:flex-row md:justify-between md:items-baseline mb-1">
+                    <h3 class="font-bold text-lg text-dark">Trainee</h3>
+                    <span class="text-gray-500 font-semibold text-sm md:text-right">May 2021 - Jul 2021</span>
+                </div>
+                <p class="text-primary text-sm font-semibold mb-2">GoEduHub Technologies</p>
+                <p class="text-gray-700 text-sm leading-relaxed">Machine Learning and Data Science With Python.</p>
+            </div>
+
+            <div class="mb-3 relative pl-4 border-l-2 border-gray-200">
+                <div class="absolute w-3 h-3 bg-gray-300 rounded-full -left-[7px] top-1.5 border border-white"></div>
+                <div class="flex flex-col md:flex-row md:justify-between md:items-baseline mb-1">
+                    <h3 class="font-bold text-lg text-dark">Summer Camp Attendee</h3>
+                    <span class="text-gray-500 font-semibold text-sm md:text-right">May 2021 - Jun 2021</span>
+                </div>
+                <p class="text-primary text-sm font-semibold mb-2">Indian Institute of Technology, Bombay</p>
+                <p class="text-gray-700 text-sm leading-relaxed">Biology and Bioengineering Summer Camp 2021 (Season-2).</p>
+            </div>
+
+            <div class="mb-3 relative pl-4 border-l-2 border-gray-200">
+                <div class="absolute w-3 h-3 bg-gray-300 rounded-full -left-[7px] top-1.5 border border-white"></div>
+                <div class="flex flex-col md:flex-row md:justify-between md:items-baseline mb-1">
+                    <h3 class="font-bold text-lg text-dark">Intern Researcher</h3>
+                    <span class="text-gray-500 font-semibold text-sm md:text-right">May 2021 - Jun 2021</span>
+                </div>
+                <p class="text-primary text-sm font-semibold mb-2">NextGenHelper</p>
+                <p class="text-gray-700 text-sm leading-relaxed">Bioinformatics, Genomics, Machine learning, and Big Data Analysis.</p>
+            </div>
+
+            <div class="mb-3 relative pl-4 border-l-2 border-gray-200">
+                <div class="absolute w-3 h-3 bg-gray-300 rounded-full -left-[7px] top-1.5 border border-white"></div>
+                <div class="flex flex-col md:flex-row md:justify-between md:items-baseline mb-1">
+                    <h3 class="font-bold text-lg text-dark">Trainee</h3>
+                    <span class="text-gray-500 font-semibold text-sm md:text-right">Feb 2021 - Mar 2021</span>
+                </div>
+                <p class="text-primary text-sm font-semibold mb-2">Internshala</p>
+                <p class="text-gray-700 text-sm leading-relaxed">R Programming.</p>
+            </div>
+
+            <div class="mb-3 relative pl-4 border-l-2 border-gray-200">
+                <div class="absolute w-3 h-3 bg-gray-300 rounded-full -left-[7px] top-1.5 border border-white"></div>
+                <div class="flex flex-col md:flex-row md:justify-between md:items-baseline mb-1">
+                    <h3 class="font-bold text-lg text-dark">Trainee</h3>
+                    <span class="text-gray-500 font-semibold text-sm md:text-right">Dec 2020 - Jan 2021</span>
+                </div>
+                <p class="text-primary text-sm font-semibold mb-2">GoEduHub Technologies</p>
+                <p class="text-gray-700 text-sm leading-relaxed">Machine Learning and Data Structure & Algorithms (DSA) With Python.</p>
+            </div>
+
+            <div class="mb-3 relative pl-4 border-l-2 border-gray-200">
+                <div class="absolute w-3 h-3 bg-gray-300 rounded-full -left-[7px] top-1.5 border border-white"></div>
+                <div class="flex flex-col md:flex-row md:justify-between md:items-baseline mb-1">
+                    <h3 class="font-bold text-lg text-dark">Trainee</h3>
+                    <span class="text-gray-500 font-semibold text-sm md:text-right">Nov 2020 - Dec 2020</span>
+                </div>
+                <p class="text-primary text-sm font-semibold mb-2">RASA Life Science Informatics</p>
+                <p class="text-gray-700 text-sm leading-relaxed">Industrial Training in Bioinformatics.</p>
+            </div>
+
+            <div class="mb-3 relative pl-4 border-l-2 border-gray-200">
+                <div class="absolute w-3 h-3 bg-gray-300 rounded-full -left-[7px] top-1.5 border border-white"></div>
+                <div class="flex flex-col md:flex-row md:justify-between md:items-baseline mb-1">
+                    <h3 class="font-bold text-lg text-dark">Intern</h3>
+                    <span class="text-gray-500 font-semibold text-sm md:text-right">Sep 2020 - Oct 2020</span>
+                </div>
+                <p class="text-primary text-sm font-semibold mb-2">Forsk Coding School</p>
+                <p class="text-gray-700 text-sm leading-relaxed">Terrorism Analysis using Python.</p>
+            </div>
+        </div>
+
+
+        <div class="mb-4">
+            <h2 class="section-title">Selected Publications</h2>
+            <ul class="space-y-5">
+                <li class="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                    <strong class="text-dark block mb-1">Anti-inflammatory drugs with therapeutic effects and drug regulators.</strong>
+                    <span class="text-gray-500 text-sm block mb-1">Prateek Paul, Manvi | Himalayan Journal of Health Sciences (Sep 2021)</span>
+                    <a href="#" class="text-primary text-xs font-semibold hover:underline">DOI: 10.22270/hjhs.v6i3.106</a>
+                </li>
+                <li class="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                    <strong class="text-dark block mb-1">Analysis of Genomic Island and inhibiting the pathogenesis of Dermatophilus congolensis through predicting RNAi Sequence.</strong>
+                    <span class="text-gray-500 text-sm block">Prateek Paul | Mind Share Yuva (Aug 2021)</span>
+                </li>
+                <li class="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                    <strong class="text-dark block mb-1">Global Environmental Justice: Pesticides in the Environment - Friend or Foe.</strong>
+                    <span class="text-gray-500 text-sm block">Aman Prakash, Jigyasu Gaurav, Prateek Paul, Rohit Kumar | Bharti Publication (Jul 2021)</span>
+                </li>
+
+                <li class="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                    <strong class="text-dark block mb-1">An approach towards unraveling the mysteries of rare diseases with the help of Bioinformatics.</strong>
+                    <span class="text-gray-500 text-sm block">Prateek Paul | It's Science Invent yourself | ISBN: 978-93-91302-67-2 | Flairs and Glairs Publication (Jun 2021)</span>
+                </li>
+                <li class="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                    <strong class="text-dark block mb-1">Recent trends in propagation of horticulture crops and application of Genomics tools in plant Breeding.</strong>
+                    <span class="text-gray-500 text-sm block">Prateek Paul, Aman Prakash | ISBN: 978-81-947336-4-5 | Taran Publication (Apr 2021)</span>
+                </li>
+            </ul>
+
+        </div>
+        
+    </div>
+
 </div>
-<div id="message"><a href="#top" id="top-link">Go to Top</a></div>
-<!-- End Wrapper -->
-<!-- I have downloaded this templete-->
+
+<!-- Print utility -->
+<div class="text-center pb-10 print-btn">
+    <button onclick="window.print()" class="bg-primary hover:bg-orange-600 text-white font-bold py-3 px-8 rounded shadow-lg transition">
+        <i class="fas fa-print mr-2"></i> Print / Save as PDF
+    </button>
+</div>
+
 </body>
 </html>
