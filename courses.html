@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Open-Source Computational Biology & Cheminformatics Courses - Curated university curricula with interactive Jupyter notebooks by Prateek Paul.">
+    <meta name="author" content="Prateek Paul">
+    <title>Course Catalog & Educational Resources | Prateek Paul</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bio: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            900: '#14532d',
+                        },
+                        chem: {
+                            50: '#ecfeff',
+                            100: '#cffafe',
+                            400: '#22d3ee',
+                            500: '#06b6d4',
+                            600: '#0891b2',
+                            700: '#0e7490',
+                            900: '#164e63',
+                        },
+                        indigoChem: {
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            900: '#312e81',
+                        },
+                        amberbio: '#f59e0b',
+                        coral: '#E9724C'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        mono: ['Fira Code', 'Courier New', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts & Font Awesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        html { scroll-behavior: smooth; }
+        .hero-mesh {
+            background-color: #0b132b;
+            background-image: 
+                radial-gradient(at 10% 20%, rgba(6, 182, 212, 0.25) 0px, transparent 50%),
+                radial-gradient(at 85% 15%, rgba(34, 197, 94, 0.22) 0px, transparent 50%),
+                radial-gradient(at 50% 80%, rgba(99, 102, 241, 0.2) 0px, transparent 50%);
+        }
+        .code-pill {
+            font-family: 'Fira Code', monospace;
+        }
+        .course-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .course-card:hover {
+            transform: translateY(-4px);
+        }
+        .filter-btn.active {
+            background-color: #0284c7;
+            color: #ffffff;
+            box-shadow: 0 4px 14px 0 rgba(2, 132, 199, 0.39);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased font-sans flex flex-col min-h-screen">
+
+    <!-- Top Navigation Bar -->
+    <header class="sticky top-0 z-50 bg-slate-900/95 backdrop-blur-md border-b border-slate-800 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-3">
+                    <a href="index.html" class="flex items-center space-x-2 text-sky-400 font-bold text-xl tracking-tight hover:text-sky-300 transition">
+                        <i class="fa-solid fa-graduation-cap text-2xl"></i>
+                        <span>Course Catalog <span class="text-xs font-normal text-slate-400">· Prateek Paul</span></span>
+                    </a>
+                </div>
+                
+                <nav class="hidden md:flex items-center space-x-6 text-sm font-medium">
+                    <a href="#courses" class="text-slate-300 hover:text-white transition">All Courses</a>
+                    <a href="programmingcb.html" class="text-emerald-400 hover:text-emerald-300 flex items-center space-x-1.5 transition">
+                        <i class="fa-solid fa-dna text-xs"></i>
+                        <span>Bioinformatics</span>
+                    </a>
+                    <a href="cheminformatics.html" class="text-cyan-400 hover:text-cyan-300 flex items-center space-x-1.5 transition">
+                        <i class="fa-solid fa-flask text-xs"></i>
+                        <span>Cheminformatics</span>
+                    </a>
+                    <a href="#upcoming" class="text-slate-300 hover:text-white transition">Upcoming Topics</a>
+                    <a href="#philosophy" class="text-slate-300 hover:text-white transition">Philosophy</a>
+                    <a href="index.html" class="text-slate-400 hover:text-white flex items-center space-x-1 transition text-xs">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        <span>Portfolio</span>
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-mesh text-white pt-20 pb-24 border-b border-slate-800 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="max-w-3xl">
+                <!-- Badges Row -->
+                <div class="flex flex-wrap items-center gap-2 mb-6 text-xs">
+                    <span class="inline-flex items-center px-2.5 py-1 rounded-full font-medium bg-sky-500/20 text-sky-300 border border-sky-500/30">
+                        <i class="fa-solid fa-book-open mr-1.5"></i> Open Educational Resources (OER)
+                    </span>
+                    <span class="inline-flex items-center px-2.5 py-1 rounded-full font-medium bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                        <i class="fa-solid fa-laptop-code mr-1.5"></i> 65+ Jupyter Notebooks
+                    </span>
+                    <span class="inline-flex items-center px-2.5 py-1 rounded-full font-medium bg-amber-500/20 text-amber-300 border border-amber-500/30">
+                        <i class="fa-solid fa-certificate mr-1.5"></i> MIT Licensed
+                    </span>
+                </div>
+
+                <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight leading-tight mb-6">
+                    Curricula for Computational <br class="hidden sm:inline">
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400">
+                        Biology, Chemistry & Drug Design
+                    </span>
+                </h1>
+
+                <p class="text-lg text-slate-300 leading-relaxed mb-8">
+                    Production-grade, semester-length university courses engineered for graduate students, postdocs, and computational trainees. Every module features step-by-step theory, interactive Jupyter notebooks with automated assertions, dedicated conda environments, real-world biological datasets, and full reference solutions.
+                </p>
+
+                <!-- Metrics Strip -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-slate-800/80">
+                    <div>
+                        <div class="text-2xl font-bold text-white">65+</div>
+                        <div class="text-xs text-slate-400 uppercase tracking-wider mt-0.5">Jupyter Notebooks</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-emerald-400">2</div>
+                        <div class="text-xs text-slate-400 uppercase tracking-wider mt-0.5">Full Semester Courses</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-cyan-400">2</div>
+                        <div class="text-xs text-slate-400 uppercase tracking-wider mt-0.5">Custom Python Libraries</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-indigo-400">100%</div>
+                        <div class="text-xs text-slate-400 uppercase tracking-wider mt-0.5">Free & Open Source</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 space-y-16">
+
+        <!-- Active Courses Section -->
+        <section id="courses">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
+                <div>
+                    <h2 class="text-2xl font-bold text-slate-900 tracking-tight flex items-center space-x-2">
+                        <i class="fa-solid fa-layer-group text-sky-600"></i>
+                        <span>Featured Curricula</span>
+                    </h2>
+                    <p class="text-sm text-slate-600 mt-1">Full-length courses with live web portals, Colab badges, automated autograders, and instructor reference solutions.</p>
+                </div>
+
+                <!-- Category Filters -->
+                <div class="inline-flex p-1 bg-slate-200/80 rounded-lg text-xs font-medium" id="filter-container">
+                    <button onclick="filterCatalog('all', this)" class="filter-btn active px-3 py-1.5 rounded-md transition">All (4)</button>
+                    <button onclick="filterCatalog('active', this)" class="filter-btn px-3 py-1.5 rounded-md text-slate-600 hover:text-slate-900 transition">Active (2)</button>
+                    <button onclick="filterCatalog('upcoming', this)" class="filter-btn px-3 py-1.5 rounded-md text-slate-600 hover:text-slate-900 transition">Upcoming (2)</button>
+                </div>
+            </div>
+
+            <!-- Course Cards Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8" id="catalog-grid">
+
+                <!-- Course 1: Programming for Computational Biology -->
+                <div class="catalog-card active course-card bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-lg hover:border-emerald-500/50" data-type="active">
+                    <div>
+                        <!-- Header Banner -->
+                        <div class="bg-gradient-to-r from-emerald-950 via-slate-900 to-emerald-900 p-6 text-white border-b border-emerald-800/40">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mr-1.5 animate-pulse"></span>
+                                    Active · Semester Course
+                                </span>
+                                <span class="text-xs text-slate-400 font-mono">PCB-101</span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-2 flex items-center space-x-2">
+                                <i class="fa-solid fa-dna text-emerald-400 text-xl"></i>
+                                <span>Programming for Computational Biology</span>
+                            </h3>
+                            <p class="text-xs text-emerald-200/90 leading-relaxed">
+                                A comprehensive, semester-long curriculum in Python, Biopython, OOP, publication data visualization, and automated biological web scraping.
+                            </p>
+                        </div>
+
+                        <!-- Card Body -->
+                        <div class="p-6 space-y-4">
+                            <!-- Key Pillars -->
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs">
+                                <div class="bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+                                    <div class="text-slate-400 text-[11px]">Curriculum Size</div>
+                                    <div class="font-bold text-slate-800 mt-0.5">43 Notebooks</div>
+                                </div>
+                                <div class="bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+                                    <div class="text-slate-400 text-[11px]">Primary Toolkit</div>
+                                    <div class="font-bold text-slate-800 mt-0.5">Biopython + OOP</div>
+                                </div>
+                                <div class="bg-slate-50 p-2.5 rounded-lg border border-slate-100 col-span-2 sm:col-span-1">
+                                    <div class="text-slate-400 text-[11px]">Assessments</div>
+                                    <div class="font-bold text-slate-800 mt-0.5">3 Sets + Project</div>
+                                </div>
+                            </div>
+
+                            <p class="text-xs text-slate-600 leading-relaxed">
+                                Covers algorithmic fundamentals from DNA/protein string manipulation and GC-content skew curves to GenBank parsing, pairwise Smith-Waterman/Needleman-Wunsch alignments, BLAST automation, PDB structural analysis, and Web Scraping pipelines (NCBI, PubMed, UniProt).
+                            </p>
+
+                            <!-- Topic Chips -->
+                            <div class="flex flex-wrap gap-1.5 pt-2">
+                                <span class="bg-emerald-50 text-emerald-800 border border-emerald-200 text-[11px] font-medium px-2 py-0.5 rounded">Python 3.11</span>
+                                <span class="bg-emerald-50 text-emerald-800 border border-emerald-200 text-[11px] font-medium px-2 py-0.5 rounded">Biopython</span>
+                                <span class="bg-emerald-50 text-emerald-800 border border-emerald-200 text-[11px] font-medium px-2 py-0.5 rounded">SeqRecord</span>
+                                <span class="bg-emerald-50 text-emerald-800 border border-emerald-200 text-[11px] font-medium px-2 py-0.5 rounded">OOP Classes</span>
+                                <span class="bg-emerald-50 text-emerald-800 border border-emerald-200 text-[11px] font-medium px-2 py-0.5 rounded">Matplotlib & Seaborn</span>
+                                <span class="bg-emerald-50 text-emerald-800 border border-emerald-200 text-[11px] font-medium px-2 py-0.5 rounded">Web Scraping</span>
+                                <span class="bg-emerald-50 text-emerald-800 border border-emerald-200 text-[11px] font-medium px-2 py-0.5 rounded">BLAST Parsing</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card Footer Actions -->
+                    <div class="p-6 pt-0 flex flex-col sm:flex-row items-center gap-3">
+                        <a href="programmingcb.html" class="w-full sm:w-auto flex-1 text-center bg-emerald-600 hover:bg-emerald-500 text-white font-semibold px-4 py-2.5 rounded-lg text-xs shadow-sm transition flex items-center justify-center space-x-1.5">
+                            <span>Open Course Portal</span>
+                            <i class="fa-solid fa-arrow-right text-[11px]"></i>
+                        </a>
+                        <a href="https://github.com/meprateekpaul/ProgrammingCB" target="_blank" rel="noopener" class="w-full sm:w-auto bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold px-4 py-2.5 rounded-lg text-xs border border-slate-200 transition flex items-center justify-center space-x-1.5">
+                            <i class="fa-brands fa-github text-sm"></i>
+                            <span>GitHub Repository</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Course 2: Practical Cheminformatics & CADD -->
+                <div class="catalog-card active course-card bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-lg hover:border-cyan-500/50" data-type="active">
+                    <div>
+                        <!-- Header Banner -->
+                        <div class="bg-gradient-to-r from-slate-950 via-cyan-950 to-slate-900 p-6 text-white border-b border-cyan-800/40">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-cyan-500/20 text-cyan-300 border border-cyan-500/40">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 mr-1.5 animate-pulse"></span>
+                                    Active · Graduate Curriculum
+                                </span>
+                                <span class="text-xs text-slate-400 font-mono">CHEM-501</span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-2 flex items-center space-x-2">
+                                <i class="fa-solid fa-flask text-cyan-400 text-xl"></i>
+                                <span>Practical Cheminformatics & CADD</span>
+                            </h3>
+                            <p class="text-xs text-cyan-200/90 leading-relaxed">
+                                Fundamentals to computer-aided drug design: 22 notebooks, custom <code class="text-white bg-cyan-900/60 px-1 py-0.5 rounded">chemlib</code> library, 18 curated datasets, and AutoDock Vina pipelines.
+                            </p>
+                        </div>
+
+                        <!-- Card Body -->
+                        <div class="p-6 space-y-4">
+                            <!-- Key Pillars -->
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs">
+                                <div class="bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+                                    <div class="text-slate-400 text-[11px]">Curriculum Size</div>
+                                    <div class="font-bold text-slate-800 mt-0.5">22 Notebooks</div>
+                                </div>
+                                <div class="bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+                                    <div class="text-slate-400 text-[11px]">Core Library</div>
+                                    <div class="font-bold text-slate-800 mt-0.5">chemlib (9 Modules)</div>
+                                </div>
+                                <div class="bg-slate-50 p-2.5 rounded-lg border border-slate-100 col-span-2 sm:col-span-1">
+                                    <div class="text-slate-400 text-[11px]">Conda Env</div>
+                                    <div class="font-bold text-slate-800 mt-0.5">cheminf (Py 3.11)</div>
+                                </div>
+                            </div>
+
+                            <p class="text-xs text-slate-600 leading-relaxed">
+                                Covers chemical space, SMILES, molecular graphs & matrices, 0D-3D Mordred descriptors, circular fingerprints (ECFP4/ECFP6), Hansch & Free-Wilson QSAR, scaffold-split ML models, 3D-QSAR CoMFA fields, AutoDock Vina docking, BRICS fragment design, and Graph Neural Networks.
+                            </p>
+
+                            <!-- Topic Chips -->
+                            <div class="flex flex-wrap gap-1.5 pt-2">
+                                <span class="bg-cyan-50 text-cyan-800 border border-cyan-200 text-[11px] font-medium px-2 py-0.5 rounded">RDKit 2026</span>
+                                <span class="bg-cyan-50 text-cyan-800 border border-cyan-200 text-[11px] font-medium px-2 py-0.5 rounded">SMILES & InChI</span>
+                                <span class="bg-cyan-50 text-cyan-800 border border-cyan-200 text-[11px] font-medium px-2 py-0.5 rounded">Molecular Graphs</span>
+                                <span class="bg-cyan-50 text-cyan-800 border border-cyan-200 text-[11px] font-medium px-2 py-0.5 rounded">ECFP4 / ECFP6</span>
+                                <span class="bg-cyan-50 text-cyan-800 border border-cyan-200 text-[11px] font-medium px-2 py-0.5 rounded">Hansch QSAR</span>
+                                <span class="bg-cyan-50 text-cyan-800 border border-cyan-200 text-[11px] font-medium px-2 py-0.5 rounded">Scaffold Splitting</span>
+                                <span class="bg-cyan-50 text-cyan-800 border border-cyan-200 text-[11px] font-medium px-2 py-0.5 rounded">AutoDock Vina</span>
+                                <span class="bg-cyan-50 text-cyan-800 border border-cyan-200 text-[11px] font-medium px-2 py-0.5 rounded">GNNs</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card Footer Actions -->
+                    <div class="p-6 pt-0 flex flex-col sm:flex-row items-center gap-3">
+                        <a href="cheminformatics.html" class="w-full sm:w-auto flex-1 text-center bg-cyan-600 hover:bg-cyan-500 text-white font-semibold px-4 py-2.5 rounded-lg text-xs shadow-sm transition flex items-center justify-center space-x-1.5">
+                            <span>Open Course Portal</span>
+                            <i class="fa-solid fa-arrow-right text-[11px]"></i>
+                        </a>
+                        <a href="https://github.com/meprateekpaul/Cheminformatics" target="_blank" rel="noopener" class="w-full sm:w-auto bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold px-4 py-2.5 rounded-lg text-xs border border-slate-200 transition flex items-center justify-center space-x-1.5">
+                            <i class="fa-brands fa-github text-sm"></i>
+                            <span>GitHub Repository</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Course 3: Biomolecular Modeling & Molecular Dynamics (Upcoming) -->
+                <div class="catalog-card upcoming course-card bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-lg hover:border-indigo-500/50" data-type="upcoming">
+                    <div>
+                        <!-- Header Banner -->
+                        <div class="bg-gradient-to-r from-slate-950 via-indigo-950 to-slate-900 p-6 text-white border-b border-indigo-800/40">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-500/20 text-indigo-300 border border-indigo-500/40">
+                                    <i class="fa-solid fa-clock-rotate-left mr-1.5 text-[10px]"></i>
+                                    In Development · Planned
+                                </span>
+                                <span class="text-xs text-slate-400 font-mono">BPHYS-601</span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-2 flex items-center space-x-2">
+                                <i class="fa-solid fa-cubes-stacked text-indigo-400 text-xl"></i>
+                                <span>Biomolecular Modeling & MD Simulations</span>
+                            </h3>
+                            <p class="text-xs text-indigo-200/90 leading-relaxed">
+                                Classical mechanics, GROMACS protocols, enhanced sampling, Steered MD, and free energy perturbation for protein-ligand and membrane complexes.
+                            </p>
+                        </div>
+
+                        <!-- Card Body -->
+                        <div class="p-6 space-y-4">
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs">
+                                <div class="bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+                                    <div class="text-slate-400 text-[11px]">Core Engine</div>
+                                    <div class="font-bold text-slate-800 mt-0.5">GROMACS 2026</div>
+                                </div>
+                                <div class="bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+                                    <div class="text-slate-400 text-[11px]">Analysis</div>
+                                    <div class="font-bold text-slate-800 mt-0.5">MDAnalysis & MDTraj</div>
+                                </div>
+                                <div class="bg-slate-50 p-2.5 rounded-lg border border-slate-100 col-span-2 sm:col-span-1">
+                                    <div class="text-slate-400 text-[11px]">Force Fields</div>
+                                    <div class="font-bold text-slate-800 mt-0.5">CHARMM36m / AMBER</div>
+                                </div>
+                            </div>
+
+                            <p class="text-xs text-slate-600 leading-relaxed">
+                                Detailed practicals on topology assembly, ion neutralization, NVT/NPT equilibrations, thermostat & barostat algorithms, trajectory RMSD/RMSF/Rg profiling, PCA essential dynamics, and non-equilibrium pulling simulations.
+                            </p>
+
+                            <div class="flex flex-wrap gap-1.5 pt-2">
+                                <span class="bg-indigo-50 text-indigo-800 border border-indigo-200 text-[11px] font-medium px-2 py-0.5 rounded">GROMACS</span>
+                                <span class="bg-indigo-50 text-indigo-800 border border-indigo-200 text-[11px] font-medium px-2 py-0.5 rounded">CHARMM-GUI</span>
+                                <span class="bg-indigo-50 text-indigo-800 border border-indigo-200 text-[11px] font-medium px-2 py-0.5 rounded">Equilibration</span>
+                                <span class="bg-indigo-50 text-indigo-800 border border-indigo-200 text-[11px] font-medium px-2 py-0.5 rounded">Steered MD</span>
+                                <span class="bg-indigo-50 text-indigo-800 border border-indigo-200 text-[11px] font-medium px-2 py-0.5 rounded">Free Energy</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card Footer Actions -->
+                    <div class="p-6 pt-0 flex items-center justify-between">
+                        <span class="text-xs text-slate-400 italic">Syllabus drafting in progress</span>
+                        <span class="text-xs text-indigo-600 font-semibold">Coming Soon →</span>
+                    </div>
+                </div>
+
+                <!-- Course 4: Deep Learning & Generative AI for Biology (Upcoming) -->
+                <div class="catalog-card upcoming course-card bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-lg hover:border-purple-500/50" data-type="upcoming">
+                    <div>
+                        <!-- Header Banner -->
+                        <div class="bg-gradient-to-r from-slate-950 via-purple-950 to-slate-900 p-6 text-white border-b border-purple-800/40">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-purple-500/20 text-purple-300 border border-purple-500/40">
+                                    <i class="fa-solid fa-clock-rotate-left mr-1.5 text-[10px]"></i>
+                                    In Development · Planned
+                                </span>
+                                <span class="text-xs text-slate-400 font-mono">AIML-701</span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-2 flex items-center space-x-2">
+                                <i class="fa-solid fa-brain text-purple-400 text-xl"></i>
+                                <span>Deep Learning & Generative AI for Biology</span>
+                            </h3>
+                            <p class="text-xs text-purple-200/90 leading-relaxed">
+                                Geometric deep learning, Protein Language Models (ESM-2, AlphaFold), and 3D diffusion architectures for de novo molecular design.
+                            </p>
+                        </div>
+
+                        <!-- Card Body -->
+                        <div class="p-6 space-y-4">
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs">
+                                <div class="bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+                                    <div class="text-slate-400 text-[11px]">Framework</div>
+                                    <div class="font-bold text-slate-800 mt-0.5">PyTorch Geometric</div>
+                                </div>
+                                <div class="bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+                                    <div class="text-slate-400 text-[11px]">Foundation Models</div>
+                                    <div class="font-bold text-slate-800 mt-0.5">ESM-2 / AlphaFold</div>
+                                </div>
+                                <div class="bg-slate-50 p-2.5 rounded-lg border border-slate-100 col-span-2 sm:col-span-1">
+                                    <div class="text-slate-400 text-[11px]">Generative Tech</div>
+                                    <div class="font-bold text-slate-800 mt-0.5">Diffusion + VAEs</div>
+                                </div>
+                            </div>
+
+                            <p class="text-xs text-slate-600 leading-relaxed">
+                                Explores transfer learning on protein sequences, graph attention networks (GATs), 3D equivariant neural networks (EGNNs), conditional molecular generative diffusion, and AlphaFold structure prediction pipelines.
+                            </p>
+
+                            <div class="flex flex-wrap gap-1.5 pt-2">
+                                <span class="bg-purple-50 text-purple-800 border border-purple-200 text-[11px] font-medium px-2 py-0.5 rounded">PyTorch</span>
+                                <span class="bg-purple-50 text-purple-800 border border-purple-200 text-[11px] font-medium px-2 py-0.5 rounded">Geometric DL</span>
+                                <span class="bg-purple-50 text-purple-800 border border-purple-200 text-[11px] font-medium px-2 py-0.5 rounded">ESM-2</span>
+                                <span class="bg-purple-50 text-purple-800 border border-purple-200 text-[11px] font-medium px-2 py-0.5 rounded">Diffusion Models</span>
+                                <span class="bg-purple-50 text-purple-800 border border-purple-200 text-[11px] font-medium px-2 py-0.5 rounded">AlphaFold</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card Footer Actions -->
+                    <div class="p-6 pt-0 flex items-center justify-between">
+                        <span class="text-xs text-slate-400 italic">Syllabus drafting in progress</span>
+                        <span class="text-xs text-purple-600 font-semibold">Coming Soon →</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Pedagogical Philosophy Section -->
+        <section id="philosophy" class="bg-white rounded-2xl border border-slate-200 p-8 sm:p-10 shadow-sm">
+            <div class="max-w-3xl mb-8">
+                <h2 class="text-2xl font-bold text-slate-900 tracking-tight flex items-center space-x-2">
+                    <i class="fa-solid fa-compass-drafting text-sky-600"></i>
+                    <span>Pedagogical Principles & Architectural Standards</span>
+                </h2>
+                <p class="text-sm text-slate-600 mt-2">Every curriculum hosted on this platform adheres to four strict institutional engineering rules:</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+                <div class="flex items-start space-x-4 p-4 rounded-xl bg-slate-50 border border-slate-100">
+                    <div class="p-2.5 bg-emerald-100 text-emerald-700 rounded-lg shrink-0 mt-0.5">
+                        <i class="fa-solid fa-circle-check text-lg"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-slate-900 mb-1">Executable & Reproducible (No Pseudo-code)</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Every notebook has a 1-click Google Colab badge, a fixed random seed (<code class="code-pill text-emerald-700 font-bold">SEED=42</code>), and dual execution modes (<code class="code-pill text-slate-700">FULL_RUN=False</code> for sub-minute CPU smoke runs).
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex items-start space-x-4 p-4 rounded-xl bg-slate-50 border border-slate-100">
+                    <div class="p-2.5 bg-cyan-100 text-cyan-700 rounded-lg shrink-0 mt-0.5">
+                        <i class="fa-solid fa-book-bookmark text-lg"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-slate-900 mb-1">Lecture-Aligned & Rigorously Corrected</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Grounded directly in formal university lecture decks with explicit slide errata guides, modernizing deprecated APIs (e.g., modern <code class="code-pill text-cyan-700">rdFingerprintGenerator</code>).
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex items-start space-x-4 p-4 rounded-xl bg-slate-50 border border-slate-100">
+                    <div class="p-2.5 bg-indigo-100 text-indigo-700 rounded-lg shrink-0 mt-0.5">
+                        <i class="fa-solid fa-database text-lg"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-slate-900 mb-1">Curated Real-World Scientific Datasets</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Data registries curated from ChEMBL, PubChem, DrugBank, PDB, and clinical registries. Automated python fetchers guarantee deterministic offline dataset rebuilding.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex items-start space-x-4 p-4 rounded-xl bg-slate-50 border border-slate-100">
+                    <div class="p-2.5 bg-amber-100 text-amber-700 rounded-lg shrink-0 mt-0.5">
+                        <i class="fa-solid fa-box-open text-lg"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-slate-900 mb-1">Reusable Software Frameworks</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Modular, pip-installable python packages (<code class="code-pill text-amber-700 font-bold">chemlib</code>) accompanied by automated pytest suites running in continuous integration (CI) workflows.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800 text-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center space-x-3">
+                <i class="fa-solid fa-graduation-cap text-2xl text-sky-400"></i>
+                <div>
+                    <div class="text-white font-bold">Prateek Paul · Open Educational Curricula</div>
+                    <div class="text-xs text-slate-400">Computational Biology & Bioinformatics · IIIT Delhi</div>
+                </div>
+            </div>
+            <div class="flex flex-wrap items-center gap-6 text-xs">
+                <a href="index.html" class="hover:text-white transition">Portfolio Homepage</a>
+                <a href="programmingcb.html" class="hover:text-emerald-400 transition">Bioinformatics (PCB)</a>
+                <a href="cheminformatics.html" class="hover:text-cyan-400 transition">Cheminformatics & CADD</a>
+                <a href="https://github.com/meprateekpaul" target="_blank" rel="noopener" class="hover:text-white transition">GitHub Profile</a>
+                <a href="mailto:meprateekpaul@gmail.com" class="hover:text-white transition">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Filter Script -->
+    <script>
+        function filterCatalog(type, btn) {
+            const buttons = document.querySelectorAll('#filter-container .filter-btn');
+            buttons.forEach(b => b.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+
+            const cards = document.querySelectorAll('#catalog-grid .catalog-card');
+            cards.forEach(card => {
+                const cardType = card.getAttribute('data-type');
+                if (type === 'all' || cardType === type) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
