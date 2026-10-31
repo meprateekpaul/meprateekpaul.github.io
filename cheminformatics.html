@@ -108,7 +108,7 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero-mesh text-white pt-20 pb-24 border-b border-slate-800 relative overflow-hidden">
+    <section id="about" class="hero-mesh text-white pt-20 pb-24 border-b border-slate-800 relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                 
@@ -299,311 +299,769 @@
                     <p class="text-slate-600 mt-1">Every notebook includes theory recaps, worked examples, exercise stubs with assert-based tests, common pitfalls, and verified solutions.</p>
                 </div>
                 
-                <!-- Filter Tabs -->
+                                                <!-- Filter Tabs -->
                 <div class="flex flex-wrap gap-2 text-xs font-semibold">
-                    <button class="filter-btn active px-3 py-1.5 rounded-lg border border-slate-200 text-slate-700 hover:border-teal-400 transition" onclick="filterNotebooks('all')">All Parts (22)</button>
-                    <button class="filter-btn px-3 py-1.5 rounded-lg border border-slate-200 text-slate-700 hover:border-teal-400 transition" onclick="filterNotebooks('part_a')">Part A: Foundations</button>
-                    <button class="filter-btn px-3 py-1.5 rounded-lg border border-slate-200 text-slate-700 hover:border-teal-400 transition" onclick="filterNotebooks('part_bc')">Parts B & C: Data & Reps</button>
-                    <button class="filter-btn px-3 py-1.5 rounded-lg border border-slate-200 text-slate-700 hover:border-teal-400 transition" onclick="filterNotebooks('part_d')">Part D: Search & Pharm</button>
-                    <button class="filter-btn px-3 py-1.5 rounded-lg border border-slate-200 text-slate-700 hover:border-teal-400 transition" onclick="filterNotebooks('part_e')">Part E: QSAR & ML</button>
-                    <button class="filter-btn px-3 py-1.5 rounded-lg border border-slate-200 text-slate-700 hover:border-teal-400 transition" onclick="filterNotebooks('part_fg')">Parts F & G: SBDD & Capstone</button>
+                    <button class="filter-btn active px-3 py-1.5 rounded-lg border border-slate-200 text-slate-700 hover:border-teal-400 transition" data-filter="all" onclick="filterNotebooks('all', this)">All (22)</button>
+                    <button class="filter-btn px-3 py-1.5 rounded-lg border border-slate-200 text-slate-700 hover:border-teal-400 transition" data-filter="foundations" onclick="filterNotebooks('foundations', this)">Foundations (6)</button>
+                    <button class="filter-btn px-3 py-1.5 rounded-lg border border-slate-200 text-slate-700 hover:border-teal-400 transition" data-filter="representations" onclick="filterNotebooks('representations', this)">Representations (2)</button>
+                    <button class="filter-btn px-3 py-1.5 rounded-lg border border-slate-200 text-slate-700 hover:border-teal-400 transition" data-filter="descriptors" onclick="filterNotebooks('descriptors', this)">Descriptors (2)</button>
+                    <button class="filter-btn px-3 py-1.5 rounded-lg border border-slate-200 text-slate-700 hover:border-teal-400 transition" data-filter="searching" onclick="filterNotebooks('searching', this)">Searching (2)</button>
+                    <button class="filter-btn px-3 py-1.5 rounded-lg border border-slate-200 text-slate-700 hover:border-teal-400 transition" data-filter="qsar_ml" onclick="filterNotebooks('qsar_ml', this)">QSAR & ML (4)</button>
+                    <button class="filter-btn px-3 py-1.5 rounded-lg border border-slate-200 text-slate-700 hover:border-teal-400 transition" data-filter="structure_based" onclick="filterNotebooks('structure_based', this)">Structure-Based (4)</button>
+                    <button class="filter-btn px-3 py-1.5 rounded-lg border border-slate-200 text-slate-700 hover:border-teal-400 transition" data-filter="capstone" onclick="filterNotebooks('capstone', this)">Capstone (2)</button>
                 </div>
             </div>
 
             <!-- Notebook Cards Grid -->
             <div id="notebook-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-                <!-- Part A -->
-                <div class="nb-card part_a bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition space-y-4">
-                    <div class="flex items-center justify-between text-xs">
-                        <span class="font-bold text-teal-600 uppercase tracking-wide">Part A · nb00</span>
-                        <span class="text-slate-400 font-medium">●○○ · ~30 min</span>
+                <!-- nb00 -->
+                <div class="nb-card foundations bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between" data-category="foundations">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="font-bold text-teal-600 uppercase tracking-wide">Part A · Foundations · nb00</span>
+                            <div class="flex items-center space-x-2">
+                                <span class="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-700 border-emerald-200 border">Beginner</span>
+                                <span class="text-slate-400 font-medium">●○○ · ~30 min</span>
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 leading-snug">Setup, Python and RDKit Refresher</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">Environment verification, reading/writing molecules, atom/bond iteration, implicit vs explicit H, PandasTools, and Open Babel CLI.</p>
+                        <div class="flex flex-wrap gap-1.5 pt-1">
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">Environment</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">RDKit Mol</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">PandasTools</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">Open Babel CLI</span>
+                        </div>
                     </div>
-                    <h3 class="text-lg font-bold text-slate-900">Setup, Python and RDKit Refresher</h3>
-                    <p class="text-sm text-slate-600">Environment verification, reading/writing molecules, atom/bond iteration, implicit vs explicit H, PandasTools, and Open Babel CLI.</p>
-                    <div class="flex items-center justify-between pt-2 border-t border-slate-100 text-xs">
-                        <span class="code-pill text-slate-500">nb00_setup_and_refresher.ipynb</span>
-                        <a href="https://github.com/meprateekpaul/Cheminformatics/blob/main/notebooks/nb00_setup_and_refresher.ipynb" target="_blank" class="text-teal-600 font-semibold hover:underline">View Notebook →</a>
-                    </div>
-                </div>
-
-                <div class="nb-card part_a bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition space-y-4">
-                    <div class="flex items-center justify-between text-xs">
-                        <span class="font-bold text-teal-600 uppercase tracking-wide">Part A · nb01</span>
-                        <span class="text-slate-400 font-medium">●○○ · ~45 min</span>
-                    </div>
-                    <h3 class="text-lg font-bold text-slate-900">Informatics, Chemical Space and Drug Discovery</h3>
-                    <p class="text-sm text-slate-600">Chemical space estimation (~10^60 compounds), alkane isomer enumeration (C1–C8), SBDD vs LBDD decision trees, and ΔG = RT ln Ki conversions.</p>
-                    <div class="flex items-center justify-between pt-2 border-t border-slate-100 text-xs">
-                        <span class="code-pill text-slate-500">nb01_chemical_space_and_drug_discovery.ipynb</span>
-                        <a href="https://github.com/meprateekpaul/Cheminformatics/blob/main/notebooks/nb01_chemical_space_and_drug_discovery.ipynb" target="_blank" class="text-teal-600 font-semibold hover:underline">View Notebook →</a>
-                    </div>
-                </div>
-
-                <div class="nb-card part_a bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition space-y-4">
-                    <div class="flex items-center justify-between text-xs">
-                        <span class="font-bold text-teal-600 uppercase tracking-wide">Part A · nb02</span>
-                        <span class="text-slate-400 font-medium">●●○ · ~60 min</span>
-                    </div>
-                    <h3 class="text-lg font-bold text-slate-900">Building 3D Structures: Cartesian, Z-Matrix & Editors</h3>
-                    <p class="text-sm text-slate-600">Constructing methane from geometry, orientation dependence of Cartesian coordinates, Z-matrix internal coordinate conversion, and py3Dmol conformer scans.</p>
-                    <div class="flex items-center justify-between pt-2 border-t border-slate-100 text-xs">
-                        <span class="code-pill text-slate-500">nb02_building_3d_structures.ipynb</span>
-                        <a href="https://github.com/meprateekpaul/Cheminformatics/blob/main/notebooks/nb02_building_3d_structures.ipynb" target="_blank" class="text-teal-600 font-semibold hover:underline">View Notebook →</a>
+                    <div class="flex items-center justify-between pt-3 border-t border-slate-100 text-xs">
+                        <span class="code-pill text-slate-500 truncate max-w-[170px]" title="nb00_setup_and_refresher.ipynb">nb00_setup_and_refresher.ipynb</span>
+                        <div class="flex items-center space-x-2">
+                            <a href="https://github.com/meprateekpaul/Cheminformatics/blob/main/notebooks/nb00_setup_and_refresher.ipynb" target="_blank" class="inline-flex items-center space-x-1 text-slate-600 hover:text-teal-600 font-semibold px-2 py-1 rounded hover:bg-slate-50 transition" title="View on GitHub">
+                                <i class="fa-brands fa-github text-sm"></i>
+                                <span>GitHub</span>
+                            </a>
+                            <a href="https://colab.research.google.com/github/meprateekpaul/Cheminformatics/blob/main/notebooks/nb00_setup_and_refresher.ipynb" target="_blank" class="inline-flex items-center space-x-1.5 bg-amber-500/10 hover:bg-amber-500/20 text-amber-800 px-2.5 py-1 rounded border border-amber-300 font-semibold transition" title="Open in Google Colab">
+                                <i class="fa-solid fa-play text-[10px] text-amber-600"></i>
+                                <span>Colab</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
 
-                <div class="nb-card part_a bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition space-y-4">
-                    <div class="flex items-center justify-between text-xs">
-                        <span class="font-bold text-teal-600 uppercase tracking-wide">Part A · nb03</span>
-                        <span class="text-slate-400 font-medium">●●○ · ~75 min</span>
+                <!-- nb01 -->
+                <div class="nb-card foundations bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between" data-category="foundations">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="font-bold text-teal-600 uppercase tracking-wide">Part A · Foundations · nb01</span>
+                            <div class="flex items-center space-x-2">
+                                <span class="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-700 border-emerald-200 border">Beginner</span>
+                                <span class="text-slate-400 font-medium">●○○ · ~45 min</span>
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 leading-snug">Informatics, Chemical Space and Drug Discovery</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">Chemical space estimation (~10^60 compounds), alkane isomer enumeration (C1–C8), SBDD vs LBDD decision trees, and ΔG = RT ln Ki conversions.</p>
+                        <div class="flex flex-wrap gap-1.5 pt-1">
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">Chemical Space</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">Isomers</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">SBDD vs LBDD</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">Affinity Math</span>
+                        </div>
                     </div>
-                    <h3 class="text-lg font-bold text-slate-900">SMILES and Linear Chemical Notations</h3>
-                    <p class="text-sm text-slate-600">SMILES grammar, hand-drawing exercises (10 molecules), stereochemistry (@/@@, /,\), InChI layers, and canonicalization differences across toolkits.</p>
-                    <div class="flex items-center justify-between pt-2 border-t border-slate-100 text-xs">
-                        <span class="code-pill text-slate-500">nb03_smiles_and_linear_notations.ipynb</span>
-                        <a href="https://github.com/meprateekpaul/Cheminformatics/blob/main/notebooks/nb03_smiles_and_linear_notations.ipynb" target="_blank" class="text-teal-600 font-semibold hover:underline">View Notebook →</a>
-                    </div>
-                </div>
-
-                <div class="nb-card part_a bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition space-y-4">
-                    <div class="flex items-center justify-between text-xs">
-                        <span class="font-bold text-teal-600 uppercase tracking-wide">Part A · nb04</span>
-                        <span class="text-slate-400 font-medium">●●○ · ~75 min</span>
-                    </div>
-                    <h3 class="text-lg font-bold text-slate-900">Molecular Graphs and Matrices</h3>
-                    <p class="text-sm text-slate-600">Graph representations, adjacency, bond-order, and topological distance matrices. Molecular walks (MWC) and self-returning walks (SRW). VF2 isomorphism.</p>
-                    <div class="flex items-center justify-between pt-2 border-t border-slate-100 text-xs">
-                        <span class="code-pill text-slate-500">nb04_molecular_graphs_and_matrices.ipynb</span>
-                        <a href="https://github.com/meprateekpaul/Cheminformatics/blob/main/notebooks/nb04_molecular_graphs_and_matrices.ipynb" target="_blank" class="text-teal-600 font-semibold hover:underline">View Notebook →</a>
-                    </div>
-                </div>
-
-                <div class="nb-card part_a bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition space-y-4">
-                    <div class="flex items-center justify-between text-xs">
-                        <span class="font-bold text-teal-600 uppercase tracking-wide">Part A · nb05</span>
-                        <span class="text-slate-400 font-medium">●●○ · ~75 min</span>
-                    </div>
-                    <h3 class="text-lg font-bold text-slate-900">File Formats and Conversion (2D ⇄ 3D)</h3>
-                    <p class="text-sm text-slate-600">MOL blocks, SDF, MOL2, PDBQT anatomy. 3D coordinate generation via RDKit ETKDG vs Open Babel. Force field terms (MMFF94, UFF) and partial charges.</p>
-                    <div class="flex items-center justify-between pt-2 border-t border-slate-100 text-xs">
-                        <span class="code-pill text-slate-500">nb05_file_formats_and_conversion.ipynb</span>
-                        <a href="https://github.com/meprateekpaul/Cheminformatics/blob/main/notebooks/nb05_file_formats_and_conversion.ipynb" target="_blank" class="text-teal-600 font-semibold hover:underline">View Notebook →</a>
+                    <div class="flex items-center justify-between pt-3 border-t border-slate-100 text-xs">
+                        <span class="code-pill text-slate-500 truncate max-w-[170px]" title="nb01_chemical_space_and_drug_discovery.ipynb">nb01_chemical_space_and_drug_discovery.ipynb</span>
+                        <div class="flex items-center space-x-2">
+                            <a href="https://github.com/meprateekpaul/Cheminformatics/blob/main/notebooks/nb01_chemical_space_and_drug_discovery.ipynb" target="_blank" class="inline-flex items-center space-x-1 text-slate-600 hover:text-teal-600 font-semibold px-2 py-1 rounded hover:bg-slate-50 transition" title="View on GitHub">
+                                <i class="fa-brands fa-github text-sm"></i>
+                                <span>GitHub</span>
+                            </a>
+                            <a href="https://colab.research.google.com/github/meprateekpaul/Cheminformatics/blob/main/notebooks/nb01_chemical_space_and_drug_discovery.ipynb" target="_blank" class="inline-flex items-center space-x-1.5 bg-amber-500/10 hover:bg-amber-500/20 text-amber-800 px-2.5 py-1 rounded border border-amber-300 font-semibold transition" title="Open in Google Colab">
+                                <i class="fa-solid fa-play text-[10px] text-amber-600"></i>
+                                <span>Colab</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Parts B & C -->
-                <div class="nb-card part_bc bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition space-y-4">
-                    <div class="flex items-center justify-between text-xs">
-                        <span class="font-bold text-teal-600 uppercase tracking-wide">Part B · nb06</span>
-                        <span class="text-slate-400 font-medium">●●○ · ~90 min</span>
+                <!-- nb02 -->
+                <div class="nb-card foundations bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between" data-category="foundations">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="font-bold text-teal-600 uppercase tracking-wide">Part A · Foundations · nb02</span>
+                            <div class="flex items-center space-x-2">
+                                <span class="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-amber-50 text-amber-700 border-amber-200 border">Intermediate</span>
+                                <span class="text-slate-400 font-medium">●●○ · ~60 min</span>
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 leading-snug">Building 3D Structures: Cartesian, Z-Matrix & Editors</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">Constructing methane from geometry, orientation dependence of Cartesian coordinates, Z-matrix internal coordinate conversion, and py3Dmol conformer scans.</p>
+                        <div class="flex flex-wrap gap-1.5 pt-1">
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">Cartesian (x,y,z)</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">Z-Matrix</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">py3Dmol</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">Conformers</span>
+                        </div>
                     </div>
-                    <h3 class="text-lg font-bold text-slate-900">Chemical Databases: PubChem, ChEMBL, ZINC</h3>
-                    <p class="text-sm text-slate-600">Programmatic API retrieval, ChEMBL human AChE curation, salt stripping, charge neutralization, duplicate aggregation (median + IQR), and pIC50 derivation.</p>
-                    <div class="flex items-center justify-between pt-2 border-t border-slate-100 text-xs">
-                        <span class="code-pill text-slate-500">nb06_chemical_databases_chembl_pubchem.ipynb</span>
-                        <a href="https://github.com/meprateekpaul/Cheminformatics/blob/main/notebooks/nb06_chemical_databases_chembl_pubchem.ipynb" target="_blank" class="text-teal-600 font-semibold hover:underline">View Notebook →</a>
-                    </div>
-                </div>
-
-                <div class="nb-card part_bc bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition space-y-4">
-                    <div class="flex items-center justify-between text-xs">
-                        <span class="font-bold text-teal-600 uppercase tracking-wide">Part B · nb07</span>
-                        <span class="text-slate-400 font-medium">●●○ · ~75 min</span>
-                    </div>
-                    <h3 class="text-lg font-bold text-slate-900">Organic Structures, Isomers and Functional Groups</h3>
-                    <p class="text-sm text-slate-600">Constitutional and stereoisomers, SMARTS functional group library, Hückel 4n+2 aromaticity, Checkmol analysis, and functional-group fingerprint vectors.</p>
-                    <div class="flex items-center justify-between pt-2 border-t border-slate-100 text-xs">
-                        <span class="code-pill text-slate-500">nb07_organic_structures_and_functional_groups.ipynb</span>
-                        <a href="https://github.com/meprateekpaul/Cheminformatics/blob/main/notebooks/nb07_organic_structures_and_functional_groups.ipynb" target="_blank" class="text-teal-600 font-semibold hover:underline">View Notebook →</a>
-                    </div>
-                </div>
-
-                <div class="nb-card part_bc bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition space-y-4">
-                    <div class="flex items-center justify-between text-xs">
-                        <span class="font-bold text-teal-600 uppercase tracking-wide">Part C · nb08</span>
-                        <span class="text-slate-400 font-medium">●●● · ~120 min</span>
-                    </div>
-                    <h3 class="text-lg font-bold text-slate-900">Molecular Descriptors (0D–4D)</h3>
-                    <p class="text-sm text-slate-600">Topological indices (Wiener, Zagreb, Randić correlation with alkane b.p.), 3D geometrical shape, RDKit vs Mordred vs PaDEL bake-off, and descriptor matrix hygiene.</p>
-                    <div class="flex items-center justify-between pt-2 border-t border-slate-100 text-xs">
-                        <span class="code-pill text-slate-500">nb08_molecular_descriptors.ipynb</span>
-                        <a href="https://github.com/meprateekpaul/Cheminformatics/blob/main/notebooks/nb08_molecular_descriptors.ipynb" target="_blank" class="text-teal-600 font-semibold hover:underline">View Notebook →</a>
+                    <div class="flex items-center justify-between pt-3 border-t border-slate-100 text-xs">
+                        <span class="code-pill text-slate-500 truncate max-w-[170px]" title="nb02_building_3d_structures.ipynb">nb02_building_3d_structures.ipynb</span>
+                        <div class="flex items-center space-x-2">
+                            <a href="https://github.com/meprateekpaul/Cheminformatics/blob/main/notebooks/nb02_building_3d_structures.ipynb" target="_blank" class="inline-flex items-center space-x-1 text-slate-600 hover:text-teal-600 font-semibold px-2 py-1 rounded hover:bg-slate-50 transition" title="View on GitHub">
+                                <i class="fa-brands fa-github text-sm"></i>
+                                <span>GitHub</span>
+                            </a>
+                            <a href="https://colab.research.google.com/github/meprateekpaul/Cheminformatics/blob/main/notebooks/nb02_building_3d_structures.ipynb" target="_blank" class="inline-flex items-center space-x-1.5 bg-amber-500/10 hover:bg-amber-500/20 text-amber-800 px-2.5 py-1 rounded border border-amber-300 font-semibold transition" title="Open in Google Colab">
+                                <i class="fa-solid fa-play text-[10px] text-amber-600"></i>
+                                <span>Colab</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
 
-                <div class="nb-card part_bc bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition space-y-4">
-                    <div class="flex items-center justify-between text-xs">
-                        <span class="font-bold text-teal-600 uppercase tracking-wide">Part C · nb09</span>
-                        <span class="text-slate-400 font-medium">●●○ · ~90 min</span>
+                <!-- nb03 -->
+                <div class="nb-card foundations bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between" data-category="foundations">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="font-bold text-teal-600 uppercase tracking-wide">Part A · Foundations · nb03</span>
+                            <div class="flex items-center space-x-2">
+                                <span class="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-amber-50 text-amber-700 border-amber-200 border">Intermediate</span>
+                                <span class="text-slate-400 font-medium">●●○ · ~75 min</span>
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 leading-snug">SMILES and Linear Chemical Notations</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">SMILES grammar, hand-drawing exercises (10 molecules), stereochemistry (@/@@, /,\), InChI layers, and canonicalization differences across toolkits.</p>
+                        <div class="flex flex-wrap gap-1.5 pt-1">
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">SMILES Grammar</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">Stereo Flags</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">InChI Layers</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">Canonicalization</span>
+                        </div>
                     </div>
-                    <h3 class="text-lg font-bold text-slate-900">Fingerprints: Keys, Paths, Circles & Pharmacophores</h3>
-                    <p class="text-sm text-slate-600">MACCS keys, Topological Daylight, Morgan/ECFP (radius 2 & 3), folding length, bit collisions, atom environment bit-info drawing, and 2D Pharm2D signatures.</p>
-                    <div class="flex items-center justify-between pt-2 border-t border-slate-100 text-xs">
-                        <span class="code-pill text-slate-500">nb09_fingerprints_keys_paths_circles.ipynb</span>
-                        <a href="https://github.com/meprateekpaul/Cheminformatics/blob/main/notebooks/nb09_fingerprints_keys_paths_circles.ipynb" target="_blank" class="text-teal-600 font-semibold hover:underline">View Notebook →</a>
-                    </div>
-                </div>
-
-                <!-- Part D -->
-                <div class="nb-card part_d bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition space-y-4">
-                    <div class="flex items-center justify-between text-xs">
-                        <span class="font-bold text-teal-600 uppercase tracking-wide">Part D · nb10</span>
-                        <span class="text-slate-400 font-medium">●●● · ~120 min</span>
-                    </div>
-                    <h3 class="text-lg font-bold text-slate-900">Substructure and Similarity Search</h3>
-                    <p class="text-sm text-slate-600">Hybrid screening (bit pre-filter + VF2 verification), 51 similarity coefficients implementation (Tanimoto, Dice, Cosine, Russell-Rao, Forbes), and LBVS benchmarks.</p>
-                    <div class="flex items-center justify-between pt-2 border-t border-slate-100 text-xs">
-                        <span class="code-pill text-slate-500">nb10_substructure_and_similarity_search.ipynb</span>
-                        <a href="https://github.com/meprateekpaul/Cheminformatics/blob/main/notebooks/nb10_substructure_and_similarity_search.ipynb" target="_blank" class="text-teal-600 font-semibold hover:underline">View Notebook →</a>
-                    </div>
-                </div>
-
-                <div class="nb-card part_d bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition space-y-4">
-                    <div class="flex items-center justify-between text-xs">
-                        <span class="font-bold text-teal-600 uppercase tracking-wide">Part D · nb11</span>
-                        <span class="text-slate-400 font-medium">●●● · ~120 min</span>
-                    </div>
-                    <h3 class="text-lg font-bold text-slate-900">Pharmacophore Modeling and Search</h3>
-                    <p class="text-sm text-slate-600">IUPAC pharmacophores, ChemicalFeatures extraction (HB donors/acceptors, aromatics), ligand alignment, 3-point distance queries, and virtual screening evaluation.</p>
-                    <div class="flex items-center justify-between pt-2 border-t border-slate-100 text-xs">
-                        <span class="code-pill text-slate-500">nb11_pharmacophore_modeling.ipynb</span>
-                        <a href="https://github.com/meprateekpaul/Cheminformatics/blob/main/notebooks/nb11_pharmacophore_modeling.ipynb" target="_blank" class="text-teal-600 font-semibold hover:underline">View Notebook →</a>
+                    <div class="flex items-center justify-between pt-3 border-t border-slate-100 text-xs">
+                        <span class="code-pill text-slate-500 truncate max-w-[170px]" title="nb03_smiles_and_linear_notations.ipynb">nb03_smiles_and_linear_notations.ipynb</span>
+                        <div class="flex items-center space-x-2">
+                            <a href="https://github.com/meprateekpaul/Cheminformatics/blob/main/notebooks/nb03_smiles_and_linear_notations.ipynb" target="_blank" class="inline-flex items-center space-x-1 text-slate-600 hover:text-teal-600 font-semibold px-2 py-1 rounded hover:bg-slate-50 transition" title="View on GitHub">
+                                <i class="fa-brands fa-github text-sm"></i>
+                                <span>GitHub</span>
+                            </a>
+                            <a href="https://colab.research.google.com/github/meprateekpaul/Cheminformatics/blob/main/notebooks/nb03_smiles_and_linear_notations.ipynb" target="_blank" class="inline-flex items-center space-x-1.5 bg-amber-500/10 hover:bg-amber-500/20 text-amber-800 px-2.5 py-1 rounded border border-amber-300 font-semibold transition" title="Open in Google Colab">
+                                <i class="fa-solid fa-play text-[10px] text-amber-600"></i>
+                                <span>Colab</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Part E -->
-                <div class="nb-card part_e bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition space-y-4">
-                    <div class="flex items-center justify-between text-xs">
-                        <span class="font-bold text-teal-600 uppercase tracking-wide">Part E · nb12</span>
-                        <span class="text-slate-400 font-medium">●●○ · ~90 min</span>
+                <!-- nb04 -->
+                <div class="nb-card foundations bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between" data-category="foundations">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="font-bold text-teal-600 uppercase tracking-wide">Part A · Foundations · nb04</span>
+                            <div class="flex items-center space-x-2">
+                                <span class="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-amber-50 text-amber-700 border-amber-200 border">Intermediate</span>
+                                <span class="text-slate-400 font-medium">●●○ · ~75 min</span>
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 leading-snug">Molecular Graphs and Matrices</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">Graph representations, adjacency, bond-order, and topological distance matrices. Molecular walks (MWC) and self-returning walks (SRW). VF2 isomorphism.</p>
+                        <div class="flex flex-wrap gap-1.5 pt-1">
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">Graph Theory</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">Adjacency Matrix</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">Distance Matrix</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">VF2 Algorithm</span>
+                        </div>
                     </div>
-                    <h3 class="text-lg font-bold text-slate-900">QSAR Foundations: From Crum-Brown to Hansch</h3>
-                    <p class="text-sm text-slate-600">Hansch linear and parabolic models (optimum logP*), Free-Wilson matrix, logP additivity vs non-additivity, LOO q2, Y-randomization, and Williams leverage plots.</p>
-                    <div class="flex items-center justify-between pt-2 border-t border-slate-100 text-xs">
-                        <span class="code-pill text-slate-500">nb12_qsar_foundations_hansch.ipynb</span>
-                        <a href="https://github.com/meprateekpaul/Cheminformatics/blob/main/notebooks/nb12_qsar_foundations_hansch.ipynb" target="_blank" class="text-teal-600 font-semibold hover:underline">View Notebook →</a>
-                    </div>
-                </div>
-
-                <div class="nb-card part_e bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition space-y-4">
-                    <div class="flex items-center justify-between text-xs">
-                        <span class="font-bold text-teal-600 uppercase tracking-wide">Part E · nb13</span>
-                        <span class="text-slate-400 font-medium">●●● · ~150 min</span>
-                    </div>
-                    <h3 class="text-lg font-bold text-slate-900">Machine Learning for QSAR (Classification & Regression)</h3>
-                    <p class="text-sm text-slate-600">Scaffold split vs random split, RF, SVM, Gradient Boosting, MLP models. Comprehensive evaluation (MCC, ROC-AUC, PR-AUC, F1, RMSE), and SHAP interpretations.</p>
-                    <div class="flex items-center justify-between pt-2 border-t border-slate-100 text-xs">
-                        <span class="code-pill text-slate-500">nb13_ml_qsar_classification_regression.ipynb</span>
-                        <a href="https://github.com/meprateekpaul/Cheminformatics/blob/main/notebooks/nb13_ml_qsar_classification_regression.ipynb" target="_blank" class="text-teal-600 font-semibold hover:underline">View Notebook →</a>
-                    </div>
-                </div>
-
-                <div class="nb-card part_e bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition space-y-4">
-                    <div class="flex items-center justify-between text-xs">
-                        <span class="font-bold text-teal-600 uppercase tracking-wide">Part E · nb14</span>
-                        <span class="text-slate-400 font-medium">●●● · Advanced · ~120 min</span>
-                    </div>
-                    <h3 class="text-lg font-bold text-slate-900">3D-QSAR (CoMFA-Style) and Field Descriptors</h3>
-                    <p class="text-sm text-slate-600">3D grid generation, steric (Lennard-Jones) and electrostatic (Coulomb) field calculation, Partial Least Squares (PLS) regression, and py3Dmol contour visualization.</p>
-                    <div class="flex items-center justify-between pt-2 border-t border-slate-100 text-xs">
-                        <span class="code-pill text-slate-500">nb14_3d_qsar_comfa_fields.ipynb</span>
-                        <a href="https://github.com/meprateekpaul/Cheminformatics/blob/main/notebooks/nb14_3d_qsar_comfa_fields.ipynb" target="_blank" class="text-teal-600 font-semibold hover:underline">View Notebook →</a>
+                    <div class="flex items-center justify-between pt-3 border-t border-slate-100 text-xs">
+                        <span class="code-pill text-slate-500 truncate max-w-[170px]" title="nb04_molecular_graphs_and_matrices.ipynb">nb04_molecular_graphs_and_matrices.ipynb</span>
+                        <div class="flex items-center space-x-2">
+                            <a href="https://github.com/meprateekpaul/Cheminformatics/blob/main/notebooks/nb04_molecular_graphs_and_matrices.ipynb" target="_blank" class="inline-flex items-center space-x-1 text-slate-600 hover:text-teal-600 font-semibold px-2 py-1 rounded hover:bg-slate-50 transition" title="View on GitHub">
+                                <i class="fa-brands fa-github text-sm"></i>
+                                <span>GitHub</span>
+                            </a>
+                            <a href="https://colab.research.google.com/github/meprateekpaul/Cheminformatics/blob/main/notebooks/nb04_molecular_graphs_and_matrices.ipynb" target="_blank" class="inline-flex items-center space-x-1.5 bg-amber-500/10 hover:bg-amber-500/20 text-amber-800 px-2.5 py-1 rounded border border-amber-300 font-semibold transition" title="Open in Google Colab">
+                                <i class="fa-solid fa-play text-[10px] text-amber-600"></i>
+                                <span>Colab</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
 
-                <div class="nb-card part_e bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition space-y-4">
-                    <div class="flex items-center justify-between text-xs">
-                        <span class="font-bold text-teal-600 uppercase tracking-wide">Part E · nb15</span>
-                        <span class="text-slate-400 font-medium">●●○ · ~90 min</span>
+                <!-- nb05 -->
+                <div class="nb-card foundations bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between" data-category="foundations">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="font-bold text-teal-600 uppercase tracking-wide">Part A · Foundations · nb05</span>
+                            <div class="flex items-center space-x-2">
+                                <span class="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-amber-50 text-amber-700 border-amber-200 border">Intermediate</span>
+                                <span class="text-slate-400 font-medium">●●○ · ~75 min</span>
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 leading-snug">File Formats and Conversion (2D ⇄ 3D)</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">SDF, MOL, PDB, MOL2 formats. RDKit ETKDGv3 conformer generation, MMFF94 force field optimization, and Open Babel 3D coordinate conversion.</p>
+                        <div class="flex flex-wrap gap-1.5 pt-1">
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">SDF / MOL / PDB</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">ETKDGv3</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">MMFF94</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">Open Babel</span>
+                        </div>
                     </div>
-                    <h3 class="text-lg font-bold text-slate-900">Drug-Likeness Filters and In-Silico ADME/T</h3>
-                    <p class="text-sm text-slate-600">Lipinski Rule of Five, Veber, Ghose, Egan, Muegge rules. SwissADME report reproduction, ESOL water solubility, BOILED-Egg plot, and PAINS elimination.</p>
-                    <div class="flex items-center justify-between pt-2 border-t border-slate-100 text-xs">
-                        <span class="code-pill text-slate-500">nb15_druglikeness_and_admet.ipynb</span>
-                        <a href="https://github.com/meprateekpaul/Cheminformatics/blob/main/notebooks/nb15_druglikeness_and_admet.ipynb" target="_blank" class="text-teal-600 font-semibold hover:underline">View Notebook →</a>
-                    </div>
-                </div>
-
-                <!-- Parts F & G -->
-                <div class="nb-card part_fg bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition space-y-4">
-                    <div class="flex items-center justify-between text-xs">
-                        <span class="font-bold text-teal-600 uppercase tracking-wide">Part F · nb16</span>
-                        <span class="text-slate-400 font-medium">●●○ · ~120 min</span>
-                    </div>
-                    <h3 class="text-lg font-bold text-slate-900">Target Discovery and Structure Preparation</h3>
-                    <p class="text-sm text-slate-600">Differential gene expression volcano plots, subtractive genomics, PDB inspection, pocket detection, protonation of His/Asp/Glu, and receptor PDBQT prep.</p>
-                    <div class="flex items-center justify-between pt-2 border-t border-slate-100 text-xs">
-                        <span class="code-pill text-slate-500">nb16_target_discovery_and_prep.ipynb</span>
-                        <a href="https://github.com/meprateekpaul/Cheminformatics/blob/main/notebooks/nb16_target_discovery_and_prep.ipynb" target="_blank" class="text-teal-600 font-semibold hover:underline">View Notebook →</a>
-                    </div>
-                </div>
-
-                <div class="nb-card part_fg bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition space-y-4">
-                    <div class="flex items-center justify-between text-xs">
-                        <span class="font-bold text-teal-600 uppercase tracking-wide">Part F · nb17</span>
-                        <span class="text-slate-400 font-medium">●●● · ~120 min</span>
-                    </div>
-                    <h3 class="text-lg font-bold text-slate-900">Scoring Functions and Conformational Sampling</h3>
-                    <p class="text-sm text-slate-600">Physics-based, empirical, and knowledge-based scoring functions. AutoDock energy decomposition. Metropolis Monte Carlo simulated annealing in toy potentials.</p>
-                    <div class="flex items-center justify-between pt-2 border-t border-slate-100 text-xs">
-                        <span class="code-pill text-slate-500">nb17_scoring_functions_and_sampling.ipynb</span>
-                        <a href="https://github.com/meprateekpaul/Cheminformatics/blob/main/notebooks/nb17_scoring_functions_and_sampling.ipynb" target="_blank" class="text-teal-600 font-semibold hover:underline">View Notebook →</a>
+                    <div class="flex items-center justify-between pt-3 border-t border-slate-100 text-xs">
+                        <span class="code-pill text-slate-500 truncate max-w-[170px]" title="nb05_file_formats_and_conversion.ipynb">nb05_file_formats_and_conversion.ipynb</span>
+                        <div class="flex items-center space-x-2">
+                            <a href="https://github.com/meprateekpaul/Cheminformatics/blob/main/notebooks/nb05_file_formats_and_conversion.ipynb" target="_blank" class="inline-flex items-center space-x-1 text-slate-600 hover:text-teal-600 font-semibold px-2 py-1 rounded hover:bg-slate-50 transition" title="View on GitHub">
+                                <i class="fa-brands fa-github text-sm"></i>
+                                <span>GitHub</span>
+                            </a>
+                            <a href="https://colab.research.google.com/github/meprateekpaul/Cheminformatics/blob/main/notebooks/nb05_file_formats_and_conversion.ipynb" target="_blank" class="inline-flex items-center space-x-1.5 bg-amber-500/10 hover:bg-amber-500/20 text-amber-800 px-2.5 py-1 rounded border border-amber-300 font-semibold transition" title="Open in Google Colab">
+                                <i class="fa-solid fa-play text-[10px] text-amber-600"></i>
+                                <span>Colab</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
 
-                <div class="nb-card part_fg bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition space-y-4">
-                    <div class="flex items-center justify-between text-xs">
-                        <span class="font-bold text-teal-600 uppercase tracking-wide">Part F · nb18</span>
-                        <span class="text-slate-400 font-medium">●●● · ~150 min</span>
+                <!-- nb06 -->
+                <div class="nb-card representations bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between" data-category="representations">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="font-bold text-teal-600 uppercase tracking-wide">Part B · Representations · nb06</span>
+                            <div class="flex items-center space-x-2">
+                                <span class="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-amber-50 text-amber-700 border-amber-200 border">Intermediate</span>
+                                <span class="text-slate-400 font-medium">●●○ · ~90 min</span>
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 leading-snug">Chemical Databases: PubChem, ChEMBL, ZINC</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">Programmatic REST queries to ChEMBL and PubChemPy, bioactivity schema, duplicate resolution, salt stripping, and curation pipeline.</p>
+                        <div class="flex flex-wrap gap-1.5 pt-1">
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">ChEMBL REST</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">PubChemPy</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">Data Curation</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">Salt Stripping</span>
+                        </div>
                     </div>
-                    <h3 class="text-lg font-bold text-slate-900">AutoDock Vina Docking and Virtual Screening</h3>
-                    <p class="text-sm text-slate-600">End-to-end Vina docking pipeline, Meeko ligand preparation, redocking validation (RMSD < 2.0 Å), experimental pIC50 correlation, and EF1%/BEDROC evaluation.</p>
-                    <div class="flex items-center justify-between pt-2 border-t border-slate-100 text-xs">
-                        <span class="code-pill text-slate-500">nb18_docking_and_virtual_screening.ipynb</span>
-                        <a href="https://github.com/meprateekpaul/Cheminformatics/blob/main/notebooks/nb18_docking_and_virtual_screening.ipynb" target="_blank" class="text-teal-600 font-semibold hover:underline">View Notebook →</a>
-                    </div>
-                </div>
-
-                <div class="nb-card part_fg bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition space-y-4">
-                    <div class="flex items-center justify-between text-xs">
-                        <span class="font-bold text-teal-600 uppercase tracking-wide">Part F · nb19</span>
-                        <span class="text-slate-400 font-medium">●●○ · ~120 min</span>
-                    </div>
-                    <h3 class="text-lg font-bold text-slate-900">De Novo Design and Fragment-Based Discovery (FBDD)</h3>
-                    <p class="text-sm text-slate-600">Pocket feature mapping, Congreve's Rule of Three, Ligand Efficiency (LE) and Lipophilic Efficiency (LLE), BRICS fragment growing/linking, and SA scoring.</p>
-                    <div class="flex items-center justify-between pt-2 border-t border-slate-100 text-xs">
-                        <span class="code-pill text-slate-500">nb19_denovo_design_and_fbdd.ipynb</span>
-                        <a href="https://github.com/meprateekpaul/Cheminformatics/blob/main/notebooks/nb19_denovo_design_and_fbdd.ipynb" target="_blank" class="text-teal-600 font-semibold hover:underline">View Notebook →</a>
-                    </div>
-                </div>
-
-                <div class="nb-card part_fg bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition space-y-4">
-                    <div class="flex items-center justify-between text-xs">
-                        <span class="font-bold text-teal-600 uppercase tracking-wide">Part G · nb20</span>
-                        <span class="text-slate-400 font-medium">●●● · Capstone Template</span>
-                    </div>
-                    <h3 class="text-lg font-bold text-slate-900">Capstone Project Template: Ligand-Based ML Model</h3>
-                    <p class="text-sm text-slate-600">Fully parameterized master template for student projects: data curation, EDA, multi-representation featurization, scaffold splitting, modeling, and external screening.</p>
-                    <div class="flex items-center justify-between pt-2 border-t border-slate-100 text-xs">
-                        <span class="code-pill text-slate-500">nb20_project_template_ligand_model.ipynb</span>
-                        <a href="https://github.com/meprateekpaul/Cheminformatics/blob/main/notebooks/nb20_project_template_ligand_model.ipynb" target="_blank" class="text-teal-600 font-semibold hover:underline">View Notebook →</a>
+                    <div class="flex items-center justify-between pt-3 border-t border-slate-100 text-xs">
+                        <span class="code-pill text-slate-500 truncate max-w-[170px]" title="nb06_chemical_databases_chembl_pubchem.ipynb">nb06_chemical_databases_chembl_pubchem.ipynb</span>
+                        <div class="flex items-center space-x-2">
+                            <a href="https://github.com/meprateekpaul/Cheminformatics/blob/main/notebooks/nb06_chemical_databases_chembl_pubchem.ipynb" target="_blank" class="inline-flex items-center space-x-1 text-slate-600 hover:text-teal-600 font-semibold px-2 py-1 rounded hover:bg-slate-50 transition" title="View on GitHub">
+                                <i class="fa-brands fa-github text-sm"></i>
+                                <span>GitHub</span>
+                            </a>
+                            <a href="https://colab.research.google.com/github/meprateekpaul/Cheminformatics/blob/main/notebooks/nb06_chemical_databases_chembl_pubchem.ipynb" target="_blank" class="inline-flex items-center space-x-1.5 bg-amber-500/10 hover:bg-amber-500/20 text-amber-800 px-2.5 py-1 rounded border border-amber-300 font-semibold transition" title="Open in Google Colab">
+                                <i class="fa-solid fa-play text-[10px] text-amber-600"></i>
+                                <span>Colab</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
 
-                <div class="nb-card part_fg bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition space-y-4">
-                    <div class="flex items-center justify-between text-xs">
-                        <span class="font-bold text-teal-600 uppercase tracking-wide">Part G · nb21</span>
-                        <span class="text-slate-400 font-medium">●●● · Advanced · ~120 min</span>
+                <!-- nb07 -->
+                <div class="nb-card representations bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between" data-category="representations">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="font-bold text-teal-600 uppercase tracking-wide">Part B · Representations · nb07</span>
+                            <div class="flex items-center space-x-2">
+                                <span class="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-amber-50 text-amber-700 border-amber-200 border">Intermediate</span>
+                                <span class="text-slate-400 font-medium">●●○ · ~75 min</span>
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 leading-snug">Organic Structures, Isomers and Functional Groups</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">Constitutional vs stereoisomers, Hückel 4n+2 aromaticity, SMARTS functional group detection, and Checkmol 204-key structural classifier.</p>
+                        <div class="flex flex-wrap gap-1.5 pt-1">
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">Isomerism</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">Hückel Rule</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">SMARTS Patterns</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">Checkmol Keys</span>
+                        </div>
                     </div>
-                    <h3 class="text-lg font-bold text-slate-900">Graph Neural Networks for Property Prediction</h3>
-                    <p class="text-sm text-slate-600">Molecular graph featurization, message-passing layers, Graph Convolutional Networks (GCN), global pooling readout, and ESOL aqueous solubility regression.</p>
-                    <div class="flex items-center justify-between pt-2 border-t border-slate-100 text-xs">
-                        <span class="code-pill text-slate-500">nb21_gnn_property_prediction.ipynb</span>
-                        <a href="https://github.com/meprateekpaul/Cheminformatics/blob/main/notebooks/nb21_gnn_property_prediction.ipynb" target="_blank" class="text-teal-600 font-semibold hover:underline">View Notebook →</a>
+                    <div class="flex items-center justify-between pt-3 border-t border-slate-100 text-xs">
+                        <span class="code-pill text-slate-500 truncate max-w-[170px]" title="nb07_organic_structures_and_functional_groups.ipynb">nb07_organic_structures_and_functional_groups.ipynb</span>
+                        <div class="flex items-center space-x-2">
+                            <a href="https://github.com/meprateekpaul/Cheminformatics/blob/main/notebooks/nb07_organic_structures_and_functional_groups.ipynb" target="_blank" class="inline-flex items-center space-x-1 text-slate-600 hover:text-teal-600 font-semibold px-2 py-1 rounded hover:bg-slate-50 transition" title="View on GitHub">
+                                <i class="fa-brands fa-github text-sm"></i>
+                                <span>GitHub</span>
+                            </a>
+                            <a href="https://colab.research.google.com/github/meprateekpaul/Cheminformatics/blob/main/notebooks/nb07_organic_structures_and_functional_groups.ipynb" target="_blank" class="inline-flex items-center space-x-1.5 bg-amber-500/10 hover:bg-amber-500/20 text-amber-800 px-2.5 py-1 rounded border border-amber-300 font-semibold transition" title="Open in Google Colab">
+                                <i class="fa-solid fa-play text-[10px] text-amber-600"></i>
+                                <span>Colab</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
 
+                <!-- nb08 -->
+                <div class="nb-card descriptors bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between" data-category="descriptors">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="font-bold text-teal-600 uppercase tracking-wide">Part C · Descriptors · nb08</span>
+                            <div class="flex items-center space-x-2">
+                                <span class="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-purple-50 text-purple-700 border-purple-200 border">Advanced</span>
+                                <span class="text-slate-400 font-medium">●●● · ~120 min</span>
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 leading-snug">Molecular Descriptors (0D–4D)</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">Topological indices (Wiener W, Zagreb M1/M2, Randić chi), correlation with alkane boiling points, 3D shape descriptors, and Mordred/PaDEL.</p>
+                        <div class="flex flex-wrap gap-1.5 pt-1">
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">Wiener Index</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">Zagreb Indices</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">Randić Index</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">Mordred 2D/3D</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between pt-3 border-t border-slate-100 text-xs">
+                        <span class="code-pill text-slate-500 truncate max-w-[170px]" title="nb08_molecular_descriptors.ipynb">nb08_molecular_descriptors.ipynb</span>
+                        <div class="flex items-center space-x-2">
+                            <a href="https://github.com/meprateekpaul/Cheminformatics/blob/main/notebooks/nb08_molecular_descriptors.ipynb" target="_blank" class="inline-flex items-center space-x-1 text-slate-600 hover:text-teal-600 font-semibold px-2 py-1 rounded hover:bg-slate-50 transition" title="View on GitHub">
+                                <i class="fa-brands fa-github text-sm"></i>
+                                <span>GitHub</span>
+                            </a>
+                            <a href="https://colab.research.google.com/github/meprateekpaul/Cheminformatics/blob/main/notebooks/nb08_molecular_descriptors.ipynb" target="_blank" class="inline-flex items-center space-x-1.5 bg-amber-500/10 hover:bg-amber-500/20 text-amber-800 px-2.5 py-1 rounded border border-amber-300 font-semibold transition" title="Open in Google Colab">
+                                <i class="fa-solid fa-play text-[10px] text-amber-600"></i>
+                                <span>Colab</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- nb09 -->
+                <div class="nb-card descriptors bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between" data-category="descriptors">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="font-bold text-teal-600 uppercase tracking-wide">Part C · Descriptors · nb09</span>
+                            <div class="flex items-center space-x-2">
+                                <span class="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-amber-50 text-amber-700 border-amber-200 border">Intermediate</span>
+                                <span class="text-slate-400 font-medium">●●○ · ~90 min</span>
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 leading-snug">Fingerprints: Keys, Paths, Circles & Pharmacophores</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">Structural keys (MACCS 166), topological paths (Daylight-like), circular Morgan/ECFP4/6 via modern rdFingerprintGenerator, and bit folding.</p>
+                        <div class="flex flex-wrap gap-1.5 pt-1">
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">MACCS Keys</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">ECFP4 / ECFP6</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">Morgan Generator</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">Bit Folding</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between pt-3 border-t border-slate-100 text-xs">
+                        <span class="code-pill text-slate-500 truncate max-w-[170px]" title="nb09_fingerprints_keys_paths_circles.ipynb">nb09_fingerprints_keys_paths_circles.ipynb</span>
+                        <div class="flex items-center space-x-2">
+                            <a href="https://github.com/meprateekpaul/Cheminformatics/blob/main/notebooks/nb09_fingerprints_keys_paths_circles.ipynb" target="_blank" class="inline-flex items-center space-x-1 text-slate-600 hover:text-teal-600 font-semibold px-2 py-1 rounded hover:bg-slate-50 transition" title="View on GitHub">
+                                <i class="fa-brands fa-github text-sm"></i>
+                                <span>GitHub</span>
+                            </a>
+                            <a href="https://colab.research.google.com/github/meprateekpaul/Cheminformatics/blob/main/notebooks/nb09_fingerprints_keys_paths_circles.ipynb" target="_blank" class="inline-flex items-center space-x-1.5 bg-amber-500/10 hover:bg-amber-500/20 text-amber-800 px-2.5 py-1 rounded border border-amber-300 font-semibold transition" title="Open in Google Colab">
+                                <i class="fa-solid fa-play text-[10px] text-amber-600"></i>
+                                <span>Colab</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- nb10 -->
+                <div class="nb-card searching bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between" data-category="searching">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="font-bold text-teal-600 uppercase tracking-wide">Part D · Searching · nb10</span>
+                            <div class="flex items-center space-x-2">
+                                <span class="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-purple-50 text-purple-700 border-purple-200 border">Advanced</span>
+                                <span class="text-slate-400 font-medium">●●● · ~120 min</span>
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 leading-snug">Substructure and Similarity Search</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">Hybrid screening (bit pre-filter + VF2 verification), 51 similarity coefficients implementation (Tanimoto, Dice, Cosine, Russell-Rao, Forbes), and LBVS benchmarks.</p>
+                        <div class="flex flex-wrap gap-1.5 pt-1">
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">Substructure Search</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">51 Coefficients</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">Tanimoto</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">Tversky & Dice</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between pt-3 border-t border-slate-100 text-xs">
+                        <span class="code-pill text-slate-500 truncate max-w-[170px]" title="nb10_substructure_and_similarity_search.ipynb">nb10_substructure_and_similarity_search.ipynb</span>
+                        <div class="flex items-center space-x-2">
+                            <a href="https://github.com/meprateekpaul/Cheminformatics/blob/main/notebooks/nb10_substructure_and_similarity_search.ipynb" target="_blank" class="inline-flex items-center space-x-1 text-slate-600 hover:text-teal-600 font-semibold px-2 py-1 rounded hover:bg-slate-50 transition" title="View on GitHub">
+                                <i class="fa-brands fa-github text-sm"></i>
+                                <span>GitHub</span>
+                            </a>
+                            <a href="https://colab.research.google.com/github/meprateekpaul/Cheminformatics/blob/main/notebooks/nb10_substructure_and_similarity_search.ipynb" target="_blank" class="inline-flex items-center space-x-1.5 bg-amber-500/10 hover:bg-amber-500/20 text-amber-800 px-2.5 py-1 rounded border border-amber-300 font-semibold transition" title="Open in Google Colab">
+                                <i class="fa-solid fa-play text-[10px] text-amber-600"></i>
+                                <span>Colab</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- nb11 -->
+                <div class="nb-card searching bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between" data-category="searching">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="font-bold text-teal-600 uppercase tracking-wide">Part D · Searching · nb11</span>
+                            <div class="flex items-center space-x-2">
+                                <span class="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-purple-50 text-purple-700 border-purple-200 border">Advanced</span>
+                                <span class="text-slate-400 font-medium">●●● · ~120 min</span>
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 leading-snug">Pharmacophore Modeling and Search</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">Feature extraction (HBD, HBA, aromatic, positive/negative ionizable), 3-point pharmacophore distance triangles, and virtual screening enrichment.</p>
+                        <div class="flex flex-wrap gap-1.5 pt-1">
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">ChemicalFeatures</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">3-Point Triangles</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">Pharmacophore Align</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">Enrichment</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between pt-3 border-t border-slate-100 text-xs">
+                        <span class="code-pill text-slate-500 truncate max-w-[170px]" title="nb11_pharmacophore_modeling.ipynb">nb11_pharmacophore_modeling.ipynb</span>
+                        <div class="flex items-center space-x-2">
+                            <a href="https://github.com/meprateekpaul/Cheminformatics/blob/main/notebooks/nb11_pharmacophore_modeling.ipynb" target="_blank" class="inline-flex items-center space-x-1 text-slate-600 hover:text-teal-600 font-semibold px-2 py-1 rounded hover:bg-slate-50 transition" title="View on GitHub">
+                                <i class="fa-brands fa-github text-sm"></i>
+                                <span>GitHub</span>
+                            </a>
+                            <a href="https://colab.research.google.com/github/meprateekpaul/Cheminformatics/blob/main/notebooks/nb11_pharmacophore_modeling.ipynb" target="_blank" class="inline-flex items-center space-x-1.5 bg-amber-500/10 hover:bg-amber-500/20 text-amber-800 px-2.5 py-1 rounded border border-amber-300 font-semibold transition" title="Open in Google Colab">
+                                <i class="fa-solid fa-play text-[10px] text-amber-600"></i>
+                                <span>Colab</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- nb12 -->
+                <div class="nb-card qsar_ml bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between" data-category="qsar_ml">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="font-bold text-teal-600 uppercase tracking-wide">Part E · QSAR & ML · nb12</span>
+                            <div class="flex items-center space-x-2">
+                                <span class="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-amber-50 text-amber-700 border-amber-200 border">Intermediate</span>
+                                <span class="text-slate-400 font-medium">●●○ · ~90 min</span>
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 leading-snug">QSAR Foundations: From Crum-Brown to Hansch</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">Hammett sigma electronic constants, Taft steric Es, Hansch parabolic logP equations, Free-Wilson additivity matrix, and OLS regression.</p>
+                        <div class="flex flex-wrap gap-1.5 pt-1">
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">Hansch Analysis</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">Hammett Sigma</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">Free-Wilson</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">OLS Regression</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between pt-3 border-t border-slate-100 text-xs">
+                        <span class="code-pill text-slate-500 truncate max-w-[170px]" title="nb12_qsar_foundations_hansch.ipynb">nb12_qsar_foundations_hansch.ipynb</span>
+                        <div class="flex items-center space-x-2">
+                            <a href="https://github.com/meprateekpaul/Cheminformatics/blob/main/notebooks/nb12_qsar_foundations_hansch.ipynb" target="_blank" class="inline-flex items-center space-x-1 text-slate-600 hover:text-teal-600 font-semibold px-2 py-1 rounded hover:bg-slate-50 transition" title="View on GitHub">
+                                <i class="fa-brands fa-github text-sm"></i>
+                                <span>GitHub</span>
+                            </a>
+                            <a href="https://colab.research.google.com/github/meprateekpaul/Cheminformatics/blob/main/notebooks/nb12_qsar_foundations_hansch.ipynb" target="_blank" class="inline-flex items-center space-x-1.5 bg-amber-500/10 hover:bg-amber-500/20 text-amber-800 px-2.5 py-1 rounded border border-amber-300 font-semibold transition" title="Open in Google Colab">
+                                <i class="fa-solid fa-play text-[10px] text-amber-600"></i>
+                                <span>Colab</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- nb13 -->
+                <div class="nb-card qsar_ml bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between" data-category="qsar_ml">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="font-bold text-teal-600 uppercase tracking-wide">Part E · QSAR & ML · nb13</span>
+                            <div class="flex items-center space-x-2">
+                                <span class="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-purple-50 text-purple-700 border-purple-200 border">Advanced</span>
+                                <span class="text-slate-400 font-medium">●●● · ~150 min</span>
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 leading-snug">Machine Learning for QSAR (Classification & Regression)</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">Random Forest, SVM, kNN, Bemis-Murcko scaffold split vs random split, LOO cross-validation, Matthews Correlation Coefficient (MCC), and ROC-AUC.</p>
+                        <div class="flex flex-wrap gap-1.5 pt-1">
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">Random Forest</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">Scaffold Split</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">MCC / ROC-AUC</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">Applicability Domain</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between pt-3 border-t border-slate-100 text-xs">
+                        <span class="code-pill text-slate-500 truncate max-w-[170px]" title="nb13_ml_qsar_classification_regression.ipynb">nb13_ml_qsar_classification_regression.ipynb</span>
+                        <div class="flex items-center space-x-2">
+                            <a href="https://github.com/meprateekpaul/Cheminformatics/blob/main/notebooks/nb13_ml_qsar_classification_regression.ipynb" target="_blank" class="inline-flex items-center space-x-1 text-slate-600 hover:text-teal-600 font-semibold px-2 py-1 rounded hover:bg-slate-50 transition" title="View on GitHub">
+                                <i class="fa-brands fa-github text-sm"></i>
+                                <span>GitHub</span>
+                            </a>
+                            <a href="https://colab.research.google.com/github/meprateekpaul/Cheminformatics/blob/main/notebooks/nb13_ml_qsar_classification_regression.ipynb" target="_blank" class="inline-flex items-center space-x-1.5 bg-amber-500/10 hover:bg-amber-500/20 text-amber-800 px-2.5 py-1 rounded border border-amber-300 font-semibold transition" title="Open in Google Colab">
+                                <i class="fa-solid fa-play text-[10px] text-amber-600"></i>
+                                <span>Colab</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- nb14 -->
+                <div class="nb-card qsar_ml bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between" data-category="qsar_ml">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="font-bold text-teal-600 uppercase tracking-wide">Part E · QSAR & ML · nb14</span>
+                            <div class="flex items-center space-x-2">
+                                <span class="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-purple-50 text-purple-700 border-purple-200 border">Advanced</span>
+                                <span class="text-slate-400 font-medium">●●● · ~120 min</span>
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 leading-snug">3D-QSAR (CoMFA-Style) and Field Descriptors</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">Conformer alignment, 3D interaction energy grids (steric Lennard-Jones and electrostatic Coulomb probes), and Partial Least Squares (PLS) regression.</p>
+                        <div class="flex flex-wrap gap-1.5 pt-1">
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">CoMFA</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">Conformer Align</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">3D Grid Fields</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">PLS Regression</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between pt-3 border-t border-slate-100 text-xs">
+                        <span class="code-pill text-slate-500 truncate max-w-[170px]" title="nb14_3d_qsar_comfa_fields.ipynb">nb14_3d_qsar_comfa_fields.ipynb</span>
+                        <div class="flex items-center space-x-2">
+                            <a href="https://github.com/meprateekpaul/Cheminformatics/blob/main/notebooks/nb14_3d_qsar_comfa_fields.ipynb" target="_blank" class="inline-flex items-center space-x-1 text-slate-600 hover:text-teal-600 font-semibold px-2 py-1 rounded hover:bg-slate-50 transition" title="View on GitHub">
+                                <i class="fa-brands fa-github text-sm"></i>
+                                <span>GitHub</span>
+                            </a>
+                            <a href="https://colab.research.google.com/github/meprateekpaul/Cheminformatics/blob/main/notebooks/nb14_3d_qsar_comfa_fields.ipynb" target="_blank" class="inline-flex items-center space-x-1.5 bg-amber-500/10 hover:bg-amber-500/20 text-amber-800 px-2.5 py-1 rounded border border-amber-300 font-semibold transition" title="Open in Google Colab">
+                                <i class="fa-solid fa-play text-[10px] text-amber-600"></i>
+                                <span>Colab</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- nb15 -->
+                <div class="nb-card qsar_ml bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between" data-category="qsar_ml">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="font-bold text-teal-600 uppercase tracking-wide">Part E · QSAR & ML · nb15</span>
+                            <div class="flex items-center space-x-2">
+                                <span class="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-amber-50 text-amber-700 border-amber-200 border">Intermediate</span>
+                                <span class="text-slate-400 font-medium">●●○ · ~90 min</span>
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 leading-snug">Drug-Likeness Filters and In-Silico ADME/T</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">Lipinski Rule of 5, Veber oral bioavailability, Ghose, PAINS substructure filtering, Brenk structural alerts, Synthetic Accessibility (SA) score.</p>
+                        <div class="flex flex-wrap gap-1.5 pt-1">
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">Lipinski Rule of 5</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">Veber Rules</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">PAINS Filter</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">SA Score</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between pt-3 border-t border-slate-100 text-xs">
+                        <span class="code-pill text-slate-500 truncate max-w-[170px]" title="nb15_druglikeness_and_admet.ipynb">nb15_druglikeness_and_admet.ipynb</span>
+                        <div class="flex items-center space-x-2">
+                            <a href="https://github.com/meprateekpaul/Cheminformatics/blob/main/notebooks/nb15_druglikeness_and_admet.ipynb" target="_blank" class="inline-flex items-center space-x-1 text-slate-600 hover:text-teal-600 font-semibold px-2 py-1 rounded hover:bg-slate-50 transition" title="View on GitHub">
+                                <i class="fa-brands fa-github text-sm"></i>
+                                <span>GitHub</span>
+                            </a>
+                            <a href="https://colab.research.google.com/github/meprateekpaul/Cheminformatics/blob/main/notebooks/nb15_druglikeness_and_admet.ipynb" target="_blank" class="inline-flex items-center space-x-1.5 bg-amber-500/10 hover:bg-amber-500/20 text-amber-800 px-2.5 py-1 rounded border border-amber-300 font-semibold transition" title="Open in Google Colab">
+                                <i class="fa-solid fa-play text-[10px] text-amber-600"></i>
+                                <span>Colab</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- nb16 -->
+                <div class="nb-card structure_based bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between" data-category="structure_based">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="font-bold text-teal-600 uppercase tracking-wide">Part F · Structure-Based · nb16</span>
+                            <div class="flex items-center space-x-2">
+                                <span class="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-amber-50 text-amber-700 border-amber-200 border">Intermediate</span>
+                                <span class="text-slate-400 font-medium">●●○ · ~120 min</span>
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 leading-snug">Target Discovery and Structure Preparation</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">Differential gene expression volcano plots, subtractive genomics, PDB inspection, pocket detection, protonation of His/Asp/Glu, and receptor PDBQT prep.</p>
+                        <div class="flex flex-wrap gap-1.5 pt-1">
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">Target Discovery</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">Differential Expr</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">PDB Prep</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">Protonation</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between pt-3 border-t border-slate-100 text-xs">
+                        <span class="code-pill text-slate-500 truncate max-w-[170px]" title="nb16_target_discovery_and_prep.ipynb">nb16_target_discovery_and_prep.ipynb</span>
+                        <div class="flex items-center space-x-2">
+                            <a href="https://github.com/meprateekpaul/Cheminformatics/blob/main/notebooks/nb16_target_discovery_and_prep.ipynb" target="_blank" class="inline-flex items-center space-x-1 text-slate-600 hover:text-teal-600 font-semibold px-2 py-1 rounded hover:bg-slate-50 transition" title="View on GitHub">
+                                <i class="fa-brands fa-github text-sm"></i>
+                                <span>GitHub</span>
+                            </a>
+                            <a href="https://colab.research.google.com/github/meprateekpaul/Cheminformatics/blob/main/notebooks/nb16_target_discovery_and_prep.ipynb" target="_blank" class="inline-flex items-center space-x-1.5 bg-amber-500/10 hover:bg-amber-500/20 text-amber-800 px-2.5 py-1 rounded border border-amber-300 font-semibold transition" title="Open in Google Colab">
+                                <i class="fa-solid fa-play text-[10px] text-amber-600"></i>
+                                <span>Colab</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- nb17 -->
+                <div class="nb-card structure_based bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between" data-category="structure_based">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="font-bold text-teal-600 uppercase tracking-wide">Part F · Structure-Based · nb17</span>
+                            <div class="flex items-center space-x-2">
+                                <span class="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-purple-50 text-purple-700 border-purple-200 border">Advanced</span>
+                                <span class="text-slate-400 font-medium">●●● · ~120 min</span>
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 leading-snug">Scoring Functions and Conformational Sampling</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">Physics-based, empirical, and knowledge-based scoring functions. AutoDock energy decomposition. Metropolis Monte Carlo simulated annealing in toy potentials.</p>
+                        <div class="flex flex-wrap gap-1.5 pt-1">
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">Scoring Functions</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">Energy Decomp</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">Monte Carlo</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">Simulated Annealing</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between pt-3 border-t border-slate-100 text-xs">
+                        <span class="code-pill text-slate-500 truncate max-w-[170px]" title="nb17_scoring_functions_and_sampling.ipynb">nb17_scoring_functions_and_sampling.ipynb</span>
+                        <div class="flex items-center space-x-2">
+                            <a href="https://github.com/meprateekpaul/Cheminformatics/blob/main/notebooks/nb17_scoring_functions_and_sampling.ipynb" target="_blank" class="inline-flex items-center space-x-1 text-slate-600 hover:text-teal-600 font-semibold px-2 py-1 rounded hover:bg-slate-50 transition" title="View on GitHub">
+                                <i class="fa-brands fa-github text-sm"></i>
+                                <span>GitHub</span>
+                            </a>
+                            <a href="https://colab.research.google.com/github/meprateekpaul/Cheminformatics/blob/main/notebooks/nb17_scoring_functions_and_sampling.ipynb" target="_blank" class="inline-flex items-center space-x-1.5 bg-amber-500/10 hover:bg-amber-500/20 text-amber-800 px-2.5 py-1 rounded border border-amber-300 font-semibold transition" title="Open in Google Colab">
+                                <i class="fa-solid fa-play text-[10px] text-amber-600"></i>
+                                <span>Colab</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- nb18 -->
+                <div class="nb-card structure_based bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between" data-category="structure_based">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="font-bold text-teal-600 uppercase tracking-wide">Part F · Structure-Based · nb18</span>
+                            <div class="flex items-center space-x-2">
+                                <span class="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-purple-50 text-purple-700 border-purple-200 border">Advanced</span>
+                                <span class="text-slate-400 font-medium">●●● · ~150 min</span>
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 leading-snug">AutoDock Vina Docking and Virtual Screening</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">End-to-end Vina docking pipeline, Meeko ligand preparation, redocking validation (RMSD < 2.0 Å), experimental pIC50 correlation, and EF1%/BEDROC evaluation.</p>
+                        <div class="flex flex-wrap gap-1.5 pt-1">
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">AutoDock Vina</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">Meeko PDBQT</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">Redocking RMSD</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">EF1% & BEDROC</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between pt-3 border-t border-slate-100 text-xs">
+                        <span class="code-pill text-slate-500 truncate max-w-[170px]" title="nb18_docking_and_virtual_screening.ipynb">nb18_docking_and_virtual_screening.ipynb</span>
+                        <div class="flex items-center space-x-2">
+                            <a href="https://github.com/meprateekpaul/Cheminformatics/blob/main/notebooks/nb18_docking_and_virtual_screening.ipynb" target="_blank" class="inline-flex items-center space-x-1 text-slate-600 hover:text-teal-600 font-semibold px-2 py-1 rounded hover:bg-slate-50 transition" title="View on GitHub">
+                                <i class="fa-brands fa-github text-sm"></i>
+                                <span>GitHub</span>
+                            </a>
+                            <a href="https://colab.research.google.com/github/meprateekpaul/Cheminformatics/blob/main/notebooks/nb18_docking_and_virtual_screening.ipynb" target="_blank" class="inline-flex items-center space-x-1.5 bg-amber-500/10 hover:bg-amber-500/20 text-amber-800 px-2.5 py-1 rounded border border-amber-300 font-semibold transition" title="Open in Google Colab">
+                                <i class="fa-solid fa-play text-[10px] text-amber-600"></i>
+                                <span>Colab</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- nb19 -->
+                <div class="nb-card structure_based bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between" data-category="structure_based">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="font-bold text-teal-600 uppercase tracking-wide">Part F · Structure-Based · nb19</span>
+                            <div class="flex items-center space-x-2">
+                                <span class="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-amber-50 text-amber-700 border-amber-200 border">Intermediate</span>
+                                <span class="text-slate-400 font-medium">●●○ · ~120 min</span>
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 leading-snug">De Novo Design and Fragment-Based Discovery (FBDD)</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">Pocket feature mapping, Congreve's Rule of Three, Ligand Efficiency (LE) and Lipophilic Efficiency (LLE), BRICS fragment growing/linking, and SA scoring.</p>
+                        <div class="flex flex-wrap gap-1.5 pt-1">
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">Congreve Rule of 3</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">Ligand Efficiency</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">BRICS Fragments</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">SA Scoring</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between pt-3 border-t border-slate-100 text-xs">
+                        <span class="code-pill text-slate-500 truncate max-w-[170px]" title="nb19_denovo_design_and_fbdd.ipynb">nb19_denovo_design_and_fbdd.ipynb</span>
+                        <div class="flex items-center space-x-2">
+                            <a href="https://github.com/meprateekpaul/Cheminformatics/blob/main/notebooks/nb19_denovo_design_and_fbdd.ipynb" target="_blank" class="inline-flex items-center space-x-1 text-slate-600 hover:text-teal-600 font-semibold px-2 py-1 rounded hover:bg-slate-50 transition" title="View on GitHub">
+                                <i class="fa-brands fa-github text-sm"></i>
+                                <span>GitHub</span>
+                            </a>
+                            <a href="https://colab.research.google.com/github/meprateekpaul/Cheminformatics/blob/main/notebooks/nb19_denovo_design_and_fbdd.ipynb" target="_blank" class="inline-flex items-center space-x-1.5 bg-amber-500/10 hover:bg-amber-500/20 text-amber-800 px-2.5 py-1 rounded border border-amber-300 font-semibold transition" title="Open in Google Colab">
+                                <i class="fa-solid fa-play text-[10px] text-amber-600"></i>
+                                <span>Colab</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- nb20 -->
+                <div class="nb-card capstone bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between" data-category="capstone">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="font-bold text-teal-600 uppercase tracking-wide">Part G · Capstone · nb20</span>
+                            <div class="flex items-center space-x-2">
+                                <span class="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-purple-50 text-purple-700 border-purple-200 border">Advanced</span>
+                                <span class="text-slate-400 font-medium">●●● · Capstone Template</span>
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 leading-snug">Capstone Project Template: Ligand-Based ML Model</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">Fully parameterized master template for student projects: data curation, EDA, multi-representation featurization, scaffold splitting, modeling, and external screening.</p>
+                        <div class="flex flex-wrap gap-1.5 pt-1">
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">Capstone Template</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">Multi-Featurization</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">Scaffold Split</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">Prospective Screen</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between pt-3 border-t border-slate-100 text-xs">
+                        <span class="code-pill text-slate-500 truncate max-w-[170px]" title="nb20_project_template_ligand_model.ipynb">nb20_project_template_ligand_model.ipynb</span>
+                        <div class="flex items-center space-x-2">
+                            <a href="https://github.com/meprateekpaul/Cheminformatics/blob/main/notebooks/nb20_project_template_ligand_model.ipynb" target="_blank" class="inline-flex items-center space-x-1 text-slate-600 hover:text-teal-600 font-semibold px-2 py-1 rounded hover:bg-slate-50 transition" title="View on GitHub">
+                                <i class="fa-brands fa-github text-sm"></i>
+                                <span>GitHub</span>
+                            </a>
+                            <a href="https://colab.research.google.com/github/meprateekpaul/Cheminformatics/blob/main/notebooks/nb20_project_template_ligand_model.ipynb" target="_blank" class="inline-flex items-center space-x-1.5 bg-amber-500/10 hover:bg-amber-500/20 text-amber-800 px-2.5 py-1 rounded border border-amber-300 font-semibold transition" title="Open in Google Colab">
+                                <i class="fa-solid fa-play text-[10px] text-amber-600"></i>
+                                <span>Colab</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- nb21 -->
+                <div class="nb-card capstone bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between" data-category="capstone">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="font-bold text-teal-600 uppercase tracking-wide">Part G · Capstone · nb21</span>
+                            <div class="flex items-center space-x-2">
+                                <span class="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-purple-50 text-purple-700 border-purple-200 border">Advanced</span>
+                                <span class="text-slate-400 font-medium">●●● · Advanced · ~120 min</span>
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 leading-snug">Graph Neural Networks for Property Prediction</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">Molecular graph featurization, message-passing layers, Graph Convolutional Networks (GCN), global pooling readout, and ESOL aqueous solubility regression.</p>
+                        <div class="flex flex-wrap gap-1.5 pt-1">
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">Graph Neural Nets</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">Message Passing</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">GCN Layers</span>
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">ESOL Solubility</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between pt-3 border-t border-slate-100 text-xs">
+                        <span class="code-pill text-slate-500 truncate max-w-[170px]" title="nb21_gnn_property_prediction.ipynb">nb21_gnn_property_prediction.ipynb</span>
+                        <div class="flex items-center space-x-2">
+                            <a href="https://github.com/meprateekpaul/Cheminformatics/blob/main/notebooks/nb21_gnn_property_prediction.ipynb" target="_blank" class="inline-flex items-center space-x-1 text-slate-600 hover:text-teal-600 font-semibold px-2 py-1 rounded hover:bg-slate-50 transition" title="View on GitHub">
+                                <i class="fa-brands fa-github text-sm"></i>
+                                <span>GitHub</span>
+                            </a>
+                            <a href="https://colab.research.google.com/github/meprateekpaul/Cheminformatics/blob/main/notebooks/nb21_gnn_property_prediction.ipynb" target="_blank" class="inline-flex items-center space-x-1.5 bg-amber-500/10 hover:bg-amber-500/20 text-amber-800 px-2.5 py-1 rounded border border-amber-300 font-semibold transition" title="Open in Google Colab">
+                                <i class="fa-solid fa-play text-[10px] text-amber-600"></i>
+                                <span>Colab</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -773,17 +1231,23 @@
         </div>
     </footer>
 
-    <!-- Filter Script -->
+            <!-- Filter Script -->
     <script>
-        function filterNotebooks(category) {
+        function filterNotebooks(category, btn) {
             const buttons = document.querySelectorAll('.filter-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+            buttons.forEach(b => b.classList.remove('active'));
+            if (btn) {
+                btn.classList.add('active');
+            } else {
+                const targetBtn = document.querySelector(`.filter-btn[data-filter="${category}"]`);
+                if (targetBtn) targetBtn.classList.add('active');
+            }
 
             const cards = document.querySelectorAll('.nb-card');
             cards.forEach(card => {
-                if (category === 'all' || card.classList.contains(category)) {
-                    card.style.display = 'block';
+                const cardCat = card.getAttribute('data-category');
+                if (category === 'all' || cardCat === category || card.classList.contains(category)) {
+                    card.style.display = 'flex';
                 } else {
                     card.style.display = 'none';
                 }
