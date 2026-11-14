@@ -95,8 +95,12 @@
                 <nav class="hidden md:flex items-center space-x-6 text-sm font-medium">
                     <a href="#courses" class="text-slate-300 hover:text-white transition">All Courses</a>
                     <a href="programmingcb.html" class="text-emerald-400 hover:text-emerald-300 flex items-center space-x-1.5 transition">
+                        <i class="fa-solid fa-code text-xs"></i>
+                        <span>Python (PCB)</span>
+                    </a>
+                    <a href="conceptsbio.html" class="text-violet-400 hover:text-violet-300 flex items-center space-x-1.5 transition">
                         <i class="fa-solid fa-dna text-xs"></i>
-                        <span>Bioinformatics</span>
+                        <span>Concepts (CBBI)</span>
                     </a>
                     <a href="cheminformatics.html" class="text-cyan-400 hover:text-cyan-300 flex items-center space-x-1.5 transition">
                         <i class="fa-solid fa-flask text-xs"></i>
@@ -144,11 +148,11 @@
                 <!-- Metrics Strip -->
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-slate-800/80">
                     <div>
-                        <div class="text-2xl font-bold text-white">65+</div>
+                        <div class="text-2xl font-bold text-white">120+</div>
                         <div class="text-xs text-slate-400 uppercase tracking-wider mt-0.5">Jupyter Notebooks</div>
                     </div>
                     <div>
-                        <div class="text-2xl font-bold text-emerald-400">2</div>
+                        <div class="text-2xl font-bold text-emerald-400">3</div>
                         <div class="text-xs text-slate-400 uppercase tracking-wider mt-0.5">Full Semester Courses</div>
                     </div>
                     <div>
@@ -180,8 +184,8 @@
 
                 <!-- Category Filters -->
                 <div class="inline-flex p-1 bg-slate-200/80 rounded-lg text-xs font-medium" id="filter-container">
-                    <button onclick="filterCatalog('all', this)" class="filter-btn active px-3 py-1.5 rounded-md transition">All (4)</button>
-                    <button onclick="filterCatalog('active', this)" class="filter-btn px-3 py-1.5 rounded-md text-slate-600 hover:text-slate-900 transition">Active (2)</button>
+                    <button onclick="filterCatalog('all', this)" class="filter-btn active px-3 py-1.5 rounded-md transition">All (5)</button>
+                    <button onclick="filterCatalog('active', this)" class="filter-btn px-3 py-1.5 rounded-md text-slate-600 hover:text-slate-900 transition">Active (3)</button>
                     <button onclick="filterCatalog('upcoming', this)" class="filter-btn px-3 py-1.5 rounded-md text-slate-600 hover:text-slate-900 transition">Upcoming (2)</button>
                 </div>
             </div>
@@ -258,7 +262,77 @@
                     </div>
                 </div>
 
-                <!-- Course 2: Practical Cheminformatics & CADD -->
+                <!-- Course 2: Concepts of Bioinformatics (CBBI-501) -->
+                <div class="catalog-card active course-card bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-lg hover:border-violet-500/50" data-type="active">
+                    <div>
+                        <!-- Header Banner -->
+                        <div class="bg-gradient-to-r from-slate-950 via-purple-950 to-slate-900 p-6 text-white border-b border-purple-800/40">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-violet-500/20 text-violet-300 border border-violet-500/40">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-violet-400 mr-1.5 animate-pulse"></span>
+                                    Active · Semester II Curriculum
+                                </span>
+                                <span class="text-xs text-slate-400 font-mono">CBBI-501</span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-2 flex items-center space-x-2">
+                                <i class="fa-solid fa-dna text-violet-400 text-xl"></i>
+                                <span>Concepts of Bioinformatics</span>
+                            </h3>
+                            <p class="text-xs text-violet-200/90 leading-relaxed">
+                                Complete 15-week university curriculum: 30 lectures, 13 syllabus web practicals, 59 Jupyter notebooks, central human HBB/HbS thread, and offline fallbacks.
+                            </p>
+                        </div>
+
+                        <!-- Card Body -->
+                        <div class="p-6 space-y-4">
+                            <!-- Key Pillars -->
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs">
+                                <div class="bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+                                    <div class="text-slate-400 text-[11px]">Curriculum Size</div>
+                                    <div class="font-bold text-slate-800 mt-0.5">30 L + 13 P</div>
+                                </div>
+                                <div class="bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+                                    <div class="text-slate-400 text-[11px]">Notebooks</div>
+                                    <div class="font-bold text-slate-800 mt-0.5">59 (C, P, Q)</div>
+                                </div>
+                                <div class="bg-slate-50 p-2.5 rounded-lg border border-slate-100 col-span-2 sm:col-span-1">
+                                    <div class="text-slate-400 text-[11px]">Roadmap</div>
+                                    <div class="font-bold text-slate-800 mt-0.5">15 Weeks (4 Mos)</div>
+                                </div>
+                            </div>
+
+                            <p class="text-xs text-slate-600 leading-relaxed">
+                                Systematic journey covering biological databases (NCBI Entrez, GenBank flat files), optimal dynamic programming (Needleman–Wunsch, Smith–Waterman), substitution matrices (PAM, BLOSUM), BLAST/FASTA heuristics, progressive MSA (Clustal Omega, Jalview), molecular phylogenetics (UPGMA, NJ, bootstrap), DNA/protein feature prediction (ORFs, ProtParam, GOR IV/PSIPRED), 3D macromolecular structures (PDB, VMD, Mol*), and comparative genomics.
+                            </p>
+
+                            <!-- Topic Chips -->
+                            <div class="flex flex-wrap gap-1.5 pt-2">
+                                <span class="bg-violet-50 text-violet-800 border border-violet-200 text-[11px] font-medium px-2 py-0.5 rounded">NCBI Entrez</span>
+                                <span class="bg-violet-50 text-violet-800 border border-violet-200 text-[11px] font-medium px-2 py-0.5 rounded">GenBank ASN.1</span>
+                                <span class="bg-violet-50 text-violet-800 border border-violet-200 text-[11px] font-medium px-2 py-0.5 rounded">Dynamic Programming</span>
+                                <span class="bg-violet-50 text-violet-800 border border-violet-200 text-[11px] font-medium px-2 py-0.5 rounded">BLAST & FASTA</span>
+                                <span class="bg-violet-50 text-violet-800 border border-violet-200 text-[11px] font-medium px-2 py-0.5 rounded">Clustal Omega & Jalview</span>
+                                <span class="bg-violet-50 text-violet-800 border border-violet-200 text-[11px] font-medium px-2 py-0.5 rounded">UPGMA & NJ Trees</span>
+                                <span class="bg-violet-50 text-violet-800 border border-violet-200 text-[11px] font-medium px-2 py-0.5 rounded">GOR IV & PSIPRED</span>
+                                <span class="bg-violet-50 text-violet-800 border border-violet-200 text-[11px] font-medium px-2 py-0.5 rounded">PDB & VMD 3D</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card Footer Actions -->
+                    <div class="p-6 pt-0 flex flex-col sm:flex-row items-center gap-3">
+                        <a href="conceptsbio.html" class="w-full sm:w-auto flex-1 text-center bg-violet-600 hover:bg-violet-500 text-white font-semibold px-4 py-2.5 rounded-lg text-xs shadow-sm transition flex items-center justify-center space-x-1.5">
+                            <span>Open Course Portal</span>
+                            <i class="fa-solid fa-arrow-right text-[11px]"></i>
+                        </a>
+                        <a href="conceptsbio.html#roadmap" class="w-full sm:w-auto bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold px-4 py-2.5 rounded-lg text-xs border border-slate-200 transition flex items-center justify-center space-x-1.5">
+                            <i class="fa-solid fa-timeline text-xs text-violet-600"></i>
+                            <span>4-Month Roadmap</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Course 3: Practical Cheminformatics & CADD -->
                 <div class="catalog-card active course-card bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-lg hover:border-cyan-500/50" data-type="active">
                     <div>
                         <!-- Header Banner -->
@@ -524,7 +598,8 @@
             </div>
             <div class="flex flex-wrap items-center gap-6 text-xs">
                 <a href="index.html" class="hover:text-white transition">Portfolio Homepage</a>
-                <a href="programmingcb.html" class="hover:text-emerald-400 transition">Bioinformatics (PCB)</a>
+                <a href="programmingcb.html" class="hover:text-emerald-400 transition">Python (PCB)</a>
+                <a href="conceptsbio.html" class="hover:text-violet-400 transition">Concepts (CBBI)</a>
                 <a href="cheminformatics.html" class="hover:text-cyan-400 transition">Cheminformatics & CADD</a>
                 <a href="https://github.com/meprateekpaul" target="_blank" rel="noopener" class="hover:text-white transition">GitHub Profile</a>
                 <a href="mailto:meprateekpaul@gmail.com" class="hover:text-white transition">Contact</a>
