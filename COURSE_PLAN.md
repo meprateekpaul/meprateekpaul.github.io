@@ -1,7 +1,7 @@
 # Concepts of Bioinformatics — Course Plan
 
 > **Academic Framework:** Inspired by and formulated from the B.Tech. Bioinformatics undergraduate curriculum of [Sam Higginbottom University of Agriculture, Technology and Sciences (SHUATS)](https://shuats.edu.in/), Prayagraj, Uttar Pradesh, India
-> **Department:** Department of Computational Biology & Bioinformatics, Jacob Institute of Biotechnology & Bioengineering (JSBB)
+> **Department:** Department of Computational Biology & Bioinformatics, Jacob Institute of Biotechnology and Bio-Engineering (JIBB, formerly JSBB)
 > **Programme:** B.Tech. Bioinformatics, Semester II (outline w.e.f. July 2017)
 > **Code:** CBBI-501 in the B.Tech. outline; the syllabus PDF prints the same course as CBBI-502
 > **Credits:** 3 (L-T-P 2-0-1) — two lectures and one 2-hour practical per week

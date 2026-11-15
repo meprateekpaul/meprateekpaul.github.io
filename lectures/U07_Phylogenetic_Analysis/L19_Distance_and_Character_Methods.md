@@ -337,7 +337,11 @@ All terminal leaves are exactly 4.5 units of evolutionary distance from the root
 **Prompt:** Explain why the Neighbor-Joining (NJ) algorithm is vastly superior to UPGMA when analyzing real biological sequence datasets from diverse organisms (such as humans, birds, and lungfish).
 
 **Model Answer:**
-UPGMA strictly assumes a **constant molecular clock** (ultrametric evolution), meaning every lineage must mutate at the exact same evolutionary rate over time. In real biology, different organismal lineages mutate at vastly different rates due to differences in metabolic rate, generation time, and DNA polymerase proofreading fidelity. When evolutionary rates vary, UPGMA clusters fast-evolving lineages incorrectly, producing distorted topologies. **Neighbor-Joining does not assume a molecular clock**: its $Q$-matrix algorithm subtracts the total divergence of each taxon, allowing lineages to possess unequal branch lengths and correctly resolving true phylogenetic relationships.
+UPGMA strictly assumes a **constant molecular clock** (ultrametric evolution), meaning every lineage must mutate at the exact same evolutionary rate over time. In real biology, different organismal lineages mutate at vastly different rates due to differences in metabolic rate, generation time, and DNA polymerase proofreading fidelity. When evolutionary rates vary, UPGMA clusters fast-evolving lineages incorrectly, producing distorted topologies. 
+
+**Neighbor-Joining (Saitou & Nei, 1987) does not assume a molecular clock**: it evaluates an unrooted star topology and computes a transformed **$Q$-matrix** that subtracts the total net evolutionary divergence of each taxon:
+$$Q(i, j) = (n - 2) \, d(i, j) - \sum_{k=1}^n d(i, k) - \sum_{k=1}^n d(j, k)$$
+By finding the taxon pair $(i, j)$ that minimizes $Q(i, j)$, Neighbor-Joining isolates lineages with minimum total tree length, accommodating unequal lineage evolutionary rates and resolving true additive branch lengths.
 
 ---
 

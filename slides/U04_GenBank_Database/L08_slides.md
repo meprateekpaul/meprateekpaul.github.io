@@ -180,7 +180,7 @@ Topic: Mathematical Operators in the Feature Table
 | `51..494`               | Continuous range from base 51 to 494 inclusive    |
 | `join(1..142, 273..495)`| Spliced exons: concatenate intervals 1-142 & 273-495|
 | `complement(51..494)`   | Transcribed from the reverse-complement (-) strand|
-| `join(complement(..))`  | Spliced gene located on the negative strand       |
+| `complement(join(..))`  | Spliced gene located on the negative strand       |
 | `<1..450`               | Truncated / partial at the 5' end (extends left)  |
 | `100..>500`             | Truncated / partial at the 3' end (extends right) |
 +-------------------------+---------------------------------------------------+

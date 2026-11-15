@@ -311,7 +311,9 @@ All edge cells in row 0 and column 0 are initialized to **0**.
   - $\max = \mathbf{4}$ (Pointer: $\uparrow$)
 
 #### Row 5 ($x_5 = \text{'E'}$):
-- **Cell (5, 1) [$y_1 = \text{'H'}$]:** Mismatch $\implies \mathbf{0}$
+- **Cell (5, 1) [$y_1 = \text{'H'}$]:** Mismatch ($-2$)
+  - Diag: $0 - 2 = -2$; Up: $F(4, 1) - 2 = 3 - 2 = \mathbf{1}$; Left: $0 - 2 = -2$; Zero: $0$
+  - $\max = \mathbf{1}$ (Pointer: $\uparrow$)
 - **Cell (5, 2) [$y_2 = \text{'E'}$]:** Match ($+3$)
   - Diag: $F(4, 1) + 3 = 3 + 3 = \mathbf{6}$
   - Up: $F(4, 2) - 2 = 1 - 2 = -1$; Left: $0 - 2 = -2$; Zero: $0$
@@ -334,7 +336,7 @@ All edge cells in row 0 and column 0 are initialized to **0**.
   A (i=2)      0           0           0          [3]\nw        1<-
   W (i=3)      0           0           0           1^         [6]\nw  <-- MAX 1
   H (i=4)      0          (3)\nw       1<-         0           4^
-  E (i=5)      0           0          (6)\nw       4<-         2^,<-  <-- MAX 2
+  E (i=5)      0           1^         (6)\nw       4<-         2^,<-  <-- MAX 2
 ```
 
 ---

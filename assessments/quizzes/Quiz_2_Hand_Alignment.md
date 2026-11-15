@@ -74,9 +74,9 @@ You are provided with two peptide fragments derived from the globin family:
 
 1. State the Smith–Waterman local alignment dynamic programming recurrence relation, explaining how the zero lower bound alters matrix initialization and cell evaluation. `[2 Marks]`
 
-2. In the matrix for Sequence $X$ (`HEAGAW`) vs Sequence $Y$ (`HEAWAM`), the maximal local alignment cell is reached at coordinate $(3,3)$ corresponding to `H-E-A` vs `H-E-A`.  
+2. In the matrix for Sequence $X$ (`HEAGAW`) vs Sequence $Y$ (`HEAWAW`), consider the local alignment of the shared N-terminal tripeptide `H-E-A` vs `H-E-A` at coordinate $(3,3)$:  
    - What is the numerical score in cell $(3,3)$? `[1 Mark]`  
-   - Where does the local traceback terminate, and what is the resulting optimal local alignment? `[1 Mark]`
+   - Where does the local traceback terminate, and what is the resulting local alignment? `[1 Mark]`
 
 ---
 ---
@@ -118,7 +118,7 @@ You are provided with two peptide fragments derived from the globin family:
    +--------+--------+--------+--------+--------+--------+--------+
  A |  -10   |   -6 ↑ |   -2 ↑ |   +2 ↑ |   +3 ↑ |   +7 ↖ |   +5 ← |
    +--------+--------+--------+--------+--------+--------+--------+
- W |  -12   |   -8 ↑ |   -4 ↑ |    0 ↑ |   +4 ↖↑|   +5 ↑ |   +9 ↖ |
+ W |  -12   |   -8 ↑ |   -4 ↑ |    0 ↑ |   +4 ↖ |   +5 ↑ |   +9 ↖ |
    +--------+--------+--------+--------+--------+--------+--------+
 ```
 

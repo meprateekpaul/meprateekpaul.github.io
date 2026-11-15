@@ -36,10 +36,10 @@ PSIPRED:    HHHHHHHHHHHHHHHCCCCCCCCCHHHHHHHHHHHHHHHHCCCCCCCHHHHHHHHHHHHHHHHHHHCC
 ### Table 11.2: Three-State Prediction Accuracy ($Q_3$) Calculation (Completed)
 | Method | Total Residues ($N_{\text{total}}$) | Correctly Predicted Residues ($N_{\text{correct}}$) | Number of Mismatches | Calculated $Q_3$ Accuracy (%) |
 |---|:---:|:---:|:---:|:---:|
-| **GOR IV** | 147 | **123** | 24 | **83.67%** |
-| **PSIPRED V4.0** | 147 | **127** | 20 | **86.39%** |
+| **GOR IV** | 147 | **130** | 17 | **88.44%** |
+| **PSIPRED V4.0** | 147 | **129** | 18 | **87.76%** |
 
-*(Note: In globular benchmark test sets, GOR IV averages ~64% across diverse folds, but scores relatively high on all-$\alpha$ globins because the fold is overwhelmingly helical, though it fails catastrophically on the C/D helix region).*
+*(Note: Calculated against canonical 3-state reduction of crystallographic 1A3N Chain B DSSP where H and G are mapped to Helix. If an alternative strict DSSP baseline is applied where 3_10 helices are treated as loop/turn, counts evaluate to 123/147 = 83.67% and 127/147 = 86.39%. Across diverse non-globin globular benchmark test sets, GOR IV averages ~64–65%, but scores higher on all-$\alpha$ globins due to the fold being overwhelmingly helical).*
 
 ---
 

@@ -1,6 +1,7 @@
 # Four-Month Accelerated Curriculum & Study Roadmap
 
 > **Course:** Concepts of Bioinformatics (CBBI-501) · B.Tech. Bioinformatics, Semester II  
+> **Institutional Provenance:** Inspired by and adapted from the foundational B.Tech. Bioinformatics curriculum of **Sam Higginbottom University of Agriculture, Technology and Sciences (SHUATS)**, Prayagraj, Uttar Pradesh, India ([https://shuats.edu.in/](https://shuats.edu.in/)), Department of Computational Biology and Bioinformatics, Jacob Institute of Biotechnology and Bio-Engineering (JIBB, formerly JSBB).  
 > **Target Audience:** First-year undergraduates, graduate cross-trainees, and independent researchers.  
 > **Duration:** 15 Teaching Weeks (~4 Calendar Months) · **Effort:** 8–10 hours per week (135–150 total hours)
 
@@ -28,6 +29,17 @@ This 4-month roadmap is designed to build intuition before formal abstraction:
 | **Textbook Reading & Review** | 2.0 hrs | 30 hrs | Deep reading in Baxevanis, Mount, or Lesk; cheat sheet reviews |
 | **Milestone Assessments** | 1.0 hr | 15 hrs | 4 Quizzes, Assignment 1, Mini-Project, Mid-Term & Final Exams |
 | **Total Commitment** | **9.5 hrs / week** | **142.5 hrs** | **Standard 3-credit university course calibration** |
+
+### Computational Notebook Tiering & Delivery Guidance
+To prevent cognitive overload while accommodating diverse learner backgrounds:
+- **Tier 1 (Core / Mandatory):** Lecture course notebooks (`_C1`, `_C2`, `_C3`) demonstrated in class/lab + Practice tasks rated `★☆☆` and `★★☆` + Quiz notebooks (`_Q`).
+- **Tier 2 (Enrichment / Honors):** Challenge problems rated `★★★` in Practice notebooks (e.g. custom sliding-window algorithms and matrix parsers) are designated as optional distinction exercises for students seeking advanced honours credit.
+
+### Capstone Mini-Project Team Role Specialization
+Student teams (2–3 students) follow a professional tripartite division of labor:
+1. **Genomic & Sequence Curator:** Literature retrieval, RefSeq assembly, multi-FASTA quality control, and nucleotide/promoter feature annotation.
+2. **Evolutionary & Alignment Specialist:** Clustal Omega/MUSCLE alignment, Jalview conservation analysis, and MEGA/PhyML phylogenetic tree reconstruction with bootstrap testing.
+3. **Structural & Biophysical Analyst:** ProtParam profiling, PROSITE motif scanning, PDB/AlphaFold coordinate inspection, VMD/Mol* 3D rendering, and report synthesis.
 
 ---
 

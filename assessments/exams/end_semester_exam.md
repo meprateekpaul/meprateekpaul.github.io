@@ -226,7 +226,7 @@ HETATM 1120 FE   FE  A 147      24.120  12.450   9.320  1.00 14.50          FE
 
 #### 31. Optimal Dynamic Programming Hand Alignment (10 Marks)
 * **a) Matrix Construction & Calculations (4 Marks):**  
-  - $M=6$ (`HEAGAW`), $N=6$ (`HEAWAM`). Match $= +2$, Mismatch $= -1$, Gap $= -2$.  
+  - $M=6$ (`HEAGAW`), $N=6$ (`HEAWAW`). Match $= +2$, Mismatch $= -1$, Gap $= -2$.  
   - Row 0 / Col 0 initialized with $-2 \cdot i$ ($0, -2, -4, -6, -8, -10, -12$).  
   - Cell $(1,1)$ [$H,H$]: $\max\{0+2, -4, -4\} = \mathbf{+2}$ ($\nwse$).  
   - Cell $(1,2)$ [$H,E$]: $\max\{-2-1, -6, 2-2\} = \mathbf{0}$ ($\leftarrow$).  
@@ -244,7 +244,7 @@ HETATM 1120 FE   FE  A 147      24.120  12.450   9.320  1.00 14.50          FE
   - Recurrence: $F(i,j) = \max\{0, \text{Diag}, \text{Up}, \text{Left}\}$.  
   - Row 0 and Col 0 initialized with zeros ($F(i,0)=0, F(0,j)=0$).  
   - Zero bound resets negative scores, allowing local alignments to terminate and restart.  
-  - Max cell score is $+9$ at $(6,6)$ (or $+6$ at $(3,3)$ for `HEA`). Local alignment yields `HEAGAW` vs `HEAWAM` with score $+9$ (or `HEA` vs `HEA` with score $+6$).
+  - Max cell score is $+9$ at $(6,6)$ (or $+6$ at $(3,3)$ for `HEA`). Local alignment yields `HEAGAW` vs `HEAWAW` with score $+9$ (or `HEA` vs `HEA` with score $+6$).
 
 #### 32. Step-by-Step Molecular Phylogenetic Reconstruction (10 Marks)
 * **a) Stepwise UPGMA Construction (5 Marks):**  

@@ -3,7 +3,7 @@
 > **Academic Framework:** Inspired by and formulated from the B.Tech. Bioinformatics undergraduate curriculum of [Sam Higginbottom University of Agriculture, Technology and Sciences (SHUATS)](https://shuats.edu.in/), Prayagraj, Uttar Pradesh, India  
 > **Course Code:** CBBI-501 (printed in university syllabus PDF as CBBI-502)  
 > **Credits:** 3 (L-T-P: 2-0-1) — 2 Lecture hours and one 2-hour Practical session per week  
-> **Department:** Department of Computational Biology & Bioinformatics, Jacob Institute of Biotechnology & Bioengineering (JSBB), [SHUATS](https://shuats.edu.in/)  
+> **Department:** Department of Computational Biology & Bioinformatics, Jacob Institute of Biotechnology and Bio-Engineering (JIBB, formerly JSBB), [SHUATS](https://shuats.edu.in/)  
 > **Curriculum Outline:** w.e.f. July 2017  
 
 ---

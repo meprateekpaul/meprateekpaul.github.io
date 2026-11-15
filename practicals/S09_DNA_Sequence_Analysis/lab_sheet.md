@@ -52,7 +52,7 @@ When performing sequence similarity searches (BLAST) or *de novo* genome assembl
 ### Web Portals & Software
 - NCBI ORFfinder: [https://www.ncbi.nlm.nih.gov/orffinder/](https://www.ncbi.nlm.nih.gov/orffinder/)
 - EMBOSS Online Services / Local EMBOSS Suite (`geecee`, `cusp`, `transeq`, `cpgplot`): [https://www.ebi.ac.uk/Tools/emboss/](https://www.ebi.ac.uk/Tools/emboss/)
-- RepeatMasker Web Server: [http://www.repeatmasker.org/cgi-bin/WEBRepeatMasker](http://www.repeatmasker.org/cgi-bin/WEBRepeatMasker)
+- RepeatMasker Web Server: [https://www.repeatmasker.org/cgi-bin/WEBRepeatMasker](https://www.repeatmasker.org/cgi-bin/WEBRepeatMasker)
 
 ### Input Datasets
 - Human *HBB* mRNA: `../../data/sequences/hbb_human_mrna.fasta` (`NM_000518.5`, 626 bp).
@@ -119,7 +119,7 @@ When performing sequence similarity searches (BLAST) or *de novo* genome assembl
    - Explain how viral genomes maximize coding capacity under extreme physical capsid volume constraints.
 
 ### Phase 5: Repetitive Element Detection with RepeatMasker
-1. Navigate to the RepeatMasker web server: `http://www.repeatmasker.org/cgi-bin/WEBRepeatMasker`.
+1. Navigate to the RepeatMasker web server: `https://www.repeatmasker.org/cgi-bin/WEBRepeatMasker`.
 2. Input a 2 kb genomic locus flanking human *HBB* (or paste the genomic sequence from `NC_000011.10:5224000-5228000`).
 3. Select DNA source: **Human**.
 4. Select Speed/Sensitivity: **Default**.

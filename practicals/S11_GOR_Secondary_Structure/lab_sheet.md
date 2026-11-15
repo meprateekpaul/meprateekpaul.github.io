@@ -56,7 +56,7 @@ A hydrogen bond is defined when $E < -0.5\text{ kcal/mol}$. DSSP assigns an 8-st
 
 ### Web Portals & URLs
 - PBIL NPS@ GOR IV Server: [https://npsa-prabi.ibcp.fr/cgi-bin/npsa_automat.pl?page=/NPSA/npsa_gor4.html](https://npsa-prabi.ibcp.fr/cgi-bin/npsa_automat.pl?page=/NPSA/npsa_gor4.html)
-- UCL PSIPRED V4.0 Server: [http://bioinf.cs.ucl.ac.uk/psipred/](http://bioinf.cs.ucl.ac.uk/psipred/)
+- UCL PSIPRED V4.0 Server: [https://bioinf.cs.ucl.ac.uk/psipred/](https://bioinf.cs.ucl.ac.uk/psipred/)
 - RCSB PDB Structure Gateway: [https://www.rcsb.org/structure/1A3N](https://www.rcsb.org/structure/1A3N)
 
 ### Input Datasets & Local Files
@@ -85,7 +85,7 @@ A hydrogen bond is defined when $E < -0.5\text{ kcal/mol}$. DSSP assigns an 8-st
 
 ### Phase 2: Running PSIPRED V4.0 at UCL
 1. Open the UCL PSIPRED server:
-   `http://bioinf.cs.ucl.ac.uk/psipred/`
+   `https://bioinf.cs.ucl.ac.uk/psipred/`
 2. Enter your email address (or proceed as guest).
 3. Paste the same human HBB sequence (`NP_000509.1`).
 4. Select the prediction method: **PSIPRED 4.0 (Predict Secondary Structure)**.
