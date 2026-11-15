@@ -198,6 +198,10 @@
                         <i class="fa-solid fa-flask"></i>
                         <span>Lab Practicals</span>
                     </a>
+                    <a href="https://github.com/meprateekpaul/basicsbioinformatics/tree/main/Concepts_of_Bioinformatics" target="_blank" rel="noopener" class="inline-flex items-center space-x-2 bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold px-5 py-2.5 rounded-lg border border-slate-700 transition">
+                        <i class="fa-brands fa-github text-sm"></i>
+                        <span>GitHub Repo</span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -1393,7 +1397,7 @@
             contentEl.innerHTML = renderMarkdownToHtml(lec.notes_md);
 
             const ghLink = document.getElementById("notes-modal-gh-link");
-            if (ghLink) ghLink.href = lec.rel_path;
+            if (ghLink) ghLink.href = `https://github.com/meprateekpaul/basicsbioinformatics/blob/main/Concepts_of_Bioinformatics/${lec.rel_path}`;
 
             const modal = document.getElementById("notes-modal");
             if (modal) modal.classList.remove("hidden");
