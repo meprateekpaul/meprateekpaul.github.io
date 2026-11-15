@@ -93,6 +93,10 @@
             display: none;
         }
     </style>
+    <!-- Marked.js for In-Browser Lecture Notes Markdown Rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <!-- Lecture Slides & Notes Data Registry -->
+    <script src="js/cbbi_lectures_data.js"></script>
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased font-sans flex flex-col min-h-screen">
 
@@ -112,6 +116,10 @@
                     <a href="#thread" class="text-slate-300 hover:text-white transition">Molecular Thread</a>
                     <a href="#roadmap" class="text-slate-300 hover:text-white transition">4-Month Roadmap</a>
                     <a href="#units" class="text-slate-300 hover:text-white transition">Units</a>
+                    <a href="#lectures" class="text-slate-300 hover:text-white transition flex items-center space-x-1">
+                        <i class="fa-solid fa-chalkboard-user text-xs text-violet-400"></i>
+                        <span>Lectures & Slides</span>
+                    </a>
                     <a href="#practicals" class="text-slate-300 hover:text-white transition">Practicals</a>
                     <a href="#assessments" class="text-slate-300 hover:text-white transition">Assessments</a>
                     <a href="#notebooks" class="text-slate-300 hover:text-white transition">Notebooks</a>
@@ -548,6 +556,56 @@
                         <a href="lectures/U11_Comparative_Genomics/L29_Genome_Projects_and_Annotation.md" class="text-indigo-600 font-semibold hover:underline">Notes →</a>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <!-- Interactive Lectures & Slide Decks Section -->
+        <section id="lectures" class="space-y-8 pt-4">
+            <div class="flex flex-col md:flex-row md:items-end justify-between border-b border-slate-200 pb-4 gap-4">
+                <div>
+                    <div class="flex items-center space-x-2">
+                        <span class="text-xs font-bold text-violet-600 bg-violet-50 px-2.5 py-1 rounded-md border border-violet-100 uppercase tracking-wider">Theory & Presentation Suite</span>
+                        <span class="text-xs font-semibold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-100">● 240 Interactive Slides</span>
+                    </div>
+                    <h2 class="text-3xl font-bold text-slate-900 mt-2">30 Theory Lectures · Slides & Study Notes</h2>
+                    <p class="text-slate-600 text-sm max-w-3xl mt-1 leading-relaxed">
+                        Every lecture includes an in-browser <strong>8-slide presentation deck</strong> with ASCII architecture diagrams and speaker notes, plus complete <strong>textbook-grade notes</strong>, worked biological algorithms (*HBB* / *INS* / *TP53*), and formative self-checks.
+                    </p>
+                </div>
+
+                <!-- Search Input -->
+                <div class="w-full md:w-72">
+                    <div class="relative">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-400 text-xs"></i>
+                        <input id="lecture-search-input" type="text" oninput="handleLectureSearch()" placeholder="Search 30 lectures by topic, gene, or algorithm..." class="w-full pl-9 pr-4 py-2 bg-white border border-slate-300 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent shadow-sm">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Unit Filter Bar -->
+            <div id="lecture-filter-bar" class="flex flex-wrap gap-2 text-xs font-medium pb-2 border-b border-slate-100">
+                <button onclick="filterLectures(all, this)" class="lec-filter-btn active px-3 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 transition">All (30)</button>
+                <button onclick="filterLectures(1, this)" class="lec-filter-btn px-3 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 transition">U1: Internet (2)</button>
+                <button onclick="filterLectures(2, this)" class="lec-filter-btn px-3 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 transition">U2: Entrez (2)</button>
+                <button onclick="filterLectures(3, this)" class="lec-filter-btn px-3 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 transition">U3: ASN.1 (2)</button>
+                <button onclick="filterLectures(4, this)" class="lec-filter-btn px-3 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 transition">U4: GenBank (3)</button>
+                <button onclick="filterLectures(5, this)" class="lec-filter-btn px-3 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 transition">U5: Alignment (6)</button>
+                <button onclick="filterLectures(6, this)" class="lec-filter-btn px-3 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 transition">U6: MSA (2)</button>
+                <button onclick="filterLectures(7, this)" class="lec-filter-btn px-3 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 transition">U7: Trees (3)</button>
+                <button onclick="filterLectures(8, this)" class="lec-filter-btn px-3 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 transition">U8: Nucleotides (2)</button>
+                <button onclick="filterLectures(9, this)" class="lec-filter-btn px-3 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 transition">U9: Proteins (3)</button>
+                <button onclick="filterLectures(10, this)" class="lec-filter-btn px-3 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 transition">U10: 3D Structures (3)</button>
+                <button onclick="filterLectures(11, this)" class="lec-filter-btn px-3 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 transition">U11: Genomics (2)</button>
+            </div>
+
+            <!-- Dynamic Lecture Cards Grid -->
+            <div id="lectures-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                <!-- Rendered dynamically by JavaScript -->
+            </div>
+            
+            <div id="no-lectures-found" class="hidden text-center py-12 text-slate-400 text-sm">
+                <i class="fa-solid fa-folder-open text-3xl mb-2 text-slate-300"></i>
+                <div>No lectures match your query. Try a different search term or select "All".</div>
             </div>
         </section>
 
@@ -1021,5 +1079,366 @@
             });
         }
     </script>
+
+    <!-- ========================================== -->
+    <!-- SLIDE PRESENTATION MODAL                   -->
+    <!-- ========================================== -->
+    <div id="slide-modal" class="fixed inset-0 z-50 hidden bg-slate-950/95 backdrop-blur-md flex flex-col justify-between p-3 sm:p-6 overflow-hidden">
+        <!-- Top Bar -->
+        <div class="max-w-6xl mx-auto w-full flex items-center justify-between text-white border-b border-slate-800 pb-3">
+            <div class="flex items-center space-x-3">
+                <span id="slide-modal-lec-id" class="px-2.5 py-0.5 rounded bg-violet-600 text-white font-mono text-xs font-bold">L01</span>
+                <div>
+                    <h3 id="slide-modal-lec-title" class="font-bold text-sm sm:text-base text-slate-100">Lecture Title</h3>
+                    <div id="slide-modal-unit-name" class="text-[11px] text-slate-400">Unit 1: Bioinformatics & Internet</div>
+                </div>
+            </div>
+            <div class="flex items-center space-x-3">
+                <span id="slide-modal-counter" class="text-xs font-mono text-slate-300 bg-slate-900 px-3 py-1 rounded-full border border-slate-800">Slide 1 of 8</span>
+                <button onclick="closeSlideModal()" class="text-slate-400 hover:text-white p-2 text-lg rounded-lg hover:bg-slate-800 transition" title="Close (Esc)">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Center Slide Stage -->
+        <div class="flex-1 flex flex-col justify-center items-center py-3 overflow-y-auto max-w-6xl mx-auto w-full">
+            <div class="w-full bg-slate-900/90 border border-slate-800 rounded-2xl shadow-2xl p-5 sm:p-8 flex flex-col justify-between min-h-[460px] max-h-[75vh] overflow-y-auto">
+                <div>
+                    <div class="flex items-center justify-between mb-2">
+                        <span id="slide-stage-header" class="text-xs font-bold uppercase tracking-wider text-violet-400 font-mono">SLIDE 1: Title & Foundations</span>
+                        <span class="text-[11px] text-slate-500 font-mono">Use ← / → keys</span>
+                    </div>
+                    <h2 id="slide-stage-topic" class="text-lg sm:text-2xl font-extrabold text-white mb-4">Slide Topic</h2>
+
+                    <div id="slide-stage-content" class="font-mono text-xs sm:text-sm text-cyan-200 bg-slate-950 p-4 rounded-xl border border-slate-800 overflow-x-auto whitespace-pre-wrap leading-relaxed shadow-inner">
+                        <!-- Slide body / ASCII Diagram -->
+                    </div>
+                </div>
+
+                <!-- Speaker Notes Panel -->
+                <div id="slide-stage-notes-box" class="mt-4 pt-3 border-t border-slate-800 text-xs text-amber-200/90 bg-amber-500/10 p-3.5 rounded-xl border border-amber-500/20">
+                    <div class="font-bold text-amber-300 text-[11px] uppercase tracking-wider mb-1 flex items-center space-x-1.5">
+                        <i class="fa-solid fa-microphone text-xs"></i> <span>Speaker Notes & Algorithmic Takeaways</span>
+                    </div>
+                    <div id="slide-stage-notes" class="leading-relaxed whitespace-pre-line font-sans text-xs sm:text-sm text-slate-300">
+                        <!-- Notes -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Controls -->
+        <div class="max-w-6xl mx-auto w-full space-y-3">
+            <div class="w-full bg-slate-800 rounded-full h-1.5 overflow-hidden">
+                <div id="slide-progress-bar" class="bg-gradient-to-r from-violet-500 via-cyan-400 to-emerald-400 h-1.5 rounded-full transition-all duration-300" style="width: 12.5%;"></div>
+            </div>
+            <div class="flex items-center justify-between text-xs text-slate-400">
+                <button onclick="prevSlide()" class="px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-medium flex items-center space-x-2 transition">
+                    <i class="fa-solid fa-arrow-left"></i> <span>Previous Slide</span>
+                </button>
+                <div class="flex items-center space-x-2">
+                    <button onclick="openNotesFromCurrentSlide()" class="px-3 py-1.5 rounded-lg border border-slate-700 hover:border-violet-500 hover:text-white transition flex items-center space-x-1.5 text-xs text-slate-300">
+                        <i class="fa-solid fa-book-open text-xs text-violet-400"></i>
+                        <span>Read Full Lecture Notes</span>
+                    </button>
+                </div>
+                <button onclick="nextSlide()" class="px-4 py-2 rounded-lg bg-violet-600 hover:bg-violet-500 text-white font-medium flex items-center space-x-2 transition">
+                    <span>Next Slide</span> <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ========================================== -->
+    <!-- LECTURE NOTES READING MODAL / DRAWER       -->
+    <!-- ========================================== -->
+    <div id="notes-modal" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+        <div class="bg-white text-slate-900 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[92vh] flex flex-col overflow-hidden border border-slate-200">
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between p-5 sm:p-6 border-b border-slate-200 bg-slate-50/90">
+                <div>
+                    <div class="flex items-center space-x-2 mb-1.5">
+                        <span id="notes-modal-lec-badge" class="px-2.5 py-0.5 rounded-md text-xs font-bold font-mono bg-violet-100 text-violet-800 border border-violet-200">L01 · Unit 01</span>
+                        <span id="notes-modal-lo-badge" class="px-2 py-0.5 rounded text-[11px] font-semibold bg-cyan-100 text-cyan-800 border border-cyan-200">LO1</span>
+                    </div>
+                    <h2 id="notes-modal-title" class="text-xl sm:text-2xl font-bold text-slate-900">Lecture Title</h2>
+                    <p id="notes-modal-topic" class="text-xs text-slate-500 mt-1">Syllabus topic</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <button onclick="window.print()" class="p-2 text-slate-500 hover:text-slate-800 hover:bg-slate-200 rounded-lg transition" title="Print Notes">
+                        <i class="fa-solid fa-print"></i>
+                    </button>
+                    <button onclick="closeNotesModal()" class="p-2 text-slate-500 hover:text-slate-800 hover:bg-slate-200 rounded-lg transition" title="Close (Esc)">
+                        <i class="fa-solid fa-xmark text-xl"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Modal Content (Rendered Markdown) -->
+            <div id="notes-modal-content" class="p-6 sm:p-10 overflow-y-auto text-sm sm:text-base leading-relaxed space-y-4">
+                <!-- Rendered notes markdown -->
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="p-4 border-t border-slate-200 bg-slate-50 flex flex-wrap items-center justify-between gap-3 text-xs">
+                <a id="notes-modal-gh-link" href="#" target="_blank" class="text-violet-600 font-bold hover:underline flex items-center space-x-1.5">
+                    <i class="fa-brands fa-github text-sm"></i>
+                    <span>View Authentic Markdown on GitHub</span>
+                </a>
+                <div class="flex items-center space-x-3">
+                    <button onclick="openSlidesFromCurrentNotes()" class="px-3.5 py-1.5 rounded-lg bg-violet-50 border border-violet-200 text-violet-700 font-bold hover:bg-violet-100 transition flex items-center space-x-1.5">
+                        <i class="fa-solid fa-presentation-screen text-xs"></i> <span>Launch 8-Slide Deck</span>
+                    </button>
+                    <button onclick="closeNotesModal()" class="px-4 py-1.5 rounded-lg bg-slate-800 text-white font-medium hover:bg-slate-700 transition">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ========================================== -->
+    <!-- JAVASCRIPT CONTROLLER FOR SLIDES & NOTES   -->
+    <!-- ========================================== -->
+    <script>
+        let currentLecIndex = 0;
+        let currentSlideIndex = 0;
+        let activeUnitFilter = "all";
+        let searchQuery = "";
+
+        // Safe Markdown Renderer
+        function renderMarkdownToHtml(md) {
+            if (window.marked && typeof window.marked.parse === "function") {
+                return window.marked.parse(md);
+            }
+            // Fallback lightweight parser
+            return md
+                .replace(/^### (.*$)/gim, "<h3 class="text-lg font-bold text-slate-800 mt-5 mb-2">$1</h3>")
+                .replace(/^## (.*$)/gim, "<h2 class="text-xl font-bold text-slate-900 border-b border-slate-200 pb-1 mt-6 mb-3">$1</h2>")
+                .replace(/^# (.*$)/gim, "<h1 class="text-2xl font-extrabold text-slate-900 mb-4">$1</h1>")
+                .replace(/\*\*(.*?)\*\*/gim, "<strong>$1</strong>")
+                .replace(/\*(.*?)\*/gim, "<em>$1</em>")
+                .replace(/`([^`]+)`/gim, "<code class="bg-slate-100 text-violet-700 px-1 py-0.5 rounded text-xs font-mono">$1</code>")
+                .replace(/```([\s\S]*?)```/gim, "<pre class="bg-slate-900 text-cyan-200 p-4 rounded-xl font-mono text-xs overflow-x-auto my-3"><code>$1</code></pre>")
+                .replace(/^\s*\*\s+(.*$)/gim, "<li class="ml-4 list-disc">$1</li>")
+                .replace(/\n\n+/gim, "<br><br>");
+        }
+
+        // Initialize Lectures Grid
+        function renderLecturesGrid() {
+            const container = document.getElementById("lectures-grid");
+            const noResults = document.getElementById("no-lectures-found");
+            if (!container || !window.CBBI_LECTURES) return;
+
+            const q = searchQuery.toLowerCase().trim();
+            const filtered = window.CBBI_LECTURES.filter(lec => {
+                const matchesUnit = activeUnitFilter === "all" || lec.unit === parseInt(activeUnitFilter);
+                const matchesQuery = !q || 
+                    lec.title.toLowerCase().includes(q) || 
+                    lec.id.toLowerCase().includes(q) || 
+                    lec.syllabus_topic.toLowerCase().includes(q) ||
+                    lec.unit_name.toLowerCase().includes(q);
+                return matchesUnit && matchesQuery;
+            });
+
+            if (filtered.length === 0) {
+                container.innerHTML = "";
+                if (noResults) noResults.classList.remove("hidden");
+                return;
+            }
+            if (noResults) noResults.classList.add("hidden");
+
+            container.innerHTML = filtered.map((lec, idx) => {
+                const realIndex = window.CBBI_LECTURES.findIndex(l => l.id === lec.id);
+                const unitColor = lec.unit <= 4 ? "violet" : (lec.unit <= 7 ? "cyan" : (lec.unit <= 10 ? "emerald" : "indigo"));
+                return `
+                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between hover:border-violet-400 hover:shadow-md transition">
+                    <div>
+                        <div class="flex items-center justify-between mb-2.5">
+                            <span class="text-xs font-bold font-mono text-violet-700 bg-violet-50 px-2 py-0.5 rounded border border-violet-100">${lec.id} · Unit ${lec.unit.toString().padStart(2, "0")}</span>
+                            <span class="text-[11px] font-semibold text-slate-500 bg-slate-100 px-2 py-0.5 rounded">${lec.lo.split(" ")[0]}</span>
+                        </div>
+                        <h4 class="font-bold text-base text-slate-900 mb-1 leading-snug">${lec.title}</h4>
+                        <p class="text-xs text-slate-500 line-clamp-2 mb-4 leading-relaxed">${lec.syllabus_topic}</p>
+                    </div>
+
+                    <div class="space-y-2 pt-3 border-t border-slate-100">
+                        <div class="grid grid-cols-2 gap-2">
+                            <button onclick="openSlideModal(${realIndex})" class="w-full px-3 py-1.5 rounded-lg bg-violet-600 hover:bg-violet-700 text-white font-semibold text-xs flex items-center justify-center space-x-1.5 transition shadow-sm">
+                                <i class="fa-solid fa-presentation-screen text-xs"></i>
+                                <span>Slides (${lec.slide_count})</span>
+                            </button>
+                            <button onclick="openNotesModal(${realIndex})" class="w-full px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold text-xs flex items-center justify-center space-x-1.5 transition">
+                                <i class="fa-solid fa-book-open text-xs text-slate-600"></i>
+                                <span>Notes</span>
+                            </button>
+                        </div>
+                        <div class="flex items-center justify-between text-[11px] pt-1 text-slate-500">
+                            <a href="${lec.notebook_path}" class="text-cyan-700 hover:text-cyan-900 font-mono font-semibold hover:underline flex items-center space-x-1">
+                                <i class="fa-solid fa-code text-[10px]"></i> <span>Notebook</span>
+                            </a>
+                            <a href="${lec.rel_path}" class="text-slate-500 hover:text-violet-600 font-semibold hover:underline flex items-center space-x-1">
+                                <i class="fa-brands fa-markdown text-xs"></i> <span>Source .md</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                `;
+            }).join("");
+        }
+
+        // Filter by Unit
+        function filterLectures(unit, btn) {
+            activeUnitFilter = unit;
+            const buttons = document.querySelectorAll("#lecture-filter-bar .lec-filter-btn");
+            buttons.forEach(b => b.classList.remove("active"));
+            if (btn) btn.classList.add("active");
+            renderLecturesGrid();
+        }
+
+        // Search Lectures
+        function handleLectureSearch() {
+            const input = document.getElementById("lecture-search-input");
+            searchQuery = input ? input.value : "";
+            renderLecturesGrid();
+        }
+
+        // Slide Modal Methods
+        function openSlideModal(lecIndex, slideIndex = 0) {
+            if (!window.CBBI_LECTURES || !window.CBBI_LECTURES[lecIndex]) return;
+            currentLecIndex = lecIndex;
+            currentSlideIndex = slideIndex;
+            updateSlideView();
+            const modal = document.getElementById("slide-modal");
+            if (modal) modal.classList.remove("hidden");
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeSlideModal() {
+            const modal = document.getElementById("slide-modal");
+            if (modal) modal.classList.add("hidden");
+            document.body.style.overflow = "auto";
+        }
+
+        function updateSlideView() {
+            const lec = window.CBBI_LECTURES[currentLecIndex];
+            if (!lec || !lec.slides || lec.slides.length === 0) return;
+            const slide = lec.slides[currentSlideIndex];
+
+            document.getElementById("slide-modal-lec-id").textContent = lec.id;
+            document.getElementById("slide-modal-lec-title").textContent = lec.title;
+            document.getElementById("slide-modal-unit-name").textContent = `Unit ${lec.unit}: ${lec.unit_name}`;
+            document.getElementById("slide-modal-counter").textContent = `Slide ${currentSlideIndex + 1} of ${lec.slides.length}`;
+
+            document.getElementById("slide-stage-header").textContent = `SLIDE ${slide.num}: ${slide.title}`;
+            document.getElementById("slide-stage-topic").textContent = slide.title;
+            document.getElementById("slide-stage-content").textContent = slide.content;
+
+            const notesEl = document.getElementById("slide-stage-notes");
+            const notesBox = document.getElementById("slide-stage-notes-box");
+            if (slide.speaker_notes) {
+                notesEl.textContent = slide.speaker_notes;
+                notesBox.classList.remove("hidden");
+            } else {
+                notesBox.classList.add("hidden");
+            }
+
+            const pct = ((currentSlideIndex + 1) / lec.slides.length) * 100;
+            document.getElementById("slide-progress-bar").style.width = `${pct}%`;
+        }
+
+        function nextSlide() {
+            const lec = window.CBBI_LECTURES[currentLecIndex];
+            if (!lec) return;
+            if (currentSlideIndex < lec.slides.length - 1) {
+                currentSlideIndex++;
+                updateSlideView();
+            } else if (currentLecIndex < window.CBBI_LECTURES.length - 1) {
+                currentLecIndex++;
+                currentSlideIndex = 0;
+                updateSlideView();
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlideIndex > 0) {
+                currentSlideIndex--;
+                updateSlideView();
+            } else if (currentLecIndex > 0) {
+                currentLecIndex--;
+                currentSlideIndex = window.CBBI_LECTURES[currentLecIndex].slides.length - 1;
+                updateSlideView();
+            }
+        }
+
+        function openNotesFromCurrentSlide() {
+            const idx = currentLecIndex;
+            closeSlideModal();
+            openNotesModal(idx);
+        }
+
+        // Notes Modal Methods
+        function openNotesModal(lecIndex) {
+            if (!window.CBBI_LECTURES || !window.CBBI_LECTURES[lecIndex]) return;
+            currentLecIndex = lecIndex;
+            const lec = window.CBBI_LECTURES[lecIndex];
+
+            document.getElementById("notes-modal-lec-badge").textContent = `${lec.id} · Unit ${lec.unit.toString().padStart(2, "0")}`;
+            document.getElementById("notes-modal-lo-badge").textContent = lec.lo.split(" ")[0];
+            document.getElementById("notes-modal-title").textContent = lec.title;
+            document.getElementById("notes-modal-topic").textContent = `Syllabus Topic: ${lec.syllabus_topic}`;
+
+            const contentEl = document.getElementById("notes-modal-content");
+            contentEl.innerHTML = renderMarkdownToHtml(lec.notes_md);
+
+            const ghLink = document.getElementById("notes-modal-gh-link");
+            if (ghLink) ghLink.href = lec.rel_path;
+
+            const modal = document.getElementById("notes-modal");
+            if (modal) modal.classList.remove("hidden");
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeNotesModal() {
+            const modal = document.getElementById("notes-modal");
+            if (modal) modal.classList.add("hidden");
+            document.body.style.overflow = "auto";
+        }
+
+        function openSlidesFromCurrentNotes() {
+            const idx = currentLecIndex;
+            closeNotesModal();
+            openSlideModal(idx, 0);
+        }
+
+        // Global Keyboard Event Listener
+        window.addEventListener("keydown", function(e) {
+            const slideModal = document.getElementById("slide-modal");
+            const notesModal = document.getElementById("notes-modal");
+
+            if (slideModal && !slideModal.classList.contains("hidden")) {
+                if (e.key === "ArrowRight" || e.key === " " || e.key === "Enter") {
+                    e.preventDefault();
+                    nextSlide();
+                } else if (e.key === "ArrowLeft") {
+                    e.preventDefault();
+                    prevSlide();
+                } else if (e.key === "Escape") {
+                    closeSlideModal();
+                }
+            } else if (notesModal && !notesModal.classList.contains("hidden")) {
+                if (e.key === "Escape") {
+                    closeNotesModal();
+                }
+            }
+        });
+
+        // Initialize on DOM load
+        document.addEventListener("DOMContentLoaded", function() {
+            renderLecturesGrid();
+        });
+    </script>
+
 </body>
 </html>
