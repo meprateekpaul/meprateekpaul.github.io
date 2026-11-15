@@ -520,9 +520,14 @@
                 </div>
             </div>
 
-            <div class="pt-4 text-center">
-                <a href="FOUR_MONTH_ROADMAP.md" class="text-xs font-semibold text-cyan-400 hover:text-cyan-300 transition underline underline-offset-4">
-                    Read the complete 15-week hour-by-hour roadmap and self-audit checklists →
+            <div class="pt-4 flex flex-wrap items-center justify-center gap-3 text-xs">
+                <button onclick="openRoadmapModal()" class="font-bold text-cyan-400 hover:text-cyan-300 transition underline underline-offset-4 cursor-pointer flex items-center space-x-1.5">
+                    <i class="fa-solid fa-book-open text-xs"></i>
+                    <span>Read Complete 15-Week Roadmap & Self-Audit Checklists (In-Browser) →</span>
+                </button>
+                <a href="https://github.com/meprateekpaul/basicsbioinformatics/blob/main/Concepts_of_Bioinformatics/FOUR_MONTH_ROADMAP.md" target="_blank" rel="noopener" class="text-slate-400 hover:text-white flex items-center space-x-1">
+                    <i class="fa-brands fa-github text-xs"></i>
+                    <span>View on GitHub</span>
                 </a>
             </div>
         </section>
@@ -560,9 +565,23 @@
                             Central Dogma as data flow; Internet architectures (HTTP, FTP, URLs); major biological resource hubs (NCBI, EBI, DDBJ INSDC exchange).
                         </p>
                     </div>
-                    <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
-                        <span>Notebooks: <code class="code-pill font-bold text-violet-700">U01_C1, P, Q</code></span>
-                        <a href="lectures/U01_Bioinformatics_and_Internet/L01_Introduction_to_Bioinformatics.md" class="text-violet-600 font-semibold hover:underline">Notes →</a>
+                    <div class="pt-3 border-t border-slate-100 space-y-2">
+                        <div class="flex items-center justify-between text-xs text-slate-500">
+                            <span>Notebooks: <a href="#notebooks" onclick="filterNotebooksToUnit(1)" class="code-pill font-bold text-violet-700 hover:underline">U01_C1, P, Q</a></span>
+                            <a href="https://github.com/meprateekpaul/basicsbioinformatics/blob/main/Concepts_of_Bioinformatics/lectures/U01_Bioinformatics_and_Internet/L01_Introduction_to_Bioinformatics.md" target="_blank" rel="noopener" class="text-slate-400 hover:text-slate-800 text-[11px] flex items-center space-x-1" title="View Source Markdown on GitHub">
+                                <i class="fa-brands fa-github text-xs"></i><span>GitHub .md</span>
+                            </a>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 text-xs">
+                            <button onclick="openSlideModalByLectureId('L01')" class="py-1.5 px-2.5 rounded-lg bg-violet-600 hover:bg-violet-700 text-white font-bold transition flex items-center justify-center space-x-1.5 cursor-pointer shadow-sm">
+                                <i class="fa-solid fa-presentation-screen text-xs"></i>
+                                <span>Launch Slides</span>
+                            </button>
+                            <button onclick="openNotesModalByLectureId('L01')" class="py-1.5 px-2.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold border border-slate-200 transition flex items-center justify-center space-x-1.5 cursor-pointer">
+                                <i class="fa-solid fa-book-open text-xs text-slate-600"></i>
+                                <span>Read Notes</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
@@ -578,9 +597,23 @@
                             Entrez architecture; interconnected databases (Gene, Nucleotide, Protein, PubMed); MeSH indexing; Boolean query formulation & field tags.
                         </p>
                     </div>
-                    <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
-                        <span>Notebooks: <code class="code-pill font-bold text-violet-700">U02_C1, P, Q</code></span>
-                        <a href="lectures/U02_Information_Retrieval/L03_Entrez_Database_Architecture.md" class="text-violet-600 font-semibold hover:underline">Notes →</a>
+                    <div class="pt-3 border-t border-slate-100 space-y-2">
+                        <div class="flex items-center justify-between text-xs text-slate-500">
+                            <span>Notebooks: <a href="#notebooks" onclick="filterNotebooksToUnit(2)" class="code-pill font-bold text-violet-700 hover:underline">U02_C1, P, Q</a></span>
+                            <a href="https://github.com/meprateekpaul/basicsbioinformatics/blob/main/Concepts_of_Bioinformatics/lectures/U02_Information_Retrieval/L03_Entrez_Database_Architecture.md" target="_blank" rel="noopener" class="text-slate-400 hover:text-slate-800 text-[11px] flex items-center space-x-1" title="View Source Markdown on GitHub">
+                                <i class="fa-brands fa-github text-xs"></i><span>GitHub .md</span>
+                            </a>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 text-xs">
+                            <button onclick="openSlideModalByLectureId('L03')" class="py-1.5 px-2.5 rounded-lg bg-violet-600 hover:bg-violet-700 text-white font-bold transition flex items-center justify-center space-x-1.5 cursor-pointer shadow-sm">
+                                <i class="fa-solid fa-presentation-screen text-xs"></i>
+                                <span>Launch Slides</span>
+                            </button>
+                            <button onclick="openNotesModalByLectureId('L03')" class="py-1.5 px-2.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold border border-slate-200 transition flex items-center justify-center space-x-1.5 cursor-pointer">
+                                <i class="fa-solid fa-book-open text-xs text-slate-600"></i>
+                                <span>Read Notes</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
@@ -596,9 +629,23 @@
                             ASN.1 specification; Bioseq, Bioseq-set; Seq-id, Seq-feat (genes, CDS, variation), and Seq-descr; structural representation of sequence records.
                         </p>
                     </div>
-                    <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
-                        <span>Notebooks: <code class="code-pill font-bold text-violet-700">U03_C1, P, Q</code></span>
-                        <a href="lectures/U03_NCBI_Data_Model/L05_ASN1_and_Bioseq_Architecture.md" class="text-violet-600 font-semibold hover:underline">Notes →</a>
+                    <div class="pt-3 border-t border-slate-100 space-y-2">
+                        <div class="flex items-center justify-between text-xs text-slate-500">
+                            <span>Notebooks: <a href="#notebooks" onclick="filterNotebooksToUnit(3)" class="code-pill font-bold text-violet-700 hover:underline">U03_C1, P, Q</a></span>
+                            <a href="https://github.com/meprateekpaul/basicsbioinformatics/blob/main/Concepts_of_Bioinformatics/lectures/U03_NCBI_Data_Model/L05_ASN1_and_Bioseq_Architecture.md" target="_blank" rel="noopener" class="text-slate-400 hover:text-slate-800 text-[11px] flex items-center space-x-1" title="View Source Markdown on GitHub">
+                                <i class="fa-brands fa-github text-xs"></i><span>GitHub .md</span>
+                            </a>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 text-xs">
+                            <button onclick="openSlideModalByLectureId('L05')" class="py-1.5 px-2.5 rounded-lg bg-violet-600 hover:bg-violet-700 text-white font-bold transition flex items-center justify-center space-x-1.5 cursor-pointer shadow-sm">
+                                <i class="fa-solid fa-presentation-screen text-xs"></i>
+                                <span>Launch Slides</span>
+                            </button>
+                            <button onclick="openNotesModalByLectureId('L05')" class="py-1.5 px-2.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold border border-slate-200 transition flex items-center justify-center space-x-1.5 cursor-pointer">
+                                <i class="fa-solid fa-book-open text-xs text-slate-600"></i>
+                                <span>Read Notes</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
@@ -614,9 +661,23 @@
                             Primary vs. curated databases (GenBank vs. RefSeq, Swiss-Prot vs. TrEMBL); line-by-line flat file dissection; FASTA, GenBank, EMBL formats.
                         </p>
                     </div>
-                    <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
-                        <span>Notebooks: <code class="code-pill font-bold text-violet-700">U04_C1, C2, P, Q</code></span>
-                        <a href="lectures/U04_GenBank_Database/L08_GenBank_Flat_File_Anatomy.md" class="text-violet-600 font-semibold hover:underline">Notes →</a>
+                    <div class="pt-3 border-t border-slate-100 space-y-2">
+                        <div class="flex items-center justify-between text-xs text-slate-500">
+                            <span>Notebooks: <a href="#notebooks" onclick="filterNotebooksToUnit(4)" class="code-pill font-bold text-violet-700 hover:underline">U04_C1, C2, P, Q</a></span>
+                            <a href="https://github.com/meprateekpaul/basicsbioinformatics/blob/main/Concepts_of_Bioinformatics/lectures/U04_GenBank_Database/L08_GenBank_Flat_File_Anatomy.md" target="_blank" rel="noopener" class="text-slate-400 hover:text-slate-800 text-[11px] flex items-center space-x-1" title="View Source Markdown on GitHub">
+                                <i class="fa-brands fa-github text-xs"></i><span>GitHub .md</span>
+                            </a>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 text-xs">
+                            <button onclick="openSlideModalByLectureId('L07')" class="py-1.5 px-2.5 rounded-lg bg-violet-600 hover:bg-violet-700 text-white font-bold transition flex items-center justify-center space-x-1.5 cursor-pointer shadow-sm">
+                                <i class="fa-solid fa-presentation-screen text-xs"></i>
+                                <span>Launch Slides</span>
+                            </button>
+                            <button onclick="openNotesModalByLectureId('L07')" class="py-1.5 px-2.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold border border-slate-200 transition flex items-center justify-center space-x-1.5 cursor-pointer">
+                                <i class="fa-solid fa-book-open text-xs text-slate-600"></i>
+                                <span>Read Notes</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
@@ -632,9 +693,23 @@
                             Dot plots; Needleman–Wunsch global & Smith–Waterman local DP; PAM/BLOSUM matrices; Karlin–Altschul E-values; BLAST & FASTA heuristics; PSSMs.
                         </p>
                     </div>
-                    <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
-                        <span>Notebooks: <code class="code-pill font-bold text-cyan-700">U05_C1–C3, P, Q</code></span>
-                        <a href="lectures/U05_Sequence_Alignment/L11_Needleman_Wunsch_Global_Alignment.md" class="text-cyan-600 font-semibold hover:underline">Notes →</a>
+                    <div class="pt-3 border-t border-slate-100 space-y-2">
+                        <div class="flex items-center justify-between text-xs text-slate-500">
+                            <span>Notebooks: <a href="#notebooks" onclick="filterNotebooksToUnit(5)" class="code-pill font-bold text-cyan-700 hover:underline">U05_C1–C3, P, Q</a></span>
+                            <a href="https://github.com/meprateekpaul/basicsbioinformatics/blob/main/Concepts_of_Bioinformatics/lectures/U05_Sequence_Alignment/L11_Needleman_Wunsch_Global_Alignment.md" target="_blank" rel="noopener" class="text-slate-400 hover:text-slate-800 text-[11px] flex items-center space-x-1" title="View Source Markdown on GitHub">
+                                <i class="fa-brands fa-github text-xs"></i><span>GitHub .md</span>
+                            </a>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 text-xs">
+                            <button onclick="openSlideModalByLectureId('L10')" class="py-1.5 px-2.5 rounded-lg bg-violet-600 hover:bg-violet-700 text-white font-bold transition flex items-center justify-center space-x-1.5 cursor-pointer shadow-sm">
+                                <i class="fa-solid fa-presentation-screen text-xs"></i>
+                                <span>Launch Slides</span>
+                            </button>
+                            <button onclick="openNotesModalByLectureId('L10')" class="py-1.5 px-2.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold border border-slate-200 transition flex items-center justify-center space-x-1.5 cursor-pointer">
+                                <i class="fa-solid fa-book-open text-xs text-slate-600"></i>
+                                <span>Read Notes</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
@@ -650,9 +725,23 @@
                             Conserved columns, catalytic residues; progressive alignment (guide trees, Clustal Omega, MUSCLE); Jalview visual inspection & consensus scores.
                         </p>
                     </div>
-                    <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
-                        <span>Notebooks: <code class="code-pill font-bold text-cyan-700">U06_C1, P, Q</code></span>
-                        <a href="lectures/U06_Multiple_Sequence_Alignment/L16_Principles_of_Multiple_Alignment.md" class="text-cyan-600 font-semibold hover:underline">Notes →</a>
+                    <div class="pt-3 border-t border-slate-100 space-y-2">
+                        <div class="flex items-center justify-between text-xs text-slate-500">
+                            <span>Notebooks: <a href="#notebooks" onclick="filterNotebooksToUnit(6)" class="code-pill font-bold text-cyan-700 hover:underline">U06_C1, P, Q</a></span>
+                            <a href="https://github.com/meprateekpaul/basicsbioinformatics/blob/main/Concepts_of_Bioinformatics/lectures/U06_Multiple_Sequence_Alignment/L16_Principles_of_Multiple_Alignment.md" target="_blank" rel="noopener" class="text-slate-400 hover:text-slate-800 text-[11px] flex items-center space-x-1" title="View Source Markdown on GitHub">
+                                <i class="fa-brands fa-github text-xs"></i><span>GitHub .md</span>
+                            </a>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 text-xs">
+                            <button onclick="openSlideModalByLectureId('L16')" class="py-1.5 px-2.5 rounded-lg bg-violet-600 hover:bg-violet-700 text-white font-bold transition flex items-center justify-center space-x-1.5 cursor-pointer shadow-sm">
+                                <i class="fa-solid fa-presentation-screen text-xs"></i>
+                                <span>Launch Slides</span>
+                            </button>
+                            <button onclick="openNotesModalByLectureId('L16')" class="py-1.5 px-2.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold border border-slate-200 transition flex items-center justify-center space-x-1.5 cursor-pointer">
+                                <i class="fa-solid fa-book-open text-xs text-slate-600"></i>
+                                <span>Read Notes</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
@@ -668,9 +757,23 @@
                             Nodes, clades, branch lengths; orthologues vs. paralogues; distance methods (UPGMA by hand, Neighbor-Joining); bootstrap evaluation & support.
                         </p>
                     </div>
-                    <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
-                        <span>Notebooks: <code class="code-pill font-bold text-cyan-700">U07_C1, P, Q</code></span>
-                        <a href="lectures/U07_Phylogenetic_Analysis/L18_Trees_Orthologues_and_Paralogues.md" class="text-cyan-600 font-semibold hover:underline">Notes →</a>
+                    <div class="pt-3 border-t border-slate-100 space-y-2">
+                        <div class="flex items-center justify-between text-xs text-slate-500">
+                            <span>Notebooks: <a href="#notebooks" onclick="filterNotebooksToUnit(7)" class="code-pill font-bold text-cyan-700 hover:underline">U07_C1, P, Q</a></span>
+                            <a href="https://github.com/meprateekpaul/basicsbioinformatics/blob/main/Concepts_of_Bioinformatics/lectures/U07_Phylogenetic_Analysis/L18_Trees_Orthologues_and_Paralogues.md" target="_blank" rel="noopener" class="text-slate-400 hover:text-slate-800 text-[11px] flex items-center space-x-1" title="View Source Markdown on GitHub">
+                                <i class="fa-brands fa-github text-xs"></i><span>GitHub .md</span>
+                            </a>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 text-xs">
+                            <button onclick="openSlideModalByLectureId('L18')" class="py-1.5 px-2.5 rounded-lg bg-violet-600 hover:bg-violet-700 text-white font-bold transition flex items-center justify-center space-x-1.5 cursor-pointer shadow-sm">
+                                <i class="fa-solid fa-presentation-screen text-xs"></i>
+                                <span>Launch Slides</span>
+                            </button>
+                            <button onclick="openNotesModalByLectureId('L18')" class="py-1.5 px-2.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold border border-slate-200 transition flex items-center justify-center space-x-1.5 cursor-pointer">
+                                <i class="fa-solid fa-book-open text-xs text-slate-600"></i>
+                                <span>Read Notes</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
@@ -686,9 +789,23 @@
                             Transposable repeats & RepeatMasker; 6-frame translation; ORF finding (NCBI ORFfinder); codon usage bias tables; CpG island identification.
                         </p>
                     </div>
-                    <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
-                        <span>Notebooks: <code class="code-pill font-bold text-emerald-700">U08_C1, P, Q</code></span>
-                        <a href="lectures/U08_Predictive_Nucleotide/L21_Repeats_and_Open_Reading_Frames.md" class="text-emerald-600 font-semibold hover:underline">Notes →</a>
+                    <div class="pt-3 border-t border-slate-100 space-y-2">
+                        <div class="flex items-center justify-between text-xs text-slate-500">
+                            <span>Notebooks: <a href="#notebooks" onclick="filterNotebooksToUnit(8)" class="code-pill font-bold text-emerald-700 hover:underline">U08_C1, P, Q</a></span>
+                            <a href="https://github.com/meprateekpaul/basicsbioinformatics/blob/main/Concepts_of_Bioinformatics/lectures/U08_Predictive_Nucleotide/L21_Repeats_and_Open_Reading_Frames.md" target="_blank" rel="noopener" class="text-slate-400 hover:text-slate-800 text-[11px] flex items-center space-x-1" title="View Source Markdown on GitHub">
+                                <i class="fa-brands fa-github text-xs"></i><span>GitHub .md</span>
+                            </a>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 text-xs">
+                            <button onclick="openSlideModalByLectureId('L21')" class="py-1.5 px-2.5 rounded-lg bg-violet-600 hover:bg-violet-700 text-white font-bold transition flex items-center justify-center space-x-1.5 cursor-pointer shadow-sm">
+                                <i class="fa-solid fa-presentation-screen text-xs"></i>
+                                <span>Launch Slides</span>
+                            </button>
+                            <button onclick="openNotesModalByLectureId('L21')" class="py-1.5 px-2.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold border border-slate-200 transition flex items-center justify-center space-x-1.5 cursor-pointer">
+                                <i class="fa-solid fa-book-open text-xs text-slate-600"></i>
+                                <span>Read Notes</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
@@ -704,9 +821,23 @@
                             ProtParam (MW, pI, GRAVY); ProtScale hydropathy; PROSITE motif patterns; Chou–Fasman, GOR IV, PSIPRED secondary structure; Q3 accuracy scoring.
                         </p>
                     </div>
-                    <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
-                        <span>Notebooks: <code class="code-pill font-bold text-emerald-700">U09_C1, C2, P, Q</code></span>
-                        <a href="lectures/U09_Predictive_Protein/L23_Physicochemical_Properties.md" class="text-emerald-600 font-semibold hover:underline">Notes →</a>
+                    <div class="pt-3 border-t border-slate-100 space-y-2">
+                        <div class="flex items-center justify-between text-xs text-slate-500">
+                            <span>Notebooks: <a href="#notebooks" onclick="filterNotebooksToUnit(9)" class="code-pill font-bold text-emerald-700 hover:underline">U09_C1, C2, P, Q</a></span>
+                            <a href="https://github.com/meprateekpaul/basicsbioinformatics/blob/main/Concepts_of_Bioinformatics/lectures/U09_Predictive_Protein/L23_Physicochemical_Properties.md" target="_blank" rel="noopener" class="text-slate-400 hover:text-slate-800 text-[11px] flex items-center space-x-1" title="View Source Markdown on GitHub">
+                                <i class="fa-brands fa-github text-xs"></i><span>GitHub .md</span>
+                            </a>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 text-xs">
+                            <button onclick="openSlideModalByLectureId('L23')" class="py-1.5 px-2.5 rounded-lg bg-violet-600 hover:bg-violet-700 text-white font-bold transition flex items-center justify-center space-x-1.5 cursor-pointer shadow-sm">
+                                <i class="fa-solid fa-presentation-screen text-xs"></i>
+                                <span>Launch Slides</span>
+                            </button>
+                            <button onclick="openNotesModalByLectureId('L23')" class="py-1.5 px-2.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold border border-slate-200 transition flex items-center justify-center space-x-1.5 cursor-pointer">
+                                <i class="fa-solid fa-book-open text-xs text-slate-600"></i>
+                                <span>Read Notes</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
@@ -722,9 +853,23 @@
                             X-ray crystallography, NMR, cryo-EM resolution; PDB flat files (ATOM, HETATM); VMD & Mol* rendering; structural alignment (VAST+, DALI); homology modeling & AlphaFold DB.
                         </p>
                     </div>
-                    <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
-                        <span>Notebooks: <code class="code-pill font-bold text-rose-700">U10_C1, P, Q</code></span>
-                        <a href="lectures/U10_Structure_Databases/L26_Macromolecular_Structure_Determination.md" class="text-rose-600 font-semibold hover:underline">Notes →</a>
+                    <div class="pt-3 border-t border-slate-100 space-y-2">
+                        <div class="flex items-center justify-between text-xs text-slate-500">
+                            <span>Notebooks: <a href="#notebooks" onclick="filterNotebooksToUnit(10)" class="code-pill font-bold text-rose-700 hover:underline">U10_C1, P, Q</a></span>
+                            <a href="https://github.com/meprateekpaul/basicsbioinformatics/blob/main/Concepts_of_Bioinformatics/lectures/U10_Structure_Databases/L26_Macromolecular_Structure_Determination.md" target="_blank" rel="noopener" class="text-slate-400 hover:text-slate-800 text-[11px] flex items-center space-x-1" title="View Source Markdown on GitHub">
+                                <i class="fa-brands fa-github text-xs"></i><span>GitHub .md</span>
+                            </a>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 text-xs">
+                            <button onclick="openSlideModalByLectureId('L26')" class="py-1.5 px-2.5 rounded-lg bg-violet-600 hover:bg-violet-700 text-white font-bold transition flex items-center justify-center space-x-1.5 cursor-pointer shadow-sm">
+                                <i class="fa-solid fa-presentation-screen text-xs"></i>
+                                <span>Launch Slides</span>
+                            </button>
+                            <button onclick="openNotesModalByLectureId('L26')" class="py-1.5 px-2.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold border border-slate-200 transition flex items-center justify-center space-x-1.5 cursor-pointer">
+                                <i class="fa-solid fa-book-open text-xs text-slate-600"></i>
+                                <span>Read Notes</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
@@ -740,9 +885,23 @@
                             Genome assembly & annotation pipelines; synteny; comparing pathogen vs. non-pathogen genomes; minimal bacterial gene sets; course synthesis.
                         </p>
                     </div>
-                    <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
-                        <span>Notebooks: <code class="code-pill font-bold text-indigo-700">U11_C1, P, Q</code></span>
-                        <a href="lectures/U11_Comparative_Genomics/L29_Genome_Projects_and_Annotation.md" class="text-indigo-600 font-semibold hover:underline">Notes →</a>
+                    <div class="pt-3 border-t border-slate-100 space-y-2">
+                        <div class="flex items-center justify-between text-xs text-slate-500">
+                            <span>Notebooks: <a href="#notebooks" onclick="filterNotebooksToUnit(11)" class="code-pill font-bold text-indigo-700 hover:underline">U11_C1, P, Q</a></span>
+                            <a href="https://github.com/meprateekpaul/basicsbioinformatics/blob/main/Concepts_of_Bioinformatics/lectures/U11_Comparative_Genomics/L29_Genome_Projects_and_Annotation.md" target="_blank" rel="noopener" class="text-slate-400 hover:text-slate-800 text-[11px] flex items-center space-x-1" title="View Source Markdown on GitHub">
+                                <i class="fa-brands fa-github text-xs"></i><span>GitHub .md</span>
+                            </a>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 text-xs">
+                            <button onclick="openSlideModalByLectureId('L29')" class="py-1.5 px-2.5 rounded-lg bg-violet-600 hover:bg-violet-700 text-white font-bold transition flex items-center justify-center space-x-1.5 cursor-pointer shadow-sm">
+                                <i class="fa-solid fa-presentation-screen text-xs"></i>
+                                <span>Launch Slides</span>
+                            </button>
+                            <button onclick="openNotesModalByLectureId('L29')" class="py-1.5 px-2.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold border border-slate-200 transition flex items-center justify-center space-x-1.5 cursor-pointer">
+                                <i class="fa-solid fa-book-open text-xs text-slate-600"></i>
+                                <span>Read Notes</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1652,10 +1811,14 @@
             </div>
             <div class="flex items-center space-x-2">
                 <span id="slide-modal-counter" class="text-xs font-mono text-slate-300 bg-slate-900 px-3 py-1 rounded-full border border-slate-800">Slide 1 of 8</span>
-                <button onclick="toggleFullscreenSlide()" class="p-2 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 transition" title="Toggle Fullscreen">
+                <a id="slide-modal-gh-link" href="#" target="_blank" rel="noopener" class="hidden sm:flex items-center space-x-1 text-xs text-slate-300 hover:text-white bg-slate-900 hover:bg-slate-800 border border-slate-800 px-2.5 py-1 rounded-lg transition" title="View Slide Source Markdown on GitHub">
+                    <i class="fa-brands fa-github text-xs"></i>
+                    <span>Slide .md</span>
+                </a>
+                <button onclick="toggleFullscreenSlide()" class="p-2 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 transition cursor-pointer" title="Toggle Fullscreen">
                     <i class="fa-solid fa-expand text-sm"></i>
                 </button>
-                <button onclick="closeSlideModal()" class="text-slate-400 hover:text-white p-2 text-lg rounded-lg hover:bg-slate-800 transition" title="Close (Esc)">
+                <button onclick="closeSlideModal()" class="text-slate-400 hover:text-white p-2 text-lg rounded-lg hover:bg-slate-800 transition cursor-pointer" title="Close (Esc)">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
@@ -1978,6 +2141,12 @@
                 notesBox.classList.add("hidden");
             }
 
+            // GitHub slide source link
+            const ghSlideLink = document.getElementById("slide-modal-gh-link");
+            if (ghSlideLink) {
+                ghSlideLink.href = lec.slides_gh_url || `https://github.com/meprateekpaul/basicsbioinformatics/blob/main/Concepts_of_Bioinformatics/${lec.slides_rel_path}`;
+            }
+
             // Progress bar
             const pct = ((currentSlideIndex + 1) / lec.slides.length) * 100;
             document.getElementById("slide-progress-bar").style.width = `${pct}%`;
@@ -2163,6 +2332,95 @@
             const idx = currentLecIndex;
             closeNotesModal();
             openSlideModal(idx, 0);
+        }
+
+        // Direct Helper Functions for Unit Cards & Cross-Navigation
+        function openSlideModalByLectureId(lecId) {
+            if (!window.CBBI_LECTURES) return;
+            const idx = window.CBBI_LECTURES.findIndex(l => l.id === lecId);
+            if (idx !== -1) {
+                openSlideModal(idx, 0);
+            }
+        }
+
+        function openNotesModalByLectureId(lecId) {
+            if (!window.CBBI_LECTURES) return;
+            const idx = window.CBBI_LECTURES.findIndex(l => l.id === lecId);
+            if (idx !== -1) {
+                openNotesModal(idx);
+            }
+        }
+
+        function openSlideModalByUnit(unitNum) {
+            if (!window.CBBI_LECTURES) return;
+            const idx = window.CBBI_LECTURES.findIndex(l => l.unit === parseInt(unitNum));
+            if (idx !== -1) {
+                openSlideModal(idx, 0);
+            }
+        }
+
+        function openNotesModalByUnit(unitNum) {
+            if (!window.CBBI_LECTURES) return;
+            const idx = window.CBBI_LECTURES.findIndex(l => l.unit === parseInt(unitNum));
+            if (idx !== -1) {
+                openNotesModal(idx);
+            }
+        }
+
+        function filterNotebooksToUnit(unitNum) {
+            const unitSelect = document.getElementById("notebook-unit-select");
+            if (unitSelect) {
+                unitSelect.value = unitNum.toString();
+                handleNotebookFilter();
+            }
+        }
+
+        function openRoadmapModal() {
+            // Load and render roadmap markdown
+            const roadmapMd = `# Concepts of Bioinformatics (CBBI-501) — 15-Week (4-Month) Comprehensive Roadmap
+
+> **Programme:** Bachelor of Technology (B.Tech.) in Bioinformatics · **Semester:** II  
+> **Institution Provenance:** Inspired by Department of Computational Biology & Bioinformatics, Jacob Institute of Biotechnology & Bioengineering (JSBB), [SHUATS](https://shuats.edu.in/), Prayagraj, UP, India  
+> **Course Code:** CBBI-501 / CBBI-502 | **Credits:** 3 (2-0-1) | **Total Duration:** 15 Weeks (60 Lecture Hours + 30 Practical Hours + 60 Hands-On Notebook Hours)
+
+---
+
+## 4-Month Study Schedule Overview
+
+* **Month 1 (Weeks 1–4): Data Architectures & Information Retrieval**
+  * Unit 01: Bioinformatics & Internet (Lectures 01–02, Practical S01, Notebooks U01_C1, P, Q)
+  * Unit 02: Biological Information Retrieval (Lectures 03–04, Practicals S02–S03, Notebooks U02_C1, P, Q)
+  * Unit 03: The NCBI Data Model & ASN.1 (Lectures 05–06, Notebooks U03_C1, P, Q)
+  * Unit 04: GenBank Sequence Database (Lectures 07–09, Practicals S04–S05, Notebooks U04_C1–C2, P, Q)
+  * *Milestone: Formative Quiz 1 (Units 1–3) completed.*
+
+* **Month 2 (Weeks 5–8): Sequence Alignment & Database Searching**
+  * Unit 05: Pairwise Alignment, Dynamic Programming & FASTA/BLAST (Lectures 10–15, Practicals S06–S07, Notebooks U05_C1–C3, P, Q)
+  * *Milestone: Formative Quiz 2 (Hand-calculated Needleman–Wunsch matrix) & Mid-Semester Formal Examination.*
+
+* **Month 3 (Weeks 9–12): Multiple Alignment, Evolution & Predictive Biophysics**
+  * Unit 06: Multiple Sequence Alignment (Lectures 16–17, Practical S08, Notebooks U06_C1, P, Q)
+  * Unit 07: Molecular Phylogenetics (Lectures 18–20, Notebooks U07_C1, P, Q)
+  * Unit 08: Predictive Methods for Nucleotides (Lectures 21–22, Practical S09, Notebooks U08_C1, P, Q)
+  * Unit 09: Predictive Methods for Proteins (Lectures 23–25, Practicals S10–S11, Notebooks U09_C1–C2, P, Q)
+  * *Milestones: Quiz 3 (Units 6–7), Quiz 4 (Units 8–10), Assignment 1 (Unknown Mystery Sequence Report) Due.*
+
+* **Month 4 (Weeks 13–15): Macromolecular Structures, Comparative Genomics & Capstone**
+  * Unit 10: Macromolecular Structure Databases & 3D Visualisation (Lectures 26–28, Practicals S12–S13, Notebooks U10_C1, P, Q)
+  * Unit 11: Comparative Genome Analysis (Lectures 29–30, Practical S14 Workshop, Notebooks U11_C1, P, Q)
+  * Practical Exam & Viva Voce (Session S15)
+  * *Milestone: Final Capstone Gene Family Mini-Project Presentation & End-Semester Formal Examination.*
+`;
+
+            openGenericMarkdownModal({
+                title: "15-Week (4-Month) Comprehensive Course Roadmap",
+                topic: "Curriculum Milestones, Weekly Breakdown & Self-Audit Checklists",
+                badge: "Roadmap · 4 Months",
+                lo: "Full Curriculum",
+                rawMarkdown: roadmapMd,
+                githubUrl: "https://github.com/meprateekpaul/basicsbioinformatics/blob/main/Concepts_of_Bioinformatics/FOUR_MONTH_ROADMAP.md",
+                isLecture: false
+            });
         }
 
         // ---------------------------------------------
