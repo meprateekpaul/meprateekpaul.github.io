@@ -1,0 +1,2271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>ChronoCraft — Ambient Full-Screen Master Clock</title>
+  <meta name="description" content="A versatile, publication-grade full-screen ambient clock featuring analog, digital, retro 7-segment, flip, binary, word clock, observatory data, world timezones, and focus timers." />
+  <meta name="author" content="Prateek Paul" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⏱️</text></svg>" />
+
+  <!-- Google Fonts: Inter, Orbitron (Sci-fi/Digital), JetBrains Mono (Terminal), Playfair Display (Classic Roman) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;600;700&family=Orbitron:wght@400;600;800;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ==========================================================================
+       RESET & THEME VARIABLES
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    :root {
+      /* Dynamic Theme Variables */
+      --bg-color: #030712;
+      --bg-gradient: radial-gradient(circle at 50% 40%, #0c1527 0%, #030712 100%);
+      --text-main: #f9fafb;
+      --text-muted: #9ca3af;
+      --text-dim: #4b5563;
+      --accent: #38bdf8;
+      --accent-glow: rgba(56, 189, 248, 0.4);
+      --accent-rgb: 56, 189, 248;
+      --card-bg: rgba(17, 24, 39, 0.65);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --surface-glass: rgba(255, 255, 255, 0.04);
+      --second-hand: #ef4444;
+      --second-glow: rgba(239, 68, 68, 0.5);
+
+      /* Typography */
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', 'Share Tech Mono', monospace;
+      --font-digital: 'Orbitron', monospace;
+      --font-serif: 'Playfair Display', Georgia, serif;
+
+      /* UI Transitions */
+      --ui-transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Theme Presets */
+    body[data-theme="pitch-black"] {
+      --bg-color: #000000;
+      --bg-gradient: #000000;
+      --text-main: #ffffff;
+      --text-muted: #888888;
+      --text-dim: #333333;
+      --accent: #38bdf8;
+      --accent-glow: rgba(56, 189, 248, 0.35);
+      --accent-rgb: 56, 189, 248;
+      --card-bg: rgba(18, 18, 18, 0.9);
+      --card-border: #222222;
+      --second-hand: #ef4444;
+      --second-glow: rgba(239, 68, 68, 0.4);
+    }
+
+    body[data-theme="cyber-cyan"] {
+      --bg-color: #040914;
+      --bg-gradient: radial-gradient(circle at 50% 40%, #0d1e38 0%, #040914 100%);
+      --text-main: #e0f2fe;
+      --text-muted: #7dd3fc;
+      --text-dim: #1e3a5f;
+      --accent: #00f2fe;
+      --accent-glow: rgba(0, 242, 254, 0.5);
+      --accent-rgb: 0, 242, 254;
+      --card-bg: rgba(10, 25, 47, 0.75);
+      --card-border: rgba(0, 242, 254, 0.2);
+      --second-hand: #00f2fe;
+      --second-glow: rgba(0, 242, 254, 0.7);
+    }
+
+    body[data-theme="matrix-green"] {
+      --bg-color: #020b05;
+      --bg-gradient: radial-gradient(circle at 50% 40%, #052310 0%, #020b05 100%);
+      --text-main: #dcfce7;
+      --text-muted: #86efac;
+      --text-dim: #14532d;
+      --accent: #22c55e;
+      --accent-glow: rgba(34, 197, 94, 0.5);
+      --accent-rgb: 34, 197, 94;
+      --card-bg: rgba(6, 32, 15, 0.75);
+      --card-border: rgba(34, 197, 94, 0.25);
+      --second-hand: #4ade80;
+      --second-glow: rgba(74, 222, 128, 0.7);
+    }
+
+    body[data-theme="vintage-amber"] {
+      --bg-color: #0e0903;
+      --bg-gradient: radial-gradient(circle at 50% 40%, #291705 0%, #0e0903 100%);
+      --text-main: #fef3c7;
+      --text-muted: #fde68a;
+      --text-dim: #78350f;
+      --accent: #f59e0b;
+      --accent-glow: rgba(245, 158, 11, 0.5);
+      --accent-rgb: 245, 158, 11;
+      --card-bg: rgba(36, 20, 6, 0.75);
+      --card-border: rgba(245, 158, 11, 0.25);
+      --second-hand: #fbbf24;
+      --second-glow: rgba(251, 191, 36, 0.7);
+    }
+
+    body[data-theme="sunset-coral"] {
+      --bg-color: #12050c;
+      --bg-gradient: radial-gradient(circle at 50% 40%, #2f0d22 0%, #12050c 100%);
+      --text-main: #ffe4e6;
+      --text-muted: #fda4af;
+      --text-dim: #881337;
+      --accent: #f43f5e;
+      --accent-glow: rgba(244, 63, 94, 0.5);
+      --accent-rgb: 244, 63, 94;
+      --card-bg: rgba(38, 12, 28, 0.75);
+      --card-border: rgba(244, 63, 94, 0.25);
+      --second-hand: #fb7185;
+      --second-glow: rgba(251, 113, 133, 0.7);
+    }
+
+    body[data-theme="cosmic-violet"] {
+      --bg-color: #090515;
+      --bg-gradient: radial-gradient(circle at 50% 40%, #1e113f 0%, #090515 100%);
+      --text-main: #f3e8ff;
+      --text-muted: #d8b4fe;
+      --text-dim: #581c87;
+      --accent: #a855f7;
+      --accent-glow: rgba(168, 85, 247, 0.5);
+      --accent-rgb: 168, 85, 247;
+      --card-bg: rgba(27, 16, 54, 0.75);
+      --card-border: rgba(168, 85, 247, 0.25);
+      --second-hand: #c084fc;
+      --second-glow: rgba(192, 132, 252, 0.7);
+    }
+
+    body[data-theme="tokyo-crimson"] {
+      --bg-color: #0c0205;
+      --bg-gradient: radial-gradient(circle at 50% 40%, #2b040f 0%, #0c0205 100%);
+      --text-main: #ffffff;
+      --text-muted: #ff7597;
+      --text-dim: #60081d;
+      --accent: #ff0055;
+      --accent-glow: rgba(255, 0, 85, 0.55);
+      --accent-rgb: 255, 0, 85;
+      --card-bg: rgba(35, 6, 16, 0.75);
+      --card-border: rgba(255, 0, 85, 0.25);
+      --second-hand: #ff0055;
+      --second-glow: rgba(255, 0, 85, 0.8);
+    }
+
+    body[data-theme="nordic-light"] {
+      --bg-color: #f8fafc;
+      --bg-gradient: radial-gradient(circle at 50% 40%, #ffffff 0%, #e2e8f0 100%);
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --text-dim: #94a3b8;
+      --accent: #0284c7;
+      --accent-glow: rgba(2, 132, 199, 0.25);
+      --accent-rgb: 2, 132, 199;
+      --card-bg: rgba(255, 255, 255, 0.85);
+      --card-border: rgba(15, 23, 42, 0.1);
+      --second-hand: #dc2626;
+      --second-glow: rgba(220, 38, 38, 0.35);
+    }
+
+    /* Base Body & Layout */
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: var(--bg-color);
+      background-image: var(--bg-gradient);
+      font-family: var(--font-sans);
+      color: var(--text-main);
+      touch-action: manipulation;
+    }
+
+    /* Ambient Burn-in Micro-drift (1px shift every 60s) */
+    #app-container {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      animation: ambientShift 300s ease-in-out infinite alternate;
+    }
+
+    @keyframes ambientShift {
+      0% { transform: translate(0, 0); }
+      25% { transform: translate(1px, -1px); }
+      50% { transform: translate(-1px, 1px); }
+      75% { transform: translate(1px, 1px); }
+      100% { transform: translate(-1px, -1px); }
+    }
+
+    /* ==========================================================================
+       TOP APP HEADER & FLOATING CONTROLS
+       ========================================================================== */
+    .top-nav {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      transition: var(--ui-transition);
+      background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 100%);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 1.05rem;
+      letter-spacing: -0.02em;
+      text-decoration: none;
+      color: var(--text-main);
+    }
+
+    .brand-pulse {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--accent);
+      animation: pulseGlow 2s infinite;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.3); opacity: 0.6; }
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-icon {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      color: var(--text-main);
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      backdrop-filter: blur(6px);
+    }
+
+    .btn-icon:hover {
+      border-color: var(--accent);
+      box-shadow: 0 0 12px var(--accent-glow);
+      color: var(--accent);
+    }
+
+    .btn-icon.active {
+      background: var(--accent);
+      color: #030712;
+      border-color: var(--accent);
+      font-weight: 700;
+    }
+
+    /* Floating Bottom Action Dock */
+    .bottom-dock {
+      position: absolute;
+      bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      padding: 8px 16px;
+      border-radius: 100px;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      z-index: 100;
+      transition: var(--ui-transition);
+      max-width: 95vw;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .bottom-dock::-webkit-scrollbar { display: none; }
+
+    .dock-pill {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 8px 14px;
+      border-radius: 20px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dock-pill:hover {
+      color: var(--text-main);
+      background: var(--surface-glass);
+    }
+
+    .dock-pill.active {
+      background: var(--accent);
+      color: #030712;
+      box-shadow: 0 0 16px var(--accent-glow);
+    }
+
+    .dock-divider {
+      width: 1px;
+      height: 20px;
+      background: var(--card-border);
+    }
+
+    /* Idle / Clean Mode Fade Out */
+    body.is-idle {
+      cursor: none;
+    }
+    body.is-idle .top-nav,
+    body.is-idle .bottom-dock,
+    body.is-idle .hud-pill,
+    body.is-idle .settings-drawer {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-8px);
+    }
+    body.is-idle .bottom-dock {
+      transform: translateY(12px);
+    }
+
+    /* ==========================================================================
+       SETTINGS DRAWER / MODAL
+       ========================================================================== */
+    .settings-drawer {
+      position: absolute;
+      top: 75px;
+      right: 24px;
+      width: 340px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 20px;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      z-index: 110;
+      display: none;
+      flex-direction: column;
+      gap: 18px;
+      transform-origin: top right;
+      animation: drawerIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .settings-drawer.open {
+      display: flex;
+    }
+
+    @keyframes drawerIn {
+      from { opacity: 0; transform: scale(0.95) translateY(-10px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    .drawer-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .setting-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .setting-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+    }
+
+    .color-swatches {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+
+    .swatch {
+      height: 32px;
+      border-radius: 8px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: transform 0.15s, border-color 0.15s;
+      position: relative;
+    }
+
+    .swatch:hover {
+      transform: scale(1.08);
+    }
+
+    .swatch.active {
+      border-color: #ffffff;
+      box-shadow: 0 0 10px var(--accent);
+    }
+
+    .toggle-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+    }
+
+    .toggle-switch {
+      position: relative;
+      width: 44px;
+      height: 24px;
+    }
+
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      inset: 0;
+      background-color: var(--text-dim);
+      border-radius: 24px;
+      transition: 0.3s;
+    }
+
+    .slider::before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      border-radius: 50%;
+      transition: 0.3s;
+    }
+
+    input:checked + .slider {
+      background-color: var(--accent);
+    }
+
+    input:checked + .slider::before {
+      transform: translateX(20px);
+    }
+
+    /* ==========================================================================
+       CLOCK STAGE & VIEWS CONTAINER
+       ========================================================================== */
+    .stage {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      padding: 40px 20px;
+    }
+
+    .clock-view {
+      display: none;
+      width: 100%;
+      height: 100%;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      animation: viewFade 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .clock-view.active {
+      display: flex;
+    }
+
+    @keyframes viewFade {
+      from { opacity: 0; transform: scale(0.97); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* ==========================================================================
+       STYLE 1: DIGITAL MINIMALIST BOLD
+       ========================================================================== */
+    .digital-minimal-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .digital-time {
+      font-family: var(--font-sans);
+      font-weight: 800;
+      font-size: clamp(4.5rem, 18vw, 16rem);
+      line-height: 0.95;
+      letter-spacing: -0.05em;
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      font-variant-numeric: tabular-nums;
+      text-shadow: 0 0 50px var(--accent-glow);
+    }
+
+    .digital-colon {
+      animation: blinkColon 1s steps(1) infinite;
+      padding: 0 0.05em;
+      opacity: 0.85;
+      color: var(--accent);
+    }
+
+    @keyframes blinkColon {
+      50% { opacity: 0.15; }
+    }
+
+    .digital-seconds {
+      font-size: 0.38em;
+      font-weight: 400;
+      color: var(--accent);
+      margin-left: 0.15em;
+      font-family: var(--font-mono);
+      min-width: 1.8ch;
+    }
+
+    .digital-ampm {
+      font-size: 0.22em;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-left: 0.3em;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .digital-date {
+      font-size: clamp(1rem, 2.5vw, 2.2rem);
+      font-weight: 400;
+      color: var(--text-muted);
+      margin-top: 1.5vh;
+      letter-spacing: 0.02em;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .date-badge {
+      background: var(--surface-glass);
+      border: 1px solid var(--card-border);
+      padding: 4px 12px;
+      border-radius: 100px;
+      font-size: 0.75em;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    /* ==========================================================================
+       STYLE 2: RETRO 7-SEGMENT VFD / ALARM CLOCK
+       ========================================================================== */
+    .vfd-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(8px, 1.5vw, 24px);
+      padding: clamp(20px, 4vw, 50px);
+      background: rgba(0, 0, 0, 0.6);
+      border: 2px solid var(--card-border);
+      border-radius: 28px;
+      box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.9), 0 25px 60px rgba(0, 0, 0, 0.8);
+    }
+
+    .seg-digit-svg {
+      width: clamp(55px, 11vw, 130px);
+      height: clamp(100px, 20vw, 240px);
+      filter: drop-shadow(0 0 10px var(--accent-glow));
+    }
+
+    .seg {
+      fill: var(--text-dim);
+      opacity: 0.12;
+      transition: fill 0.1s, opacity 0.1s;
+    }
+
+    .seg.on {
+      fill: var(--accent);
+      opacity: 1;
+      filter: drop-shadow(0 0 6px var(--accent));
+    }
+
+    .vfd-colon-dots {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(18px, 4vw, 45px);
+    }
+
+    .vfd-dot {
+      width: clamp(10px, 2vw, 22px);
+      height: clamp(10px, 2vw, 22px);
+      background: var(--accent);
+      border-radius: 50%;
+      box-shadow: 0 0 12px var(--accent);
+      animation: blinkColon 1s steps(1) infinite;
+    }
+
+    /* ==========================================================================
+       STYLE 3: RETRO SPLIT-FLAP / FLIP CLOCK
+       ========================================================================== */
+    .flip-clock-wrap {
+      display: flex;
+      align-items: center;
+      gap: clamp(10px, 2vw, 28px);
+    }
+
+    .flip-group {
+      display: flex;
+      gap: clamp(4px, 0.8vw, 10px);
+    }
+
+    .flip-card {
+      position: relative;
+      width: clamp(55px, 10vw, 130px);
+      height: clamp(85px, 16vw, 200px);
+      background: #11141d;
+      border-radius: 12px;
+      font-family: var(--font-sans);
+      font-size: clamp(3rem, 11vw, 8.5rem);
+      font-weight: 800;
+      color: var(--text-main);
+      box-shadow: 0 16px 30px rgba(0,0,0,0.6), inset 0 2px 3px rgba(255,255,255,0.1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .flip-card::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: rgba(0, 0, 0, 0.7);
+      box-shadow: 0 1px 1px rgba(255, 255, 255, 0.15);
+      z-index: 5;
+    }
+
+    .flip-colon {
+      font-size: clamp(2.5rem, 8vw, 6rem);
+      font-weight: 800;
+      color: var(--accent);
+      animation: blinkColon 1s steps(1) infinite;
+    }
+
+    /* ==========================================================================
+       STYLE 4: SWISS RAILWAY & BAUHAUS ANALOG CLOCK
+       ========================================================================== */
+    .analog-stage {
+      position: relative;
+      width: clamp(280px, 68vmin, 620px);
+      height: clamp(280px, 68vmin, 620px);
+    }
+
+    .analog-svg {
+      width: 100%;
+      height: 100%;
+      filter: drop-shadow(0 25px 45px rgba(0, 0, 0, 0.5));
+    }
+
+    .hand {
+      transform-origin: 200px 200px;
+      transition: transform 0.05s linear;
+    }
+
+    .hand-smooth {
+      transition: none !important;
+    }
+
+    .hand-hour {
+      stroke: var(--text-main);
+      stroke-width: 9;
+      stroke-linecap: round;
+    }
+
+    .hand-minute {
+      stroke: var(--text-main);
+      stroke-width: 6;
+      stroke-linecap: round;
+    }
+
+    .hand-second {
+      stroke: var(--second-hand);
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      filter: drop-shadow(0 0 6px var(--second-glow));
+    }
+
+    .second-lollipop {
+      fill: var(--second-hand);
+      filter: drop-shadow(0 0 8px var(--second-glow));
+    }
+
+    /* ==========================================================================
+       STYLE 5: CYBER TERMINAL / MATRIX MONOSPACE
+       ========================================================================== */
+    .terminal-container {
+      font-family: var(--font-mono);
+      background: rgba(0, 0, 0, 0.85);
+      border: 1px solid var(--accent);
+      border-radius: 16px;
+      padding: clamp(24px, 4vw, 48px);
+      width: clamp(320px, 85vw, 840px);
+      box-shadow: 0 0 35px var(--accent-glow), inset 0 0 30px rgba(0, 0, 0, 0.8);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .terminal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 14px;
+      margin-bottom: 20px;
+      border-bottom: 1px dashed var(--accent);
+      font-size: 0.85rem;
+      color: var(--accent);
+    }
+
+    .terminal-time {
+      font-size: clamp(3rem, 9vw, 6.5rem);
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      text-shadow: 0 0 20px var(--accent-glow);
+      margin: 12px 0;
+    }
+
+    .terminal-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+      margin-top: 24px;
+      font-size: 0.9rem;
+    }
+
+    .terminal-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .term-key {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .term-val {
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    /* ==========================================================================
+       STYLE 6: OBSERVATORY / SCIENTIFIC MASTER CLOCK
+       ========================================================================== */
+    .observatory-wrap {
+      width: clamp(320px, 90vw, 1100px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .obs-main-time {
+      font-family: var(--font-digital);
+      font-size: clamp(3.5rem, 13vw, 10rem);
+      font-weight: 900;
+      color: var(--text-main);
+      letter-spacing: -0.02em;
+      line-height: 0.95;
+      text-shadow: 0 0 40px var(--accent-glow);
+    }
+
+    .obs-millis {
+      font-size: 0.35em;
+      color: var(--accent);
+      font-family: var(--font-mono);
+      font-weight: 400;
+    }
+
+    .obs-metrics-bar {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+    }
+
+    .obs-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      padding: 16px 20px;
+      border-radius: 14px;
+      backdrop-filter: blur(8px);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .obs-card-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .obs-card-val {
+      font-family: var(--font-mono);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .obs-progress {
+      width: 100%;
+      height: 6px;
+      background: var(--surface-glass);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 4px;
+    }
+
+    .obs-progress-fill {
+      height: 100%;
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--accent);
+      transition: width 0.5s ease;
+    }
+
+    /* ==========================================================================
+       STYLE 7: MULTI-TIMEZONE WORLD CLOCK
+       ========================================================================== */
+    .world-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      width: clamp(320px, 92vw, 1150px);
+      max-height: 75vh;
+      overflow-y: auto;
+      padding: 10px;
+    }
+
+    .world-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 22px;
+      backdrop-filter: blur(10px);
+      transition: transform 0.2s, border-color 0.2s;
+      position: relative;
+    }
+
+    .world-card.is-local {
+      border-color: var(--accent);
+      box-shadow: 0 0 25px var(--accent-glow);
+    }
+
+    .world-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent);
+    }
+
+    .world-city {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 2px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .world-offset {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .world-time {
+      font-size: 2.4rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin: 12px 0 6px;
+      color: var(--text-main);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .world-date {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* ==========================================================================
+       STYLE 8: TYPOGRAPHIC WORD CLOCK
+       ========================================================================== */
+    .word-clock-container {
+      display: grid;
+      grid-template-columns: repeat(11, 1fr);
+      gap: clamp(6px, 1.4vw, 18px);
+      background: rgba(0, 0, 0, 0.7);
+      border: 1px solid var(--card-border);
+      padding: clamp(20px, 4vw, 45px);
+      border-radius: 24px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+      width: clamp(320px, 88vw, 760px);
+    }
+
+    .word-letter {
+      font-family: var(--font-sans);
+      font-size: clamp(1rem, 2.8vw, 2.2rem);
+      font-weight: 800;
+      color: var(--text-dim);
+      text-align: center;
+      transition: color 0.3s, text-shadow 0.3s;
+      opacity: 0.2;
+    }
+
+    .word-letter.lit {
+      color: var(--accent);
+      opacity: 1;
+      text-shadow: 0 0 16px var(--accent);
+    }
+
+    /* ==========================================================================
+       STYLE 9: BINARY CODED DECIMAL (BCD) CLOCK
+       ========================================================================== */
+    .binary-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+      background: rgba(0, 0, 0, 0.7);
+      border: 1px solid var(--card-border);
+      padding: clamp(24px, 4vw, 48px);
+      border-radius: 24px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+    }
+
+    .binary-columns {
+      display: flex;
+      gap: clamp(14px, 3vw, 36px);
+    }
+
+    .binary-col {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(12px, 2vw, 24px);
+      align-items: center;
+    }
+
+    .binary-bit {
+      width: clamp(20px, 4vw, 42px);
+      height: clamp(20px, 4vw, 42px);
+      border-radius: 50%;
+      background: var(--text-dim);
+      opacity: 0.18;
+      transition: all 0.2s ease;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+    }
+
+    .binary-bit.on {
+      background: var(--accent);
+      opacity: 1;
+      box-shadow: 0 0 16px var(--accent);
+    }
+
+    .binary-col-label {
+      font-family: var(--font-mono);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-top: 6px;
+    }
+
+    /* ==========================================================================
+       STYLE 10 & 11: POMODORO & STOPWATCH TIMERS
+       ========================================================================== */
+    .timer-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .timer-display {
+      font-family: var(--font-digital);
+      font-size: clamp(4rem, 16vw, 13rem);
+      font-weight: 900;
+      color: var(--text-main);
+      font-variant-numeric: tabular-nums;
+      text-shadow: 0 0 40px var(--accent-glow);
+    }
+
+    .timer-controls {
+      display: flex;
+      gap: 16px;
+    }
+
+    .timer-btn {
+      padding: 14px 32px;
+      border-radius: 100px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border: 1px solid var(--accent);
+      background: var(--accent);
+      color: #030712;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 0 20px var(--accent-glow);
+    }
+
+    .timer-btn.btn-outline {
+      background: transparent;
+      color: var(--text-main);
+      border-color: var(--card-border);
+      box-shadow: none;
+    }
+
+    .timer-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    /* ==========================================================================
+       RESPONSIVE ADJUSTMENTS
+       ========================================================================== */
+    @media (max-width: 768px) {
+      .top-nav { padding: 12px 16px; }
+      .bottom-dock { bottom: 16px; padding: 6px 12px; }
+      .dock-pill { padding: 6px 10px; font-size: 0.78rem; }
+      .settings-drawer { right: 12px; width: calc(100vw - 24px); max-width: 340px; }
+    }
+  </style>
+</head>
+<body data-theme="pitch-black">
+
+  <div id="app-container">
+
+    <!-- TOP NAVIGATION & STATUS -->
+    <header class="top-nav">
+      <a href="../index.html#contact" class="brand" title="Back to Portfolio">
+        <span class="brand-pulse"></span>
+        <span>ChronoCraft</span>
+        <span style="font-size: 0.75rem; color: var(--accent); font-weight: 500;">v2.0</span>
+      </a>
+
+      <div class="top-actions">
+        <button id="btn-sound" class="btn-icon" title="Toggle Sound (M)">
+          <span id="sound-icon">🔇</span>
+          <span id="sound-label">Muted</span>
+        </button>
+
+        <button id="btn-fullscreen" class="btn-icon" title="Toggle Fullscreen (F)">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 8V4m0 0h4M4 4l5 5m11-5v4m0-4h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5v-4m0 4h-4m4 0l-5-5"/>
+          </svg>
+          <span id="fs-label">Fullscreen</span>
+        </button>
+
+        <button id="btn-settings" class="btn-icon" title="Customization Settings">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- SETTINGS & CUSTOMIZATION DRAWER -->
+    <div id="settings-drawer" class="settings-drawer">
+      <div class="drawer-title">
+        <span>Clock Settings</span>
+        <button id="btn-close-settings" style="background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 1.2rem;">&times;</button>
+      </div>
+
+      <!-- Color Palettes -->
+      <div class="setting-group">
+        <label class="setting-label">Color Themes</label>
+        <div class="color-swatches">
+          <div class="swatch active" style="background: #000000; border-color: #38bdf8;" data-set-theme="pitch-black" title="OLED Pitch Black"></div>
+          <div class="swatch" style="background: #00f2fe;" data-set-theme="cyber-cyan" title="Cyber Cyan"></div>
+          <div class="swatch" style="background: #22c55e;" data-set-theme="matrix-green" title="Matrix Emerald"></div>
+          <div class="swatch" style="background: #f59e0b;" data-set-theme="vintage-amber" title="Vintage Amber"></div>
+          <div class="swatch" style="background: #f43f5e;" data-set-theme="sunset-coral" title="Sunset Coral"></div>
+          <div class="swatch" style="background: #a855f7;" data-set-theme="cosmic-violet" title="Cosmic Violet"></div>
+          <div class="swatch" style="background: #ff0055;" data-set-theme="tokyo-crimson" title="Tokyo Crimson"></div>
+          <div class="swatch" style="background: #ffffff; border-color: #94a3b8;" data-set-theme="nordic-light" title="Nordic Light"></div>
+        </div>
+      </div>
+
+      <!-- Format Toggles -->
+      <div class="setting-group">
+        <label class="setting-label">Display Options</label>
+        <div class="toggle-row">
+          <span>24-Hour Military Format (T)</span>
+          <label class="toggle-switch">
+            <input type="checkbox" id="toggle-24h" checked />
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="toggle-row">
+          <span>Show Seconds Hand / Counter</span>
+          <label class="toggle-switch">
+            <input type="checkbox" id="toggle-seconds" checked />
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="toggle-row">
+          <span>Smooth Analog Sweep (60 FPS)</span>
+          <label class="toggle-switch">
+            <input type="checkbox" id="toggle-smooth-sweep" checked />
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="toggle-row">
+          <span>Screen Wake Lock (No Sleep)</span>
+          <label class="toggle-switch">
+            <input type="checkbox" id="toggle-wakelock" checked />
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="setting-group" style="margin-top: 6px;">
+        <span style="font-size: 0.72rem; color: var(--text-dim); line-height: 1.4;">
+          Tip: Press <strong>F</strong> for Fullscreen, <strong>Space</strong> for Clean View, <strong>S</strong> to switch style.
+        </span>
+      </div>
+    </div>
+
+    <!-- MAIN CLOCK STAGE -->
+    <main class="stage" id="stage">
+
+      <!-- VIEW 1: DIGITAL MINIMALIST BOLD -->
+      <section class="clock-view active" id="view-digital-minimal">
+        <div class="digital-minimal-wrap">
+          <div class="digital-time">
+            <span id="dm-hours">12</span>
+            <span class="digital-colon">:</span>
+            <span id="dm-minutes">00</span>
+            <span class="digital-seconds" id="dm-seconds">00</span>
+            <span class="digital-ampm" id="dm-ampm"></span>
+          </div>
+          <div class="digital-date" id="dm-date">
+            <span class="date-badge" id="dm-dayname">MONDAY</span>
+            <span id="dm-full-date">NOVEMBER 16, 2026</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 2: RETRO 7-SEGMENT VFD DISPLAY -->
+      <section class="clock-view" id="view-digital-7seg">
+        <div class="vfd-container">
+          <!-- Hours -->
+          <svg class="seg-digit-svg" id="seg-h1" viewBox="0 0 60 100"></svg>
+          <svg class="seg-digit-svg" id="seg-h2" viewBox="0 0 60 100"></svg>
+          <!-- Colon -->
+          <div class="vfd-colon-dots">
+            <div class="vfd-dot"></div>
+            <div class="vfd-dot"></div>
+          </div>
+          <!-- Minutes -->
+          <svg class="seg-digit-svg" id="seg-m1" viewBox="0 0 60 100"></svg>
+          <svg class="seg-digit-svg" id="seg-m2" viewBox="0 0 60 100"></svg>
+          <!-- Colon -->
+          <div class="vfd-colon-dots seg-sec-unit">
+            <div class="vfd-dot"></div>
+            <div class="vfd-dot"></div>
+          </div>
+          <!-- Seconds -->
+          <svg class="seg-digit-svg seg-sec-unit" id="seg-s1" viewBox="0 0 60 100"></svg>
+          <svg class="seg-digit-svg seg-sec-unit" id="seg-s2" viewBox="0 0 60 100"></svg>
+        </div>
+      </section>
+
+      <!-- VIEW 3: RETRO SPLIT-FLAP FLIP CLOCK -->
+      <section class="clock-view" id="view-digital-flip">
+        <div class="flip-clock-wrap">
+          <div class="flip-group">
+            <div class="flip-card" id="flip-h1">1</div>
+            <div class="flip-card" id="flip-h2">2</div>
+          </div>
+          <div class="flip-colon">:</div>
+          <div class="flip-group">
+            <div class="flip-card" id="flip-m1">0</div>
+            <div class="flip-card" id="flip-m2">0</div>
+          </div>
+          <div class="flip-colon flip-sec-unit">:</div>
+          <div class="flip-group flip-sec-unit">
+            <div class="flip-card" id="flip-s1">0</div>
+            <div class="flip-card" id="flip-s2">0</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 4: SWISS RAILWAY & BAUHAUS ANALOG CLOCK -->
+      <section class="clock-view" id="view-analog-bauhaus">
+        <div class="analog-stage">
+          <svg class="analog-svg" viewBox="0 0 400 400">
+            <!-- Dial Face -->
+            <circle cx="200" cy="200" r="190" fill="var(--card-bg)" stroke="var(--card-border)" stroke-width="4" />
+            <!-- Markers Generator Group -->
+            <g id="analog-markers"></g>
+            <!-- Hands -->
+            <line id="hand-hour" class="hand hand-hour" x1="200" y1="200" x2="200" y2="105" />
+            <line id="hand-minute" class="hand hand-minute" x1="200" y1="200" x2="200" y2="60" />
+            <line id="hand-second" class="hand hand-second" x1="200" y1="230" x2="200" y2="45" />
+            <circle id="hand-second-lollipop" class="second-lollipop" cx="200" cy="55" r="8" />
+            <!-- Center Pivot Pin -->
+            <circle cx="200" cy="200" r="6" fill="var(--second-hand)" />
+          </svg>
+        </div>
+      </section>
+
+      <!-- VIEW 5: CYBER TERMINAL / MATRIX MONOSPACE -->
+      <section class="clock-view" id="view-digital-terminal">
+        <div class="terminal-container">
+          <div class="terminal-header">
+            <span>&gt; SYSTEM_CHRONO_DAEMON: ACTIVE</span>
+            <span id="term-utc">UTC 00:00:00 Z</span>
+          </div>
+          <div class="terminal-time" id="term-time">00:00:00</div>
+          <div class="terminal-grid">
+            <div class="terminal-item">
+              <span class="term-key">DATE_STAMP</span>
+              <span class="term-val" id="term-date">2026-11-16</span>
+            </div>
+            <div class="terminal-item">
+              <span class="term-key">UNIX_EPOCH</span>
+              <span class="term-val" id="term-epoch">1794770000</span>
+            </div>
+            <div class="terminal-item">
+              <span class="term-key">TIMEZONE</span>
+              <span class="term-val" id="term-tz">UTC+05:30</span>
+            </div>
+            <div class="terminal-item">
+              <span class="term-key">FPS_REFRESH</span>
+              <span class="term-val" id="term-fps">60.0 FPS</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 6: OBSERVATORY / SCIENTIFIC MASTER CLOCK -->
+      <section class="clock-view" id="view-detailed-observatory">
+        <div class="observatory-wrap">
+          <div class="obs-main-time">
+            <span id="obs-time">00:00:00</span><span class="obs-millis" id="obs-millis">.000</span>
+          </div>
+
+          <div class="obs-metrics-bar">
+            <!-- Day Progress -->
+            <div class="obs-card">
+              <div class="obs-card-label">
+                <span>Solar Day</span>
+                <span id="obs-day-pct">0%</span>
+              </div>
+              <div class="obs-card-val" id="obs-solar-status">Daylight</div>
+              <div class="obs-progress">
+                <div class="obs-progress-fill" id="obs-day-progress" style="width: 0%;"></div>
+              </div>
+            </div>
+
+            <!-- Day of Year / Week -->
+            <div class="obs-card">
+              <div class="obs-card-label">
+                <span>Calendar Position</span>
+                <span id="obs-year-pct">0%</span>
+              </div>
+              <div class="obs-card-val" id="obs-day-of-year">Day 320 / W47</div>
+              <div class="obs-progress">
+                <div class="obs-progress-fill" id="obs-year-progress" style="width: 0%;"></div>
+              </div>
+            </div>
+
+            <!-- Astronomical Julian Date -->
+            <div class="obs-card">
+              <div class="obs-card-label">Julian Date (JD)</div>
+              <div class="obs-card-val" id="obs-julian">2461358.5</div>
+            </div>
+
+            <!-- Coordinated Universal Time -->
+            <div class="obs-card">
+              <div class="obs-card-label">Universal Time (UTC)</div>
+              <div class="obs-card-val" id="obs-utc">00:00:00 Z</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 7: MULTI-TIMEZONE WORLD CLOCK -->
+      <section class="clock-view" id="view-detailed-world">
+        <div class="world-grid" id="world-grid">
+          <!-- Live Cards populated via JS -->
+        </div>
+      </section>
+
+      <!-- VIEW 8: TYPOGRAPHIC NATURAL WORD CLOCK -->
+      <section class="clock-view" id="view-word-clock">
+        <div class="word-clock-container" id="word-clock-matrix">
+          <!-- Populated by JS -->
+        </div>
+      </section>
+
+      <!-- VIEW 9: BINARY CODED DECIMAL (BCD) CLOCK -->
+      <section class="clock-view" id="view-binary-clock">
+        <div class="binary-container">
+          <div class="binary-columns">
+            <div class="binary-col" id="bcol-h1"></div>
+            <div class="binary-col" id="bcol-h2"></div>
+            <div class="binary-col" id="bcol-m1" style="margin-left: 15px;"></div>
+            <div class="binary-col" id="bcol-m2"></div>
+            <div class="binary-col" id="bcol-s1" style="margin-left: 15px;"></div>
+            <div class="binary-col" id="bcol-s2"></div>
+          </div>
+          <div style="font-size: 0.85rem; color: var(--text-muted); font-family: var(--font-mono); letter-spacing: 0.05em;">
+            BINARY CODED DECIMAL (8 · 4 · 2 · 1)
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 10: FOCUS POMODORO TIMER -->
+      <section class="clock-view" id="view-timer-pomodoro">
+        <div class="timer-wrap">
+          <div style="font-size: 1.1rem; color: var(--accent); font-weight: 700; letter-spacing: 0.05em;" id="pomo-mode-label">
+            FOCUS SESSION (25 MIN)
+          </div>
+          <div class="timer-display" id="pomo-display">25:00</div>
+          <div class="timer-controls">
+            <button class="timer-btn" id="btn-pomo-toggle">Start</button>
+            <button class="timer-btn btn-outline" id="btn-pomo-reset">Reset</button>
+            <button class="timer-btn btn-outline" id="btn-pomo-mode">Switch to Break</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 11: PRECISION STOPWATCH -->
+      <section class="clock-view" id="view-timer-stopwatch">
+        <div class="timer-wrap">
+          <div class="timer-display" id="sw-display">00:00.00</div>
+          <div class="timer-controls">
+            <button class="timer-btn" id="btn-sw-toggle">Start</button>
+            <button class="timer-btn btn-outline" id="btn-sw-lap">Lap</button>
+            <button class="timer-btn btn-outline" id="btn-sw-reset">Reset</button>
+          </div>
+          <div id="sw-laps" style="max-height: 140px; overflow-y: auto; width: 280px; font-family: var(--font-mono); font-size: 0.9rem;"></div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- FLOATING BOTTOM STYLE DOCK -->
+    <nav class="bottom-dock" id="bottom-dock">
+      <button class="dock-pill active" data-style="view-digital-minimal">⚡ Digital</button>
+      <button class="dock-pill" data-style="view-digital-7seg">📟 7-Segment</button>
+      <button class="dock-pill" data-style="view-digital-flip">🛫 Flip Clock</button>
+      <button class="dock-pill" data-style="view-analog-bauhaus">🕰️ Bauhaus Analog</button>
+      <button class="dock-pill" data-style="view-detailed-observatory">🔭 Observatory</button>
+      <button class="dock-pill" data-style="view-detailed-world">🌍 World</button>
+      <button class="dock-pill" data-style="view-word-clock">📖 Word Clock</button>
+      <button class="dock-pill" data-style="view-digital-terminal">💻 Terminal</button>
+      <button class="dock-pill" data-style="view-binary-clock">🔢 Binary</button>
+      <div class="dock-divider"></div>
+      <button class="dock-pill" data-style="view-timer-pomodoro">🍅 Pomodoro</button>
+      <button class="dock-pill" data-style="view-timer-stopwatch">⏱️ Stopwatch</button>
+    </nav>
+
+  </div>
+
+  <!-- ==========================================================================
+       JAVASCRIPT APPLICATION ENGINE
+       ========================================================================== -->
+  <script>
+    (function() {
+      'use strict';
+
+      // --- State Management ---
+      const state = {
+        currentStyle: 'view-digital-minimal',
+        theme: 'pitch-black',
+        is24Hour: true,
+        showSeconds: true,
+        smoothSweep: true,
+        soundEnabled: false,
+        wakeLockActive: false,
+        audioContext: null
+      };
+
+      // --- DOM Cache ---
+      const dom = {
+        container: document.getElementById('app-container'),
+        stage: document.getElementById('stage'),
+        dock: document.getElementById('bottom-dock'),
+        btnSettings: document.getElementById('btn-settings'),
+        btnCloseSettings: document.getElementById('btn-close-settings'),
+        drawer: document.getElementById('settings-drawer'),
+        btnFullscreen: document.getElementById('btn-fullscreen'),
+        fsLabel: document.getElementById('fs-label'),
+        btnSound: document.getElementById('btn-sound'),
+        soundLabel: document.getElementById('sound-label'),
+        soundIcon: document.getElementById('sound-icon'),
+        toggle24h: document.getElementById('toggle-24h'),
+        toggleSeconds: document.getElementById('toggle-seconds'),
+        toggleSmoothSweep: document.getElementById('toggle-smooth-sweep'),
+        toggleWakeLock: document.getElementById('toggle-wakelock'),
+        swatches: document.querySelectorAll('.swatch'),
+        dockPills: document.querySelectorAll('.dock-pill'),
+        clockViews: document.querySelectorAll('.clock-view')
+      };
+
+      // ==========================================================================
+      // AUDIO SYNTHESIZER (Web Audio API - 100% Native)
+      // ==========================================================================
+      function getAudioContext() {
+        if (!state.audioContext) {
+          const AudioContext = window.AudioContext || window.webkitAudioContext;
+          if (AudioContext) {
+            state.audioContext = new AudioContext();
+          }
+        }
+        if (state.audioContext && state.audioContext.state === 'suspended') {
+          state.audioContext.resume();
+        }
+        return state.audioContext;
+      }
+
+      function playTickSound() {
+        if (!state.soundEnabled) return;
+        try {
+          const ctx = getAudioContext();
+          if (!ctx) return;
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(1400, ctx.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(400, ctx.currentTime + 0.015);
+          gain.gain.setValueAtTime(0.04, ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.015);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start();
+          osc.stop(ctx.currentTime + 0.018);
+        } catch(e) {}
+      }
+
+      function playChimeSound() {
+        if (!state.soundEnabled) return;
+        try {
+          const ctx = getAudioContext();
+          if (!ctx) return;
+          [523.25, 659.25, 783.99].forEach((freq, idx) => {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, ctx.currentTime + idx * 0.12);
+            gain.gain.setValueAtTime(0.08, ctx.currentTime + idx * 0.12);
+            gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + idx * 0.12 + 1.4);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start(ctx.currentTime + idx * 0.12);
+            osc.stop(ctx.currentTime + idx * 0.12 + 1.5);
+          });
+        } catch(e) {}
+      }
+
+      // ==========================================================================
+      // SCREEN WAKE LOCK API (Prevents monitor sleep)
+      // ==========================================================================
+      let wakeLockSentinel = null;
+
+      async function requestWakeLock() {
+        if ('wakeLock' in navigator) {
+          try {
+            wakeLockSentinel = await navigator.wakeLock.request('screen');
+            state.wakeLockActive = true;
+            wakeLockSentinel.addEventListener('release', () => {
+              state.wakeLockActive = false;
+            });
+          } catch(e) {
+            state.wakeLockActive = false;
+          }
+        }
+      }
+
+      function releaseWakeLock() {
+        if (wakeLockSentinel) {
+          wakeLockSentinel.release();
+          wakeLockSentinel = null;
+          state.wakeLockActive = false;
+        }
+      }
+
+      // ==========================================================================
+      // IDLE DETECTION & CLEAN VIEW AUTO-HIDE
+      // ==========================================================================
+      let idleTimeout = null;
+
+      function resetIdleTimer() {
+        document.body.classList.remove('is-idle');
+        clearTimeout(idleTimeout);
+        idleTimeout = setTimeout(() => {
+          document.body.classList.add('is-idle');
+          dom.drawer.classList.remove('open');
+        }, 3500);
+      }
+
+      window.addEventListener('mousemove', resetIdleTimer, { passive: true });
+      window.addEventListener('mousedown', resetIdleTimer, { passive: true });
+      window.addEventListener('touchstart', resetIdleTimer, { passive: true });
+      window.addEventListener('keydown', resetIdleTimer, { passive: true });
+      resetIdleTimer();
+
+      // ==========================================================================
+      // FULLSCREEN & SHORTCUTS
+      // ==========================================================================
+      function toggleFullscreen() {
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen().catch(() => {});
+          dom.fsLabel.textContent = 'Exit FS';
+        } else {
+          document.exitFullscreen().catch(() => {});
+          dom.fsLabel.textContent = 'Fullscreen';
+        }
+      }
+
+      dom.btnFullscreen.addEventListener('click', toggleFullscreen);
+
+      dom.stage.addEventListener('dblclick', toggleFullscreen);
+
+      document.addEventListener('keydown', (e) => {
+        if (e.target.tagName === 'INPUT') return;
+        const key = e.key.toLowerCase();
+        if (key === 'f') {
+          toggleFullscreen();
+        } else if (key === 's') {
+          cycleStyle();
+        } else if (key === 'c') {
+          cycleTheme();
+        } else if (key === 't') {
+          state.is24Hour = !state.is24Hour;
+          dom.toggle24h.checked = state.is24Hour;
+        } else if (key === 'm') {
+          toggleSound();
+        } else if (key === ' ') {
+          document.body.classList.toggle('is-idle');
+        }
+      });
+
+      function toggleSound() {
+        state.soundEnabled = !state.soundEnabled;
+        if (state.soundEnabled) {
+          getAudioContext();
+          dom.soundLabel.textContent = 'Sound On';
+          dom.soundIcon.textContent = '🔔';
+          dom.btnSound.classList.add('active');
+        } else {
+          dom.soundLabel.textContent = 'Muted';
+          dom.soundIcon.textContent = '🔇';
+          dom.btnSound.classList.remove('active');
+        }
+      }
+
+      dom.btnSound.addEventListener('click', toggleSound);
+
+      // Drawer Open/Close
+      dom.btnSettings.addEventListener('click', () => {
+        dom.drawer.classList.toggle('open');
+      });
+      dom.btnCloseSettings.addEventListener('click', () => {
+        dom.drawer.classList.remove('open');
+      });
+
+      // Toggles
+      dom.toggle24h.addEventListener('change', (e) => state.is24Hour = e.target.checked);
+      dom.toggleSeconds.addEventListener('change', (e) => {
+        state.showSeconds = e.target.checked;
+        document.querySelectorAll('.seg-sec-unit, .flip-sec-unit, .digital-seconds').forEach(el => {
+          el.style.display = state.showSeconds ? '' : 'none';
+        });
+      });
+      dom.toggleSmoothSweep.addEventListener('change', (e) => state.smoothSweep = e.target.checked);
+      dom.toggleWakeLock.addEventListener('change', (e) => {
+        if (e.target.checked) requestWakeLock();
+        else releaseWakeLock();
+      });
+
+      // ==========================================================================
+      // THEME ENGINE
+      // ==========================================================================
+      const themes = ['pitch-black', 'cyber-cyan', 'matrix-green', 'vintage-amber', 'sunset-coral', 'cosmic-violet', 'tokyo-crimson', 'nordic-light'];
+
+      function setTheme(themeName) {
+        state.theme = themeName;
+        document.body.setAttribute('data-theme', themeName);
+        dom.swatches.forEach(s => {
+          s.classList.toggle('active', s.dataset.setTheme === themeName);
+        });
+      }
+
+      function cycleTheme() {
+        const nextIdx = (themes.indexOf(state.theme) + 1) % themes.length;
+        setTheme(themes[nextIdx]);
+      }
+
+      dom.swatches.forEach(swatch => {
+        swatch.addEventListener('click', () => {
+          setTheme(swatch.dataset.setTheme);
+        });
+      });
+
+      // ==========================================================================
+      // STYLE DOCK SWITCHING
+      // ==========================================================================
+      function setStyle(styleId) {
+        state.currentStyle = styleId;
+        dom.clockViews.forEach(v => v.classList.toggle('active', v.id === styleId));
+        dom.dockPills.forEach(p => p.classList.toggle('active', p.dataset.style === styleId));
+      }
+
+      function cycleStyle() {
+        const pills = Array.from(dom.dockPills);
+        const currentIdx = pills.findIndex(p => p.dataset.style === state.currentStyle);
+        const nextIdx = (currentIdx + 1) % pills.length;
+        setStyle(pills[nextIdx].dataset.style);
+      }
+
+      dom.dockPills.forEach(pill => {
+        pill.addEventListener('click', () => {
+          setStyle(pill.dataset.style);
+        });
+      });
+
+      // ==========================================================================
+      // 7-SEGMENT SVG BUILDER & CONTROLLER
+      // ==========================================================================
+      // Segment layout polygons: a=top, b=top-right, c=bot-right, d=bot, e=bot-left, f=top-left, g=mid
+      const segPolygons = {
+        a: "14,8  46,8  40,16 20,16",
+        b: "47,10 55,18 49,46 43,40",
+        c: "47,54 53,60 45,88 39,80",
+        d: "20,84 40,84 46,92 14,92",
+        e: "11,54 17,60 11,80 5,88",
+        f: "11,18 17,24 13,46 7,40",
+        g: "16,46 44,46 48,50 44,54 16,54 12,50"
+      };
+
+      const segMap = {
+        0: ['a', 'b', 'c', 'd', 'e', 'f'],
+        1: ['b', 'c'],
+        2: ['a', 'b', 'g', 'e', 'd'],
+        3: ['a', 'b', 'g', 'c', 'd'],
+        4: ['f', 'g', 'b', 'c'],
+        5: ['a', 'f', 'g', 'c', 'd'],
+        6: ['a', 'f', 'e', 'd', 'c', 'g'],
+        7: ['a', 'b', 'c'],
+        8: ['a', 'b', 'c', 'd', 'e', 'f', 'g'],
+        9: ['a', 'b', 'c', 'd', 'f', 'g'],
+        ' ': []
+      };
+
+      function init7SegSVGs() {
+        ['seg-h1', 'seg-h2', 'seg-m1', 'seg-m2', 'seg-s1', 'seg-s2'].forEach(id => {
+          const svg = document.getElementById(id);
+          if (!svg) return;
+          svg.innerHTML = Object.entries(segPolygons).map(([k, pts]) => 
+            `<polygon class="seg seg-${k}" points="${pts}" />`
+          ).join('');
+        });
+      }
+
+      function set7SegDigit(svgId, digit) {
+        const svg = document.getElementById(svgId);
+        if (!svg) return;
+        const activeSegs = segMap[digit] || [];
+        svg.querySelectorAll('.seg').forEach(el => {
+          const segKey = el.classList[1].split('-')[1];
+          el.classList.toggle('on', activeSegs.includes(segKey));
+        });
+      }
+
+      init7SegSVGs();
+
+      // ==========================================================================
+      // ANALOG CLOCK MARKERS GENERATION
+      // ==========================================================================
+      function initAnalogMarkers() {
+        const group = document.getElementById('analog-markers');
+        if (!group) return;
+        let html = '';
+        for (let i = 0; i < 60; i++) {
+          const isHour = i % 5 === 0;
+          const angle = i * 6;
+          const rad = (angle - 90) * Math.PI / 180;
+          const rInner = isHour ? 155 : 170;
+          const rOuter = 180;
+          const x1 = 200 + rInner * Math.cos(rad);
+          const y1 = 200 + rInner * Math.sin(rad);
+          const x2 = 200 + rOuter * Math.cos(rad);
+          const y2 = 200 + rOuter * Math.sin(rad);
+          const strokeWidth = isHour ? 4 : 1.5;
+          const color = isHour ? 'var(--text-main)' : 'var(--text-dim)';
+          html += `<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="${color}" stroke-width="${strokeWidth}" stroke-linecap="round" />`;
+
+          // Hour numbers (1 to 12)
+          if (isHour) {
+            const hourNum = i === 0 ? 12 : i / 5;
+            const rNum = 135;
+            const xNum = 200 + rNum * Math.cos(rad);
+            const yNum = 200 + rNum * Math.sin(rad) + 6;
+            html += `<text x="${xNum.toFixed(1)}" y="${yNum.toFixed(1)}" fill="var(--text-main)" font-family="var(--font-sans)" font-size="20" font-weight="700" text-anchor="middle">${hourNum}</text>`;
+          }
+        }
+        group.innerHTML = html;
+      }
+
+      initAnalogMarkers();
+
+      // ==========================================================================
+      // WORD CLOCK MATRIX INITIALIZATION
+      // ==========================================================================
+      const WORD_GRID = [
+        "ITLISBFAMPM",
+        "ACQUARTERDC",
+        "TWENTYFIVEX",
+        "HALFSTENFTO",
+        "PASTERUNINE",
+        "ONESIXTHREE",
+        "FOURFIVETWO",
+        "EIGHTELEVEN",
+        "SEVENTWELVE",
+        "TENSEOCLOCK"
+      ];
+
+      function initWordClock() {
+        const container = document.getElementById('word-clock-matrix');
+        if (!container) return;
+        container.innerHTML = WORD_GRID.map((row, rIdx) => 
+          row.split('').map((char, cIdx) => 
+            `<div class="word-letter" id="wl-${rIdx}-${cIdx}">${char}</div>`
+          ).join('')
+        ).join('');
+      }
+
+      initWordClock();
+
+      function updateWordClock(h24, mins) {
+        // Clear all lit letters
+        document.querySelectorAll('.word-letter.lit').forEach(el => el.classList.remove('lit'));
+
+        const lightCoords = (coords) => {
+          coords.forEach(([r, c]) => {
+            const el = document.getElementById(`wl-${r}-${c}`);
+            if (el) el.classList.add('lit');
+          });
+        };
+
+        // Always light "IT IS"
+        lightCoords([[0,0], [0,1], [0,3], [0,4]]);
+
+        let h = h24 % 12;
+        if (h === 0) h = 12;
+        let nextH = (h % 12) + 1;
+
+        // Round to nearest 5 minutes
+        const rem = mins % 5;
+        let m = mins - rem;
+        if (rem >= 3) {
+          m += 5;
+          if (m === 60) {
+            m = 0;
+            h = nextH;
+            nextH = (h % 12) + 1;
+          }
+        }
+
+        // Minutes selection
+        if (m === 0) {
+          lightCoords([[9,5],[9,6],[9,7],[9,8],[9,9],[9,10]]); // OCLOCK
+        } else if (m === 5) {
+          lightCoords([[2,6],[2,7],[2,8],[2,9], [4,0],[4,1],[4,2],[4,3]]); // FIVE PAST
+        } else if (m === 10) {
+          lightCoords([[3,5],[3,6],[3,7], [4,0],[4,1],[4,2],[4,3]]); // TEN PAST
+        } else if (m === 15) {
+          lightCoords([[1,0], [1,2],[1,3],[1,4],[1,5],[1,6],[1,7],[1,8], [4,0],[4,1],[4,2],[4,3]]); // A QUARTER PAST
+        } else if (m === 20) {
+          lightCoords([[2,0],[2,1],[2,2],[2,3],[2,4],[2,5], [4,0],[4,1],[4,2],[4,3]]); // TWENTY PAST
+        } else if (m === 25) {
+          lightCoords([[2,0],[2,1],[2,2],[2,3],[2,4],[2,5], [2,6],[2,7],[2,8],[2,9], [4,0],[4,1],[4,2],[4,3]]); // TWENTY FIVE PAST
+        } else if (m === 30) {
+          lightCoords([[3,0],[3,1],[3,2],[3,3], [4,0],[4,1],[4,2],[4,3]]); // HALF PAST
+        } else if (m === 35) {
+          lightCoords([[2,0],[2,1],[2,2],[2,3],[2,4],[2,5], [2,6],[2,7],[2,8],[2,9], [3,9],[3,10]]); // TWENTY FIVE TO
+          h = nextH;
+        } else if (m === 40) {
+          lightCoords([[2,0],[2,1],[2,2],[2,3],[2,4],[2,5], [3,9],[3,10]]); // TWENTY TO
+          h = nextH;
+        } else if (m === 45) {
+          lightCoords([[1,0], [1,2],[1,3],[1,4],[1,5],[1,6],[1,7],[1,8], [3,9],[3,10]]); // A QUARTER TO
+          h = nextH;
+        } else if (m === 50) {
+          lightCoords([[3,5],[3,6],[3,7], [3,9],[3,10]]); // TEN TO
+          h = nextH;
+        } else if (m === 55) {
+          lightCoords([[2,6],[2,7],[2,8],[2,9], [3,9],[3,10]]); // FIVE TO
+          h = nextH;
+        }
+
+        // Hour selection
+        const hourCoords = {
+          1: [[5,0],[5,1],[5,2]], // ONE
+          2: [[6,8],[6,9],[6,10]], // TWO
+          3: [[5,6],[5,7],[5,8],[5,9],[5,10]], // THREE
+          4: [[6,0],[6,1],[6,2],[6,3]], // FOUR
+          5: [[6,4],[6,5],[6,6],[6,7]], // FIVE
+          6: [[5,3],[5,4],[5,5]], // SIX
+          7: [[8,0],[8,1],[8,2],[8,3],[8,4]], // SEVEN
+          8: [[7,0],[7,1],[7,2],[7,3],[7,4]], // EIGHT
+          9: [[4,7],[4,8],[4,9],[4,10]], // NINE
+          10: [[9,0],[9,1],[9,2]], // TEN
+          11: [[7,5],[7,6],[7,7],[7,8],[7,9],[7,10]], // ELEVEN
+          12: [[8,5],[8,6],[8,7],[8,8],[8,9],[8,10]] // TWELVE
+        };
+
+        if (hourCoords[h]) {
+          lightCoords(hourCoords[h]);
+        }
+      }
+
+      // ==========================================================================
+      // BINARY CLOCK INITIALIZATION
+      // ==========================================================================
+      function initBinaryClock() {
+        ['h1','h2','m1','m2','s1','s2'].forEach(col => {
+          const el = document.getElementById(`bcol-${col}`);
+          if (!el) return;
+          el.innerHTML = `
+            <div class="binary-bit bit-8"></div>
+            <div class="binary-bit bit-4"></div>
+            <div class="binary-bit bit-2"></div>
+            <div class="binary-bit bit-1"></div>
+            <div class="binary-col-label" id="blabel-${col}">0</div>
+          `;
+        });
+      }
+
+      initBinaryClock();
+
+      function updateBinaryCol(colId, val) {
+        const col = document.getElementById(`bcol-${colId}`);
+        const label = document.getElementById(`blabel-${colId}`);
+        if (!col || !label) return;
+        label.textContent = val;
+        col.querySelector('.bit-8').classList.toggle('on', (val & 8) !== 0);
+        col.querySelector('.bit-4').classList.toggle('on', (val & 4) !== 0);
+        col.querySelector('.bit-2').classList.toggle('on', (val & 2) !== 0);
+        col.querySelector('.bit-1').classList.toggle('on', (val & 1) !== 0);
+      }
+
+      // ==========================================================================
+      // WORLD TIMEZONES CONFIGURATION
+      // ==========================================================================
+      const WORLD_CITIES = [
+        { name: "Local Time", tz: Intl.DateTimeFormat().resolvedOptions().timeZone, isLocal: true },
+        { name: "UTC / Zulu", tz: "UTC" },
+        { name: "New York (EST/EDT)", tz: "America/New_York" },
+        { name: "London (GMT/BST)", tz: "Europe/London" },
+        { name: "Tokyo (JST)", tz: "Asia/Tokyo" },
+        { name: "Sydney (AEST)", tz: "Australia/Sydney" },
+        { name: "San Francisco (PST)", tz: "America/Los_Angeles" }
+      ];
+
+      function initWorldGrid() {
+        const grid = document.getElementById('world-grid');
+        if (!grid) return;
+        grid.innerHTML = WORLD_CITIES.map((c, idx) => `
+          <div class="world-card ${c.isLocal ? 'is-local' : ''}" id="wcard-${idx}">
+            <div class="world-city">
+              <span>${c.name}</span>
+              <span class="world-offset" id="woffset-${idx}">UTC</span>
+            </div>
+            <div class="world-time" id="wtime-${idx}">00:00:00</div>
+            <div class="world-date" id="wdate-${idx}">Mon, Nov 16</div>
+          </div>
+        `).join('');
+      }
+
+      initWorldGrid();
+
+      function updateWorldClocks(now) {
+        WORLD_CITIES.forEach((c, idx) => {
+          try {
+            const timeStr = now.toLocaleTimeString('en-US', {
+              timeZone: c.tz,
+              hour12: !state.is24Hour,
+              hour: '2-digit',
+              minute: '2-digit',
+              second: state.showSeconds ? '2-digit' : undefined
+            });
+            const dateStr = now.toLocaleDateString('en-US', {
+              timeZone: c.tz,
+              weekday: 'short',
+              month: 'short',
+              day: 'numeric'
+            });
+            const elTime = document.getElementById(`wtime-${idx}`);
+            const elDate = document.getElementById(`wdate-${idx}`);
+            if (elTime) elTime.textContent = timeStr;
+            if (elDate) elDate.textContent = dateStr;
+          } catch(e) {}
+        });
+      }
+
+      // ==========================================================================
+      // STOPWATCH ENGINE
+      // ==========================================================================
+      const swState = {
+        running: false,
+        startTime: 0,
+        elapsed: 0,
+        laps: []
+      };
+
+      const swDisplay = document.getElementById('sw-display');
+      const btnSwToggle = document.getElementById('btn-sw-toggle');
+      const btnSwLap = document.getElementById('btn-sw-lap');
+      const btnSwReset = document.getElementById('btn-sw-reset');
+      const swLaps = document.getElementById('sw-laps');
+
+      function formatStopwatch(ms) {
+        const m = Math.floor(ms / 60000);
+        const s = Math.floor((ms % 60000) / 1000);
+        const cs = Math.floor((ms % 1000) / 10);
+        return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}.${String(cs).padStart(2, '0')}`;
+      }
+
+      if (btnSwToggle) {
+        btnSwToggle.addEventListener('click', () => {
+          if (!swState.running) {
+            swState.running = true;
+            swState.startTime = performance.now() - swState.elapsed;
+            btnSwToggle.textContent = 'Pause';
+            btnSwToggle.classList.add('btn-outline');
+          } else {
+            swState.running = false;
+            swState.elapsed = performance.now() - swState.startTime;
+            btnSwToggle.textContent = 'Resume';
+            btnSwToggle.classList.remove('btn-outline');
+          }
+        });
+
+        btnSwLap.addEventListener('click', () => {
+          if (!swState.running) return;
+          const lapTime = swState.elapsed;
+          swState.laps.unshift(lapTime);
+          renderLaps();
+        });
+
+        btnSwReset.addEventListener('click', () => {
+          swState.running = false;
+          swState.elapsed = 0;
+          swState.laps = [];
+          btnSwToggle.textContent = 'Start';
+          btnSwToggle.classList.remove('btn-outline');
+          swDisplay.textContent = '00:00.00';
+          swLaps.innerHTML = '';
+        });
+      }
+
+      function renderLaps() {
+        if (!swLaps) return;
+        swLaps.innerHTML = swState.laps.map((lap, i) => `
+          <div style="display:flex; justify-content:space-between; padding:4px 0; border-bottom:1px solid var(--card-border);">
+            <span>Lap ${swState.laps.length - i}</span>
+            <span style="color:var(--accent); font-weight:700;">${formatStopwatch(lap)}</span>
+          </div>
+        `).join('');
+      }
+
+      // ==========================================================================
+      // POMODORO TIMER ENGINE
+      // ==========================================================================
+      const pomoState = {
+        mode: 'focus', // 'focus' | 'break'
+        running: false,
+        duration: 25 * 60,
+        remaining: 25 * 60,
+        lastTick: 0
+      };
+
+      const pomoDisplay = document.getElementById('pomo-display');
+      const btnPomoToggle = document.getElementById('btn-pomo-toggle');
+      const btnPomoReset = document.getElementById('btn-pomo-reset');
+      const btnPomoMode = document.getElementById('btn-pomo-mode');
+      const pomoModeLabel = document.getElementById('pomo-mode-label');
+
+      function updatePomoDisplay() {
+        const m = Math.floor(pomoState.remaining / 60);
+        const s = pomoState.remaining % 60;
+        if (pomoDisplay) pomoDisplay.textContent = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+      }
+
+      if (btnPomoToggle) {
+        btnPomoToggle.addEventListener('click', () => {
+          pomoState.running = !pomoState.running;
+          btnPomoToggle.textContent = pomoState.running ? 'Pause' : 'Resume';
+          btnPomoToggle.classList.toggle('btn-outline', pomoState.running);
+          pomoState.lastTick = performance.now();
+        });
+
+        btnPomoReset.addEventListener('click', () => {
+          pomoState.running = false;
+          pomoState.remaining = pomoState.duration;
+          btnPomoToggle.textContent = 'Start';
+          btnPomoToggle.classList.remove('btn-outline');
+          updatePomoDisplay();
+        });
+
+        btnPomoMode.addEventListener('click', () => {
+          pomoState.mode = pomoState.mode === 'focus' ? 'break' : 'focus';
+          pomoState.duration = pomoState.mode === 'focus' ? 25 * 60 : 5 * 60;
+          pomoState.remaining = pomoState.duration;
+          pomoState.running = false;
+          pomoModeLabel.textContent = pomoState.mode === 'focus' ? 'FOCUS SESSION (25 MIN)' : 'SHORT BREAK (5 MIN)';
+          btnPomoMode.textContent = pomoState.mode === 'focus' ? 'Switch to Break' : 'Switch to Focus';
+          btnPomoToggle.textContent = 'Start';
+          btnPomoToggle.classList.remove('btn-outline');
+          updatePomoDisplay();
+        });
+      }
+
+      // ==========================================================================
+      // HIGH-PRECISION MAIN RENDER LOOP (60 FPS requestAnimationFrame)
+      // ==========================================================================
+      let lastSecond = -1;
+      let lastMinute = -1;
+      let lastHour = -1;
+
+      // Flip card cache to avoid redundant DOM updates
+      const flipCache = {};
+
+      function updateFlipCard(id, val) {
+        if (flipCache[id] !== val) {
+          flipCache[id] = val;
+          const el = document.getElementById(id);
+          if (el) el.textContent = val;
+        }
+      }
+
+      function mainTick(timestamp) {
+        const now = new Date();
+        const ms = now.getMilliseconds();
+        const sec = now.getSeconds();
+        const min = now.getMinutes();
+        const hr24 = now.getHours();
+
+        // 1-second pulse actions
+        if (sec !== lastSecond) {
+          lastSecond = sec;
+          playTickSound();
+
+          // Hourly chime
+          if (min === 0 && sec === 0) {
+            playChimeSound();
+          }
+
+          // Format calculations
+          const hrDisplay = state.is24Hour ? hr24 : (hr24 % 12 || 12);
+          const ampm = hr24 >= 12 ? 'PM' : 'AM';
+
+          const sHours = String(hrDisplay).padStart(2, '0');
+          const sMinutes = String(min).padStart(2, '0');
+          const sSeconds = String(sec).padStart(2, '0');
+
+          // 1. Digital Minimalist
+          const elDmH = document.getElementById('dm-hours');
+          const elDmM = document.getElementById('dm-minutes');
+          const elDmS = document.getElementById('dm-seconds');
+          const elDmAmPm = document.getElementById('dm-ampm');
+          if (elDmH) elDmH.textContent = sHours;
+          if (elDmM) elDmM.textContent = sMinutes;
+          if (elDmS) elDmS.textContent = sSeconds;
+          if (elDmAmPm) elDmAmPm.textContent = state.is24Hour ? '' : ampm;
+
+          // 2. 7-Segment VFD
+          set7SegDigit('seg-h1', sHours[0]);
+          set7SegDigit('seg-h2', sHours[1]);
+          set7SegDigit('seg-m1', sMinutes[0]);
+          set7SegDigit('seg-m2', sMinutes[1]);
+          set7SegDigit('seg-s1', sSeconds[0]);
+          set7SegDigit('seg-s2', sSeconds[1]);
+
+          // 3. Flip Clock
+          updateFlipCard('flip-h1', sHours[0]);
+          updateFlipCard('flip-h2', sHours[1]);
+          updateFlipCard('flip-m1', sMinutes[0]);
+          updateFlipCard('flip-m2', sMinutes[1]);
+          updateFlipCard('flip-s1', sSeconds[0]);
+          updateFlipCard('flip-s2', sSeconds[1]);
+
+          // 4. Binary BCD
+          updateBinaryCol('h1', parseInt(sHours[0]));
+          updateBinaryCol('h2', parseInt(sHours[1]));
+          updateBinaryCol('m1', parseInt(sMinutes[0]));
+          updateBinaryCol('m2', parseInt(sMinutes[1]));
+          updateBinaryCol('s1', parseInt(sSeconds[0]));
+          updateBinaryCol('s2', parseInt(sSeconds[1]));
+
+          // 5. Terminal Monospace
+          const elTermTime = document.getElementById('term-time');
+          const elTermEpoch = document.getElementById('term-epoch');
+          const elTermUtc = document.getElementById('term-utc');
+          if (elTermTime) elTermTime.textContent = `${sHours}:${sMinutes}:${sSeconds}`;
+          if (elTermEpoch) elTermEpoch.textContent = Math.floor(now.getTime() / 1000);
+          if (elTermUtc) elTermUtc.textContent = `UTC ${now.toISOString().substring(11, 19)} Z`;
+
+          // 6. Observatory Clock
+          const elObsTime = document.getElementById('obs-time');
+          const elObsUtc = document.getElementById('obs-utc');
+          const elObsDayPct = document.getElementById('obs-day-pct');
+          const elObsDayProg = document.getElementById('obs-day-progress');
+          const elObsSolar = document.getElementById('obs-solar-status');
+
+          if (elObsTime) elObsTime.textContent = `${sHours}:${sMinutes}:${sSeconds}`;
+          if (elObsUtc) elObsUtc.textContent = `${now.toISOString().substring(11, 19)} Z`;
+
+          // Day progress calculation
+          const totalSecToday = hr24 * 3600 + min * 60 + sec;
+          const dayPct = (totalSecToday / 86400 * 100).toFixed(1);
+          if (elObsDayPct) elObsDayPct.textContent = `${dayPct}%`;
+          if (elObsDayProg) elObsDayProg.style.width = `${dayPct}%`;
+          if (elObsSolar) elObsSolar.textContent = (hr24 >= 6 && hr24 < 18) ? '☀️ Daylight' : '🌙 Night';
+
+          // World timezones
+          updateWorldClocks(now);
+
+          // Pomodoro 1-sec countdown
+          if (pomoState.running && pomoState.remaining > 0) {
+            pomoState.remaining--;
+            updatePomoDisplay();
+            if (pomoState.remaining === 0) {
+              playChimeSound();
+              pomoState.running = false;
+              if (btnPomoToggle) btnPomoToggle.textContent = 'Completed!';
+            }
+          }
+        }
+
+        // 1-minute updates
+        if (min !== lastMinute) {
+          lastMinute = min;
+
+          // Date badges
+          const days = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
+          const months = ['JANUARY', 'FEBRUARY', 'MARCH', 'APRIL', 'MAY', 'JUNE', 'JULY', 'AUGUST', 'SEPTEMBER', 'OCTOBER', 'NOVEMBER', 'DECEMBER'];
+          
+          const dayNameEl = document.getElementById('dm-dayname');
+          const fullDateEl = document.getElementById('dm-full-date');
+          if (dayNameEl) dayNameEl.textContent = days[now.getDay()];
+          if (fullDateEl) fullDateEl.textContent = `${months[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}`;
+
+          // Word Clock update
+          updateWordClock(hr24, min);
+
+          // Day of Year / Week / Julian Date
+          const startOfYear = new Date(now.getFullYear(), 0, 1);
+          const dayOfYear = Math.floor((now - startOfYear) / (24 * 60 * 60 * 1000)) + 1;
+          const totalDaysYear = (now.getFullYear() % 4 === 0 && (now.getFullYear() % 100 !== 0 || now.getFullYear() % 400 === 0)) ? 366 : 365;
+          const yearPct = (dayOfYear / totalDaysYear * 100).toFixed(1);
+
+          const elObsDoy = document.getElementById('obs-day-of-year');
+          const elObsYPct = document.getElementById('obs-year-pct');
+          const elObsYProg = document.getElementById('obs-year-progress');
+          const elObsJulian = document.getElementById('obs-julian');
+
+          if (elObsDoy) elObsDoy.textContent = `Day ${dayOfYear} / 365`;
+          if (elObsYPct) elObsYPct.textContent = `${yearPct}%`;
+          if (elObsYProg) elObsYProg.style.width = `${yearPct}%`;
+          if (elObsJulian) elObsJulian.textContent = (now.getTime() / 86400000 + 2440587.5).toFixed(2);
+        }
+
+        // Milliseconds & Smooth Hand Updates (Every Frame)
+        const elObsMillis = document.getElementById('obs-millis');
+        if (elObsMillis) elObsMillis.textContent = `.${String(ms).padStart(3, '0')}`;
+
+        // Analog Hands Motion
+        const handHour = document.getElementById('hand-hour');
+        const handMinute = document.getElementById('hand-minute');
+        const handSecond = document.getElementById('hand-second');
+        const handLollipop = document.getElementById('hand-second-lollipop');
+
+        if (handHour && handMinute && handSecond) {
+          const effectiveSeconds = state.smoothSweep ? (sec + ms / 1000) : sec;
+          const secAngle = effectiveSeconds * 6;
+          const minAngle = (min + effectiveSeconds / 60) * 6;
+          const hourAngle = ((hr24 % 12) + min / 60 + effectiveSeconds / 3600) * 30;
+
+          handHour.style.transform = `rotate(${hourAngle}deg)`;
+          handMinute.style.transform = `rotate(${minAngle}deg)`;
+          handSecond.style.transform = `rotate(${secAngle}deg)`;
+          if (handLollipop) handLollipop.style.transform = `rotate(${secAngle}deg)`;
+          if (handLollipop) handLollipop.style.transformOrigin = `200px 200px`;
+        }
+
+        // Stopwatch millisecond updates
+        if (swState.running) {
+          swState.elapsed = performance.now() - swState.startTime;
+          if (swDisplay) swDisplay.textContent = formatStopwatch(swState.elapsed);
+        }
+
+        requestAnimationFrame(mainTick);
+      }
+
+      requestAnimationFrame(mainTick);
+
+      // Request screen wake lock by default
+      requestWakeLock();
+
+    })();
+  </script>
+</body>
+</html>
