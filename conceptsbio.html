@@ -92,11 +92,196 @@
         .timeline-step:last-child:before {
             display: none;
         }
+
+        /* Slide Deck Tabs & Hover */
+        .slide-tab-pill {
+            transition: all 0.2s ease;
+        }
+        .slide-tab-pill.active {
+            background-color: #7c3aed !important;
+            color: #ffffff !important;
+            border-color: #8b5cf6 !important;
+            box-shadow: 0 0 10px rgba(124, 58, 237, 0.5);
+            font-weight: 700;
+        }
+        .nb-type-btn.active {
+            background-color: #7c3aed !important;
+            color: #ffffff !important;
+            border-color: #7c3aed !important;
+            box-shadow: 0 2px 8px rgba(124, 58, 237, 0.35);
+        }
+
+        /* Professional Academic GitHub Markdown Typography */
+        .markdown-body {
+            box-sizing: border-box;
+            min-width: 200px;
+            max-width: 100%;
+            margin: 0 auto;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+            font-size: 15px;
+            line-height: 1.7;
+            word-wrap: break-word;
+            color: #1e293b;
+        }
+        .markdown-body h1, .markdown-body h2, .markdown-body h3, .markdown-body h4, .markdown-body h5, .markdown-body h6 {
+            margin-top: 28px;
+            margin-bottom: 16px;
+            font-weight: 700;
+            line-height: 1.35;
+            color: #0f172a;
+        }
+        .markdown-body h1 {
+            font-size: 1.85rem;
+            padding-bottom: 0.4em;
+            border-bottom: 2px solid #e2e8f0;
+            color: #581c87;
+        }
+        .markdown-body h2 {
+            font-size: 1.4rem;
+            padding-bottom: 0.35em;
+            border-bottom: 1px solid #e2e8f0;
+            margin-top: 32px;
+            color: #0f172a;
+        }
+        .markdown-body h3 {
+            font-size: 1.15rem;
+            border-left: 4px solid #7c3aed;
+            padding-left: 10px;
+            margin-top: 24px;
+            color: #1e1b4b;
+        }
+        .markdown-body h4 {
+            font-size: 1.05rem;
+            color: #334155;
+            margin-top: 20px;
+        }
+        .markdown-body p {
+            margin-top: 0;
+            margin-bottom: 16px;
+            color: #334155;
+        }
+        .markdown-body ul, .markdown-body ol {
+            margin-top: 0;
+            margin-bottom: 16px;
+            padding-left: 28px;
+        }
+        .markdown-body ul {
+            list-style-type: disc !important;
+        }
+        .markdown-body ol {
+            list-style-type: decimal !important;
+        }
+        .markdown-body li {
+            margin-bottom: 6px;
+            line-height: 1.65;
+        }
+        .markdown-body table {
+            display: table;
+            width: 100%;
+            max-width: 100%;
+            margin: 20px 0;
+            border-collapse: collapse;
+            border-spacing: 0;
+            font-size: 13.5px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .markdown-body table th {
+            background: #f1f5f9;
+            color: #0f172a;
+            font-weight: 700;
+            padding: 10px 14px;
+            border: 1px solid #cbd5e1;
+            text-align: left;
+        }
+        .markdown-body table td {
+            padding: 9px 14px;
+            border: 1px solid #e2e8f0;
+            color: #334155;
+            vertical-align: top;
+        }
+        .markdown-body table tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+        .markdown-body table tr:hover {
+            background-color: #f1f5f9;
+        }
+        .markdown-body pre {
+            position: relative;
+            padding: 16px 20px;
+            overflow: auto;
+            font-size: 13px;
+            line-height: 1.55;
+            background-color: #0f172a !important;
+            color: #f1f5f9 !important;
+            border-radius: 12px;
+            border: 1px solid #1e293b;
+            margin: 20px 0;
+            box-shadow: 0 4px 10px -2px rgba(0, 0, 0, 0.25);
+            font-family: 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        }
+        .markdown-body pre code {
+            background-color: transparent !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            font-size: inherit;
+            color: inherit;
+            border: 0;
+        }
+        .markdown-body code:not(pre code) {
+            padding: 2px 7px;
+            margin: 0 2px;
+            font-size: 12.5px;
+            background-color: #f3e8ff;
+            color: #6b21a8;
+            border: 1px solid #e9d5ff;
+            border-radius: 5px;
+            font-family: 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            font-weight: 600;
+        }
+        .markdown-body blockquote {
+            padding: 12px 20px;
+            margin: 18px 0;
+            color: #475569;
+            background-color: #f5f3ff;
+            border-left: 4px solid #7c3aed;
+            border-radius: 0 8px 8px 0;
+            font-style: normal;
+        }
+        .markdown-body hr {
+            height: 1px;
+            padding: 0;
+            margin: 32px 0;
+            background-color: #e2e8f0;
+            border: 0;
+        }
+        .markdown-body a {
+            color: #7c3aed;
+            text-decoration: underline;
+            font-weight: 600;
+        }
+        .markdown-body a:hover {
+            color: #5b21b6;
+        }
     </style>
+    <!-- Highlight.js for Code Syntax Highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+
     <!-- Marked.js for In-Browser Lecture Notes Markdown Rendering -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <!-- Lecture Slides & Notes Data Registry -->
+    <!-- Lecture Slides & Notes Data Registry (30 Lectures, 240 Slides) -->
     <script src="js/cbbi_lectures_data.js"></script>
+    <!-- Jupyter Notebooks Registry (59 Notebooks) -->
+    <script src="js/cbbi_notebooks_data.js"></script>
+    <!-- Practicals Registry (15 Practicals) -->
+    <script src="js/cbbi_practicals_data.js"></script>
+    <!-- Assessments Registry (24 Assessments) -->
+    <script src="js/cbbi_assessments_data.js"></script>
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased font-sans flex flex-col min-h-screen">
 
@@ -588,7 +773,7 @@
 
             <!-- Unit Filter Bar -->
             <div id="lecture-filter-bar" class="flex flex-wrap gap-2 text-xs font-medium pb-2 border-b border-slate-100">
-                <button onclick="filterLectures(all, this)" class="lec-filter-btn active px-3 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 transition">All (30)</button>
+                <button onclick="filterLectures('all', this)" class="lec-filter-btn active px-3 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 transition">All (30)</button>
                 <button onclick="filterLectures(1, this)" class="lec-filter-btn px-3 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 transition">U1: Internet (2)</button>
                 <button onclick="filterLectures(2, this)" class="lec-filter-btn px-3 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 transition">U2: Entrez (2)</button>
                 <button onclick="filterLectures(3, this)" class="lec-filter-btn px-3 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 transition">U3: ASN.1 (2)</button>
@@ -634,128 +819,369 @@
                                 <th class="py-3 px-4">Target Tools & Resources</th>
                                 <th class="py-3 px-4">Deliverable</th>
                                 <th class="py-3 px-4">LO</th>
+                                <th class="py-3 px-4 text-center">Interactive Docs & Actions</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-slate-100">
-                            <tr class="hover:bg-slate-50/80">
-                                <td class="py-3 px-4 font-bold text-violet-700">S01</td>
-                                <td class="py-3 px-4 font-semibold">P1</td>
-                                <td class="py-3 px-4 font-medium text-slate-900">Understanding Linux OS & Commands</td>
-                                <td class="py-3 px-4">Terminal, pipes, grep, wc, redirect</td>
-                                <td class="py-3 px-4">Command log & multi-FASTA counts</td>
-                                <td class="py-3 px-4 font-bold text-slate-500">LO1</td>
+                            <tr class="hover:bg-slate-50/80 transition">
+                                <td class="py-3 px-4 font-bold text-violet-700 font-mono">S01</td>
+                                <td class="py-3 px-4 font-semibold text-slate-600">P1</td>
+                                <td class="py-3 px-4 font-bold text-slate-900">Understanding Linux OS & Commands</td>
+                                <td class="py-3 px-4 text-slate-600">Terminal, pipes, grep, wc, redirect</td>
+                                <td class="py-3 px-4 text-slate-600">Command log & multi-FASTA counts</td>
+                                <td class="py-3 px-4 font-semibold text-slate-500">LO1</td>
+                                <td class="py-3 px-4 text-center">
+                                    <div class="flex items-center justify-center space-x-1.5">
+                                        <button onclick="openPracticalDoc('S01', 'lab_sheet.md')" class="px-2 py-1 rounded bg-violet-50 text-violet-700 hover:bg-violet-100 border border-violet-200 text-[11px] font-semibold transition flex items-center space-x-1" title="Read Lab Sheet">
+                                            <i class="fa-solid fa-file-lines text-[10px]"></i><span>Lab Sheet</span>
+                                        </button>
+                                        <button onclick="openPracticalDoc('S01', 'worksheet.md')" class="px-2 py-1 rounded bg-cyan-50 text-cyan-700 hover:bg-cyan-100 border border-cyan-200 text-[11px] font-semibold transition flex items-center space-x-1" title="Read Worksheet">
+                                            <i class="fa-solid fa-pen-clip text-[10px]"></i><span>Worksheet</span>
+                                        </button>
+                                        <button onclick="openPracticalDoc('S01', 'answer_key.md')" class="px-2 py-1 rounded bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200 text-[11px] font-semibold transition flex items-center space-x-1" title="Read Answer Key">
+                                            <i class="fa-solid fa-key text-[10px]"></i><span>Key</span>
+                                        </button>
+                                        <a href="https://github.com/meprateekpaul/basicsbioinformatics/tree/main/Concepts_of_Bioinformatics/practicals/S01_Linux_Commands" target="_blank" rel="noopener" class="p-1 text-slate-400 hover:text-slate-800 transition" title="View Folder on GitHub">
+                                            <i class="fa-brands fa-github text-sm"></i>
+                                        </a>
+                                    </div>
+                                </td>
                             </tr>
-                            <tr class="hover:bg-slate-50/80">
-                                <td class="py-3 px-4 font-bold text-violet-700">S02</td>
-                                <td class="py-3 px-4 font-semibold">P2</td>
-                                <td class="py-3 px-4 font-medium text-slate-900">Introduction to NCBI</td>
-                                <td class="py-3 px-4">NCBI Gene, Nucleotide, Protein, Taxonomy</td>
-                                <td class="py-3 px-4">Human HBB Gene record tour</td>
-                                <td class="py-3 px-4 font-bold text-slate-500">LO1, LO2</td>
+                            <tr class="hover:bg-slate-50/80 transition">
+                                <td class="py-3 px-4 font-bold text-violet-700 font-mono">S02</td>
+                                <td class="py-3 px-4 font-semibold text-slate-600">P2</td>
+                                <td class="py-3 px-4 font-bold text-slate-900">Introduction to NCBI</td>
+                                <td class="py-3 px-4 text-slate-600">NCBI Gene, Nucleotide, Protein, Taxonomy</td>
+                                <td class="py-3 px-4 text-slate-600">Human HBB Gene record tour</td>
+                                <td class="py-3 px-4 font-semibold text-slate-500">LO1, LO2</td>
+                                <td class="py-3 px-4 text-center">
+                                    <div class="flex items-center justify-center space-x-1.5">
+                                        <button onclick="openPracticalDoc('S02', 'lab_sheet.md')" class="px-2 py-1 rounded bg-violet-50 text-violet-700 hover:bg-violet-100 border border-violet-200 text-[11px] font-semibold transition flex items-center space-x-1" title="Read Lab Sheet">
+                                            <i class="fa-solid fa-file-lines text-[10px]"></i><span>Lab Sheet</span>
+                                        </button>
+                                        <button onclick="openPracticalDoc('S02', 'worksheet.md')" class="px-2 py-1 rounded bg-cyan-50 text-cyan-700 hover:bg-cyan-100 border border-cyan-200 text-[11px] font-semibold transition flex items-center space-x-1" title="Read Worksheet">
+                                            <i class="fa-solid fa-pen-clip text-[10px]"></i><span>Worksheet</span>
+                                        </button>
+                                        <button onclick="openPracticalDoc('S02', 'answer_key.md')" class="px-2 py-1 rounded bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200 text-[11px] font-semibold transition flex items-center space-x-1" title="Read Answer Key">
+                                            <i class="fa-solid fa-key text-[10px]"></i><span>Key</span>
+                                        </button>
+                                        <a href="https://github.com/meprateekpaul/basicsbioinformatics/tree/main/Concepts_of_Bioinformatics/practicals/S02_NCBI_Introduction" target="_blank" rel="noopener" class="p-1 text-slate-400 hover:text-slate-800 transition" title="View Folder on GitHub">
+                                            <i class="fa-brands fa-github text-sm"></i>
+                                        </a>
+                                    </div>
+                                </td>
                             </tr>
-                            <tr class="hover:bg-slate-50/80">
-                                <td class="py-3 px-4 font-bold text-violet-700">S03</td>
-                                <td class="py-3 px-4 font-semibold">P3</td>
-                                <td class="py-3 px-4 font-medium text-slate-900">Entrez Literature Search</td>
-                                <td class="py-3 px-4">PubMed, MeSH terms, Boolean filters</td>
-                                <td class="py-3 px-4">5 targeted queries with reasoning</td>
-                                <td class="py-3 px-4 font-bold text-slate-500">LO2</td>
+                            <tr class="hover:bg-slate-50/80 transition">
+                                <td class="py-3 px-4 font-bold text-violet-700 font-mono">S03</td>
+                                <td class="py-3 px-4 font-semibold text-slate-600">P3</td>
+                                <td class="py-3 px-4 font-bold text-slate-900">Entrez Literature Search</td>
+                                <td class="py-3 px-4 text-slate-600">PubMed, MeSH terms, Boolean filters</td>
+                                <td class="py-3 px-4 text-slate-600">5 targeted queries with reasoning</td>
+                                <td class="py-3 px-4 font-semibold text-slate-500">LO2</td>
+                                <td class="py-3 px-4 text-center">
+                                    <div class="flex items-center justify-center space-x-1.5">
+                                        <button onclick="openPracticalDoc('S03', 'lab_sheet.md')" class="px-2 py-1 rounded bg-violet-50 text-violet-700 hover:bg-violet-100 border border-violet-200 text-[11px] font-semibold transition flex items-center space-x-1" title="Read Lab Sheet">
+                                            <i class="fa-solid fa-file-lines text-[10px]"></i><span>Lab Sheet</span>
+                                        </button>
+                                        <button onclick="openPracticalDoc('S03', 'worksheet.md')" class="px-2 py-1 rounded bg-cyan-50 text-cyan-700 hover:bg-cyan-100 border border-cyan-200 text-[11px] font-semibold transition flex items-center space-x-1" title="Read Worksheet">
+                                            <i class="fa-solid fa-pen-clip text-[10px]"></i><span>Worksheet</span>
+                                        </button>
+                                        <button onclick="openPracticalDoc('S03', 'answer_key.md')" class="px-2 py-1 rounded bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200 text-[11px] font-semibold transition flex items-center space-x-1" title="Read Answer Key">
+                                            <i class="fa-solid fa-key text-[10px]"></i><span>Key</span>
+                                        </button>
+                                        <a href="https://github.com/meprateekpaul/basicsbioinformatics/tree/main/Concepts_of_Bioinformatics/practicals/S03_Entrez_Literature" target="_blank" rel="noopener" class="p-1 text-slate-400 hover:text-slate-800 transition" title="View Folder on GitHub">
+                                            <i class="fa-brands fa-github text-sm"></i>
+                                        </a>
+                                    </div>
+                                </td>
                             </tr>
-                            <tr class="hover:bg-slate-50/80">
-                                <td class="py-3 px-4 font-bold text-violet-700">S04</td>
-                                <td class="py-3 px-4 font-semibold">P4</td>
-                                <td class="py-3 px-4 font-medium text-slate-900">GenBank DNA Retrieval & Formats</td>
-                                <td class="py-3 px-4">NCBI Nucleotide, EMBOSS seqret</td>
-                                <td class="py-3 px-4">Annotated flat file NM_000518</td>
-                                <td class="py-3 px-4 font-bold text-slate-500">LO2</td>
+                            <tr class="hover:bg-slate-50/80 transition">
+                                <td class="py-3 px-4 font-bold text-violet-700 font-mono">S04</td>
+                                <td class="py-3 px-4 font-semibold text-slate-600">P4</td>
+                                <td class="py-3 px-4 font-bold text-slate-900">GenBank DNA Retrieval & Formats</td>
+                                <td class="py-3 px-4 text-slate-600">NCBI Nucleotide, EMBOSS seqret</td>
+                                <td class="py-3 px-4 text-slate-600">Annotated flat file NM_000518</td>
+                                <td class="py-3 px-4 font-semibold text-slate-500">LO2</td>
+                                <td class="py-3 px-4 text-center">
+                                    <div class="flex items-center justify-center space-x-1.5">
+                                        <button onclick="openPracticalDoc('S04', 'lab_sheet.md')" class="px-2 py-1 rounded bg-violet-50 text-violet-700 hover:bg-violet-100 border border-violet-200 text-[11px] font-semibold transition flex items-center space-x-1" title="Read Lab Sheet">
+                                            <i class="fa-solid fa-file-lines text-[10px]"></i><span>Lab Sheet</span>
+                                        </button>
+                                        <button onclick="openPracticalDoc('S04', 'worksheet.md')" class="px-2 py-1 rounded bg-cyan-50 text-cyan-700 hover:bg-cyan-100 border border-cyan-200 text-[11px] font-semibold transition flex items-center space-x-1" title="Read Worksheet">
+                                            <i class="fa-solid fa-pen-clip text-[10px]"></i><span>Worksheet</span>
+                                        </button>
+                                        <button onclick="openPracticalDoc('S04', 'answer_key.md')" class="px-2 py-1 rounded bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200 text-[11px] font-semibold transition flex items-center space-x-1" title="Read Answer Key">
+                                            <i class="fa-solid fa-key text-[10px]"></i><span>Key</span>
+                                        </button>
+                                        <a href="https://github.com/meprateekpaul/basicsbioinformatics/tree/main/Concepts_of_Bioinformatics/practicals/S04_GenBank_DNA_Retrieval" target="_blank" rel="noopener" class="p-1 text-slate-400 hover:text-slate-800 transition" title="View Folder on GitHub">
+                                            <i class="fa-brands fa-github text-sm"></i>
+                                        </a>
+                                    </div>
+                                </td>
                             </tr>
-                            <tr class="hover:bg-slate-50/80">
-                                <td class="py-3 px-4 font-bold text-violet-700">S05</td>
-                                <td class="py-3 px-4 font-semibold">P5</td>
-                                <td class="py-3 px-4 font-medium text-slate-900">Protein Retrieval (GenPept & Expasy)</td>
-                                <td class="py-3 px-4">NCBI Protein, UniProtKB / Swiss-Prot</td>
-                                <td class="py-3 px-4">NP_000509 vs P68871 comparison</td>
-                                <td class="py-3 px-4 font-bold text-slate-500">LO2</td>
+                            <tr class="hover:bg-slate-50/80 transition">
+                                <td class="py-3 px-4 font-bold text-violet-700 font-mono">S05</td>
+                                <td class="py-3 px-4 font-semibold text-slate-600">P5</td>
+                                <td class="py-3 px-4 font-bold text-slate-900">Protein Retrieval (GenPept & Expasy)</td>
+                                <td class="py-3 px-4 text-slate-600">NCBI Protein, UniProtKB / Swiss-Prot</td>
+                                <td class="py-3 px-4 text-slate-600">NP_000509 vs P68871 comparison</td>
+                                <td class="py-3 px-4 font-semibold text-slate-500">LO2</td>
+                                <td class="py-3 px-4 text-center">
+                                    <div class="flex items-center justify-center space-x-1.5">
+                                        <button onclick="openPracticalDoc('S05', 'lab_sheet.md')" class="px-2 py-1 rounded bg-violet-50 text-violet-700 hover:bg-violet-100 border border-violet-200 text-[11px] font-semibold transition flex items-center space-x-1" title="Read Lab Sheet">
+                                            <i class="fa-solid fa-file-lines text-[10px]"></i><span>Lab Sheet</span>
+                                        </button>
+                                        <button onclick="openPracticalDoc('S05', 'worksheet.md')" class="px-2 py-1 rounded bg-cyan-50 text-cyan-700 hover:bg-cyan-100 border border-cyan-200 text-[11px] font-semibold transition flex items-center space-x-1" title="Read Worksheet">
+                                            <i class="fa-solid fa-pen-clip text-[10px]"></i><span>Worksheet</span>
+                                        </button>
+                                        <button onclick="openPracticalDoc('S05', 'answer_key.md')" class="px-2 py-1 rounded bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200 text-[11px] font-semibold transition flex items-center space-x-1" title="Read Answer Key">
+                                            <i class="fa-solid fa-key text-[10px]"></i><span>Key</span>
+                                        </button>
+                                        <a href="https://github.com/meprateekpaul/basicsbioinformatics/tree/main/Concepts_of_Bioinformatics/practicals/S05_Protein_Retrieval_Expasy" target="_blank" rel="noopener" class="p-1 text-slate-400 hover:text-slate-800 transition" title="View Folder on GitHub">
+                                            <i class="fa-brands fa-github text-sm"></i>
+                                        </a>
+                                    </div>
+                                </td>
                             </tr>
-                            <tr class="hover:bg-slate-50/80">
-                                <td class="py-3 px-4 font-bold text-cyan-700">S06</td>
-                                <td class="py-3 px-4 font-semibold">P8</td>
-                                <td class="py-3 px-4 font-medium text-slate-900">Sequence Alignment using BLAST</td>
-                                <td class="py-3 px-4">NCBI blastn, blastp, blastx</td>
-                                <td class="py-3 px-4">Hit table & matrix comparison</td>
-                                <td class="py-3 px-4 font-bold text-slate-500">LO3, LO4</td>
+                            <tr class="hover:bg-slate-50/80 transition">
+                                <td class="py-3 px-4 font-bold text-cyan-700 font-mono">S06</td>
+                                <td class="py-3 px-4 font-semibold text-slate-600">P8</td>
+                                <td class="py-3 px-4 font-bold text-slate-900">Sequence Alignment using BLAST</td>
+                                <td class="py-3 px-4 text-slate-600">NCBI blastn, blastp, blastx</td>
+                                <td class="py-3 px-4 text-slate-600">Hit table & matrix comparison</td>
+                                <td class="py-3 px-4 font-semibold text-slate-500">LO3, LO4</td>
+                                <td class="py-3 px-4 text-center">
+                                    <div class="flex items-center justify-center space-x-1.5">
+                                        <button onclick="openPracticalDoc('S06', 'lab_sheet.md')" class="px-2 py-1 rounded bg-violet-50 text-violet-700 hover:bg-violet-100 border border-violet-200 text-[11px] font-semibold transition flex items-center space-x-1" title="Read Lab Sheet">
+                                            <i class="fa-solid fa-file-lines text-[10px]"></i><span>Lab Sheet</span>
+                                        </button>
+                                        <button onclick="openPracticalDoc('S06', 'worksheet.md')" class="px-2 py-1 rounded bg-cyan-50 text-cyan-700 hover:bg-cyan-100 border border-cyan-200 text-[11px] font-semibold transition flex items-center space-x-1" title="Read Worksheet">
+                                            <i class="fa-solid fa-pen-clip text-[10px]"></i><span>Worksheet</span>
+                                        </button>
+                                        <button onclick="openPracticalDoc('S06', 'answer_key.md')" class="px-2 py-1 rounded bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200 text-[11px] font-semibold transition flex items-center space-x-1" title="Read Answer Key">
+                                            <i class="fa-solid fa-key text-[10px]"></i><span>Key</span>
+                                        </button>
+                                        <a href="https://github.com/meprateekpaul/basicsbioinformatics/tree/main/Concepts_of_Bioinformatics/practicals/S06_BLAST_Alignment" target="_blank" rel="noopener" class="p-1 text-slate-400 hover:text-slate-800 transition" title="View Folder on GitHub">
+                                            <i class="fa-brands fa-github text-sm"></i>
+                                        </a>
+                                    </div>
+                                </td>
                             </tr>
-                            <tr class="hover:bg-slate-50/80">
-                                <td class="py-3 px-4 font-bold text-cyan-700">S07</td>
-                                <td class="py-3 px-4 font-semibold">P9</td>
-                                <td class="py-3 px-4 font-medium text-slate-900">Sequence Alignment using FASTA</td>
-                                <td class="py-3 px-4">EMBL-EBI FASTA / SSEARCH</td>
-                                <td class="py-3 px-4">BLAST vs FASTA sensitivity report</td>
-                                <td class="py-3 px-4 font-bold text-slate-500">LO3, LO4</td>
+                            <tr class="hover:bg-slate-50/80 transition">
+                                <td class="py-3 px-4 font-bold text-cyan-700 font-mono">S07</td>
+                                <td class="py-3 px-4 font-semibold text-slate-600">P9</td>
+                                <td class="py-3 px-4 font-bold text-slate-900">Sequence Alignment using FASTA</td>
+                                <td class="py-3 px-4 text-slate-600">EMBL-EBI FASTA / SSEARCH</td>
+                                <td class="py-3 px-4 text-slate-600">BLAST vs FASTA sensitivity report</td>
+                                <td class="py-3 px-4 font-semibold text-slate-500">LO3, LO4</td>
+                                <td class="py-3 px-4 text-center">
+                                    <div class="flex items-center justify-center space-x-1.5">
+                                        <button onclick="openPracticalDoc('S07', 'lab_sheet.md')" class="px-2 py-1 rounded bg-violet-50 text-violet-700 hover:bg-violet-100 border border-violet-200 text-[11px] font-semibold transition flex items-center space-x-1" title="Read Lab Sheet">
+                                            <i class="fa-solid fa-file-lines text-[10px]"></i><span>Lab Sheet</span>
+                                        </button>
+                                        <button onclick="openPracticalDoc('S07', 'worksheet.md')" class="px-2 py-1 rounded bg-cyan-50 text-cyan-700 hover:bg-cyan-100 border border-cyan-200 text-[11px] font-semibold transition flex items-center space-x-1" title="Read Worksheet">
+                                            <i class="fa-solid fa-pen-clip text-[10px]"></i><span>Worksheet</span>
+                                        </button>
+                                        <button onclick="openPracticalDoc('S07', 'answer_key.md')" class="px-2 py-1 rounded bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200 text-[11px] font-semibold transition flex items-center space-x-1" title="Read Answer Key">
+                                            <i class="fa-solid fa-key text-[10px]"></i><span>Key</span>
+                                        </button>
+                                        <a href="https://github.com/meprateekpaul/basicsbioinformatics/tree/main/Concepts_of_Bioinformatics/practicals/S07_FASTA_Alignment" target="_blank" rel="noopener" class="p-1 text-slate-400 hover:text-slate-800 transition" title="View Folder on GitHub">
+                                            <i class="fa-brands fa-github text-sm"></i>
+                                        </a>
+                                    </div>
+                                </td>
                             </tr>
-                            <tr class="hover:bg-slate-50/80">
-                                <td class="py-3 px-4 font-bold text-cyan-700">S08</td>
-                                <td class="py-3 px-4 font-semibold">P10</td>
-                                <td class="py-3 px-4 font-medium text-slate-900">Multiple Alignment with ClustalW</td>
-                                <td class="py-3 px-4">Clustal Omega, MUSCLE, Jalview</td>
-                                <td class="py-3 px-4">Globin MSA & active site mapping</td>
-                                <td class="py-3 px-4 font-bold text-slate-500">LO5</td>
+                            <tr class="hover:bg-slate-50/80 transition">
+                                <td class="py-3 px-4 font-bold text-cyan-700 font-mono">S08</td>
+                                <td class="py-3 px-4 font-semibold text-slate-600">P10</td>
+                                <td class="py-3 px-4 font-bold text-slate-900">Multiple Alignment with ClustalW</td>
+                                <td class="py-3 px-4 text-slate-600">Clustal Omega, MUSCLE, Jalview</td>
+                                <td class="py-3 px-4 text-slate-600">Globin MSA & active site mapping</td>
+                                <td class="py-3 px-4 font-semibold text-slate-500">LO5</td>
+                                <td class="py-3 px-4 text-center">
+                                    <div class="flex items-center justify-center space-x-1.5">
+                                        <button onclick="openPracticalDoc('S08', 'lab_sheet.md')" class="px-2 py-1 rounded bg-violet-50 text-violet-700 hover:bg-violet-100 border border-violet-200 text-[11px] font-semibold transition flex items-center space-x-1" title="Read Lab Sheet">
+                                            <i class="fa-solid fa-file-lines text-[10px]"></i><span>Lab Sheet</span>
+                                        </button>
+                                        <button onclick="openPracticalDoc('S08', 'worksheet.md')" class="px-2 py-1 rounded bg-cyan-50 text-cyan-700 hover:bg-cyan-100 border border-cyan-200 text-[11px] font-semibold transition flex items-center space-x-1" title="Read Worksheet">
+                                            <i class="fa-solid fa-pen-clip text-[10px]"></i><span>Worksheet</span>
+                                        </button>
+                                        <button onclick="openPracticalDoc('S08', 'answer_key.md')" class="px-2 py-1 rounded bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200 text-[11px] font-semibold transition flex items-center space-x-1" title="Read Answer Key">
+                                            <i class="fa-solid fa-key text-[10px]"></i><span>Key</span>
+                                        </button>
+                                        <a href="https://github.com/meprateekpaul/basicsbioinformatics/tree/main/Concepts_of_Bioinformatics/practicals/S08_ClustalW_MSA" target="_blank" rel="noopener" class="p-1 text-slate-400 hover:text-slate-800 transition" title="View Folder on GitHub">
+                                            <i class="fa-brands fa-github text-sm"></i>
+                                        </a>
+                                    </div>
+                                </td>
                             </tr>
-                            <tr class="hover:bg-slate-50/80">
-                                <td class="py-3 px-4 font-bold text-emerald-700">S09</td>
-                                <td class="py-3 px-4 font-semibold">P7</td>
-                                <td class="py-3 px-4 font-medium text-slate-900">Analyzing DNA Sequence</td>
-                                <td class="py-3 px-4">ORFfinder, EMBOSS cusp/geecee</td>
-                                <td class="py-3 px-4">ORF map & codon usage table</td>
-                                <td class="py-3 px-4 font-bold text-slate-500">LO6</td>
+                            <tr class="hover:bg-slate-50/80 transition">
+                                <td class="py-3 px-4 font-bold text-emerald-700 font-mono">S09</td>
+                                <td class="py-3 px-4 font-semibold text-slate-600">P7</td>
+                                <td class="py-3 px-4 font-bold text-slate-900">Analyzing DNA Sequence</td>
+                                <td class="py-3 px-4 text-slate-600">ORFfinder, EMBOSS cusp/geecee</td>
+                                <td class="py-3 px-4 text-slate-600">ORF map & codon usage table</td>
+                                <td class="py-3 px-4 font-semibold text-slate-500">LO6</td>
+                                <td class="py-3 px-4 text-center">
+                                    <div class="flex items-center justify-center space-x-1.5">
+                                        <button onclick="openPracticalDoc('S09', 'lab_sheet.md')" class="px-2 py-1 rounded bg-violet-50 text-violet-700 hover:bg-violet-100 border border-violet-200 text-[11px] font-semibold transition flex items-center space-x-1" title="Read Lab Sheet">
+                                            <i class="fa-solid fa-file-lines text-[10px]"></i><span>Lab Sheet</span>
+                                        </button>
+                                        <button onclick="openPracticalDoc('S09', 'worksheet.md')" class="px-2 py-1 rounded bg-cyan-50 text-cyan-700 hover:bg-cyan-100 border border-cyan-200 text-[11px] font-semibold transition flex items-center space-x-1" title="Read Worksheet">
+                                            <i class="fa-solid fa-pen-clip text-[10px]"></i><span>Worksheet</span>
+                                        </button>
+                                        <button onclick="openPracticalDoc('S09', 'answer_key.md')" class="px-2 py-1 rounded bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200 text-[11px] font-semibold transition flex items-center space-x-1" title="Read Answer Key">
+                                            <i class="fa-solid fa-key text-[10px]"></i><span>Key</span>
+                                        </button>
+                                        <a href="https://github.com/meprateekpaul/basicsbioinformatics/tree/main/Concepts_of_Bioinformatics/practicals/S09_DNA_Sequence_Analysis" target="_blank" rel="noopener" class="p-1 text-slate-400 hover:text-slate-800 transition" title="View Folder on GitHub">
+                                            <i class="fa-brands fa-github text-sm"></i>
+                                        </a>
+                                    </div>
+                                </td>
                             </tr>
-                            <tr class="hover:bg-slate-50/80">
-                                <td class="py-3 px-4 font-bold text-emerald-700">S10</td>
-                                <td class="py-3 px-4 font-semibold">P6</td>
-                                <td class="py-3 px-4 font-medium text-slate-900">Analyzing Protein Sequences</td>
-                                <td class="py-3 px-4">ProtParam, ProtScale, PROSITE</td>
-                                <td class="py-3 px-4">Property & hydropathy profile</td>
-                                <td class="py-3 px-4 font-bold text-slate-500">LO6</td>
+                            <tr class="hover:bg-slate-50/80 transition">
+                                <td class="py-3 px-4 font-bold text-emerald-700 font-mono">S10</td>
+                                <td class="py-3 px-4 font-semibold text-slate-600">P6</td>
+                                <td class="py-3 px-4 font-bold text-slate-900">Analyzing Protein Sequences</td>
+                                <td class="py-3 px-4 text-slate-600">ProtParam, ProtScale, PROSITE</td>
+                                <td class="py-3 px-4 text-slate-600">Property & hydropathy profile</td>
+                                <td class="py-3 px-4 font-semibold text-slate-500">LO6</td>
+                                <td class="py-3 px-4 text-center">
+                                    <div class="flex items-center justify-center space-x-1.5">
+                                        <button onclick="openPracticalDoc('S10', 'lab_sheet.md')" class="px-2 py-1 rounded bg-violet-50 text-violet-700 hover:bg-violet-100 border border-violet-200 text-[11px] font-semibold transition flex items-center space-x-1" title="Read Lab Sheet">
+                                            <i class="fa-solid fa-file-lines text-[10px]"></i><span>Lab Sheet</span>
+                                        </button>
+                                        <button onclick="openPracticalDoc('S10', 'worksheet.md')" class="px-2 py-1 rounded bg-cyan-50 text-cyan-700 hover:bg-cyan-100 border border-cyan-200 text-[11px] font-semibold transition flex items-center space-x-1" title="Read Worksheet">
+                                            <i class="fa-solid fa-pen-clip text-[10px]"></i><span>Worksheet</span>
+                                        </button>
+                                        <button onclick="openPracticalDoc('S10', 'answer_key.md')" class="px-2 py-1 rounded bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200 text-[11px] font-semibold transition flex items-center space-x-1" title="Read Answer Key">
+                                            <i class="fa-solid fa-key text-[10px]"></i><span>Key</span>
+                                        </button>
+                                        <a href="https://github.com/meprateekpaul/basicsbioinformatics/tree/main/Concepts_of_Bioinformatics/practicals/S10_Protein_Sequence_Analysis" target="_blank" rel="noopener" class="p-1 text-slate-400 hover:text-slate-800 transition" title="View Folder on GitHub">
+                                            <i class="fa-brands fa-github text-sm"></i>
+                                        </a>
+                                    </div>
+                                </td>
                             </tr>
-                            <tr class="hover:bg-slate-50/80">
-                                <td class="py-3 px-4 font-bold text-emerald-700">S11</td>
-                                <td class="py-3 px-4 font-semibold">P13</td>
-                                <td class="py-3 px-4 font-medium text-slate-900">Secondary Structure (GOR & PSIPRED)</td>
-                                <td class="py-3 px-4">GOR IV (NPS@), PSIPRED, DSSP</td>
-                                <td class="py-3 px-4">Q3 accuracy hand calculation</td>
-                                <td class="py-3 px-4 font-bold text-slate-500">LO6</td>
+                            <tr class="hover:bg-slate-50/80 transition">
+                                <td class="py-3 px-4 font-bold text-emerald-700 font-mono">S11</td>
+                                <td class="py-3 px-4 font-semibold text-slate-600">P13</td>
+                                <td class="py-3 px-4 font-bold text-slate-900">Secondary Structure (GOR & PSIPRED)</td>
+                                <td class="py-3 px-4 text-slate-600">GOR IV (NPS@), PSIPRED, DSSP</td>
+                                <td class="py-3 px-4 text-slate-600">Q3 accuracy hand calculation</td>
+                                <td class="py-3 px-4 font-semibold text-slate-500">LO6</td>
+                                <td class="py-3 px-4 text-center">
+                                    <div class="flex items-center justify-center space-x-1.5">
+                                        <button onclick="openPracticalDoc('S11', 'lab_sheet.md')" class="px-2 py-1 rounded bg-violet-50 text-violet-700 hover:bg-violet-100 border border-violet-200 text-[11px] font-semibold transition flex items-center space-x-1" title="Read Lab Sheet">
+                                            <i class="fa-solid fa-file-lines text-[10px]"></i><span>Lab Sheet</span>
+                                        </button>
+                                        <button onclick="openPracticalDoc('S11', 'worksheet.md')" class="px-2 py-1 rounded bg-cyan-50 text-cyan-700 hover:bg-cyan-100 border border-cyan-200 text-[11px] font-semibold transition flex items-center space-x-1" title="Read Worksheet">
+                                            <i class="fa-solid fa-pen-clip text-[10px]"></i><span>Worksheet</span>
+                                        </button>
+                                        <button onclick="openPracticalDoc('S11', 'answer_key.md')" class="px-2 py-1 rounded bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200 text-[11px] font-semibold transition flex items-center space-x-1" title="Read Answer Key">
+                                            <i class="fa-solid fa-key text-[10px]"></i><span>Key</span>
+                                        </button>
+                                        <a href="https://github.com/meprateekpaul/basicsbioinformatics/tree/main/Concepts_of_Bioinformatics/practicals/S11_GOR_Secondary_Structure" target="_blank" rel="noopener" class="p-1 text-slate-400 hover:text-slate-800 transition" title="View Folder on GitHub">
+                                            <i class="fa-brands fa-github text-sm"></i>
+                                        </a>
+                                    </div>
+                                </td>
                             </tr>
-                            <tr class="hover:bg-slate-50/80">
-                                <td class="py-3 px-4 font-bold text-rose-700">S12</td>
-                                <td class="py-3 px-4 font-semibold">P11</td>
-                                <td class="py-3 px-4 font-medium text-slate-900">Introduction to PDB Database</td>
-                                <td class="py-3 px-4">RCSB PDB, NCBI MMDB</td>
-                                <td class="py-3 px-4">1A3N structure inspection report</td>
-                                <td class="py-3 px-4 font-bold text-slate-500">LO7</td>
+                            <tr class="hover:bg-slate-50/80 transition">
+                                <td class="py-3 px-4 font-bold text-rose-700 font-mono">S12</td>
+                                <td class="py-3 px-4 font-semibold text-slate-600">P11</td>
+                                <td class="py-3 px-4 font-bold text-slate-900">Introduction to PDB Database</td>
+                                <td class="py-3 px-4 text-slate-600">RCSB PDB, NCBI MMDB</td>
+                                <td class="py-3 px-4 text-slate-600">1A3N structure inspection report</td>
+                                <td class="py-3 px-4 font-semibold text-slate-500">LO7</td>
+                                <td class="py-3 px-4 text-center">
+                                    <div class="flex items-center justify-center space-x-1.5">
+                                        <button onclick="openPracticalDoc('S12', 'lab_sheet.md')" class="px-2 py-1 rounded bg-violet-50 text-violet-700 hover:bg-violet-100 border border-violet-200 text-[11px] font-semibold transition flex items-center space-x-1" title="Read Lab Sheet">
+                                            <i class="fa-solid fa-file-lines text-[10px]"></i><span>Lab Sheet</span>
+                                        </button>
+                                        <button onclick="openPracticalDoc('S12', 'worksheet.md')" class="px-2 py-1 rounded bg-cyan-50 text-cyan-700 hover:bg-cyan-100 border border-cyan-200 text-[11px] font-semibold transition flex items-center space-x-1" title="Read Worksheet">
+                                            <i class="fa-solid fa-pen-clip text-[10px]"></i><span>Worksheet</span>
+                                        </button>
+                                        <button onclick="openPracticalDoc('S12', 'answer_key.md')" class="px-2 py-1 rounded bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200 text-[11px] font-semibold transition flex items-center space-x-1" title="Read Answer Key">
+                                            <i class="fa-solid fa-key text-[10px]"></i><span>Key</span>
+                                        </button>
+                                        <a href="https://github.com/meprateekpaul/basicsbioinformatics/tree/main/Concepts_of_Bioinformatics/practicals/S12_PDB_Structure_Database" target="_blank" rel="noopener" class="p-1 text-slate-400 hover:text-slate-800 transition" title="View Folder on GitHub">
+                                            <i class="fa-brands fa-github text-sm"></i>
+                                        </a>
+                                    </div>
+                                </td>
                             </tr>
-                            <tr class="hover:bg-slate-50/80">
-                                <td class="py-3 px-4 font-bold text-rose-700">S13</td>
-                                <td class="py-3 px-4 font-semibold">P12</td>
-                                <td class="py-3 px-4 font-medium text-slate-900">Structure Visualisation using VMD</td>
-                                <td class="py-3 px-4">VMD, Mol* in-browser viewer</td>
-                                <td class="py-3 px-4">3 rendered images (heme, HbS Val6)</td>
-                                <td class="py-3 px-4 font-bold text-slate-500">LO7</td>
+                            <tr class="hover:bg-slate-50/80 transition">
+                                <td class="py-3 px-4 font-bold text-rose-700 font-mono">S13</td>
+                                <td class="py-3 px-4 font-semibold text-slate-600">P12</td>
+                                <td class="py-3 px-4 font-bold text-slate-900">Structure Visualisation using VMD</td>
+                                <td class="py-3 px-4 text-slate-600">VMD, Mol* in-browser viewer</td>
+                                <td class="py-3 px-4 text-slate-600">3 rendered images (heme, HbS Val6)</td>
+                                <td class="py-3 px-4 font-semibold text-slate-500">LO7</td>
+                                <td class="py-3 px-4 text-center">
+                                    <div class="flex items-center justify-center space-x-1.5">
+                                        <button onclick="openPracticalDoc('S13', 'lab_sheet.md')" class="px-2 py-1 rounded bg-violet-50 text-violet-700 hover:bg-violet-100 border border-violet-200 text-[11px] font-semibold transition flex items-center space-x-1" title="Read Lab Sheet">
+                                            <i class="fa-solid fa-file-lines text-[10px]"></i><span>Lab Sheet</span>
+                                        </button>
+                                        <button onclick="openPracticalDoc('S13', 'worksheet.md')" class="px-2 py-1 rounded bg-cyan-50 text-cyan-700 hover:bg-cyan-100 border border-cyan-200 text-[11px] font-semibold transition flex items-center space-x-1" title="Read Worksheet">
+                                            <i class="fa-solid fa-pen-clip text-[10px]"></i><span>Worksheet</span>
+                                        </button>
+                                        <button onclick="openPracticalDoc('S13', 'answer_key.md')" class="px-2 py-1 rounded bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200 text-[11px] font-semibold transition flex items-center space-x-1" title="Read Answer Key">
+                                            <i class="fa-solid fa-key text-[10px]"></i><span>Key</span>
+                                        </button>
+                                        <a href="https://github.com/meprateekpaul/basicsbioinformatics/tree/main/Concepts_of_Bioinformatics/practicals/S13_VMD_Visualisation" target="_blank" rel="noopener" class="p-1 text-slate-400 hover:text-slate-800 transition" title="View Folder on GitHub">
+                                            <i class="fa-brands fa-github text-sm"></i>
+                                        </a>
+                                    </div>
+                                </td>
                             </tr>
-                            <tr class="hover:bg-slate-50/80">
-                                <td class="py-3 px-4 font-bold text-indigo-700">S14</td>
-                                <td class="py-3 px-4 font-semibold">—</td>
-                                <td class="py-3 px-4 font-medium text-slate-900">Mini-Project Lab Workshop</td>
-                                <td class="py-3 px-4">All web & Python tools</td>
-                                <td class="py-3 px-4">Gene family capstone draft</td>
-                                <td class="py-3 px-4 font-bold text-slate-500">All</td>
+                            <tr class="hover:bg-slate-50/80 transition">
+                                <td class="py-3 px-4 font-bold text-indigo-700 font-mono">S14</td>
+                                <td class="py-3 px-4 font-semibold text-slate-600">—</td>
+                                <td class="py-3 px-4 font-bold text-slate-900">Mini-Project Lab Workshop</td>
+                                <td class="py-3 px-4 text-slate-600">All web & Python tools</td>
+                                <td class="py-3 px-4 text-slate-600">Gene family capstone draft</td>
+                                <td class="py-3 px-4 font-semibold text-slate-500">All</td>
+                                <td class="py-3 px-4 text-center">
+                                    <div class="flex items-center justify-center space-x-1.5">
+                                        <button onclick="openPracticalDoc('S14', 'lab_sheet.md')" class="px-2 py-1 rounded bg-violet-50 text-violet-700 hover:bg-violet-100 border border-violet-200 text-[11px] font-semibold transition flex items-center space-x-1" title="Read Lab Sheet">
+                                            <i class="fa-solid fa-file-lines text-[10px]"></i><span>Lab Sheet</span>
+                                        </button>
+                                        <button onclick="openPracticalDoc('S14', 'worksheet.md')" class="px-2 py-1 rounded bg-cyan-50 text-cyan-700 hover:bg-cyan-100 border border-cyan-200 text-[11px] font-semibold transition flex items-center space-x-1" title="Read Worksheet">
+                                            <i class="fa-solid fa-pen-clip text-[10px]"></i><span>Worksheet</span>
+                                        </button>
+                                        <button onclick="openPracticalDoc('S14', 'answer_key.md')" class="px-2 py-1 rounded bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200 text-[11px] font-semibold transition flex items-center space-x-1" title="Read Answer Key">
+                                            <i class="fa-solid fa-key text-[10px]"></i><span>Key</span>
+                                        </button>
+                                        <a href="https://github.com/meprateekpaul/basicsbioinformatics/tree/main/Concepts_of_Bioinformatics/practicals/S14_Mini_Project_Session" target="_blank" rel="noopener" class="p-1 text-slate-400 hover:text-slate-800 transition" title="View Folder on GitHub">
+                                            <i class="fa-brands fa-github text-sm"></i>
+                                        </a>
+                                    </div>
+                                </td>
                             </tr>
-                            <tr class="hover:bg-slate-50/80">
-                                <td class="py-3 px-4 font-bold text-indigo-700">S15</td>
-                                <td class="py-3 px-4 font-semibold">—</td>
-                                <td class="py-3 px-4 font-medium text-slate-900">Practical Examination & Viva Voce</td>
-                                <td class="py-3 px-4">Randomized task pool</td>
-                                <td class="py-3 px-4">Live retrieval & analysis challenge</td>
-                                <td class="py-3 px-4 font-bold text-slate-500">All</td>
+                            <tr class="hover:bg-slate-50/80 transition">
+                                <td class="py-3 px-4 font-bold text-indigo-700 font-mono">S15</td>
+                                <td class="py-3 px-4 font-semibold text-slate-600">—</td>
+                                <td class="py-3 px-4 font-bold text-slate-900">Practical Examination & Viva Voce</td>
+                                <td class="py-3 px-4 text-slate-600">Randomized task pool</td>
+                                <td class="py-3 px-4 text-slate-600">Live retrieval & analysis challenge</td>
+                                <td class="py-3 px-4 font-semibold text-slate-500">All</td>
+                                <td class="py-3 px-4 text-center">
+                                    <div class="flex items-center justify-center space-x-1.5">
+                                        <button onclick="openPracticalDoc('S15', 'lab_sheet.md')" class="px-2 py-1 rounded bg-violet-50 text-violet-700 hover:bg-violet-100 border border-violet-200 text-[11px] font-semibold transition flex items-center space-x-1" title="Read Lab Sheet">
+                                            <i class="fa-solid fa-file-lines text-[10px]"></i><span>Lab Sheet</span>
+                                        </button>
+                                        <button onclick="openPracticalDoc('S15', 'worksheet.md')" class="px-2 py-1 rounded bg-cyan-50 text-cyan-700 hover:bg-cyan-100 border border-cyan-200 text-[11px] font-semibold transition flex items-center space-x-1" title="Read Worksheet">
+                                            <i class="fa-solid fa-pen-clip text-[10px]"></i><span>Worksheet</span>
+                                        </button>
+                                        <button onclick="openPracticalDoc('S15', 'answer_key.md')" class="px-2 py-1 rounded bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200 text-[11px] font-semibold transition flex items-center space-x-1" title="Read Answer Key">
+                                            <i class="fa-solid fa-key text-[10px]"></i><span>Key</span>
+                                        </button>
+                                        <a href="https://github.com/meprateekpaul/basicsbioinformatics/tree/main/Concepts_of_Bioinformatics/practicals/S15_Practical_Exam_Viva" target="_blank" rel="noopener" class="p-1 text-slate-400 hover:text-slate-800 transition" title="View Folder on GitHub">
+                                            <i class="fa-brands fa-github text-sm"></i>
+                                        </a>
+                                    </div>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -766,46 +1192,134 @@
         <!-- Interactive Notebook Suite Section -->
         <section id="notebooks" class="space-y-8">
             <div class="border-b border-slate-200 pb-4">
-                <span class="text-xs font-bold text-violet-600 uppercase tracking-wider">Computational Labs</span>
-                <h2 class="text-3xl font-bold text-slate-900 mt-1">Jupyter Notebook Suite (C, P, Q)</h2>
-                <p class="text-slate-600 text-sm max-w-3xl mt-2">
-                    59 production-grade Jupyter notebooks engineered according to <code class="code-pill font-bold text-violet-700">NOTEBOOK_GUIDE.md</code>. Featuring run-and-modify course examples, practice tasks with automated assert checks, and quiz self-tests with SHA-256 hashed grading.
-                </p>
+                <div class="flex flex-wrap items-center justify-between gap-4">
+                    <div>
+                        <span class="text-xs font-bold text-violet-600 uppercase tracking-wider">Computational Labs & Code</span>
+                        <h2 class="text-3xl font-bold text-slate-900 mt-1">Jupyter Notebook Suite (59 Production Notebooks)</h2>
+                        <p class="text-slate-600 text-sm max-w-3xl mt-2">
+                            Every notebook is engineered according to <code class="code-pill font-bold text-violet-700">NOTEBOOK_GUIDE.md</code>. Featuring run-and-modify lecture examples, graduated student practice with automated assertions, and self-testing quizzes with salted SHA-256 scoring.
+                        </p>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <a href="https://github.com/meprateekpaul/basicsbioinformatics/tree/main/Concepts_of_Bioinformatics/notebooks" target="_blank" rel="noopener" class="inline-flex items-center space-x-1.5 px-4 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition shadow-sm">
+                            <i class="fa-brands fa-github text-sm"></i>
+                            <span>Browse 59 Notebooks on GitHub</span>
+                        </a>
+                    </div>
+                </div>
             </div>
 
+            <!-- Summary Metrics Strip -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-                    <div class="flex items-center space-x-3 mb-4">
-                        <span class="w-8 h-8 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center font-bold text-sm">C</span>
-                        <h3 class="font-bold text-slate-900">Course Notebooks (15)</h3>
+                <!-- Course Examples Card -->
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:border-blue-300 transition">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center space-x-3">
+                            <span class="w-8 h-8 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center font-bold text-sm">C</span>
+                            <h3 class="font-bold text-slate-900">Course Examples (15)</h3>
+                        </div>
+                        <span class="text-xs font-mono font-bold text-blue-600 bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-200">15 Notebooks</span>
                     </div>
                     <p class="text-xs text-slate-600 leading-relaxed mb-4">
-                        Taught in lecture or lab: clean theory recaps, worked code blocks on HBB/INS/TP53, zero-boilerplate setup, and offline data fallbacks.
+                        Taught in lecture or lab: clean theory recaps, worked code blocks on human HBB/INS/TP53, zero-boilerplate setup, and pre-saved offline fallbacks.
                     </p>
-                    <div class="text-xs text-blue-600 font-semibold">15 Course Notebooks across Units 1–11</div>
+                    <button onclick="filterNotebooksType('C')" class="text-xs font-bold text-blue-600 hover:text-blue-800 flex items-center space-x-1">
+                        <span>Show Course Notebooks</span> <i class="fa-solid fa-arrow-down text-[10px]"></i>
+                    </button>
                 </div>
 
-                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-                    <div class="flex items-center space-x-3 mb-4">
-                        <span class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold text-sm">P</span>
-                        <h3 class="font-bold text-slate-900">Practice Notebooks (22)</h3>
+                <!-- Practice Tasks Card -->
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:border-emerald-300 transition">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center space-x-3">
+                            <span class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold text-sm">P</span>
+                            <h3 class="font-bold text-slate-900">Practice Tasks & Solutions (22)</h3>
+                        </div>
+                        <span class="text-xs font-mono font-bold text-emerald-600 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">11 + 11 Keys</span>
                     </div>
                     <p class="text-xs text-slate-600 leading-relaxed mb-4">
                         Graduated exercises (Warm-up ★, Core ★★, Challenge ★★★). Student copies feature clear TODO cells; instructor solutions include 100% passing assert checks.
                     </p>
-                    <div class="text-xs text-emerald-600 font-semibold">11 Student + 11 Solution Notebooks</div>
+                    <button onclick="filterNotebooksType('P')" class="text-xs font-bold text-emerald-600 hover:text-emerald-800 flex items-center space-x-1">
+                        <span>Show Practice & Solutions</span> <i class="fa-solid fa-arrow-down text-[10px]"></i>
+                    </button>
                 </div>
 
-                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-                    <div class="flex items-center space-x-3 mb-4">
-                        <span class="w-8 h-8 rounded-lg bg-purple-100 text-purple-600 flex items-center justify-center font-bold text-sm">Q</span>
-                        <h3 class="font-bold text-slate-900">Quiz Notebooks (22)</h3>
+                <!-- Formative Quizzes Card -->
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:border-purple-300 transition">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center space-x-3">
+                            <span class="w-8 h-8 rounded-lg bg-purple-100 text-purple-600 flex items-center justify-center font-bold text-sm">Q</span>
+                            <h3 class="font-bold text-slate-900">Formative Quizzes (22)</h3>
+                        </div>
+                        <span class="text-xs font-mono font-bold text-purple-600 bg-purple-50 px-2.5 py-0.5 rounded-full border border-purple-200">11 + 11 Keys</span>
                     </div>
                     <p class="text-xs text-slate-600 leading-relaxed mb-4">
                         Instant formative self-testing with salted SHA-256 hashing. Students receive instant right/wrong feedback and pointers to specific course sections.
                     </p>
-                    <div class="text-xs text-purple-600 font-semibold">11 Student + 11 Instructor Keys</div>
+                    <button onclick="filterNotebooksType('Q')" class="text-xs font-bold text-purple-600 hover:text-purple-800 flex items-center space-x-1">
+                        <span>Show Quizzes & Keys</span> <i class="fa-solid fa-arrow-down text-[10px]"></i>
+                    </button>
                 </div>
+            </div>
+
+            <!-- Interactive Search & Filter Controls -->
+            <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                <div class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4">
+                    <!-- Type Filter Tabs -->
+                    <div id="notebook-type-filters" class="flex flex-wrap items-center gap-1.5 text-xs">
+                        <button onclick="filterNotebooksType('all', this)" class="nb-type-btn active px-3 py-1.5 rounded-lg border border-slate-200 font-semibold transition bg-white text-slate-700 hover:bg-slate-50">All (59)</button>
+                        <button onclick="filterNotebooksType('C', this)" class="nb-type-btn px-3 py-1.5 rounded-lg border border-slate-200 font-semibold transition bg-white text-slate-700 hover:bg-slate-50">Course Worked (15)</button>
+                        <button onclick="filterNotebooksType('P', this)" class="nb-type-btn px-3 py-1.5 rounded-lg border border-slate-200 font-semibold transition bg-white text-slate-700 hover:bg-slate-50">Student Practice (11)</button>
+                        <button onclick="filterNotebooksType('P_SOL', this)" class="nb-type-btn px-3 py-1.5 rounded-lg border border-slate-200 font-semibold transition bg-white text-slate-700 hover:bg-slate-50">Solution Keys (11)</button>
+                        <button onclick="filterNotebooksType('Q', this)" class="nb-type-btn px-3 py-1.5 rounded-lg border border-slate-200 font-semibold transition bg-white text-slate-700 hover:bg-slate-50">Quizzes (11)</button>
+                        <button onclick="filterNotebooksType('Q_KEY', this)" class="nb-type-btn px-3 py-1.5 rounded-lg border border-slate-200 font-semibold transition bg-white text-slate-700 hover:bg-slate-50">Quiz Keys (11)</button>
+                    </div>
+
+                    <!-- Unit Selector & Search -->
+                    <div class="flex flex-wrap items-center gap-2">
+                        <select id="notebook-unit-select" onchange="handleNotebookFilter()" class="bg-slate-50 border border-slate-200 rounded-lg px-3 py-1.5 text-xs font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-500">
+                            <option value="all">All Units (1–11)</option>
+                            <option value="1">Unit 01: Bioinformatics & Internet</option>
+                            <option value="2">Unit 02: Information Retrieval</option>
+                            <option value="3">Unit 03: NCBI Data Model</option>
+                            <option value="4">Unit 04: GenBank Database</option>
+                            <option value="5">Unit 05: Sequence Alignment (FASTA/BLAST)</option>
+                            <option value="6">Unit 06: Multiple Sequence Alignment</option>
+                            <option value="7">Unit 07: Phylogenetic Analysis</option>
+                            <option value="8">Unit 08: Predictive Nucleotide</option>
+                            <option value="9">Unit 09: Predictive Protein</option>
+                            <option value="10">Unit 10: Macromolecular Structures (PDB)</option>
+                            <option value="11">Unit 11: Comparative Genomics</option>
+                        </select>
+                        <div class="relative flex-1 sm:w-64">
+                            <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-slate-400 text-xs"></i>
+                            <input id="notebook-search-input" oninput="handleNotebookFilter()" type="text" placeholder="Search by title, gene, algorithm..." class="w-full pl-8 pr-3 py-1.5 rounded-lg border border-slate-200 text-xs bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-violet-500">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Notebook Count Status Bar -->
+                <div class="flex items-center justify-between text-xs text-slate-500 pt-2 border-t border-slate-100">
+                    <div>Showing <span id="notebook-count-label" class="font-bold text-violet-700">59</span> notebooks</div>
+                    <div class="hidden sm:flex items-center space-x-3 text-[11px]">
+                        <span class="flex items-center space-x-1"><span class="w-2 h-2 rounded-full bg-blue-500"></span><span>Course (C)</span></span>
+                        <span class="flex items-center space-x-1"><span class="w-2 h-2 rounded-full bg-teal-500"></span><span>Practice (P)</span></span>
+                        <span class="flex items-center space-x-1"><span class="w-2 h-2 rounded-full bg-emerald-500"></span><span>Solutions</span></span>
+                        <span class="flex items-center space-x-1"><span class="w-2 h-2 rounded-full bg-amber-500"></span><span>Quizzes (Q)</span></span>
+                        <span class="flex items-center space-x-1"><span class="w-2 h-2 rounded-full bg-purple-500"></span><span>Keys</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dynamic Notebook Grid -->
+            <div id="notebooks-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                <!-- Populated dynamically by renderNotebooksGrid() -->
+            </div>
+
+            <div id="no-notebooks-found" class="hidden text-center py-12 text-slate-400 text-sm">
+                <i class="fa-solid fa-laptop-code text-3xl mb-2 text-slate-300"></i>
+                <div>No notebooks match your search query. Try different keywords or select "All".</div>
             </div>
         </section>
 
@@ -815,7 +1329,7 @@
                 <span class="text-xs font-bold text-rose-600 uppercase tracking-wider">Evaluation & Grading</span>
                 <h2 class="text-3xl font-bold text-slate-900 mt-1">Assessments & Examination Ecosystem</h2>
                 <p class="text-slate-600 text-sm max-w-3xl mt-2">
-                    A rigorous, multi-tiered evaluation system combining continuous formative feedback, hand calculations, practical viva, and comprehensive formal examinations.
+                    A rigorous, multi-tiered evaluation system combining continuous formative feedback, hand calculations, practical viva, and comprehensive formal examinations. Click any item to read directly in the in-browser reader or inspect on GitHub.
                 </p>
             </div>
 
@@ -823,96 +1337,135 @@
                 <!-- Question Bank Card -->
                 <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between">
                     <div>
-                        <div class="w-10 h-10 rounded-lg bg-rose-100 text-rose-600 flex items-center justify-center mb-3">
-                            <i class="fa-solid fa-list-check text-lg"></i>
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="w-10 h-10 rounded-lg bg-rose-100 text-rose-600 flex items-center justify-center">
+                                <i class="fa-solid fa-list-check text-lg"></i>
+                            </div>
+                            <span class="text-xs font-mono font-bold text-rose-700 bg-rose-50 px-2.5 py-0.5 rounded-full border border-rose-200">11 Units</span>
                         </div>
                         <h3 class="font-bold text-slate-900 mb-1">Master Question Bank</h3>
                         <p class="text-xs text-slate-600 leading-relaxed mb-4">
-                            11 comprehensive unit files comprising <strong>165 MCQs</strong> with rationale, <strong>66 Short Answer Questions</strong> with marking schemes, and <strong>22 Long Answer Problems</strong> tagged with Bloom's Taxonomy and Learning Outcomes.
+                            11 comprehensive unit files comprising <strong>165 MCQs</strong> with rationale, <strong>66 Short Answer Questions</strong> with marking schemes, and <strong>22 Long Answer Problems</strong> tagged with Bloom's Taxonomy.
                         </p>
                     </div>
-                    <div class="pt-3 border-t border-slate-100 text-xs font-semibold text-rose-600">
-                        Folder: <code class="code-pill">assessments/question_bank/</code>
+                    <div class="space-y-2 pt-3 border-t border-slate-100">
+                        <label class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Select Unit Question Bank:</label>
+                        <select onchange="openQuestionBankDoc(this.value)" class="w-full bg-slate-50 border border-slate-200 rounded-lg p-2 text-xs font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-rose-500">
+                            <option value="">Choose Unit Question Bank...</option>
+                            <option value="U01_questions.md">Unit 01: Bioinformatics & Internet</option>
+                            <option value="U02_questions.md">Unit 02: Information Retrieval</option>
+                            <option value="U03_questions.md">Unit 03: NCBI Data Model</option>
+                            <option value="U04_questions.md">Unit 04: GenBank Database</option>
+                            <option value="U05_questions.md">Unit 05: Sequence Alignment</option>
+                            <option value="U06_questions.md">Unit 06: Multiple Alignment</option>
+                            <option value="U07_questions.md">Unit 07: Phylogenetics</option>
+                            <option value="U08_questions.md">Unit 08: Predictive Nucleotide</option>
+                            <option value="U09_questions.md">Unit 09: Predictive Protein</option>
+                            <option value="U10_questions.md">Unit 10: Structure Databases</option>
+                            <option value="U11_questions.md">Unit 11: Comparative Genomics</option>
+                        </select>
                     </div>
                 </div>
 
                 <!-- Quizzes Card -->
                 <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between">
                     <div>
-                        <div class="w-10 h-10 rounded-lg bg-amber-100 text-amber-600 flex items-center justify-center mb-3">
-                            <i class="fa-solid fa-pen-to-square text-lg"></i>
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="w-10 h-10 rounded-lg bg-amber-100 text-amber-600 flex items-center justify-center">
+                                <i class="fa-solid fa-pen-to-square text-lg"></i>
+                            </div>
+                            <span class="text-xs font-mono font-bold text-amber-700 bg-amber-50 px-2.5 py-0.5 rounded-full border border-amber-200">4 Quizzes</span>
                         </div>
                         <h3 class="font-bold text-slate-900 mb-1">4 Graded Closed-Book Quizzes</h3>
                         <p class="text-xs text-slate-600 leading-relaxed mb-4">
-                            15-minute diagnostic checks: Quiz 1 (Databases & Formats), Quiz 2 (Hand-worked Needleman–Wunsch matrix), Quiz 3 (MSA & Phylogenetics), and Quiz 4 (Properties & PDB Structures).
+                            15-minute diagnostic checks: Quiz 1 (Databases), Quiz 2 (Hand-worked Needleman–Wunsch matrix), Quiz 3 (MSA & Phylogeny), and Quiz 4 (Properties & PDB Structures).
                         </p>
                     </div>
-                    <div class="pt-3 border-t border-slate-100 text-xs font-semibold text-amber-600">
-                        Folder: <code class="code-pill">assessments/quizzes/</code>
+                    <div class="pt-3 border-t border-slate-100 grid grid-cols-2 gap-2 text-xs">
+                        <button onclick="openAssessmentDoc('quizzes', 'Quiz_1_Units_1_to_3.md')" class="px-2.5 py-1.5 rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-200 font-semibold transition text-center">Quiz 1 (U1–3)</button>
+                        <button onclick="openAssessmentDoc('quizzes', 'Quiz_2_Hand_Alignment.md')" class="px-2.5 py-1.5 rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-200 font-semibold transition text-center">Quiz 2 (NW DP)</button>
+                        <button onclick="openAssessmentDoc('quizzes', 'Quiz_3_Units_6_to_7.md')" class="px-2.5 py-1.5 rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-200 font-semibold transition text-center">Quiz 3 (U6–7)</button>
+                        <button onclick="openAssessmentDoc('quizzes', 'Quiz_4_Units_8_to_10.md')" class="px-2.5 py-1.5 rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-200 font-semibold transition text-center">Quiz 4 (U8–10)</button>
                     </div>
                 </div>
 
                 <!-- Assignment 1 Card -->
                 <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between">
                     <div>
-                        <div class="w-10 h-10 rounded-lg bg-cyan-100 text-cyan-600 flex items-center justify-center mb-3">
-                            <i class="fa-solid fa-file-signature text-lg"></i>
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="w-10 h-10 rounded-lg bg-cyan-100 text-cyan-600 flex items-center justify-center">
+                                <i class="fa-solid fa-file-signature text-lg"></i>
+                            </div>
+                            <span class="text-xs font-mono font-bold text-cyan-700 bg-cyan-50 px-2.5 py-0.5 rounded-full border border-cyan-200">Assignment</span>
                         </div>
                         <h3 class="font-bold text-slate-900 mb-1">Assignment 1: Mystery Sequences</h3>
                         <p class="text-xs text-slate-600 leading-relaxed mb-4">
-                            "Characterise an Unknown Sequence" — each student receives a unique unlabelled FASTA record (<code class="code-pill">unknown_sequences.fasta</code>) and produces an evidence-based report.
+                            "Characterise an Unknown Sequence" — each student receives a unique unlabelled FASTA record and produces an evidence-based report.
                         </p>
                     </div>
-                    <div class="pt-3 border-t border-slate-100 text-xs font-semibold text-cyan-600">
-                        Folder: <code class="code-pill">assessments/assignment_1/</code>
+                    <div class="pt-3 border-t border-slate-100 flex items-center gap-2 text-xs">
+                        <button onclick="openAssessmentDoc('assignment_1', 'problem_sheet.md')" class="flex-1 py-1.5 rounded-lg bg-cyan-50 hover:bg-cyan-100 text-cyan-900 border border-cyan-200 font-semibold transition text-center">Problem Sheet</button>
+                        <button onclick="openAssessmentDoc('assignment_1', 'marking_key.md')" class="flex-1 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200 font-semibold transition text-center">Marking Key</button>
                     </div>
                 </div>
 
                 <!-- Mini Project Card -->
                 <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between">
                     <div>
-                        <div class="w-10 h-10 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center mb-3">
-                            <i class="fa-solid fa-diagram-project text-lg"></i>
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="w-10 h-10 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center">
+                                <i class="fa-solid fa-diagram-project text-lg"></i>
+                            </div>
+                            <span class="text-xs font-mono font-bold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">Capstone</span>
                         </div>
                         <h3 class="font-bold text-slate-900 mb-1">Gene Family Mini-Project</h3>
                         <p class="text-xs text-slate-600 leading-relaxed mb-4">
-                            End-to-end capstone in groups of 2–3 across 12 pre-screened gene families (Globins, Kinases, Serpins, GPCRs). Includes 4-page report template and 20-point analytical rubric.
+                            End-to-end capstone in groups across 12 pre-screened gene families (Globins, Kinases, GPCRs). Includes 4-page template and analytical rubric.
                         </p>
                     </div>
-                    <div class="pt-3 border-t border-slate-100 text-xs font-semibold text-emerald-600">
-                        Folder: <code class="code-pill">assessments/mini_project/</code>
+                    <div class="pt-3 border-t border-slate-100 grid grid-cols-3 gap-1.5 text-xs">
+                        <button onclick="openAssessmentDoc('mini_project', 'brief.md')" class="py-1.5 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-900 border border-emerald-200 font-semibold transition text-center text-[11px]">Brief</button>
+                        <button onclick="openAssessmentDoc('mini_project', 'rubric.md')" class="py-1.5 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-900 border border-emerald-200 font-semibold transition text-center text-[11px]">Rubric</button>
+                        <button onclick="openAssessmentDoc('mini_project', 'report_template.md')" class="py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200 font-semibold transition text-center text-[11px]">Template</button>
                     </div>
                 </div>
 
                 <!-- Formal Exams Card -->
                 <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between">
                     <div>
-                        <div class="w-10 h-10 rounded-lg bg-indigo-100 text-indigo-600 flex items-center justify-center mb-3">
-                            <i class="fa-solid fa-graduation-cap text-lg"></i>
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="w-10 h-10 rounded-lg bg-indigo-100 text-indigo-600 flex items-center justify-center">
+                                <i class="fa-solid fa-graduation-cap text-lg"></i>
+                            </div>
+                            <span class="text-xs font-mono font-bold text-indigo-700 bg-indigo-50 px-2.5 py-0.5 rounded-full border border-indigo-200">Exams</span>
                         </div>
                         <h3 class="font-bold text-slate-900 mb-1">Mid-Term & Final Exams</h3>
                         <p class="text-xs text-slate-600 leading-relaxed mb-4">
-                            Formal 2-hour Mid-Semester Paper (Units 1–5, 50 marks) and 3-hour End-Semester Paper (Units 1–11, 100 marks) with complete model answers, mark allocations, and scoring criteria.
+                            Formal 2-hour Mid-Semester Paper (Units 1–5, 50 marks) and 3-hour End-Semester Paper (Units 1–11, 100 marks) with complete model answers.
                         </p>
                     </div>
-                    <div class="pt-3 border-t border-slate-100 text-xs font-semibold text-indigo-600">
-                        Folder: <code class="code-pill">assessments/exams/</code>
+                    <div class="pt-3 border-t border-slate-100 flex items-center gap-2 text-xs">
+                        <button onclick="openAssessmentDoc('exams', 'mid_semester_exam.md')" class="flex-1 py-1.5 rounded-lg bg-indigo-50 hover:bg-indigo-100 text-indigo-900 border border-indigo-200 font-semibold transition text-center">Mid-Term Exam</button>
+                        <button onclick="openAssessmentDoc('exams', 'end_semester_exam.md')" class="flex-1 py-1.5 rounded-lg bg-indigo-50 hover:bg-indigo-100 text-indigo-900 border border-indigo-200 font-semibold transition text-center">Final Exam</button>
                     </div>
                 </div>
 
                 <!-- Practical Exam Card -->
                 <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between">
                     <div>
-                        <div class="w-10 h-10 rounded-lg bg-teal-100 text-teal-600 flex items-center justify-center mb-3">
-                            <i class="fa-solid fa-microscope text-lg"></i>
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="w-10 h-10 rounded-lg bg-teal-100 text-teal-600 flex items-center justify-center">
+                                <i class="fa-solid fa-microscope text-lg"></i>
+                            </div>
+                            <span class="text-xs font-mono font-bold text-teal-700 bg-teal-50 px-2.5 py-0.5 rounded-full border border-teal-200">Viva Voce</span>
                         </div>
                         <h3 class="font-bold text-slate-900 mb-1">Practical Exam & Viva Voce</h3>
                         <p class="text-xs text-slate-600 leading-relaxed mb-4">
-                            15 randomized computer lab tasks (retrieval, alignment, tree building, structure rendering) plus a 30-question oral viva voce question bank with evaluation sheet.
+                            15 randomized computer lab tasks (retrieval, alignment, tree building, structure rendering) plus a 30-question oral viva voce question pool.
                         </p>
                     </div>
-                    <div class="pt-3 border-t border-slate-100 text-xs font-semibold text-teal-600">
-                        Folder: <code class="code-pill">assessments/exams/</code>
+                    <div class="pt-3 border-t border-slate-100 flex items-center gap-2 text-xs">
+                        <button onclick="openAssessmentDoc('exams', 'practical_exam_pool.md')" class="w-full py-1.5 rounded-lg bg-teal-50 hover:bg-teal-100 text-teal-900 border border-teal-200 font-semibold transition text-center">Practical Tasks & Viva Pool</button>
                     </div>
                 </div>
             </div>
@@ -1097,21 +1650,42 @@
                     <div id="slide-modal-unit-name" class="text-[11px] text-slate-400">Unit 1: Bioinformatics & Internet</div>
                 </div>
             </div>
-            <div class="flex items-center space-x-3">
+            <div class="flex items-center space-x-2">
                 <span id="slide-modal-counter" class="text-xs font-mono text-slate-300 bg-slate-900 px-3 py-1 rounded-full border border-slate-800">Slide 1 of 8</span>
+                <button onclick="toggleFullscreenSlide()" class="p-2 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 transition" title="Toggle Fullscreen">
+                    <i class="fa-solid fa-expand text-sm"></i>
+                </button>
                 <button onclick="closeSlideModal()" class="text-slate-400 hover:text-white p-2 text-lg rounded-lg hover:bg-slate-800 transition" title="Close (Esc)">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
         </div>
 
+        <!-- Slide Thumbnails / Tabs Strip -->
+        <div class="max-w-6xl mx-auto w-full py-2">
+            <div id="slide-tabs-container" class="flex items-center gap-1.5 overflow-x-auto py-1 px-1 max-w-full">
+                <!-- Dynamically populated clickable pills: [1. Title] [2. Info Explosion] ... -->
+            </div>
+        </div>
+
         <!-- Center Slide Stage -->
-        <div class="flex-1 flex flex-col justify-center items-center py-3 overflow-y-auto max-w-6xl mx-auto w-full">
-            <div class="w-full bg-slate-900/90 border border-slate-800 rounded-2xl shadow-2xl p-5 sm:p-8 flex flex-col justify-between min-h-[460px] max-h-[75vh] overflow-y-auto">
+        <div class="flex-1 flex flex-col justify-center items-center py-2 overflow-y-auto max-w-6xl mx-auto w-full relative">
+            <!-- Left Chevron Arrow -->
+            <button onclick="prevSlide()" class="absolute left-2 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-slate-800/80 hover:bg-violet-600 text-white flex items-center justify-center border border-slate-700 hover:border-violet-500 transition shadow-xl backdrop-blur cursor-pointer" title="Previous Slide (←)">
+                <i class="fa-solid fa-chevron-left text-base"></i>
+            </button>
+
+            <!-- Right Chevron Arrow -->
+            <button onclick="nextSlide()" class="absolute right-2 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-slate-800/80 hover:bg-violet-600 text-white flex items-center justify-center border border-slate-700 hover:border-violet-500 transition shadow-xl backdrop-blur cursor-pointer" title="Next Slide (→ or Space)">
+                <i class="fa-solid fa-chevron-right text-base"></i>
+            </button>
+
+            <!-- Slide Canvas Card -->
+            <div id="slide-stage-card" class="w-full bg-slate-900/95 border border-slate-800 rounded-2xl shadow-2xl p-5 sm:p-8 flex flex-col justify-between min-h-[460px] max-h-[72vh] overflow-y-auto cursor-pointer" onclick="handleSlideStageClick(event)">
                 <div>
                     <div class="flex items-center justify-between mb-2">
                         <span id="slide-stage-header" class="text-xs font-bold uppercase tracking-wider text-violet-400 font-mono">SLIDE 1: Title & Foundations</span>
-                        <span class="text-[11px] text-slate-500 font-mono">Use ← / → keys</span>
+                        <span class="text-[11px] text-slate-500 font-mono">Click stage or use ← / → keys</span>
                     </div>
                     <h2 id="slide-stage-topic" class="text-lg sm:text-2xl font-extrabold text-white mb-4">Slide Topic</h2>
 
@@ -1122,8 +1696,10 @@
 
                 <!-- Speaker Notes Panel -->
                 <div id="slide-stage-notes-box" class="mt-4 pt-3 border-t border-slate-800 text-xs text-amber-200/90 bg-amber-500/10 p-3.5 rounded-xl border border-amber-500/20">
-                    <div class="font-bold text-amber-300 text-[11px] uppercase tracking-wider mb-1 flex items-center space-x-1.5">
-                        <i class="fa-solid fa-microphone text-xs"></i> <span>Speaker Notes & Algorithmic Takeaways</span>
+                    <div class="flex items-center justify-between mb-1">
+                        <div class="font-bold text-amber-300 text-[11px] uppercase tracking-wider flex items-center space-x-1.5">
+                            <i class="fa-solid fa-microphone text-xs"></i> <span>Speaker Notes & Key Algorithmic Insights</span>
+                        </div>
                     </div>
                     <div id="slide-stage-notes" class="leading-relaxed whitespace-pre-line font-sans text-xs sm:text-sm text-slate-300">
                         <!-- Notes -->
@@ -1138,16 +1714,16 @@
                 <div id="slide-progress-bar" class="bg-gradient-to-r from-violet-500 via-cyan-400 to-emerald-400 h-1.5 rounded-full transition-all duration-300" style="width: 12.5%;"></div>
             </div>
             <div class="flex items-center justify-between text-xs text-slate-400">
-                <button onclick="prevSlide()" class="px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-medium flex items-center space-x-2 transition">
+                <button onclick="prevSlide()" class="px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-medium flex items-center space-x-2 transition cursor-pointer">
                     <i class="fa-solid fa-arrow-left"></i> <span>Previous Slide</span>
                 </button>
                 <div class="flex items-center space-x-2">
-                    <button onclick="openNotesFromCurrentSlide()" class="px-3 py-1.5 rounded-lg border border-slate-700 hover:border-violet-500 hover:text-white transition flex items-center space-x-1.5 text-xs text-slate-300">
+                    <button onclick="openNotesFromCurrentSlide()" class="px-3.5 py-1.5 rounded-lg border border-slate-700 hover:border-violet-500 hover:text-white transition flex items-center space-x-1.5 text-xs text-slate-300 cursor-pointer">
                         <i class="fa-solid fa-book-open text-xs text-violet-400"></i>
                         <span>Read Full Lecture Notes</span>
                     </button>
                 </div>
-                <button onclick="nextSlide()" class="px-4 py-2 rounded-lg bg-violet-600 hover:bg-violet-500 text-white font-medium flex items-center space-x-2 transition">
+                <button onclick="nextSlide()" class="px-4 py-2 rounded-lg bg-violet-600 hover:bg-violet-500 text-white font-medium flex items-center space-x-2 transition cursor-pointer">
                     <span>Next Slide</span> <i class="fa-solid fa-arrow-right"></i>
                 </button>
             </div>
@@ -1156,46 +1732,50 @@
 
 
     <!-- ========================================== -->
-    <!-- LECTURE NOTES READING MODAL / DRAWER       -->
+    <!-- UNIFIED ACADEMIC MARKDOWN READER MODAL     -->
     <!-- ========================================== -->
     <div id="notes-modal" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
-        <div class="bg-white text-slate-900 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[92vh] flex flex-col overflow-hidden border border-slate-200">
+        <div class="bg-white text-slate-900 rounded-2xl shadow-2xl max-w-5xl w-full max-h-[92vh] flex flex-col overflow-hidden border border-slate-200">
             <!-- Modal Header -->
             <div class="flex items-center justify-between p-5 sm:p-6 border-b border-slate-200 bg-slate-50/90">
                 <div>
                     <div class="flex items-center space-x-2 mb-1.5">
                         <span id="notes-modal-lec-badge" class="px-2.5 py-0.5 rounded-md text-xs font-bold font-mono bg-violet-100 text-violet-800 border border-violet-200">L01 · Unit 01</span>
                         <span id="notes-modal-lo-badge" class="px-2 py-0.5 rounded text-[11px] font-semibold bg-cyan-100 text-cyan-800 border border-cyan-200">LO1</span>
+                        <span id="notes-modal-readtime" class="px-2 py-0.5 rounded text-[11px] font-medium bg-slate-100 text-slate-600">~10 min read</span>
                     </div>
                     <h2 id="notes-modal-title" class="text-xl sm:text-2xl font-bold text-slate-900">Lecture Title</h2>
                     <p id="notes-modal-topic" class="text-xs text-slate-500 mt-1">Syllabus topic</p>
                 </div>
                 <div class="flex items-center space-x-2">
-                    <button onclick="window.print()" class="p-2 text-slate-500 hover:text-slate-800 hover:bg-slate-200 rounded-lg transition" title="Print Notes">
-                        <i class="fa-solid fa-print"></i>
+                    <button onclick="copyCurrentMarkdown()" class="p-2 text-slate-500 hover:text-slate-800 hover:bg-slate-200 rounded-lg transition" title="Copy Raw Markdown">
+                        <i class="fa-regular fa-copy text-sm"></i>
                     </button>
-                    <button onclick="closeNotesModal()" class="p-2 text-slate-500 hover:text-slate-800 hover:bg-slate-200 rounded-lg transition" title="Close (Esc)">
+                    <button onclick="window.print()" class="p-2 text-slate-500 hover:text-slate-800 hover:bg-slate-200 rounded-lg transition" title="Print Document">
+                        <i class="fa-solid fa-print text-sm"></i>
+                    </button>
+                    <button onclick="closeNotesModal()" class="p-2 text-slate-500 hover:text-slate-800 hover:bg-slate-200 rounded-lg transition cursor-pointer" title="Close (Esc)">
                         <i class="fa-solid fa-xmark text-xl"></i>
                     </button>
                 </div>
             </div>
 
-            <!-- Modal Content (Rendered Markdown) -->
-            <div id="notes-modal-content" class="p-6 sm:p-10 overflow-y-auto text-sm sm:text-base leading-relaxed space-y-4">
+            <!-- Modal Content (Rendered Markdown with GitHub Typography) -->
+            <div id="notes-modal-content" class="markdown-body p-6 sm:p-10 overflow-y-auto text-sm sm:text-base leading-relaxed">
                 <!-- Rendered notes markdown -->
             </div>
 
             <!-- Modal Footer -->
             <div class="p-4 border-t border-slate-200 bg-slate-50 flex flex-wrap items-center justify-between gap-3 text-xs">
-                <a id="notes-modal-gh-link" href="#" target="_blank" class="text-violet-600 font-bold hover:underline flex items-center space-x-1.5">
+                <a id="notes-modal-gh-link" href="#" target="_blank" rel="noopener" class="text-violet-600 font-bold hover:underline flex items-center space-x-1.5">
                     <i class="fa-brands fa-github text-sm"></i>
-                    <span>View Authentic Markdown on GitHub</span>
+                    <span>View Authentic File on GitHub</span>
                 </a>
                 <div class="flex items-center space-x-3">
-                    <button onclick="openSlidesFromCurrentNotes()" class="px-3.5 py-1.5 rounded-lg bg-violet-50 border border-violet-200 text-violet-700 font-bold hover:bg-violet-100 transition flex items-center space-x-1.5">
+                    <button id="notes-modal-slides-btn" onclick="openSlidesFromCurrentNotes()" class="px-3.5 py-1.5 rounded-lg bg-violet-50 border border-violet-200 text-violet-700 font-bold hover:bg-violet-100 transition flex items-center space-x-1.5 cursor-pointer">
                         <i class="fa-solid fa-presentation-screen text-xs"></i> <span>Launch 8-Slide Deck</span>
                     </button>
-                    <button onclick="closeNotesModal()" class="px-4 py-1.5 rounded-lg bg-slate-800 text-white font-medium hover:bg-slate-700 transition">Close</button>
+                    <button onclick="closeNotesModal()" class="px-4 py-1.5 rounded-lg bg-slate-800 text-white font-medium hover:bg-slate-700 transition cursor-pointer">Close</button>
                 </div>
             </div>
         </div>
@@ -1203,33 +1783,72 @@
 
 
     <!-- ========================================== -->
-    <!-- JAVASCRIPT CONTROLLER FOR SLIDES & NOTES   -->
+    <!-- JAVASCRIPT CONTROLLER                      -->
     <!-- ========================================== -->
     <script>
         let currentLecIndex = 0;
         let currentSlideIndex = 0;
         let activeUnitFilter = "all";
         let searchQuery = "";
+        let currentRawMarkdown = "";
 
-        // Safe Markdown Renderer
+        // Notebook filter state
+        let activeNbType = "all";
+        let activeNbUnit = "all";
+        let nbSearchQuery = "";
+
+        // Configure Marked.js for GitHub Flavored Markdown & Code Highlighting
+        if (window.marked) {
+            marked.setOptions({
+                gfm: true,
+                breaks: true,
+                headerIds: true,
+                mangle: false,
+                highlight: function(code, lang) {
+                    if (window.hljs) {
+                        if (lang && hljs.getLanguage(lang)) {
+                            try { return hljs.highlight(code, { language: lang }).value; } catch (e) {}
+                        }
+                        try { return hljs.highlightAuto(code).value; } catch (e) {}
+                    }
+                    return code;
+                }
+            });
+        }
+
         function renderMarkdownToHtml(md) {
             if (window.marked && typeof window.marked.parse === "function") {
                 return window.marked.parse(md);
             }
-            // Fallback lightweight parser
-            return md
-                .replace(/^### (.*$)/gim, "<h3 class="text-lg font-bold text-slate-800 mt-5 mb-2">$1</h3>")
-                .replace(/^## (.*$)/gim, "<h2 class="text-xl font-bold text-slate-900 border-b border-slate-200 pb-1 mt-6 mb-3">$1</h2>")
-                .replace(/^# (.*$)/gim, "<h1 class="text-2xl font-extrabold text-slate-900 mb-4">$1</h1>")
-                .replace(/\*\*(.*?)\*\*/gim, "<strong>$1</strong>")
-                .replace(/\*(.*?)\*/gim, "<em>$1</em>")
-                .replace(/`([^`]+)`/gim, "<code class="bg-slate-100 text-violet-700 px-1 py-0.5 rounded text-xs font-mono">$1</code>")
-                .replace(/```([\s\S]*?)```/gim, "<pre class="bg-slate-900 text-cyan-200 p-4 rounded-xl font-mono text-xs overflow-x-auto my-3"><code>$1</code></pre>")
-                .replace(/^\s*\*\s+(.*$)/gim, "<li class="ml-4 list-disc">$1</li>")
-                .replace(/\n\n+/gim, "<br><br>");
+            return "<pre class='font-mono text-xs whitespace-pre-wrap'>" + md + "</pre>";
         }
 
-        // Initialize Lectures Grid
+        // Attach Copy Buttons to all code blocks in container
+        function attachCodeCopyButtons(container) {
+            if (!container) return;
+            const preBlocks = container.querySelectorAll("pre");
+            preBlocks.forEach(pre => {
+                if (pre.querySelector(".code-copy-btn")) return;
+                const btn = document.createElement("button");
+                btn.className = "code-copy-btn absolute top-2 right-2 px-2 py-1 text-[11px] font-sans font-semibold rounded bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 transition flex items-center space-x-1 cursor-pointer";
+                btn.innerHTML = '<i class="fa-regular fa-copy"></i><span>Copy</span>';
+                btn.onclick = (e) => {
+                    e.stopPropagation();
+                    const code = pre.querySelector("code") ? pre.querySelector("code").innerText : pre.innerText;
+                    navigator.clipboard.writeText(code).then(() => {
+                        btn.innerHTML = '<i class="fa-solid fa-check text-emerald-400"></i><span class="text-emerald-400">Copied!</span>';
+                        setTimeout(() => {
+                            btn.innerHTML = '<i class="fa-regular fa-copy"></i><span>Copy</span>';
+                        }, 2000);
+                    });
+                };
+                pre.appendChild(btn);
+            });
+        }
+
+        // ---------------------------------------------
+        // LECTURES GRID
+        // ---------------------------------------------
         function renderLecturesGrid() {
             const container = document.getElementById("lectures-grid");
             const noResults = document.getElementById("no-lectures-found");
@@ -1253,9 +1872,11 @@
             }
             if (noResults) noResults.classList.add("hidden");
 
-            container.innerHTML = filtered.map((lec, idx) => {
+            container.innerHTML = filtered.map(lec => {
                 const realIndex = window.CBBI_LECTURES.findIndex(l => l.id === lec.id);
-                const unitColor = lec.unit <= 4 ? "violet" : (lec.unit <= 7 ? "cyan" : (lec.unit <= 10 ? "emerald" : "indigo"));
+                const colabUrl = `https://colab.research.google.com/github/meprateekpaul/basicsbioinformatics/blob/main/Concepts_of_Bioinformatics/${lec.notebook_path}`;
+                const ghMdUrl = `https://github.com/meprateekpaul/basicsbioinformatics/blob/main/Concepts_of_Bioinformatics/${lec.rel_path}`;
+
                 return `
                 <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between hover:border-violet-400 hover:shadow-md transition">
                     <div>
@@ -1269,21 +1890,23 @@
 
                     <div class="space-y-2 pt-3 border-t border-slate-100">
                         <div class="grid grid-cols-2 gap-2">
-                            <button onclick="openSlideModal(${realIndex})" class="w-full px-3 py-1.5 rounded-lg bg-violet-600 hover:bg-violet-700 text-white font-semibold text-xs flex items-center justify-center space-x-1.5 transition shadow-sm">
+                            <button onclick="openSlideModal(${realIndex})" class="w-full px-3 py-2 rounded-lg bg-violet-600 hover:bg-violet-700 text-white font-semibold text-xs flex items-center justify-center space-x-1.5 transition shadow-sm cursor-pointer">
                                 <i class="fa-solid fa-presentation-screen text-xs"></i>
                                 <span>Slides (${lec.slide_count})</span>
                             </button>
-                            <button onclick="openNotesModal(${realIndex})" class="w-full px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold text-xs flex items-center justify-center space-x-1.5 transition">
+                            <button onclick="openNotesModal(${realIndex})" class="w-full px-3 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold text-xs flex items-center justify-center space-x-1.5 transition cursor-pointer">
                                 <i class="fa-solid fa-book-open text-xs text-slate-600"></i>
                                 <span>Notes</span>
                             </button>
                         </div>
-                        <div class="flex items-center justify-between text-[11px] pt-1 text-slate-500">
-                            <a href="${lec.notebook_path}" class="text-cyan-700 hover:text-cyan-900 font-mono font-semibold hover:underline flex items-center space-x-1">
-                                <i class="fa-solid fa-code text-[10px]"></i> <span>Notebook</span>
+                        <div class="grid grid-cols-2 gap-2 pt-1 text-[11px]">
+                            <a href="${colabUrl}" target="_blank" rel="noopener" class="px-2 py-1.5 rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-200 font-semibold flex items-center justify-center space-x-1 transition" title="Execute in Google Colab">
+                                <i class="fa-solid fa-play text-[10px] text-amber-600"></i>
+                                <span>Open in Colab</span>
                             </a>
-                            <a href="${lec.rel_path}" class="text-slate-500 hover:text-violet-600 font-semibold hover:underline flex items-center space-x-1">
-                                <i class="fa-brands fa-markdown text-xs"></i> <span>Source .md</span>
+                            <a href="${ghMdUrl}" target="_blank" rel="noopener" class="px-2 py-1.5 rounded-lg bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200 font-semibold flex items-center justify-center space-x-1 transition" title="View Markdown on GitHub">
+                                <i class="fa-brands fa-github text-xs"></i>
+                                <span>Source .md</span>
                             </a>
                         </div>
                     </div>
@@ -1292,7 +1915,6 @@
             }).join("");
         }
 
-        // Filter by Unit
         function filterLectures(unit, btn) {
             activeUnitFilter = unit;
             const buttons = document.querySelectorAll("#lecture-filter-bar .lec-filter-btn");
@@ -1301,14 +1923,15 @@
             renderLecturesGrid();
         }
 
-        // Search Lectures
         function handleLectureSearch() {
             const input = document.getElementById("lecture-search-input");
             searchQuery = input ? input.value : "";
             renderLecturesGrid();
         }
 
-        // Slide Modal Methods
+        // ---------------------------------------------
+        // SLIDE MODAL CONTROLLER
+        // ---------------------------------------------
         function openSlideModal(lecIndex, slideIndex = 0) {
             if (!window.CBBI_LECTURES || !window.CBBI_LECTURES[lecIndex]) return;
             currentLecIndex = lecIndex;
@@ -1325,6 +1948,13 @@
             document.body.style.overflow = "auto";
         }
 
+        function jumpToSlide(idx) {
+            const lec = window.CBBI_LECTURES[currentLecIndex];
+            if (!lec || idx < 0 || idx >= lec.slides.length) return;
+            currentSlideIndex = idx;
+            updateSlideView();
+        }
+
         function updateSlideView() {
             const lec = window.CBBI_LECTURES[currentLecIndex];
             if (!lec || !lec.slides || lec.slides.length === 0) return;
@@ -1335,7 +1965,7 @@
             document.getElementById("slide-modal-unit-name").textContent = `Unit ${lec.unit}: ${lec.unit_name}`;
             document.getElementById("slide-modal-counter").textContent = `Slide ${currentSlideIndex + 1} of ${lec.slides.length}`;
 
-            document.getElementById("slide-stage-header").textContent = `SLIDE ${slide.num}: ${slide.title}`;
+            document.getElementById("slide-stage-header").textContent = `SLIDE ${slide.num} OF ${lec.slides.length} · ${slide.title.toUpperCase()}`;
             document.getElementById("slide-stage-topic").textContent = slide.title;
             document.getElementById("slide-stage-content").textContent = slide.content;
 
@@ -1348,8 +1978,26 @@
                 notesBox.classList.add("hidden");
             }
 
+            // Progress bar
             const pct = ((currentSlideIndex + 1) / lec.slides.length) * 100;
             document.getElementById("slide-progress-bar").style.width = `${pct}%`;
+
+            // Populate clickable slide tabs strip
+            const tabsContainer = document.getElementById("slide-tabs-container");
+            if (tabsContainer) {
+                tabsContainer.innerHTML = lec.slides.map((s, idx) => {
+                    const isActive = idx === currentSlideIndex;
+                    const activeClasses = isActive 
+                        ? "bg-violet-600 text-white font-bold ring-2 ring-violet-400 border-violet-500 shadow-md"
+                        : "bg-slate-900 text-slate-400 hover:text-white hover:bg-slate-800 border-slate-800";
+                    return `
+                        <button onclick="jumpToSlide(${idx})" class="slide-tab-pill whitespace-nowrap px-3 py-1 rounded-lg text-xs border ${activeClasses} transition flex items-center space-x-1.5 cursor-pointer">
+                            <span class="font-mono text-[11px] opacity-80">${s.num}.</span>
+                            <span>${s.title}</span>
+                        </button>
+                    `;
+                }).join("");
+            }
         }
 
         function nextSlide() {
@@ -1376,32 +2024,133 @@
             }
         }
 
+        function handleSlideStageClick(e) {
+            // Prevent advancing if user is clicking on speaker notes or inside a scrollable box
+            if (e.target.closest("#slide-stage-notes-box")) return;
+            const rect = document.getElementById("slide-stage-card").getBoundingClientRect();
+            const clickX = e.clientX - rect.left;
+            if (clickX > rect.width * 0.35) {
+                nextSlide();
+            } else {
+                prevSlide();
+            }
+        }
+
+        function toggleFullscreenSlide() {
+            const modal = document.getElementById("slide-modal");
+            if (!document.fullscreenElement) {
+                if (modal.requestFullscreen) modal.requestFullscreen();
+            } else {
+                if (document.exitFullscreen) document.exitFullscreen();
+            }
+        }
+
         function openNotesFromCurrentSlide() {
             const idx = currentLecIndex;
             closeSlideModal();
             openNotesModal(idx);
         }
 
-        // Notes Modal Methods
-        function openNotesModal(lecIndex) {
-            if (!window.CBBI_LECTURES || !window.CBBI_LECTURES[lecIndex]) return;
-            currentLecIndex = lecIndex;
-            const lec = window.CBBI_LECTURES[lecIndex];
+        // ---------------------------------------------
+        // UNIFIED MARKDOWN READER MODAL
+        // ---------------------------------------------
+        function openGenericMarkdownModal({ title, topic, badge, lo, rawMarkdown, githubUrl, companionColabUrl, isLecture = false }) {
+            currentRawMarkdown = rawMarkdown;
 
-            document.getElementById("notes-modal-lec-badge").textContent = `${lec.id} · Unit ${lec.unit.toString().padStart(2, "0")}`;
-            document.getElementById("notes-modal-lo-badge").textContent = lec.lo.split(" ")[0];
-            document.getElementById("notes-modal-title").textContent = lec.title;
-            document.getElementById("notes-modal-topic").textContent = `Syllabus Topic: ${lec.syllabus_topic}`;
+            document.getElementById("notes-modal-lec-badge").textContent = badge;
+            document.getElementById("notes-modal-lo-badge").textContent = lo;
+            document.getElementById("notes-modal-title").textContent = title;
+            document.getElementById("notes-modal-topic").textContent = topic;
+
+            // Reading time calculation (~200 wpm)
+            const words = rawMarkdown.trim().split(/\s+/).length;
+            const minutes = Math.max(1, Math.round(words / 200));
+            document.getElementById("notes-modal-readtime").textContent = `~${minutes} min read`;
 
             const contentEl = document.getElementById("notes-modal-content");
-            contentEl.innerHTML = renderMarkdownToHtml(lec.notes_md);
+            contentEl.innerHTML = renderMarkdownToHtml(rawMarkdown);
+            attachCodeCopyButtons(contentEl);
 
             const ghLink = document.getElementById("notes-modal-gh-link");
-            if (ghLink) ghLink.href = `https://github.com/meprateekpaul/basicsbioinformatics/blob/main/Concepts_of_Bioinformatics/${lec.rel_path}`;
+            if (ghLink) ghLink.href = githubUrl;
+
+            const slidesBtn = document.getElementById("notes-modal-slides-btn");
+            if (slidesBtn) {
+                if (isLecture) {
+                    slidesBtn.classList.remove("hidden");
+                } else {
+                    slidesBtn.classList.add("hidden");
+                }
+            }
 
             const modal = document.getElementById("notes-modal");
             if (modal) modal.classList.remove("hidden");
             document.body.style.overflow = "hidden";
+        }
+
+        function openNotesModal(lecIndex) {
+            if (!window.CBBI_LECTURES || !window.CBBI_LECTURES[lecIndex]) return;
+            currentLecIndex = lecIndex;
+            const lec = window.CBBI_LECTURES[lecIndex];
+            const ghUrl = `https://github.com/meprateekpaul/basicsbioinformatics/blob/main/Concepts_of_Bioinformatics/${lec.rel_path}`;
+
+            openGenericMarkdownModal({
+                title: lec.title,
+                topic: `Syllabus Topic: ${lec.syllabus_topic}`,
+                badge: `${lec.id} · Unit ${lec.unit.toString().padStart(2, "0")}`,
+                lo: lec.lo.split(" ")[0],
+                rawMarkdown: lec.notes_md,
+                githubUrl: ghUrl,
+                isLecture: true
+            });
+        }
+
+        function openPracticalDoc(sessionId, fileType) {
+            if (!window.CBBI_PRACTICALS) return;
+            const pr = window.CBBI_PRACTICALS.find(p => p.id === sessionId);
+            if (!pr || !pr.files || !pr.files[fileType]) return;
+
+            const fileObj = pr.files[fileType];
+            const labelMap = { "lab_sheet.md": "Lab Sheet", "worksheet.md": "Student Worksheet", "answer_key.md": "Instructor Answer Key" };
+            const label = labelMap[fileType] || fileType;
+
+            openGenericMarkdownModal({
+                title: `${pr.title} — ${label}`,
+                topic: `Practical Session ${pr.id} · concepts of bioinformatics laboratory`,
+                badge: `${pr.id} · Practical`,
+                lo: "Lab Protocol",
+                rawMarkdown: fileObj.content,
+                githubUrl: fileObj.github_url,
+                isLecture: false
+            });
+        }
+
+        function openAssessmentDoc(folder, filename) {
+            if (!window.CBBI_ASSESSMENTS) return;
+            const doc = window.CBBI_ASSESSMENTS.find(a => a.folder === folder && a.filename === filename);
+            if (!doc) return;
+
+            openGenericMarkdownModal({
+                title: doc.title,
+                topic: `Curriculum Assessment Resource · ${folder.replace("_", " ").toUpperCase()}`,
+                badge: `Assessment · ${doc.folder}`,
+                lo: "Exam / Quiz",
+                rawMarkdown: doc.content,
+                githubUrl: doc.github_url,
+                isLecture: false
+            });
+        }
+
+        function openQuestionBankDoc(filename) {
+            if (!filename) return;
+            openAssessmentDoc("question_bank", filename);
+        }
+
+        function copyCurrentMarkdown() {
+            if (!currentRawMarkdown) return;
+            navigator.clipboard.writeText(currentRawMarkdown).then(() => {
+                alert("Authentic Markdown copied to clipboard!");
+            });
         }
 
         function closeNotesModal() {
@@ -1414,6 +2163,101 @@
             const idx = currentLecIndex;
             closeNotesModal();
             openSlideModal(idx, 0);
+        }
+
+        // ---------------------------------------------
+        // NOTEBOOKS HUB CONTROLLER (59 NOTEBOOKS)
+        // ---------------------------------------------
+        function renderNotebooksGrid() {
+            const container = document.getElementById("notebooks-grid");
+            const countLabel = document.getElementById("notebook-count-label");
+            const noResults = document.getElementById("no-notebooks-found");
+            if (!container || !window.CBBI_NOTEBOOKS) return;
+
+            const q = nbSearchQuery.toLowerCase().trim();
+            const filtered = window.CBBI_NOTEBOOKS.filter(nb => {
+                const matchesType = activeNbType === "all" || nb.type === activeNbType;
+                const matchesUnit = activeNbUnit === "all" || nb.unit === parseInt(activeNbUnit);
+                const matchesQuery = !q || 
+                    nb.title.toLowerCase().includes(q) || 
+                    nb.filename.toLowerCase().includes(q) || 
+                    nb.summary.toLowerCase().includes(q) ||
+                    nb.unit_name.toLowerCase().includes(q);
+                return matchesType && matchesUnit && matchesQuery;
+            });
+
+            if (countLabel) countLabel.textContent = filtered.length;
+
+            if (filtered.length === 0) {
+                container.innerHTML = "";
+                if (noResults) noResults.classList.remove("hidden");
+                return;
+            }
+            if (noResults) noResults.classList.add("hidden");
+
+            const colorBadgeClasses = {
+                "blue": "bg-blue-50 text-blue-700 border-blue-200",
+                "teal": "bg-teal-50 text-teal-700 border-teal-200",
+                "emerald": "bg-emerald-50 text-emerald-700 border-emerald-200",
+                "amber": "bg-amber-50 text-amber-700 border-amber-200",
+                "purple": "bg-purple-50 text-purple-700 border-purple-200",
+                "slate": "bg-slate-50 text-slate-700 border-slate-200"
+            };
+
+            container.innerHTML = filtered.map(nb => {
+                const badgeClass = colorBadgeClasses[nb.badge_color] || colorBadgeClasses["slate"];
+                return `
+                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between hover:border-violet-400 hover:shadow-md transition">
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs font-bold font-mono px-2 py-0.5 rounded border ${badgeClass}">
+                                Unit ${nb.unit.toString().padStart(2, "0")} · ${nb.type_label}
+                            </span>
+                        </div>
+                        <h4 class="font-bold text-sm text-slate-900 mb-1 leading-snug">${nb.title}</h4>
+                        <p class="text-xs text-slate-500 line-clamp-2 mb-4 leading-relaxed">${nb.summary}</p>
+                    </div>
+
+                    <div class="pt-3 border-t border-slate-100 flex items-center justify-between gap-2 text-xs">
+                        <a href="${nb.colab_url}" target="_blank" rel="noopener" class="flex-1 py-1.5 px-2 rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-200 font-bold transition flex items-center justify-center space-x-1" title="Execute in Google Colab">
+                            <i class="fa-solid fa-play text-[10px] text-amber-600"></i>
+                            <span>Colab</span>
+                        </a>
+                        <a href="${nb.github_url}" target="_blank" rel="noopener" class="py-1.5 px-3 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold border border-slate-200 transition flex items-center space-x-1" title="View Source on GitHub">
+                            <i class="fa-brands fa-github text-sm"></i>
+                            <span>GitHub</span>
+                        </a>
+                        <a href="${nb.raw_url}" download class="p-1.5 rounded-lg bg-slate-50 hover:bg-slate-100 text-slate-500 hover:text-slate-900 border border-slate-200 transition" title="Download Raw .ipynb">
+                            <i class="fa-solid fa-download text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+                `;
+            }).join("");
+        }
+
+        function filterNotebooksType(type, btn) {
+            activeNbType = type;
+            const buttons = document.querySelectorAll("#notebook-type-filters .nb-type-btn");
+            buttons.forEach(b => b.classList.remove("active"));
+            if (btn) {
+                btn.classList.add("active");
+            } else {
+                buttons.forEach(b => {
+                    if (b.textContent.includes(type) || (type === "all" && b.textContent.includes("All"))) {
+                        b.classList.add("active");
+                    }
+                });
+            }
+            renderNotebooksGrid();
+        }
+
+        function handleNotebookFilter() {
+            const unitSelect = document.getElementById("notebook-unit-select");
+            const searchInput = document.getElementById("notebook-search-input");
+            activeNbUnit = unitSelect ? unitSelect.value : "all";
+            nbSearchQuery = searchInput ? searchInput.value : "";
+            renderNotebooksGrid();
         }
 
         // Global Keyboard Event Listener
@@ -1441,6 +2285,7 @@
         // Initialize on DOM load
         document.addEventListener("DOMContentLoaded", function() {
             renderLecturesGrid();
+            renderNotebooksGrid();
         });
     </script>
 
